@@ -34,21 +34,21 @@ def _serialize_platform_payout_settlement_statement_summary(obj: PlatformPayoutS
 
 def _deserialize_platform_payout_settlement_statement_summary(obj: Any) -> PlatformPayoutSettlementStatementSummary:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     status = _deserialize_platform_payout_settlement_statement_status(status)
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "issuedAt" in obj:
         issued_at = obj["issuedAt"]
         if not isinstance(issued_at, str):
-            raise ValueError(f"{repr(issued_at)} is not str")
+            raise ValueError("Expected str for issued_at")
     else:
         issued_at = None
     return PlatformPayoutSettlementStatementSummary(status, id, issued_at)

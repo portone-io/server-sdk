@@ -22,16 +22,16 @@ def _serialize_payment_not_waiting_for_deposit_error(obj: PaymentNotWaitingForDe
 
 def _deserialize_payment_not_waiting_for_deposit_error(obj: Any) -> PaymentNotWaitingForDepositError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PAYMENT_NOT_WAITING_FOR_DEPOSIT":
-        raise ValueError(f"{repr(type)} is not 'PAYMENT_NOT_WAITING_FOR_DEPOSIT'")
+        raise ValueError("Expected 'PAYMENT_NOT_WAITING_FOR_DEPOSIT' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PaymentNotWaitingForDepositError(message)

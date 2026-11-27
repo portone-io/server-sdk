@@ -186,17 +186,17 @@ def _serialize_payment_filter_input(obj: PaymentFilterInput) -> Any:
 
 def _deserialize_payment_filter_input(obj: Any) -> PaymentFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "merchantId" in obj:
         merchant_id = obj["merchantId"]
         if not isinstance(merchant_id, str):
-            raise ValueError(f"{repr(merchant_id)} is not str")
+            raise ValueError("Expected str for merchant_id")
     else:
         merchant_id = None
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "timestampType" in obj:
@@ -207,19 +207,19 @@ def _deserialize_payment_filter_input(obj: Any) -> PaymentFilterInput:
     if "from" in obj:
         from_ = obj["from"]
         if not isinstance(from_, str):
-            raise ValueError(f"{repr(from_)} is not str")
+            raise ValueError("Expected str for from_")
     else:
         from_ = None
     if "until" in obj:
         until = obj["until"]
         if not isinstance(until, str):
-            raise ValueError(f"{repr(until)} is not str")
+            raise ValueError("Expected str for until")
     else:
         until = None
     if "status" in obj:
         status = obj["status"]
         if not isinstance(status, list):
-            raise ValueError(f"{repr(status)} is not list")
+            raise ValueError("Expected list for status")
         for i, item in enumerate(status):
             item = _deserialize_payment_status(item)
             status[i] = item
@@ -228,7 +228,7 @@ def _deserialize_payment_filter_input(obj: Any) -> PaymentFilterInput:
     if "methods" in obj:
         methods = obj["methods"]
         if not isinstance(methods, list):
-            raise ValueError(f"{repr(methods)} is not list")
+            raise ValueError("Expected list for methods")
         for i, item in enumerate(methods):
             item = _deserialize_payment_method_type(item)
             methods[i] = item
@@ -237,7 +237,7 @@ def _deserialize_payment_filter_input(obj: Any) -> PaymentFilterInput:
     if "pgProvider" in obj:
         pg_provider = obj["pgProvider"]
         if not isinstance(pg_provider, list):
-            raise ValueError(f"{repr(pg_provider)} is not list")
+            raise ValueError("Expected list for pg_provider")
         for i, item in enumerate(pg_provider):
             item = _deserialize_pg_provider(item)
             pg_provider[i] = item
@@ -246,13 +246,13 @@ def _deserialize_payment_filter_input(obj: Any) -> PaymentFilterInput:
     if "isTest" in obj:
         is_test = obj["isTest"]
         if not isinstance(is_test, bool):
-            raise ValueError(f"{repr(is_test)} is not bool")
+            raise ValueError("Expected bool for is_test")
     else:
         is_test = None
     if "isScheduled" in obj:
         is_scheduled = obj["isScheduled"]
         if not isinstance(is_scheduled, bool):
-            raise ValueError(f"{repr(is_scheduled)} is not bool")
+            raise ValueError("Expected bool for is_scheduled")
     else:
         is_scheduled = None
     if "sortBy" in obj:
@@ -288,7 +288,7 @@ def _deserialize_payment_filter_input(obj: Any) -> PaymentFilterInput:
     if "isEscrow" in obj:
         is_escrow = obj["isEscrow"]
         if not isinstance(is_escrow, bool):
-            raise ValueError(f"{repr(is_escrow)} is not bool")
+            raise ValueError("Expected bool for is_escrow")
     else:
         is_escrow = None
     if "escrowStatus" in obj:
@@ -339,7 +339,7 @@ def _deserialize_payment_filter_input(obj: Any) -> PaymentFilterInput:
     if "textSearch" in obj:
         text_search = obj["textSearch"]
         if not isinstance(text_search, list):
-            raise ValueError(f"{repr(text_search)} is not list")
+            raise ValueError("Expected list for text_search")
         for i, item in enumerate(text_search):
             item = _deserialize_payment_text_search(item)
             text_search[i] = item

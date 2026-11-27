@@ -46,24 +46,24 @@ def _serialize_pg_card_promotion(obj: PgCardPromotion) -> Any:
 
 def _deserialize_pg_card_promotion(obj: Any) -> PgCardPromotion:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "promotionId" not in obj:
-        raise KeyError(f"'promotionId' is not in {obj}")
+        raise KeyError("Missing required field 'promotionId'")
     promotion_id = obj["promotionId"]
     if not isinstance(promotion_id, str):
-        raise ValueError(f"{repr(promotion_id)} is not str")
+        raise ValueError("Expected str for promotion_id")
     if "cardCompany" not in obj:
-        raise KeyError(f"'cardCompany' is not in {obj}")
+        raise KeyError("Missing required field 'cardCompany'")
     card_company = obj["cardCompany"]
     card_company = _deserialize_pg_promotion_card_company(card_company)
     if "discountAmount" not in obj:
-        raise KeyError(f"'discountAmount' is not in {obj}")
+        raise KeyError("Missing required field 'discountAmount'")
     discount_amount = obj["discountAmount"]
     if not isinstance(discount_amount, int):
-        raise ValueError(f"{repr(discount_amount)} is not int")
+        raise ValueError("Expected int for discount_amount")
     if "minimumPaymentAmount" not in obj:
-        raise KeyError(f"'minimumPaymentAmount' is not in {obj}")
+        raise KeyError("Missing required field 'minimumPaymentAmount'")
     minimum_payment_amount = obj["minimumPaymentAmount"]
     if not isinstance(minimum_payment_amount, int):
-        raise ValueError(f"{repr(minimum_payment_amount)} is not int")
+        raise ValueError("Expected int for minimum_payment_amount")
     return PgCardPromotion(promotion_id, card_company, discount_amount, minimum_payment_amount)

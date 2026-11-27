@@ -35,26 +35,26 @@ def _serialize_revoke_payment_schedules_body(obj: RevokePaymentSchedulesBody) ->
 
 def _deserialize_revoke_payment_schedules_body(obj: Any) -> RevokePaymentSchedulesBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "billingKey" in obj:
         billing_key = obj["billingKey"]
         if not isinstance(billing_key, str):
-            raise ValueError(f"{repr(billing_key)} is not str")
+            raise ValueError("Expected str for billing_key")
     else:
         billing_key = None
     if "scheduleIds" in obj:
         schedule_ids = obj["scheduleIds"]
         if not isinstance(schedule_ids, list):
-            raise ValueError(f"{repr(schedule_ids)} is not list")
+            raise ValueError("Expected list for schedule_ids")
         for i, item in enumerate(schedule_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         schedule_ids = None
     return RevokePaymentSchedulesBody(store_id, billing_key, schedule_ids)

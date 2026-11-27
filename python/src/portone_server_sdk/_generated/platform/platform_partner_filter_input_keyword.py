@@ -60,53 +60,53 @@ def _serialize_platform_partner_filter_input_keyword(obj: PlatformPartnerFilterI
 
 def _deserialize_platform_partner_filter_input_keyword(obj: Any) -> PlatformPartnerFilterInputKeyword:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "email" in obj:
         email = obj["email"]
         if not isinstance(email, str):
-            raise ValueError(f"{repr(email)} is not str")
+            raise ValueError("Expected str for email")
     else:
         email = None
     if "businessRegistrationNumber" in obj:
         business_registration_number = obj["businessRegistrationNumber"]
         if not isinstance(business_registration_number, str):
-            raise ValueError(f"{repr(business_registration_number)} is not str")
+            raise ValueError("Expected str for business_registration_number")
     else:
         business_registration_number = None
     if "defaultContractId" in obj:
         default_contract_id = obj["defaultContractId"]
         if not isinstance(default_contract_id, str):
-            raise ValueError(f"{repr(default_contract_id)} is not str")
+            raise ValueError("Expected str for default_contract_id")
     else:
         default_contract_id = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "accountNumber" in obj:
         account_number = obj["accountNumber"]
         if not isinstance(account_number, str):
-            raise ValueError(f"{repr(account_number)} is not str")
+            raise ValueError("Expected str for account_number")
     else:
         account_number = None
     if "accountHolder" in obj:
         account_holder = obj["accountHolder"]
         if not isinstance(account_holder, str):
-            raise ValueError(f"{repr(account_holder)} is not str")
+            raise ValueError("Expected str for account_holder")
     else:
         account_holder = None
     return PlatformPartnerFilterInputKeyword(id, name, email, business_registration_number, default_contract_id, memo, account_number, account_holder)

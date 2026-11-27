@@ -26,26 +26,26 @@ def _serialize_pg_provider_error(obj: PgProviderError) -> Any:
 
 def _deserialize_pg_provider_error(obj: Any) -> PgProviderError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PG_PROVIDER":
-        raise ValueError(f"{repr(type)} is not 'PG_PROVIDER'")
+        raise ValueError("Expected 'PG_PROVIDER' for type")
     if "pgCode" not in obj:
-        raise KeyError(f"'pgCode' is not in {obj}")
+        raise KeyError("Missing required field 'pgCode'")
     pg_code = obj["pgCode"]
     if not isinstance(pg_code, str):
-        raise ValueError(f"{repr(pg_code)} is not str")
+        raise ValueError("Expected str for pg_code")
     if "pgMessage" not in obj:
-        raise KeyError(f"'pgMessage' is not in {obj}")
+        raise KeyError("Missing required field 'pgMessage'")
     pg_message = obj["pgMessage"]
     if not isinstance(pg_message, str):
-        raise ValueError(f"{repr(pg_message)} is not str")
+        raise ValueError("Expected str for pg_message")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PgProviderError(pg_code, pg_message, message)

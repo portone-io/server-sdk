@@ -24,16 +24,16 @@ def _serialize_b2b_counterparty_too_many_additional_contacts_error(obj: B2bCount
 
 def _deserialize_b2b_counterparty_too_many_additional_contacts_error(obj: Any) -> B2bCounterpartyTooManyAdditionalContactsError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "B2B_COUNTERPARTY_TOO_MANY_ADDITIONAL_CONTACTS":
-        raise ValueError(f"{repr(type)} is not 'B2B_COUNTERPARTY_TOO_MANY_ADDITIONAL_CONTACTS'")
+        raise ValueError("Expected 'B2B_COUNTERPARTY_TOO_MANY_ADDITIONAL_CONTACTS' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return B2bCounterpartyTooManyAdditionalContactsError(message)

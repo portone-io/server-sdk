@@ -59,4 +59,4 @@ def _deserialize_schedule_additional_fee_policy_error(obj: Any) -> ScheduleAddit
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ScheduleAdditionalFeePolicyError")
+    raise ValueError("Expected ScheduleAdditionalFeePolicyError")

@@ -26,4 +26,4 @@ def _deserialize_pg_billing_key_issue_response(obj: Any) -> PgBillingKeyIssueRes
         return _deserialize_issued_pg_billing_key_issue_response(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PgBillingKeyIssueResponse")
+    raise ValueError("Expected PgBillingKeyIssueResponse")

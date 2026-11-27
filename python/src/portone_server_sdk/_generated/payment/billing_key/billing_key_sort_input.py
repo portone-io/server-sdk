@@ -34,7 +34,7 @@ def _serialize_billing_key_sort_input(obj: BillingKeySortInput) -> Any:
 
 def _deserialize_billing_key_sort_input(obj: Any) -> BillingKeySortInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "by" in obj:
         by = obj["by"]
         by = _deserialize_billing_key_sort_by(by)

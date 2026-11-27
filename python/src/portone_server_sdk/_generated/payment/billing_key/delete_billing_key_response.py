@@ -22,10 +22,10 @@ def _serialize_delete_billing_key_response(obj: DeleteBillingKeyResponse) -> Any
 
 def _deserialize_delete_billing_key_response(obj: Any) -> DeleteBillingKeyResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "deletedAt" not in obj:
-        raise KeyError(f"'deletedAt' is not in {obj}")
+        raise KeyError("Missing required field 'deletedAt'")
     deleted_at = obj["deletedAt"]
     if not isinstance(deleted_at, str):
-        raise ValueError(f"{repr(deleted_at)} is not str")
+        raise ValueError("Expected str for deleted_at")
     return DeleteBillingKeyResponse(deleted_at)

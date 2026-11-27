@@ -31,4 +31,4 @@ def _deserialize_get_identity_verifications_error(obj: Any) -> GetIdentityVerifi
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetIdentityVerificationsError")
+    raise ValueError("Expected GetIdentityVerificationsError")

@@ -27,15 +27,15 @@ def _serialize_platform_fixed_rate_fee(obj: PlatformFixedRateFee) -> Any:
 
 def _deserialize_platform_fixed_rate_fee(obj: Any) -> PlatformFixedRateFee:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "FIXED_RATE":
-        raise ValueError(f"{repr(type)} is not 'FIXED_RATE'")
+        raise ValueError("Expected 'FIXED_RATE' for type")
     if "rate" not in obj:
-        raise KeyError(f"'rate' is not in {obj}")
+        raise KeyError("Missing required field 'rate'")
     rate = obj["rate"]
     if not isinstance(rate, int):
-        raise ValueError(f"{repr(rate)} is not int")
+        raise ValueError("Expected int for rate")
     return PlatformFixedRateFee(rate)

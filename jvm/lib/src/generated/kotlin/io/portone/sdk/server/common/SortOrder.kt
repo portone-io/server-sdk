@@ -22,7 +22,7 @@ public sealed interface SortOrder {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Desc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Desc = decoder.decodeString().let {
       if (it != "DESC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DESC")
       } else {
         return Desc
       }
@@ -38,7 +38,7 @@ public sealed interface SortOrder {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Asc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Asc = decoder.decodeString().let {
       if (it != "ASC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ASC")
       } else {
         return Asc
       }

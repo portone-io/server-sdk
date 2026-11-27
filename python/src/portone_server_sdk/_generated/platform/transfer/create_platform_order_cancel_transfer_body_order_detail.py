@@ -38,17 +38,17 @@ def _serialize_create_platform_order_cancel_transfer_body_order_detail(obj: Crea
 
 def _deserialize_create_platform_order_cancel_transfer_body_order_detail(obj: Any) -> CreatePlatformOrderCancelTransferBodyOrderDetail:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "orderAmount" in obj:
         order_amount = obj["orderAmount"]
         if not isinstance(order_amount, int):
-            raise ValueError(f"{repr(order_amount)} is not int")
+            raise ValueError("Expected int for order_amount")
     else:
         order_amount = None
     if "orderLines" in obj:
         order_lines = obj["orderLines"]
         if not isinstance(order_lines, list):
-            raise ValueError(f"{repr(order_lines)} is not list")
+            raise ValueError("Expected list for order_lines")
         for i, item in enumerate(order_lines):
             item = _deserialize_create_platform_order_cancel_transfer_body_order_line(item)
             order_lines[i] = item

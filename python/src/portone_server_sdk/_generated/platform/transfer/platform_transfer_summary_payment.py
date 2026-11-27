@@ -24,4 +24,4 @@ def _deserialize_platform_transfer_summary_payment(obj: Any) -> PlatformTransfer
         return _deserialize_platform_transfer_summary_port_one_payment(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PlatformTransferSummaryPayment")
+    raise ValueError("Expected PlatformTransferSummaryPayment")

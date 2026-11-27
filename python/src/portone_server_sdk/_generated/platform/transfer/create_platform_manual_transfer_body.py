@@ -72,44 +72,44 @@ def _serialize_create_platform_manual_transfer_body(obj: CreatePlatformManualTra
 
 def _deserialize_create_platform_manual_transfer_body(obj: Any) -> CreatePlatformManualTransferBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "partnerId" not in obj:
-        raise KeyError(f"'partnerId' is not in {obj}")
+        raise KeyError("Missing required field 'partnerId'")
     partner_id = obj["partnerId"]
     if not isinstance(partner_id, str):
-        raise ValueError(f"{repr(partner_id)} is not str")
+        raise ValueError("Expected str for partner_id")
     if "settlementAmount" not in obj:
-        raise KeyError(f"'settlementAmount' is not in {obj}")
+        raise KeyError("Missing required field 'settlementAmount'")
     settlement_amount = obj["settlementAmount"]
     if not isinstance(settlement_amount, int):
-        raise ValueError(f"{repr(settlement_amount)} is not int")
+        raise ValueError("Expected int for settlement_amount")
     if "settlementDate" not in obj:
-        raise KeyError(f"'settlementDate' is not in {obj}")
+        raise KeyError("Missing required field 'settlementDate'")
     settlement_date = obj["settlementDate"]
     if not isinstance(settlement_date, str):
-        raise ValueError(f"{repr(settlement_date)} is not str")
+        raise ValueError("Expected str for settlement_date")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "settlementTaxFreeAmount" in obj:
         settlement_tax_free_amount = obj["settlementTaxFreeAmount"]
         if not isinstance(settlement_tax_free_amount, int):
-            raise ValueError(f"{repr(settlement_tax_free_amount)} is not int")
+            raise ValueError("Expected int for settlement_tax_free_amount")
     else:
         settlement_tax_free_amount = None
     if "isForTest" in obj:
         is_for_test = obj["isForTest"]
         if not isinstance(is_for_test, bool):
-            raise ValueError(f"{repr(is_for_test)} is not bool")
+            raise ValueError("Expected bool for is_for_test")
     else:
         is_for_test = None
     if "userDefinedProperties" in obj:
         user_defined_properties = obj["userDefinedProperties"]
         if not isinstance(user_defined_properties, list):
-            raise ValueError(f"{repr(user_defined_properties)} is not list")
+            raise ValueError("Expected list for user_defined_properties")
         for i, item in enumerate(user_defined_properties):
             item = _deserialize_platform_user_defined_property_key_value(item)
             user_defined_properties[i] = item
@@ -118,7 +118,7 @@ def _deserialize_create_platform_manual_transfer_body(obj: Any) -> CreatePlatfor
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "settlementCurrency" in obj:

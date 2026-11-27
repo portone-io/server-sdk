@@ -22,7 +22,7 @@ public sealed interface IdentityVerificationTimeRangeField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestedAt = decoder.decodeString().let {
       if (it != "REQUESTED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REQUESTED_AT")
       } else {
         return RequestedAt
       }
@@ -38,7 +38,7 @@ public sealed interface IdentityVerificationTimeRangeField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VerifiedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VerifiedAt = decoder.decodeString().let {
       if (it != "VERIFIED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VERIFIED_AT")
       } else {
         return VerifiedAt
       }
@@ -54,7 +54,7 @@ public sealed interface IdentityVerificationTimeRangeField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(FailedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): FailedAt = decoder.decodeString().let {
       if (it != "FAILED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FAILED_AT")
       } else {
         return FailedAt
       }
@@ -74,7 +74,7 @@ public sealed interface IdentityVerificationTimeRangeField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusUpdatedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): StatusUpdatedAt = decoder.decodeString().let {
       if (it != "STATUS_UPDATED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected STATUS_UPDATED_AT")
       } else {
         return StatusUpdatedAt
       }

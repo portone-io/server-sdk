@@ -22,7 +22,7 @@ public sealed interface PaymentScheduleStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Scheduled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Scheduled = decoder.decodeString().let {
       if (it != "SCHEDULED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SCHEDULED")
       } else {
         return Scheduled
       }
@@ -38,7 +38,7 @@ public sealed interface PaymentScheduleStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Started::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Started = decoder.decodeString().let {
       if (it != "STARTED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected STARTED")
       } else {
         return Started
       }
@@ -54,7 +54,7 @@ public sealed interface PaymentScheduleStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Succeeded::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Succeeded = decoder.decodeString().let {
       if (it != "SUCCEEDED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUCCEEDED")
       } else {
         return Succeeded
       }
@@ -70,7 +70,7 @@ public sealed interface PaymentScheduleStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Failed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Failed = decoder.decodeString().let {
       if (it != "FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FAILED")
       } else {
         return Failed
       }
@@ -86,7 +86,7 @@ public sealed interface PaymentScheduleStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Revoked::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Revoked = decoder.decodeString().let {
       if (it != "REVOKED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REVOKED")
       } else {
         return Revoked
       }
@@ -102,7 +102,7 @@ public sealed interface PaymentScheduleStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pending = decoder.decodeString().let {
       if (it != "PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PENDING")
       } else {
         return Pending
       }

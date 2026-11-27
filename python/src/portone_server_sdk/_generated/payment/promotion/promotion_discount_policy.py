@@ -22,12 +22,12 @@ def _serialize_promotion_discount_policy(obj: PromotionDiscountPolicy) -> Any:
 
 def _deserialize_promotion_discount_policy(obj: Any) -> PromotionDiscountPolicy:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "partitions" not in obj:
-        raise KeyError(f"'partitions' is not in {obj}")
+        raise KeyError("Missing required field 'partitions'")
     partitions = obj["partitions"]
     if not isinstance(partitions, list):
-        raise ValueError(f"{repr(partitions)} is not list")
+        raise ValueError("Expected list for partitions")
     for i, item in enumerate(partitions):
         item = _deserialize_promotion_discount_partition(item)
         partitions[i] = item

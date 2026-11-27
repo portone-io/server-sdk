@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.CreatePlatformManualTransferError
@@ -238,7 +239,7 @@ public class TransferClient(
         json.decodeFromString<DownloadPlatformTransferSheetError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
@@ -301,7 +302,7 @@ public class TransferClient(
         json.decodeFromString<GetPlatformTransferSummariesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -315,7 +316,7 @@ public class TransferClient(
       json.decodeFromString<GetPlatformTransferSummariesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -409,7 +410,7 @@ public class TransferClient(
         json.decodeFromString<CreatePlatformManualTransferError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -427,7 +428,7 @@ public class TransferClient(
       json.decodeFromString<CreateManualTransferResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -555,7 +556,7 @@ public class TransferClient(
         json.decodeFromString<CreatePlatformOrderCancelTransferError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -590,7 +591,7 @@ public class TransferClient(
       json.decodeFromString<CreateOrderCancelTransferResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -729,7 +730,7 @@ public class TransferClient(
         json.decodeFromString<CreatePlatformOrderTransferError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -761,7 +762,7 @@ public class TransferClient(
       json.decodeFromString<CreateOrderTransferResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -808,7 +809,7 @@ public class TransferClient(
   ): PlatformTransfer {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", id.toString())
+        this.appendApiPathSegments("platform", "transfers", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -823,7 +824,7 @@ public class TransferClient(
         json.decodeFromString<GetPlatformTransferError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -838,7 +839,7 @@ public class TransferClient(
       json.decodeFromString<PlatformTransfer>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -871,7 +872,7 @@ public class TransferClient(
   ): DeletePlatformTransferResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", id.toString())
+        this.appendApiPathSegments("platform", "transfers", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -886,7 +887,7 @@ public class TransferClient(
         json.decodeFromString<DeletePlatformTransferError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -903,7 +904,7 @@ public class TransferClient(
       json.decodeFromString<DeletePlatformTransferResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

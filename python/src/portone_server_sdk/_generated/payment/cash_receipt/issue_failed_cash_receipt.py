@@ -53,37 +53,37 @@ def _serialize_issue_failed_cash_receipt(obj: IssueFailedCashReceipt) -> Any:
 
 def _deserialize_issue_failed_cash_receipt(obj: Any) -> IssueFailedCashReceipt:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     if status != "ISSUE_FAILED":
-        raise ValueError(f"{repr(status)} is not 'ISSUE_FAILED'")
+        raise ValueError("Expected 'ISSUE_FAILED' for status")
     if "merchantId" not in obj:
-        raise KeyError(f"'merchantId' is not in {obj}")
+        raise KeyError("Missing required field 'merchantId'")
     merchant_id = obj["merchantId"]
     if not isinstance(merchant_id, str):
-        raise ValueError(f"{repr(merchant_id)} is not str")
+        raise ValueError("Expected str for merchant_id")
     if "storeId" not in obj:
-        raise KeyError(f"'storeId' is not in {obj}")
+        raise KeyError("Missing required field 'storeId'")
     store_id = obj["storeId"]
     if not isinstance(store_id, str):
-        raise ValueError(f"{repr(store_id)} is not str")
+        raise ValueError("Expected str for store_id")
     if "paymentId" not in obj:
-        raise KeyError(f"'paymentId' is not in {obj}")
+        raise KeyError("Missing required field 'paymentId'")
     payment_id = obj["paymentId"]
     if not isinstance(payment_id, str):
-        raise ValueError(f"{repr(payment_id)} is not str")
+        raise ValueError("Expected str for payment_id")
     if "orderName" not in obj:
-        raise KeyError(f"'orderName' is not in {obj}")
+        raise KeyError("Missing required field 'orderName'")
     order_name = obj["orderName"]
     if not isinstance(order_name, str):
-        raise ValueError(f"{repr(order_name)} is not str")
+        raise ValueError("Expected str for order_name")
     if "isManual" not in obj:
-        raise KeyError(f"'isManual' is not in {obj}")
+        raise KeyError("Missing required field 'isManual'")
     is_manual = obj["isManual"]
     if not isinstance(is_manual, bool):
-        raise ValueError(f"{repr(is_manual)} is not bool")
+        raise ValueError("Expected bool for is_manual")
     if "channel" in obj:
         channel = obj["channel"]
         channel = _deserialize_selected_channel(channel)
@@ -92,7 +92,7 @@ def _deserialize_issue_failed_cash_receipt(obj: Any) -> IssueFailedCashReceipt:
     if "statusUpdatedAt" in obj:
         status_updated_at = obj["statusUpdatedAt"]
         if not isinstance(status_updated_at, str):
-            raise ValueError(f"{repr(status_updated_at)} is not str")
+            raise ValueError("Expected str for status_updated_at")
     else:
         status_updated_at = None
     return IssueFailedCashReceipt(merchant_id, store_id, payment_id, order_name, is_manual, channel, status_updated_at)

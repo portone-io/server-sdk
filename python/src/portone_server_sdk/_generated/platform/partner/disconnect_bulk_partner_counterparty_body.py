@@ -26,7 +26,7 @@ def _serialize_disconnect_bulk_partner_counterparty_body(obj: DisconnectBulkPart
 
 def _deserialize_disconnect_bulk_partner_counterparty_body(obj: Any) -> DisconnectBulkPartnerCounterpartyBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "filter" in obj:
         filter = obj["filter"]
         filter = _deserialize_platform_partner_filter_input(filter)

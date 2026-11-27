@@ -32,7 +32,7 @@ def _serialize_platform_bulk_payout_filter_input_criteria(obj: PlatformBulkPayou
 
 def _deserialize_platform_bulk_payout_filter_input_criteria(obj: Any) -> PlatformBulkPayoutFilterInputCriteria:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "timestampRange" in obj:
         timestamp_range = obj["timestampRange"]
         timestamp_range = _deserialize_date_time_range(timestamp_range)
@@ -46,7 +46,7 @@ def _deserialize_platform_bulk_payout_filter_input_criteria(obj: Any) -> Platfor
     if "bulkPayoutId" in obj:
         bulk_payout_id = obj["bulkPayoutId"]
         if not isinstance(bulk_payout_id, str):
-            raise ValueError(f"{repr(bulk_payout_id)} is not str")
+            raise ValueError("Expected str for bulk_payout_id")
     else:
         bulk_payout_id = None
     return PlatformBulkPayoutFilterInputCriteria(timestamp_range, status_updated_timestamp_range, bulk_payout_id)

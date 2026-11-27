@@ -35,25 +35,25 @@ def _serialize_payment_reconciliation_vat_report_summary(obj: PaymentReconciliat
 
 def _deserialize_payment_reconciliation_vat_report_summary(obj: Any) -> PaymentReconciliationVatReportSummary:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "totalSupplyAmount" not in obj:
-        raise KeyError(f"'totalSupplyAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalSupplyAmount'")
     total_supply_amount = obj["totalSupplyAmount"]
     if not isinstance(total_supply_amount, int):
-        raise ValueError(f"{repr(total_supply_amount)} is not int")
+        raise ValueError("Expected int for total_supply_amount")
     if "totalVatAmount" not in obj:
-        raise KeyError(f"'totalVatAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalVatAmount'")
     total_vat_amount = obj["totalVatAmount"]
     if not isinstance(total_vat_amount, int):
-        raise ValueError(f"{repr(total_vat_amount)} is not int")
+        raise ValueError("Expected int for total_vat_amount")
     if "totalTaxFreeAmount" not in obj:
-        raise KeyError(f"'totalTaxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalTaxFreeAmount'")
     total_tax_free_amount = obj["totalTaxFreeAmount"]
     if not isinstance(total_tax_free_amount, int):
-        raise ValueError(f"{repr(total_tax_free_amount)} is not int")
+        raise ValueError("Expected int for total_tax_free_amount")
     if "totalAmount" not in obj:
-        raise KeyError(f"'totalAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalAmount'")
     total_amount = obj["totalAmount"]
     if not isinstance(total_amount, int):
-        raise ValueError(f"{repr(total_amount)} is not int")
+        raise ValueError("Expected int for total_amount")
     return PaymentReconciliationVatReportSummary(total_supply_amount, total_vat_amount, total_tax_free_amount, total_amount)

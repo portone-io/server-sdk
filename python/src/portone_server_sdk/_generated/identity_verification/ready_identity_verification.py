@@ -66,38 +66,38 @@ def _serialize_ready_identity_verification(obj: ReadyIdentityVerification) -> An
 
 def _deserialize_ready_identity_verification(obj: Any) -> ReadyIdentityVerification:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     if status != "READY":
-        raise ValueError(f"{repr(status)} is not 'READY'")
+        raise ValueError("Expected 'READY' for status")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "requestedCustomer" not in obj:
-        raise KeyError(f"'requestedCustomer' is not in {obj}")
+        raise KeyError("Missing required field 'requestedCustomer'")
     requested_customer = obj["requestedCustomer"]
     requested_customer = _deserialize_identity_verification_requested_customer(requested_customer)
     if "requestedAt" not in obj:
-        raise KeyError(f"'requestedAt' is not in {obj}")
+        raise KeyError("Missing required field 'requestedAt'")
     requested_at = obj["requestedAt"]
     if not isinstance(requested_at, str):
-        raise ValueError(f"{repr(requested_at)} is not str")
+        raise ValueError("Expected str for requested_at")
     if "updatedAt" not in obj:
-        raise KeyError(f"'updatedAt' is not in {obj}")
+        raise KeyError("Missing required field 'updatedAt'")
     updated_at = obj["updatedAt"]
     if not isinstance(updated_at, str):
-        raise ValueError(f"{repr(updated_at)} is not str")
+        raise ValueError("Expected str for updated_at")
     if "statusChangedAt" not in obj:
-        raise KeyError(f"'statusChangedAt' is not in {obj}")
+        raise KeyError("Missing required field 'statusChangedAt'")
     status_changed_at = obj["statusChangedAt"]
     if not isinstance(status_changed_at, str):
-        raise ValueError(f"{repr(status_changed_at)} is not str")
+        raise ValueError("Expected str for status_changed_at")
     if "version" not in obj:
-        raise KeyError(f"'version' is not in {obj}")
+        raise KeyError("Missing required field 'version'")
     version = obj["version"]
     version = _deserialize_port_one_version(version)
     if "channel" in obj:
@@ -108,13 +108,13 @@ def _deserialize_ready_identity_verification(obj: Any) -> ReadyIdentityVerificat
     if "customData" in obj:
         custom_data = obj["customData"]
         if not isinstance(custom_data, str):
-            raise ValueError(f"{repr(custom_data)} is not str")
+            raise ValueError("Expected str for custom_data")
     else:
         custom_data = None
     if "pgTxId" in obj:
         pg_tx_id = obj["pgTxId"]
         if not isinstance(pg_tx_id, str):
-            raise ValueError(f"{repr(pg_tx_id)} is not str")
+            raise ValueError("Expected str for pg_tx_id")
     else:
         pg_tx_id = None
     return ReadyIdentityVerification(id, requested_customer, requested_at, updated_at, status_changed_at, version, channel, custom_data, pg_tx_id)

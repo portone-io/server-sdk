@@ -38,4 +38,4 @@ def _deserialize_get_platform_discount_share_policies_error(obj: Any) -> GetPlat
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPlatformDiscountSharePoliciesError")
+    raise ValueError("Expected GetPlatformDiscountSharePoliciesError")

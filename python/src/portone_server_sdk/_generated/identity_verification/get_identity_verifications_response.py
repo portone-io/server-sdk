@@ -27,17 +27,17 @@ def _serialize_get_identity_verifications_response(obj: GetIdentityVerifications
 
 def _deserialize_get_identity_verifications_response(obj: Any) -> GetIdentityVerificationsResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "items" not in obj:
-        raise KeyError(f"'items' is not in {obj}")
+        raise KeyError("Missing required field 'items'")
     items = obj["items"]
     if not isinstance(items, list):
-        raise ValueError(f"{repr(items)} is not list")
+        raise ValueError("Expected list for items")
     for i, item in enumerate(items):
         item = _deserialize_identity_verification(item)
         items[i] = item
     if "page" not in obj:
-        raise KeyError(f"'page' is not in {obj}")
+        raise KeyError("Missing required field 'page'")
     page = obj["page"]
     page = _deserialize_page_info(page)
     return GetIdentityVerificationsResponse(items, page)

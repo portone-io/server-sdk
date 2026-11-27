@@ -22,7 +22,7 @@ public sealed interface IdentityVerificationStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ready::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ready = decoder.decodeString().let {
       if (it != "READY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected READY")
       } else {
         return Ready
       }
@@ -38,7 +38,7 @@ public sealed interface IdentityVerificationStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Verified::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Verified = decoder.decodeString().let {
       if (it != "VERIFIED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VERIFIED")
       } else {
         return Verified
       }
@@ -54,7 +54,7 @@ public sealed interface IdentityVerificationStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Failed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Failed = decoder.decodeString().let {
       if (it != "FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FAILED")
       } else {
         return Failed
       }

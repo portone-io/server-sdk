@@ -86,42 +86,42 @@ def _serialize_issue_cash_receipt_body(obj: IssueCashReceiptBody) -> Any:
 
 def _deserialize_issue_cash_receipt_body(obj: Any) -> IssueCashReceiptBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "paymentId" not in obj:
-        raise KeyError(f"'paymentId' is not in {obj}")
+        raise KeyError("Missing required field 'paymentId'")
     payment_id = obj["paymentId"]
     if not isinstance(payment_id, str):
-        raise ValueError(f"{repr(payment_id)} is not str")
+        raise ValueError("Expected str for payment_id")
     if "channelKey" not in obj:
-        raise KeyError(f"'channelKey' is not in {obj}")
+        raise KeyError("Missing required field 'channelKey'")
     channel_key = obj["channelKey"]
     if not isinstance(channel_key, str):
-        raise ValueError(f"{repr(channel_key)} is not str")
+        raise ValueError("Expected str for channel_key")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     type = _deserialize_cash_receipt_type(type)
     if "orderName" not in obj:
-        raise KeyError(f"'orderName' is not in {obj}")
+        raise KeyError("Missing required field 'orderName'")
     order_name = obj["orderName"]
     if not isinstance(order_name, str):
-        raise ValueError(f"{repr(order_name)} is not str")
+        raise ValueError("Expected str for order_name")
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     amount = _deserialize_payment_amount_input(amount)
     if "customer" not in obj:
-        raise KeyError(f"'customer' is not in {obj}")
+        raise KeyError("Missing required field 'customer'")
     customer = obj["customer"]
     customer = _deserialize_issue_cash_receipt_customer_input(customer)
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "productType" in obj:
@@ -132,13 +132,13 @@ def _deserialize_issue_cash_receipt_body(obj: Any) -> IssueCashReceiptBody:
     if "paidAt" in obj:
         paid_at = obj["paidAt"]
         if not isinstance(paid_at, str):
-            raise ValueError(f"{repr(paid_at)} is not str")
+            raise ValueError("Expected str for paid_at")
     else:
         paid_at = None
     if "businessRegistrationNumber" in obj:
         business_registration_number = obj["businessRegistrationNumber"]
         if not isinstance(business_registration_number, str):
-            raise ValueError(f"{repr(business_registration_number)} is not str")
+            raise ValueError("Expected str for business_registration_number")
     else:
         business_registration_number = None
     if "paymentMethod" in obj:

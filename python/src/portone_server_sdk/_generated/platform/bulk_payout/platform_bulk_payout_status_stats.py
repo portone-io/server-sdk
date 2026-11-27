@@ -39,35 +39,35 @@ def _serialize_platform_bulk_payout_status_stats(obj: PlatformBulkPayoutStatusSt
 
 def _deserialize_platform_bulk_payout_status_stats(obj: Any) -> PlatformBulkPayoutStatusStats:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "preparing" not in obj:
-        raise KeyError(f"'preparing' is not in {obj}")
+        raise KeyError("Missing required field 'preparing'")
     preparing = obj["preparing"]
     if not isinstance(preparing, int):
-        raise ValueError(f"{repr(preparing)} is not int")
+        raise ValueError("Expected int for preparing")
     if "prepared" not in obj:
-        raise KeyError(f"'prepared' is not in {obj}")
+        raise KeyError("Missing required field 'prepared'")
     prepared = obj["prepared"]
     if not isinstance(prepared, int):
-        raise ValueError(f"{repr(prepared)} is not int")
+        raise ValueError("Expected int for prepared")
     if "ongoing" not in obj:
-        raise KeyError(f"'ongoing' is not in {obj}")
+        raise KeyError("Missing required field 'ongoing'")
     ongoing = obj["ongoing"]
     if not isinstance(ongoing, int):
-        raise ValueError(f"{repr(ongoing)} is not int")
+        raise ValueError("Expected int for ongoing")
     if "postProcessPending" not in obj:
-        raise KeyError(f"'postProcessPending' is not in {obj}")
+        raise KeyError("Missing required field 'postProcessPending'")
     post_process_pending = obj["postProcessPending"]
     if not isinstance(post_process_pending, int):
-        raise ValueError(f"{repr(post_process_pending)} is not int")
+        raise ValueError("Expected int for post_process_pending")
     if "completed" not in obj:
-        raise KeyError(f"'completed' is not in {obj}")
+        raise KeyError("Missing required field 'completed'")
     completed = obj["completed"]
     if not isinstance(completed, int):
-        raise ValueError(f"{repr(completed)} is not int")
+        raise ValueError("Expected int for completed")
     if "cancelled" not in obj:
-        raise KeyError(f"'cancelled' is not in {obj}")
+        raise KeyError("Missing required field 'cancelled'")
     cancelled = obj["cancelled"]
     if not isinstance(cancelled, int):
-        raise ValueError(f"{repr(cancelled)} is not int")
+        raise ValueError("Expected int for cancelled")
     return PlatformBulkPayoutStatusStats(preparing, prepared, ongoing, post_process_pending, completed, cancelled)

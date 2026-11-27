@@ -24,4 +24,4 @@ def _deserialize_promotion_discount_scheme(obj: Any) -> PromotionDiscountScheme:
         return _deserialize_promotion_percent_discount_scheme(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PromotionDiscountScheme")
+    raise ValueError("Expected PromotionDiscountScheme")

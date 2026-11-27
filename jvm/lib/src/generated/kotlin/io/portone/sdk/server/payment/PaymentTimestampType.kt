@@ -33,7 +33,7 @@ public sealed interface PaymentTimestampType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CreatedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CreatedAt = decoder.decodeString().let {
       if (it != "CREATED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CREATED_AT")
       } else {
         return CreatedAt
       }
@@ -49,7 +49,7 @@ public sealed interface PaymentTimestampType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusChangedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): StatusChangedAt = decoder.decodeString().let {
       if (it != "STATUS_CHANGED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected STATUS_CHANGED_AT")
       } else {
         return StatusChangedAt
       }

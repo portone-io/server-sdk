@@ -20,9 +20,9 @@ def _serialize_send_to_nts_b2b_tax_invoice_response(obj: SendToNtsB2bTaxInvoiceR
 
 def _deserialize_send_to_nts_b2b_tax_invoice_response(obj: Any) -> SendToNtsB2bTaxInvoiceResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "taxInvoice" not in obj:
-        raise KeyError(f"'taxInvoice' is not in {obj}")
+        raise KeyError("Missing required field 'taxInvoice'")
     tax_invoice = obj["taxInvoice"]
     tax_invoice = _deserialize_b2b_tax_invoice(tax_invoice)
     return SendToNtsB2bTaxInvoiceResponse(tax_invoice)

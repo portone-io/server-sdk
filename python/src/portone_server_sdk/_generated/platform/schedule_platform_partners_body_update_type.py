@@ -39,7 +39,7 @@ def _serialize_schedule_platform_partners_body_update_type(obj: SchedulePlatform
 
 def _deserialize_schedule_platform_partners_body_update_type(obj: Any) -> SchedulePlatformPartnersBodyUpdateType:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "business" in obj:
         business = obj["business"]
         business = _deserialize_schedule_platform_partners_body_update_type_business(business)

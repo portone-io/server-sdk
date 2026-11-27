@@ -22,16 +22,16 @@ def _serialize_platform_cannot_specify_transfer_error(obj: PlatformCannotSpecify
 
 def _deserialize_platform_cannot_specify_transfer_error(obj: Any) -> PlatformCannotSpecifyTransferError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_CANNOT_SPECIFY_TRANSFER":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_CANNOT_SPECIFY_TRANSFER'")
+        raise ValueError("Expected 'PLATFORM_CANNOT_SPECIFY_TRANSFER' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformCannotSpecifyTransferError(message)

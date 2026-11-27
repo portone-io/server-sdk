@@ -16,5 +16,5 @@ def _serialize_schedule_platform_partners_response(obj: SchedulePlatformPartners
 
 def _deserialize_schedule_platform_partners_response(obj: Any) -> SchedulePlatformPartnersResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return SchedulePlatformPartnersResponse()

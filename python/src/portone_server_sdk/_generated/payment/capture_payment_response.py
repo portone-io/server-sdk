@@ -18,5 +18,5 @@ def _serialize_capture_payment_response(obj: CapturePaymentResponse) -> Any:
 
 def _deserialize_capture_payment_response(obj: Any) -> CapturePaymentResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return CapturePaymentResponse()

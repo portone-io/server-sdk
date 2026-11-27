@@ -25,15 +25,15 @@ def _serialize_b2b_bulk_tax_invoice_stat(obj: B2bBulkTaxInvoiceStat) -> Any:
 
 def _deserialize_b2b_bulk_tax_invoice_stat(obj: Any) -> B2bBulkTaxInvoiceStat:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "count" not in obj:
-        raise KeyError(f"'count' is not in {obj}")
+        raise KeyError("Missing required field 'count'")
     count = obj["count"]
     if not isinstance(count, int):
-        raise ValueError(f"{repr(count)} is not int")
+        raise ValueError("Expected int for count")
     if "amountSum" not in obj:
-        raise KeyError(f"'amountSum' is not in {obj}")
+        raise KeyError("Missing required field 'amountSum'")
     amount_sum = obj["amountSum"]
     if not isinstance(amount_sum, int):
-        raise ValueError(f"{repr(amount_sum)} is not int")
+        raise ValueError("Expected int for amount_sum")
     return B2bBulkTaxInvoiceStat(count, amount_sum)

@@ -25,15 +25,15 @@ def _serialize_date_time_range(obj: DateTimeRange) -> Any:
 
 def _deserialize_date_time_range(obj: Any) -> DateTimeRange:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "from" not in obj:
-        raise KeyError(f"'from' is not in {obj}")
+        raise KeyError("Missing required field 'from'")
     from_ = obj["from"]
     if not isinstance(from_, str):
-        raise ValueError(f"{repr(from_)} is not str")
+        raise ValueError("Expected str for from_")
     if "until" not in obj:
-        raise KeyError(f"'until' is not in {obj}")
+        raise KeyError("Missing required field 'until'")
     until = obj["until"]
     if not isinstance(until, str):
-        raise ValueError(f"{repr(until)} is not str")
+        raise ValueError("Expected str for until")
     return DateTimeRange(from_, until)

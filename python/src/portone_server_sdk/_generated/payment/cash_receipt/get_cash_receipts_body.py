@@ -40,7 +40,7 @@ def _serialize_get_cash_receipts_body(obj: GetCashReceiptsBody) -> Any:
 
 def _deserialize_get_cash_receipts_body(obj: Any) -> GetCashReceiptsBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "page" in obj:
         page = obj["page"]
         page = _deserialize_page_input(page)

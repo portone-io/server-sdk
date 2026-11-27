@@ -1,6 +1,6 @@
 import { PaymentScheduleError } from "./PaymentScheduleError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { AlreadyPaidOrWaitingError } from "../../../generated/payment/paymentSchedule/AlreadyPaidOrWaitingError"
 import type { BillingKeyAlreadyDeletedError } from "../../../generated/common/BillingKeyAlreadyDeletedError"
 import type { BillingKeyNotFoundError } from "../../../generated/common/BillingKeyNotFoundError"
@@ -43,7 +43,7 @@ export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleC
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/payment-schedules/${encodeURIComponent(paymentScheduleId)}?${query}`, baseUrl),
+				new URL(`/payment-schedules/${encodePathParameter(paymentScheduleId)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -144,7 +144,7 @@ export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleC
 				timeToPay,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/schedule`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/schedule`, baseUrl),
 				{
 					method: "POST",
 					headers: {

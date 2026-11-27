@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.ArchivePlatformAdditionalFeePolicyError
 import io.portone.sdk.server.errors.ArchivePlatformAdditionalFeePolicyException
@@ -170,7 +171,7 @@ public class PolicyClient(
   ): ArchivePlatformAdditionalFeePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "archive")
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString(), "archive")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -185,7 +186,7 @@ public class PolicyClient(
         json.decodeFromString<ArchivePlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -201,7 +202,7 @@ public class PolicyClient(
       json.decodeFromString<ArchivePlatformAdditionalFeePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -234,7 +235,7 @@ public class PolicyClient(
   ): RecoverPlatformAdditionalFeePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "recover")
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString(), "recover")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -249,7 +250,7 @@ public class PolicyClient(
         json.decodeFromString<RecoverPlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -264,7 +265,7 @@ public class PolicyClient(
       json.decodeFromString<RecoverPlatformAdditionalFeePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -297,7 +298,7 @@ public class PolicyClient(
   ): PlatformAdditionalFeePolicy {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString())
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -312,7 +313,7 @@ public class PolicyClient(
         json.decodeFromString<GetPlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -327,7 +328,7 @@ public class PolicyClient(
       json.decodeFromString<PlatformAdditionalFeePolicy>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -378,7 +379,7 @@ public class PolicyClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString())
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -395,7 +396,7 @@ public class PolicyClient(
         json.decodeFromString<UpdatePlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -411,7 +412,7 @@ public class PolicyClient(
       json.decodeFromString<UpdatePlatformAdditionalFeePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -471,7 +472,7 @@ public class PolicyClient(
         json.decodeFromString<GetPlatformAdditionalFeePoliciesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -485,7 +486,7 @@ public class PolicyClient(
       json.decodeFromString<GetPlatformAdditionalFeePoliciesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -557,7 +558,7 @@ public class PolicyClient(
         json.decodeFromString<CreatePlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -572,7 +573,7 @@ public class PolicyClient(
       json.decodeFromString<CreatePlatformAdditionalFeePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -609,7 +610,7 @@ public class PolicyClient(
   ): ArchivePlatformContractResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString(), "archive")
+        this.appendApiPathSegments("platform", "contracts", id.toString(), "archive")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -624,7 +625,7 @@ public class PolicyClient(
         json.decodeFromString<ArchivePlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -640,7 +641,7 @@ public class PolicyClient(
       json.decodeFromString<ArchivePlatformContractResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -673,7 +674,7 @@ public class PolicyClient(
   ): RecoverPlatformContractResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString(), "recover")
+        this.appendApiPathSegments("platform", "contracts", id.toString(), "recover")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -688,7 +689,7 @@ public class PolicyClient(
         json.decodeFromString<RecoverPlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -703,7 +704,7 @@ public class PolicyClient(
       json.decodeFromString<RecoverPlatformContractResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -736,7 +737,7 @@ public class PolicyClient(
   ): PlatformContract {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString())
+        this.appendApiPathSegments("platform", "contracts", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -751,7 +752,7 @@ public class PolicyClient(
         json.decodeFromString<GetPlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -766,7 +767,7 @@ public class PolicyClient(
       json.decodeFromString<PlatformContract>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -825,7 +826,7 @@ public class PolicyClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString())
+        this.appendApiPathSegments("platform", "contracts", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -842,7 +843,7 @@ public class PolicyClient(
         json.decodeFromString<UpdatePlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -858,7 +859,7 @@ public class PolicyClient(
       json.decodeFromString<UpdatePlatformContractResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -920,7 +921,7 @@ public class PolicyClient(
         json.decodeFromString<GetPlatformContractsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -934,7 +935,7 @@ public class PolicyClient(
       json.decodeFromString<GetPlatformContractsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1014,7 +1015,7 @@ public class PolicyClient(
         json.decodeFromString<CreatePlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -1029,7 +1030,7 @@ public class PolicyClient(
       json.decodeFromString<CreatePlatformContractResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1068,7 +1069,7 @@ public class PolicyClient(
   ): ArchivePlatformDiscountSharePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "archive")
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString(), "archive")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1083,7 +1084,7 @@ public class PolicyClient(
         json.decodeFromString<ArchivePlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -1099,7 +1100,7 @@ public class PolicyClient(
       json.decodeFromString<ArchivePlatformDiscountSharePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1132,7 +1133,7 @@ public class PolicyClient(
   ): RecoverPlatformDiscountSharePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "recover")
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString(), "recover")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1147,7 +1148,7 @@ public class PolicyClient(
         json.decodeFromString<RecoverPlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -1162,7 +1163,7 @@ public class PolicyClient(
       json.decodeFromString<RecoverPlatformDiscountSharePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1195,7 +1196,7 @@ public class PolicyClient(
   ): PlatformDiscountSharePolicy {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString())
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1210,7 +1211,7 @@ public class PolicyClient(
         json.decodeFromString<GetPlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -1225,7 +1226,7 @@ public class PolicyClient(
       json.decodeFromString<PlatformDiscountSharePolicy>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1274,7 +1275,7 @@ public class PolicyClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString())
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1291,7 +1292,7 @@ public class PolicyClient(
         json.decodeFromString<UpdatePlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -1307,7 +1308,7 @@ public class PolicyClient(
       json.decodeFromString<UpdatePlatformDiscountSharePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1366,7 +1367,7 @@ public class PolicyClient(
         json.decodeFromString<GetPlatformDiscountSharePoliciesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -1380,7 +1381,7 @@ public class PolicyClient(
       json.decodeFromString<GetPlatformDiscountSharePoliciesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1448,7 +1449,7 @@ public class PolicyClient(
         json.decodeFromString<CreatePlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -1463,7 +1464,7 @@ public class PolicyClient(
       json.decodeFromString<CreatePlatformDiscountSharePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

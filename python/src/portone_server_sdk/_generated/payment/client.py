@@ -72,7 +72,7 @@ from ..payment.register_store_receipt_response import RegisterStoreReceiptRespon
 from ..payment.resend_webhook_response import ResendWebhookResponse, _deserialize_resend_webhook_response, _serialize_resend_webhook_response
 from ..common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
 from ..payment.stop_payment_cancellation_response import StopPaymentCancellationResponse, _deserialize_stop_payment_cancellation_response, _serialize_stop_payment_cancellation_response
-from urllib.parse import quote
+from ..._api_path import encode_path_parameter
 from .billing_key.client import BillingKeyClient
 from .cash_receipt.client import CashReceiptClient
 from .additional_feature.client import AdditionalFeatureClient
@@ -596,7 +596,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/billing-key",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/billing-key",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -826,7 +826,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/billing-key",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/billing-key",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1015,7 +1015,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cancel",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/cancel",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1210,7 +1210,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cancel",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/cancel",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1335,7 +1335,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cancellations/{quote(cancellation_id, safe='')}/stop",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/cancellations/{encode_path_parameter(cancellation_id)}/stop",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1418,7 +1418,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cancellations/{quote(cancellation_id, safe='')}/stop",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/cancellations/{encode_path_parameter(cancellation_id)}/stop",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1497,7 +1497,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/capture",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/capture",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1570,7 +1570,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/capture",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/capture",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1693,7 +1693,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/confirm",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/confirm",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1828,7 +1828,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/confirm",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/confirm",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1921,7 +1921,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/complete",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/escrow/complete",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2002,7 +2002,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/complete",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/escrow/complete",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2101,7 +2101,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/logistics",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/escrow/logistics",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2200,7 +2200,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/logistics",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/escrow/logistics",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2299,7 +2299,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "PATCH",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/logistics",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/escrow/logistics",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2398,7 +2398,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "PATCH",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/logistics",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/escrow/logistics",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2578,7 +2578,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/instant",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/instant",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2788,7 +2788,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/instant",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/instant",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2906,7 +2906,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/pre-register",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/pre-register",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2982,7 +2982,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/pre-register",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/pre-register",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3049,7 +3049,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/register-store-receipt",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/register-store-receipt",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3128,7 +3128,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/register-store-receipt",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/register-store-receipt",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3208,7 +3208,7 @@ class PaymentClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/resend-webhook",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/resend-webhook",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3288,7 +3288,7 @@ class PaymentClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/resend-webhook",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/resend-webhook",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3364,7 +3364,7 @@ class PaymentClient:
             query.append(("storeId", self._store_id))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/transactions",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/transactions",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3427,7 +3427,7 @@ class PaymentClient:
             query.append(("storeId", self._store_id))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/transactions",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/transactions",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3486,7 +3486,7 @@ class PaymentClient:
             query.append(("storeId", self._store_id))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/virtual-account/close",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/virtual-account/close",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3557,7 +3557,7 @@ class PaymentClient:
             query.append(("storeId", self._store_id))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/virtual-account/close",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/virtual-account/close",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3628,7 +3628,7 @@ class PaymentClient:
             query.append(("storeId", self._store_id))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3687,7 +3687,7 @@ class PaymentClient:
             query.append(("storeId", self._store_id))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

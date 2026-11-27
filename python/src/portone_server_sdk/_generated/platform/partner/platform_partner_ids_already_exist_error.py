@@ -24,32 +24,32 @@ def _serialize_platform_partner_ids_already_exist_error(obj: PlatformPartnerIdsA
 
 def _deserialize_platform_partner_ids_already_exist_error(obj: Any) -> PlatformPartnerIdsAlreadyExistError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_PARTNER_IDS_ALREADY_EXISTS":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_PARTNER_IDS_ALREADY_EXISTS'")
+        raise ValueError("Expected 'PLATFORM_PARTNER_IDS_ALREADY_EXISTS' for type")
     if "ids" not in obj:
-        raise KeyError(f"'ids' is not in {obj}")
+        raise KeyError("Missing required field 'ids'")
     ids = obj["ids"]
     if not isinstance(ids, list):
-        raise ValueError(f"{repr(ids)} is not list")
+        raise ValueError("Expected list for ids")
     for i, item in enumerate(ids):
         if not isinstance(item, str):
-            raise ValueError(f"{repr(item)} is not str")
+            raise ValueError("Expected str for item")
     if "graphqlIds" not in obj:
-        raise KeyError(f"'graphqlIds' is not in {obj}")
+        raise KeyError("Missing required field 'graphqlIds'")
     graphql_ids = obj["graphqlIds"]
     if not isinstance(graphql_ids, list):
-        raise ValueError(f"{repr(graphql_ids)} is not list")
+        raise ValueError("Expected list for graphql_ids")
     for i, item in enumerate(graphql_ids):
         if not isinstance(item, str):
-            raise ValueError(f"{repr(item)} is not str")
+            raise ValueError("Expected str for item")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformPartnerIdsAlreadyExistError(ids, graphql_ids, message)

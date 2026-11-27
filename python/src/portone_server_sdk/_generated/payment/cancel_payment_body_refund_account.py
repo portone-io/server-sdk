@@ -36,25 +36,25 @@ def _serialize_cancel_payment_body_refund_account(obj: CancelPaymentBodyRefundAc
 
 def _deserialize_cancel_payment_body_refund_account(obj: Any) -> CancelPaymentBodyRefundAccount:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "bank" not in obj:
-        raise KeyError(f"'bank' is not in {obj}")
+        raise KeyError("Missing required field 'bank'")
     bank = obj["bank"]
     bank = _deserialize_bank(bank)
     if "number" not in obj:
-        raise KeyError(f"'number' is not in {obj}")
+        raise KeyError("Missing required field 'number'")
     number = obj["number"]
     if not isinstance(number, str):
-        raise ValueError(f"{repr(number)} is not str")
+        raise ValueError("Expected str for number")
     if "holderName" not in obj:
-        raise KeyError(f"'holderName' is not in {obj}")
+        raise KeyError("Missing required field 'holderName'")
     holder_name = obj["holderName"]
     if not isinstance(holder_name, str):
-        raise ValueError(f"{repr(holder_name)} is not str")
+        raise ValueError("Expected str for holder_name")
     if "holderPhoneNumber" in obj:
         holder_phone_number = obj["holderPhoneNumber"]
         if not isinstance(holder_phone_number, str):
-            raise ValueError(f"{repr(holder_phone_number)} is not str")
+            raise ValueError("Expected str for holder_phone_number")
     else:
         holder_phone_number = None
     return CancelPaymentBodyRefundAccount(bank, number, holder_name, holder_phone_number)

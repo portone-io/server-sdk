@@ -22,7 +22,7 @@ public sealed interface CardOwnerType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Personal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Personal = decoder.decodeString().let {
       if (it != "PERSONAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PERSONAL")
       } else {
         return Personal
       }
@@ -38,7 +38,7 @@ public sealed interface CardOwnerType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Corporate::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Corporate = decoder.decodeString().let {
       if (it != "CORPORATE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CORPORATE")
       } else {
         return Corporate
       }

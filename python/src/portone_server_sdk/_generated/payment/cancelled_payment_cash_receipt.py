@@ -67,36 +67,36 @@ def _serialize_cancelled_payment_cash_receipt(obj: CancelledPaymentCashReceipt) 
 
 def _deserialize_cancelled_payment_cash_receipt(obj: Any) -> CancelledPaymentCashReceipt:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     if status != "CANCELLED":
-        raise ValueError(f"{repr(status)} is not 'CANCELLED'")
+        raise ValueError("Expected 'CANCELLED' for status")
     if "issueNumber" not in obj:
-        raise KeyError(f"'issueNumber' is not in {obj}")
+        raise KeyError("Missing required field 'issueNumber'")
     issue_number = obj["issueNumber"]
     if not isinstance(issue_number, str):
-        raise ValueError(f"{repr(issue_number)} is not str")
+        raise ValueError("Expected str for issue_number")
     if "totalAmount" not in obj:
-        raise KeyError(f"'totalAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalAmount'")
     total_amount = obj["totalAmount"]
     if not isinstance(total_amount, int):
-        raise ValueError(f"{repr(total_amount)} is not int")
+        raise ValueError("Expected int for total_amount")
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "issuedAt" not in obj:
-        raise KeyError(f"'issuedAt' is not in {obj}")
+        raise KeyError("Missing required field 'issuedAt'")
     issued_at = obj["issuedAt"]
     if not isinstance(issued_at, str):
-        raise ValueError(f"{repr(issued_at)} is not str")
+        raise ValueError("Expected str for issued_at")
     if "cancelledAt" not in obj:
-        raise KeyError(f"'cancelledAt' is not in {obj}")
+        raise KeyError("Missing required field 'cancelledAt'")
     cancelled_at = obj["cancelledAt"]
     if not isinstance(cancelled_at, str):
-        raise ValueError(f"{repr(cancelled_at)} is not str")
+        raise ValueError("Expected str for cancelled_at")
     if "type" in obj:
         type = obj["type"]
         type = _deserialize_cash_receipt_type(type)
@@ -105,19 +105,19 @@ def _deserialize_cancelled_payment_cash_receipt(obj: Any) -> CancelledPaymentCas
     if "pgReceiptId" in obj:
         pg_receipt_id = obj["pgReceiptId"]
         if not isinstance(pg_receipt_id, str):
-            raise ValueError(f"{repr(pg_receipt_id)} is not str")
+            raise ValueError("Expected str for pg_receipt_id")
     else:
         pg_receipt_id = None
     if "taxFreeAmount" in obj:
         tax_free_amount = obj["taxFreeAmount"]
         if not isinstance(tax_free_amount, int):
-            raise ValueError(f"{repr(tax_free_amount)} is not int")
+            raise ValueError("Expected int for tax_free_amount")
     else:
         tax_free_amount = None
     if "url" in obj:
         url = obj["url"]
         if not isinstance(url, str):
-            raise ValueError(f"{repr(url)} is not str")
+            raise ValueError("Expected str for url")
     else:
         url = None
     return CancelledPaymentCashReceipt(issue_number, total_amount, currency, issued_at, cancelled_at, type, pg_receipt_id, tax_free_amount, url)

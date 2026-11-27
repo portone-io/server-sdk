@@ -33,15 +33,15 @@ def _serialize_get_payment_reconciliation_settlement_vat_report_response(obj: Ge
 
 def _deserialize_get_payment_reconciliation_settlement_vat_report_response(obj: Any) -> GetPaymentReconciliationSettlementVatReportResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "summary" not in obj:
-        raise KeyError(f"'summary' is not in {obj}")
+        raise KeyError("Missing required field 'summary'")
     summary = obj["summary"]
     summary = _deserialize_payment_reconciliation_vat_report_summary(summary)
     if "items" in obj:
         items = obj["items"]
         if not isinstance(items, list):
-            raise ValueError(f"{repr(items)} is not list")
+            raise ValueError("Expected list for items")
         for i, item in enumerate(items):
             item = _deserialize_payment_reconciliation_vat_report_item(item)
             items[i] = item
@@ -50,7 +50,7 @@ def _deserialize_get_payment_reconciliation_settlement_vat_report_response(obj: 
     if "pgSpecifiers" in obj:
         pg_specifiers = obj["pgSpecifiers"]
         if not isinstance(pg_specifiers, list):
-            raise ValueError(f"{repr(pg_specifiers)} is not list")
+            raise ValueError("Expected list for pg_specifiers")
         for i, item in enumerate(pg_specifiers):
             item = _deserialize_reconciliation_pg_specifier(item)
             pg_specifiers[i] = item

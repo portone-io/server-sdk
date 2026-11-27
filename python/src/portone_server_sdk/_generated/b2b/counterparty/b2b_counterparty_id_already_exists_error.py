@@ -22,16 +22,16 @@ def _serialize_b2b_counterparty_id_already_exists_error(obj: B2bCounterpartyIdAl
 
 def _deserialize_b2b_counterparty_id_already_exists_error(obj: Any) -> B2bCounterpartyIdAlreadyExistsError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "B2B_COUNTERPARTY_ID_ALREADY_EXISTS":
-        raise ValueError(f"{repr(type)} is not 'B2B_COUNTERPARTY_ID_ALREADY_EXISTS'")
+        raise ValueError("Expected 'B2B_COUNTERPARTY_ID_ALREADY_EXISTS' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return B2bCounterpartyIdAlreadyExistsError(message)

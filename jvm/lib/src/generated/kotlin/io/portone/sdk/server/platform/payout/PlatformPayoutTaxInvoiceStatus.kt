@@ -20,7 +20,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(None::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): None = decoder.decodeString().let {
       if (it != "NONE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NONE")
       } else {
         return None
       }
@@ -35,7 +35,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Drafted::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Drafted = decoder.decodeString().let {
       if (it != "DRAFTED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DRAFTED")
       } else {
         return Drafted
       }
@@ -50,7 +50,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DraftPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DraftPending = decoder.decodeString().let {
       if (it != "DRAFT_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DRAFT_PENDING")
       } else {
         return DraftPending
       }
@@ -65,7 +65,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DraftFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DraftFailed = decoder.decodeString().let {
       if (it != "DRAFT_FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DRAFT_FAILED")
       } else {
         return DraftFailed
       }
@@ -80,7 +80,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Requested::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Requested = decoder.decodeString().let {
       if (it != "REQUESTED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REQUESTED")
       } else {
         return Requested
       }
@@ -95,7 +95,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestPending = decoder.decodeString().let {
       if (it != "REQUEST_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REQUEST_PENDING")
       } else {
         return RequestPending
       }
@@ -110,7 +110,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestFailed = decoder.decodeString().let {
       if (it != "REQUEST_FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REQUEST_FAILED")
       } else {
         return RequestFailed
       }
@@ -125,7 +125,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestCancelled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestCancelled = decoder.decodeString().let {
       if (it != "REQUEST_CANCELLED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REQUEST_CANCELLED")
       } else {
         return RequestCancelled
       }
@@ -140,7 +140,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestRefused::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestRefused = decoder.decodeString().let {
       if (it != "REQUEST_REFUSED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REQUEST_REFUSED")
       } else {
         return RequestRefused
       }
@@ -155,7 +155,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Issued::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Issued = decoder.decodeString().let {
       if (it != "ISSUED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUED")
       } else {
         return Issued
       }
@@ -170,7 +170,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuePending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuePending = decoder.decodeString().let {
       if (it != "ISSUE_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUE_PENDING")
       } else {
         return IssuePending
       }
@@ -185,7 +185,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssueFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssueFailed = decoder.decodeString().let {
       if (it != "ISSUE_FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUE_FAILED")
       } else {
         return IssueFailed
       }
@@ -200,7 +200,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuanceCancelled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuanceCancelled = decoder.decodeString().let {
       if (it != "ISSUANCE_CANCELLED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUANCE_CANCELLED")
       } else {
         return IssuanceCancelled
       }
@@ -215,7 +215,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CancelPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CancelPending = decoder.decodeString().let {
       if (it != "CANCEL_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CANCEL_PENDING")
       } else {
         return CancelPending
       }
@@ -230,7 +230,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BeforeSending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): BeforeSending = decoder.decodeString().let {
       if (it != "BEFORE_SENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BEFORE_SENDING")
       } else {
         return BeforeSending
       }
@@ -245,7 +245,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(WaitingSending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): WaitingSending = decoder.decodeString().let {
       if (it != "WAITING_SENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WAITING_SENDING")
       } else {
         return WaitingSending
       }
@@ -260,7 +260,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sending = decoder.decodeString().let {
       if (it != "SENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SENDING")
       } else {
         return Sending
       }
@@ -275,7 +275,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendingPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SendingPending = decoder.decodeString().let {
       if (it != "SENDING_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SENDING_PENDING")
       } else {
         return SendingPending
       }
@@ -290,7 +290,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendingCompleted::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SendingCompleted = decoder.decodeString().let {
       if (it != "SENDING_COMPLETED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SENDING_COMPLETED")
       } else {
         return SendingCompleted
       }
@@ -305,7 +305,7 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendingFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SendingFailed = decoder.decodeString().let {
       if (it != "SENDING_FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SENDING_FAILED")
       } else {
         return SendingFailed
       }

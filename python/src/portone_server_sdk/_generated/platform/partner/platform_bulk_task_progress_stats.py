@@ -35,30 +35,30 @@ def _serialize_platform_bulk_task_progress_stats(obj: PlatformBulkTaskProgressSt
 
 def _deserialize_platform_bulk_task_progress_stats(obj: Any) -> PlatformBulkTaskProgressStats:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "preparedCount" not in obj:
-        raise KeyError(f"'preparedCount' is not in {obj}")
+        raise KeyError("Missing required field 'preparedCount'")
     prepared_count = obj["preparedCount"]
     if not isinstance(prepared_count, int):
-        raise ValueError(f"{repr(prepared_count)} is not int")
+        raise ValueError("Expected int for prepared_count")
     if "processingCount" not in obj:
-        raise KeyError(f"'processingCount' is not in {obj}")
+        raise KeyError("Missing required field 'processingCount'")
     processing_count = obj["processingCount"]
     if not isinstance(processing_count, int):
-        raise ValueError(f"{repr(processing_count)} is not int")
+        raise ValueError("Expected int for processing_count")
     if "succeededCount" not in obj:
-        raise KeyError(f"'succeededCount' is not in {obj}")
+        raise KeyError("Missing required field 'succeededCount'")
     succeeded_count = obj["succeededCount"]
     if not isinstance(succeeded_count, int):
-        raise ValueError(f"{repr(succeeded_count)} is not int")
+        raise ValueError("Expected int for succeeded_count")
     if "failedCount" not in obj:
-        raise KeyError(f"'failedCount' is not in {obj}")
+        raise KeyError("Missing required field 'failedCount'")
     failed_count = obj["failedCount"]
     if not isinstance(failed_count, int):
-        raise ValueError(f"{repr(failed_count)} is not int")
+        raise ValueError("Expected int for failed_count")
     if "canceledCount" not in obj:
-        raise KeyError(f"'canceledCount' is not in {obj}")
+        raise KeyError("Missing required field 'canceledCount'")
     canceled_count = obj["canceledCount"]
     if not isinstance(canceled_count, int):
-        raise ValueError(f"{repr(canceled_count)} is not int")
+        raise ValueError("Expected int for canceled_count")
     return PlatformBulkTaskProgressStats(prepared_count, processing_count, succeeded_count, failed_count, canceled_count)

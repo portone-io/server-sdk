@@ -53,39 +53,39 @@ def _serialize_create_platform_contract_body(obj: CreatePlatformContractBody) ->
 
 def _deserialize_create_platform_contract_body(obj: Any) -> CreatePlatformContractBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "platformFee" not in obj:
-        raise KeyError(f"'platformFee' is not in {obj}")
+        raise KeyError("Missing required field 'platformFee'")
     platform_fee = obj["platformFee"]
     platform_fee = _deserialize_platform_fee_input(platform_fee)
     if "settlementCycle" not in obj:
-        raise KeyError(f"'settlementCycle' is not in {obj}")
+        raise KeyError("Missing required field 'settlementCycle'")
     settlement_cycle = obj["settlementCycle"]
     settlement_cycle = _deserialize_platform_settlement_cycle_input(settlement_cycle)
     if "platformFeeVatPayer" not in obj:
-        raise KeyError(f"'platformFeeVatPayer' is not in {obj}")
+        raise KeyError("Missing required field 'platformFeeVatPayer'")
     platform_fee_vat_payer = obj["platformFeeVatPayer"]
     platform_fee_vat_payer = _deserialize_platform_payer(platform_fee_vat_payer)
     if "subtractPaymentVatAmount" not in obj:
-        raise KeyError(f"'subtractPaymentVatAmount' is not in {obj}")
+        raise KeyError("Missing required field 'subtractPaymentVatAmount'")
     subtract_payment_vat_amount = obj["subtractPaymentVatAmount"]
     if not isinstance(subtract_payment_vat_amount, bool):
-        raise ValueError(f"{repr(subtract_payment_vat_amount)} is not bool")
+        raise ValueError("Expected bool for subtract_payment_vat_amount")
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return CreatePlatformContractBody(name, platform_fee, settlement_cycle, platform_fee_vat_payer, subtract_payment_vat_amount, id, memo)

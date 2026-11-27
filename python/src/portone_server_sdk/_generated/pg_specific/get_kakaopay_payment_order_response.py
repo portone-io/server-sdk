@@ -26,15 +26,15 @@ def _serialize_get_kakaopay_payment_order_response(obj: GetKakaopayPaymentOrderR
 
 def _deserialize_get_kakaopay_payment_order_response(obj: Any) -> GetKakaopayPaymentOrderResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "statusCode" not in obj:
-        raise KeyError(f"'statusCode' is not in {obj}")
+        raise KeyError("Missing required field 'statusCode'")
     status_code = obj["statusCode"]
     if not isinstance(status_code, int):
-        raise ValueError(f"{repr(status_code)} is not int")
+        raise ValueError("Expected int for status_code")
     if "body" not in obj:
-        raise KeyError(f"'body' is not in {obj}")
+        raise KeyError("Missing required field 'body'")
     body = obj["body"]
     if not isinstance(body, str):
-        raise ValueError(f"{repr(body)} is not str")
+        raise ValueError("Expected str for body")
     return GetKakaopayPaymentOrderResponse(status_code, body)

@@ -26,14 +26,14 @@ def _serialize_payment_event_with_cursor(obj: PaymentEventWithCursor) -> Any:
 
 def _deserialize_payment_event_with_cursor(obj: Any) -> PaymentEventWithCursor:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "paymentEvent" not in obj:
-        raise KeyError(f"'paymentEvent' is not in {obj}")
+        raise KeyError("Missing required field 'paymentEvent'")
     payment_event = obj["paymentEvent"]
     payment_event = _deserialize_payment_event(payment_event)
     if "cursor" not in obj:
-        raise KeyError(f"'cursor' is not in {obj}")
+        raise KeyError("Missing required field 'cursor'")
     cursor = obj["cursor"]
     if not isinstance(cursor, str):
-        raise ValueError(f"{repr(cursor)} is not str")
+        raise ValueError("Expected str for cursor")
     return PaymentEventWithCursor(payment_event, cursor)

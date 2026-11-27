@@ -24,4 +24,4 @@ def _deserialize_download_b2b_tax_invoices_sheet_error(obj: Any) -> DownloadB2bT
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not DownloadB2bTaxInvoicesSheetError")
+    raise ValueError("Expected DownloadB2bTaxInvoicesSheetError")

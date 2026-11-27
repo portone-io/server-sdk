@@ -22,7 +22,7 @@ public sealed interface PlatformTransferStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Scheduled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Scheduled = decoder.decodeString().let {
       if (it != "SCHEDULED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SCHEDULED")
       } else {
         return Scheduled
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformTransferStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(InProcess::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): InProcess = decoder.decodeString().let {
       if (it != "IN_PROCESS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IN_PROCESS")
       } else {
         return InProcess
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformTransferStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Settled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Settled = decoder.decodeString().let {
       if (it != "SETTLED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SETTLED")
       } else {
         return Settled
       }
@@ -70,7 +70,7 @@ public sealed interface PlatformTransferStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(InPayout::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): InPayout = decoder.decodeString().let {
       if (it != "IN_PAYOUT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IN_PAYOUT")
       } else {
         return InPayout
       }
@@ -86,7 +86,7 @@ public sealed interface PlatformTransferStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaidOut::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PaidOut = decoder.decodeString().let {
       if (it != "PAID_OUT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAID_OUT")
       } else {
         return PaidOut
       }
@@ -102,7 +102,7 @@ public sealed interface PlatformTransferStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayoutConfirmed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PayoutConfirmed = decoder.decodeString().let {
       if (it != "PAYOUT_CONFIRMED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYOUT_CONFIRMED")
       } else {
         return PayoutConfirmed
       }

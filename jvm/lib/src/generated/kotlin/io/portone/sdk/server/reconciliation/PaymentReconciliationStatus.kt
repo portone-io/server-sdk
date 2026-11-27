@@ -22,7 +22,7 @@ public sealed interface PaymentReconciliationStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Matched::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Matched = decoder.decodeString().let {
       if (it != "MATCHED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MATCHED")
       } else {
         return Matched
       }
@@ -38,7 +38,7 @@ public sealed interface PaymentReconciliationStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NotMatched::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NotMatched = decoder.decodeString().let {
       if (it != "NOT_MATCHED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NOT_MATCHED")
       } else {
         return NotMatched
       }
@@ -54,7 +54,7 @@ public sealed interface PaymentReconciliationStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Incomparable::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Incomparable = decoder.decodeString().let {
       if (it != "INCOMPARABLE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected INCOMPARABLE")
       } else {
         return Incomparable
       }
@@ -70,7 +70,7 @@ public sealed interface PaymentReconciliationStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NotCollected::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NotCollected = decoder.decodeString().let {
       if (it != "NOT_COLLECTED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NOT_COLLECTED")
       } else {
         return NotCollected
       }

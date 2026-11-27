@@ -22,16 +22,16 @@ def _serialize_platform_ongoing_tax_invoice_exists_error(obj: PlatformOngoingTax
 
 def _deserialize_platform_ongoing_tax_invoice_exists_error(obj: Any) -> PlatformOngoingTaxInvoiceExistsError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_ONGOING_TAX_INVOICE_EXISTS":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_ONGOING_TAX_INVOICE_EXISTS'")
+        raise ValueError("Expected 'PLATFORM_ONGOING_TAX_INVOICE_EXISTS' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformOngoingTaxInvoiceExistsError(message)

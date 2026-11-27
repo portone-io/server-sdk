@@ -22,7 +22,7 @@ public sealed interface B2bTaxInvoiceTaxationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Taxable::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Taxable = decoder.decodeString().let {
       if (it != "TAXABLE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TAXABLE")
       } else {
         return Taxable
       }
@@ -38,7 +38,7 @@ public sealed interface B2bTaxInvoiceTaxationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ZeroRated::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ZeroRated = decoder.decodeString().let {
       if (it != "ZERO_RATED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ZERO_RATED")
       } else {
         return ZeroRated
       }
@@ -54,7 +54,7 @@ public sealed interface B2bTaxInvoiceTaxationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Free::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Free = decoder.decodeString().let {
       if (it != "FREE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FREE")
       } else {
         return Free
       }

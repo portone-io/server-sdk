@@ -22,16 +22,16 @@ def _serialize_platform_account_verification_failed_error(obj: PlatformAccountVe
 
 def _deserialize_platform_account_verification_failed_error(obj: Any) -> PlatformAccountVerificationFailedError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_ACCOUNT_VERIFICATION_FAILED":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_ACCOUNT_VERIFICATION_FAILED'")
+        raise ValueError("Expected 'PLATFORM_ACCOUNT_VERIFICATION_FAILED' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformAccountVerificationFailedError(message)

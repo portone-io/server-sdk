@@ -66,4 +66,4 @@ def _deserialize_create_platform_manual_transfer_error(obj: Any) -> CreatePlatfo
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CreatePlatformManualTransferError")
+    raise ValueError("Expected CreatePlatformManualTransferError")

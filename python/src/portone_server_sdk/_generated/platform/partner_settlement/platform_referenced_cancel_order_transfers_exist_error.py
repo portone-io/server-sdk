@@ -24,24 +24,24 @@ def _serialize_platform_referenced_cancel_order_transfers_exist_error(obj: Platf
 
 def _deserialize_platform_referenced_cancel_order_transfers_exist_error(obj: Any) -> PlatformReferencedCancelOrderTransfersExistError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_REFERENCED_CANCEL_ORDER_TRANSFERS_EXIST":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_REFERENCED_CANCEL_ORDER_TRANSFERS_EXIST'")
+        raise ValueError("Expected 'PLATFORM_REFERENCED_CANCEL_ORDER_TRANSFERS_EXIST' for type")
     if "ids" not in obj:
-        raise KeyError(f"'ids' is not in {obj}")
+        raise KeyError("Missing required field 'ids'")
     ids = obj["ids"]
     if not isinstance(ids, list):
-        raise ValueError(f"{repr(ids)} is not list")
+        raise ValueError("Expected list for ids")
     for i, item in enumerate(ids):
         if not isinstance(item, str):
-            raise ValueError(f"{repr(item)} is not str")
+            raise ValueError("Expected str for item")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformReferencedCancelOrderTransfersExistError(ids, message)

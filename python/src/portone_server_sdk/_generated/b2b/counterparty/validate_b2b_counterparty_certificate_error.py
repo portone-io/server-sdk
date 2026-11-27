@@ -66,4 +66,4 @@ def _deserialize_validate_b2b_counterparty_certificate_error(obj: Any) -> Valida
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ValidateB2bCounterpartyCertificateError")
+    raise ValueError("Expected ValidateB2bCounterpartyCertificateError")

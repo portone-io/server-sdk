@@ -43,23 +43,23 @@ def _serialize_pre_register_payment_body(obj: PreRegisterPaymentBody) -> Any:
 
 def _deserialize_pre_register_payment_body(obj: Any) -> PreRegisterPaymentBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "totalAmount" in obj:
         total_amount = obj["totalAmount"]
         if not isinstance(total_amount, int):
-            raise ValueError(f"{repr(total_amount)} is not int")
+            raise ValueError("Expected int for total_amount")
     else:
         total_amount = None
     if "taxFreeAmount" in obj:
         tax_free_amount = obj["taxFreeAmount"]
         if not isinstance(tax_free_amount, int):
-            raise ValueError(f"{repr(tax_free_amount)} is not int")
+            raise ValueError("Expected int for tax_free_amount")
     else:
         tax_free_amount = None
     if "currency" in obj:

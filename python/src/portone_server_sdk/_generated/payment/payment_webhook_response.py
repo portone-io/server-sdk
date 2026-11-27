@@ -34,25 +34,25 @@ def _serialize_payment_webhook_response(obj: PaymentWebhookResponse) -> Any:
 
 def _deserialize_payment_webhook_response(obj: Any) -> PaymentWebhookResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "code" not in obj:
-        raise KeyError(f"'code' is not in {obj}")
+        raise KeyError("Missing required field 'code'")
     code = obj["code"]
     if not isinstance(code, str):
-        raise ValueError(f"{repr(code)} is not str")
+        raise ValueError("Expected str for code")
     if "header" not in obj:
-        raise KeyError(f"'header' is not in {obj}")
+        raise KeyError("Missing required field 'header'")
     header = obj["header"]
     if not isinstance(header, str):
-        raise ValueError(f"{repr(header)} is not str")
+        raise ValueError("Expected str for header")
     if "body" not in obj:
-        raise KeyError(f"'body' is not in {obj}")
+        raise KeyError("Missing required field 'body'")
     body = obj["body"]
     if not isinstance(body, str):
-        raise ValueError(f"{repr(body)} is not str")
+        raise ValueError("Expected str for body")
     if "respondedAt" not in obj:
-        raise KeyError(f"'respondedAt' is not in {obj}")
+        raise KeyError("Missing required field 'respondedAt'")
     responded_at = obj["respondedAt"]
     if not isinstance(responded_at, str):
-        raise ValueError(f"{repr(responded_at)} is not str")
+        raise ValueError("Expected str for responded_at")
     return PaymentWebhookResponse(code, header, body, responded_at)

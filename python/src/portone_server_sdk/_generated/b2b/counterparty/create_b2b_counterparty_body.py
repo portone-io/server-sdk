@@ -36,15 +36,15 @@ def _serialize_create_b2b_counterparty_body(obj: CreateB2bCounterpartyBody) -> A
 
 def _deserialize_create_b2b_counterparty_body(obj: Any) -> CreateB2bCounterpartyBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "counterparty" not in obj:
-        raise KeyError(f"'counterparty' is not in {obj}")
+        raise KeyError("Missing required field 'counterparty'")
     counterparty = obj["counterparty"]
     counterparty = _deserialize_b2b_counterparty_input(counterparty)
     if "counterpartyId" in obj:
         counterparty_id = obj["counterpartyId"]
         if not isinstance(counterparty_id, str):
-            raise ValueError(f"{repr(counterparty_id)} is not str")
+            raise ValueError("Expected str for counterparty_id")
     else:
         counterparty_id = None
     if "options" in obj:

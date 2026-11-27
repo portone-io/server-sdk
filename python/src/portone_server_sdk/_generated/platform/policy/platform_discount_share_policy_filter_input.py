@@ -36,20 +36,20 @@ def _serialize_platform_discount_share_policy_filter_input(obj: PlatformDiscount
 
 def _deserialize_platform_discount_share_policy_filter_input(obj: Any) -> PlatformDiscountSharePolicyFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "isArchived" in obj:
         is_archived = obj["isArchived"]
         if not isinstance(is_archived, bool):
-            raise ValueError(f"{repr(is_archived)} is not bool")
+            raise ValueError("Expected bool for is_archived")
     else:
         is_archived = None
     if "partnerShareRates" in obj:
         partner_share_rates = obj["partnerShareRates"]
         if not isinstance(partner_share_rates, list):
-            raise ValueError(f"{repr(partner_share_rates)} is not list")
+            raise ValueError("Expected list for partner_share_rates")
         for i, item in enumerate(partner_share_rates):
             if not isinstance(item, int):
-                raise ValueError(f"{repr(item)} is not int")
+                raise ValueError("Expected int for item")
     else:
         partner_share_rates = None
     if "keyword" in obj:

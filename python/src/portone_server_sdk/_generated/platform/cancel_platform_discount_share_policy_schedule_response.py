@@ -18,5 +18,5 @@ def _serialize_cancel_platform_discount_share_policy_schedule_response(obj: Canc
 
 def _deserialize_cancel_platform_discount_share_policy_schedule_response(obj: Any) -> CancelPlatformDiscountSharePolicyScheduleResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return CancelPlatformDiscountSharePolicyScheduleResponse()

@@ -33,17 +33,17 @@ def _serialize_platform_fee_input(obj: PlatformFeeInput) -> Any:
 
 def _deserialize_platform_fee_input(obj: Any) -> PlatformFeeInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "fixedRate" in obj:
         fixed_rate = obj["fixedRate"]
         if not isinstance(fixed_rate, int):
-            raise ValueError(f"{repr(fixed_rate)} is not int")
+            raise ValueError("Expected int for fixed_rate")
     else:
         fixed_rate = None
     if "fixedAmount" in obj:
         fixed_amount = obj["fixedAmount"]
         if not isinstance(fixed_amount, int):
-            raise ValueError(f"{repr(fixed_amount)} is not int")
+            raise ValueError("Expected int for fixed_amount")
     else:
         fixed_amount = None
     return PlatformFeeInput(fixed_rate, fixed_amount)

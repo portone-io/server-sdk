@@ -27,16 +27,16 @@ def _serialize_get_b2b_counterparties_response(obj: GetB2bCounterpartiesResponse
 
 def _deserialize_get_b2b_counterparties_response(obj: Any) -> GetB2bCounterpartiesResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "page" not in obj:
-        raise KeyError(f"'page' is not in {obj}")
+        raise KeyError("Missing required field 'page'")
     page = obj["page"]
     page = _deserialize_page_info(page)
     if "items" not in obj:
-        raise KeyError(f"'items' is not in {obj}")
+        raise KeyError("Missing required field 'items'")
     items = obj["items"]
     if not isinstance(items, list):
-        raise ValueError(f"{repr(items)} is not list")
+        raise ValueError("Expected list for items")
     for i, item in enumerate(items):
         item = _deserialize_b2b_counterparty(item)
         items[i] = item

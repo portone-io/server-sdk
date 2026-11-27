@@ -40,21 +40,21 @@ def _serialize_create_platform_order_transfer_body_external_payment_detail(obj: 
 
 def _deserialize_create_platform_order_transfer_body_external_payment_detail(obj: Any) -> CreatePlatformOrderTransferBodyExternalPaymentDetail:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "orderName" in obj:
         order_name = obj["orderName"]
         if not isinstance(order_name, str):
-            raise ValueError(f"{repr(order_name)} is not str")
+            raise ValueError("Expected str for order_name")
     else:
         order_name = None
     if "paidAt" in obj:
         paid_at = obj["paidAt"]
         if not isinstance(paid_at, str):
-            raise ValueError(f"{repr(paid_at)} is not str")
+            raise ValueError("Expected str for paid_at")
     else:
         paid_at = None
     if "method" in obj:

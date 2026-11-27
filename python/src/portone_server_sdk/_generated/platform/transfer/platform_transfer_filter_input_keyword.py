@@ -75,71 +75,71 @@ def _serialize_platform_transfer_filter_input_keyword(obj: PlatformTransferFilte
 
 def _deserialize_platform_transfer_filter_input_keyword(obj: Any) -> PlatformTransferFilterInputKeyword:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "all" in obj:
         all = obj["all"]
         if not isinstance(all, str):
-            raise ValueError(f"{repr(all)} is not str")
+            raise ValueError("Expected str for all")
     else:
         all = None
     if "paymentId" in obj:
         payment_id = obj["paymentId"]
         if not isinstance(payment_id, str):
-            raise ValueError(f"{repr(payment_id)} is not str")
+            raise ValueError("Expected str for payment_id")
     else:
         payment_id = None
     if "transferId" in obj:
         transfer_id = obj["transferId"]
         if not isinstance(transfer_id, str):
-            raise ValueError(f"{repr(transfer_id)} is not str")
+            raise ValueError("Expected str for transfer_id")
     else:
         transfer_id = None
     if "transferMemo" in obj:
         transfer_memo = obj["transferMemo"]
         if not isinstance(transfer_memo, str):
-            raise ValueError(f"{repr(transfer_memo)} is not str")
+            raise ValueError("Expected str for transfer_memo")
     else:
         transfer_memo = None
     if "productId" in obj:
         product_id = obj["productId"]
         if not isinstance(product_id, str):
-            raise ValueError(f"{repr(product_id)} is not str")
+            raise ValueError("Expected str for product_id")
     else:
         product_id = None
     if "productName" in obj:
         product_name = obj["productName"]
         if not isinstance(product_name, str):
-            raise ValueError(f"{repr(product_name)} is not str")
+            raise ValueError("Expected str for product_name")
     else:
         product_name = None
     if "partnerId" in obj:
         partner_id = obj["partnerId"]
         if not isinstance(partner_id, str):
-            raise ValueError(f"{repr(partner_id)} is not str")
+            raise ValueError("Expected str for partner_id")
     else:
         partner_id = None
     if "partnerName" in obj:
         partner_name = obj["partnerName"]
         if not isinstance(partner_name, str):
-            raise ValueError(f"{repr(partner_name)} is not str")
+            raise ValueError("Expected str for partner_name")
     else:
         partner_name = None
     if "partnerMemo" in obj:
         partner_memo = obj["partnerMemo"]
         if not isinstance(partner_memo, str):
-            raise ValueError(f"{repr(partner_memo)} is not str")
+            raise ValueError("Expected str for partner_memo")
     else:
         partner_memo = None
     if "partnerSettlementId" in obj:
         partner_settlement_id = obj["partnerSettlementId"]
         if not isinstance(partner_settlement_id, str):
-            raise ValueError(f"{repr(partner_settlement_id)} is not str")
+            raise ValueError("Expected str for partner_settlement_id")
     else:
         partner_settlement_id = None
     if "payoutId" in obj:
         payout_id = obj["payoutId"]
         if not isinstance(payout_id, str):
-            raise ValueError(f"{repr(payout_id)} is not str")
+            raise ValueError("Expected str for payout_id")
     else:
         payout_id = None
     return PlatformTransferFilterInputKeyword(all, payment_id, transfer_id, transfer_memo, product_id, product_name, partner_id, partner_name, partner_memo, partner_settlement_id, payout_id)

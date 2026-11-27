@@ -30,7 +30,7 @@ def _serialize_b2b_tax_invoice_sort_input(obj: B2bTaxInvoiceSortInput) -> Any:
 
 def _deserialize_b2b_tax_invoice_sort_input(obj: Any) -> B2bTaxInvoiceSortInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "by" in obj:
         by = obj["by"]
         by = _deserialize_b2b_tax_invoice_sort_by(by)

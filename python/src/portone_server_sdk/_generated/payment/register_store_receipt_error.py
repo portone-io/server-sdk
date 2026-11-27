@@ -52,4 +52,4 @@ def _deserialize_register_store_receipt_error(obj: Any) -> RegisterStoreReceiptE
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not RegisterStoreReceiptError")
+    raise ValueError("Expected RegisterStoreReceiptError")

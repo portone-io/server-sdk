@@ -127,93 +127,93 @@ def _serialize_b2b_counterparty(obj: B2bCounterparty) -> Any:
 
 def _deserialize_b2b_counterparty(obj: Any) -> B2bCounterparty:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "graphqlId" not in obj:
-        raise KeyError(f"'graphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'graphqlId'")
     graphql_id = obj["graphqlId"]
     if not isinstance(graphql_id, str):
-        raise ValueError(f"{repr(graphql_id)} is not str")
+        raise ValueError("Expected str for graphql_id")
     if "isForTest" not in obj:
-        raise KeyError(f"'isForTest' is not in {obj}")
+        raise KeyError("Missing required field 'isForTest'")
     is_for_test = obj["isForTest"]
     if not isinstance(is_for_test, bool):
-        raise ValueError(f"{repr(is_for_test)} is not bool")
+        raise ValueError("Expected bool for is_for_test")
     if "brn" not in obj:
-        raise KeyError(f"'brn' is not in {obj}")
+        raise KeyError("Missing required field 'brn'")
     brn = obj["brn"]
     if not isinstance(brn, str):
-        raise ValueError(f"{repr(brn)} is not str")
+        raise ValueError("Expected str for brn")
     if "companyName" not in obj:
-        raise KeyError(f"'companyName' is not in {obj}")
+        raise KeyError("Missing required field 'companyName'")
     company_name = obj["companyName"]
     if not isinstance(company_name, str):
-        raise ValueError(f"{repr(company_name)} is not str")
+        raise ValueError("Expected str for company_name")
     if "representativeName" not in obj:
-        raise KeyError(f"'representativeName' is not in {obj}")
+        raise KeyError("Missing required field 'representativeName'")
     representative_name = obj["representativeName"]
     if not isinstance(representative_name, str):
-        raise ValueError(f"{repr(representative_name)} is not str")
+        raise ValueError("Expected str for representative_name")
     if "contact" not in obj:
-        raise KeyError(f"'contact' is not in {obj}")
+        raise KeyError("Missing required field 'contact'")
     contact = obj["contact"]
     contact = _deserialize_b2b_counterparty_contact(contact)
     if "additionalContacts" not in obj:
-        raise KeyError(f"'additionalContacts' is not in {obj}")
+        raise KeyError("Missing required field 'additionalContacts'")
     additional_contacts = obj["additionalContacts"]
     if not isinstance(additional_contacts, list):
-        raise ValueError(f"{repr(additional_contacts)} is not list")
+        raise ValueError("Expected list for additional_contacts")
     for i, item in enumerate(additional_contacts):
         item = _deserialize_b2b_counterparty_contact(item)
         additional_contacts[i] = item
     if "ntsConnectionStatus" not in obj:
-        raise KeyError(f"'ntsConnectionStatus' is not in {obj}")
+        raise KeyError("Missing required field 'ntsConnectionStatus'")
     nts_connection_status = obj["ntsConnectionStatus"]
     nts_connection_status = _deserialize_b2b_nts_connection_status(nts_connection_status)
     if "address" in obj:
         address = obj["address"]
         if not isinstance(address, str):
-            raise ValueError(f"{repr(address)} is not str")
+            raise ValueError("Expected str for address")
     else:
         address = None
     if "businessType" in obj:
         business_type = obj["businessType"]
         if not isinstance(business_type, str):
-            raise ValueError(f"{repr(business_type)} is not str")
+            raise ValueError("Expected str for business_type")
     else:
         business_type = None
     if "businessClass" in obj:
         business_class = obj["businessClass"]
         if not isinstance(business_class, str):
-            raise ValueError(f"{repr(business_class)} is not str")
+            raise ValueError("Expected str for business_class")
     else:
         business_class = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "ntsConnectedAt" in obj:
         nts_connected_at = obj["ntsConnectedAt"]
         if not isinstance(nts_connected_at, str):
-            raise ValueError(f"{repr(nts_connected_at)} is not str")
+            raise ValueError("Expected str for nts_connected_at")
     else:
         nts_connected_at = None
     if "ntsConnectionFailedReason" in obj:
         nts_connection_failed_reason = obj["ntsConnectionFailedReason"]
         if not isinstance(nts_connection_failed_reason, str):
-            raise ValueError(f"{repr(nts_connection_failed_reason)} is not str")
+            raise ValueError("Expected str for nts_connection_failed_reason")
     else:
         nts_connection_failed_reason = None
     if "partnerId" in obj:
         partner_id = obj["partnerId"]
         if not isinstance(partner_id, str):
-            raise ValueError(f"{repr(partner_id)} is not str")
+            raise ValueError("Expected str for partner_id")
     else:
         partner_id = None
     if "businessStatus" in obj:
@@ -224,7 +224,7 @@ def _deserialize_b2b_counterparty(obj: Any) -> B2bCounterparty:
     if "businessStatusCheckedAt" in obj:
         business_status_checked_at = obj["businessStatusCheckedAt"]
         if not isinstance(business_status_checked_at, str):
-            raise ValueError(f"{repr(business_status_checked_at)} is not str")
+            raise ValueError("Expected str for business_status_checked_at")
     else:
         business_status_checked_at = None
     if "businessStatusVerification" in obj:
@@ -240,7 +240,7 @@ def _deserialize_b2b_counterparty(obj: Any) -> B2bCounterparty:
     if "appliedAt" in obj:
         applied_at = obj["appliedAt"]
         if not isinstance(applied_at, str):
-            raise ValueError(f"{repr(applied_at)} is not str")
+            raise ValueError("Expected str for applied_at")
     else:
         applied_at = None
     return B2bCounterparty(id, graphql_id, is_for_test, brn, company_name, representative_name, contact, additional_contacts, nts_connection_status, address, business_type, business_class, memo, nts_connected_at, nts_connection_failed_reason, partner_id, business_status, business_status_checked_at, business_status_verification, business_info_verification, applied_at)

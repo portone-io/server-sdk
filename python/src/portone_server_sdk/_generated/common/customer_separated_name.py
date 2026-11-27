@@ -25,15 +25,15 @@ def _serialize_customer_separated_name(obj: CustomerSeparatedName) -> Any:
 
 def _deserialize_customer_separated_name(obj: Any) -> CustomerSeparatedName:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "first" not in obj:
-        raise KeyError(f"'first' is not in {obj}")
+        raise KeyError("Missing required field 'first'")
     first = obj["first"]
     if not isinstance(first, str):
-        raise ValueError(f"{repr(first)} is not str")
+        raise ValueError("Expected str for first")
     if "last" not in obj:
-        raise KeyError(f"'last' is not in {obj}")
+        raise KeyError("Missing required field 'last'")
     last = obj["last"]
     if not isinstance(last, str):
-        raise ValueError(f"{repr(last)} is not str")
+        raise ValueError("Expected str for last")
     return CustomerSeparatedName(first, last)

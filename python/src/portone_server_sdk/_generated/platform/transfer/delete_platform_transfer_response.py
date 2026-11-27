@@ -16,5 +16,5 @@ def _serialize_delete_platform_transfer_response(obj: DeletePlatformTransferResp
 
 def _deserialize_delete_platform_transfer_response(obj: Any) -> DeletePlatformTransferResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return DeletePlatformTransferResponse()

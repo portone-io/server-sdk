@@ -32,19 +32,19 @@ def _serialize_platform_order_transfer_additional_fee(obj: PlatformOrderTransfer
 
 def _deserialize_platform_order_transfer_additional_fee(obj: Any) -> PlatformOrderTransferAdditionalFee:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "policy" not in obj:
-        raise KeyError(f"'policy' is not in {obj}")
+        raise KeyError("Missing required field 'policy'")
     policy = obj["policy"]
     policy = _deserialize_platform_additional_fee_policy(policy)
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     if not isinstance(amount, int):
-        raise ValueError(f"{repr(amount)} is not int")
+        raise ValueError("Expected int for amount")
     if "vat" not in obj:
-        raise KeyError(f"'vat' is not in {obj}")
+        raise KeyError("Missing required field 'vat'")
     vat = obj["vat"]
     if not isinstance(vat, int):
-        raise ValueError(f"{repr(vat)} is not int")
+        raise ValueError("Expected int for vat")
     return PlatformOrderTransferAdditionalFee(policy, amount, vat)

@@ -20,9 +20,9 @@ def _serialize_connect_partner_counterparty_response(obj: ConnectPartnerCounterp
 
 def _deserialize_connect_partner_counterparty_response(obj: Any) -> ConnectPartnerCounterpartyResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "partner" not in obj:
-        raise KeyError(f"'partner' is not in {obj}")
+        raise KeyError("Missing required field 'partner'")
     partner = obj["partner"]
     partner = _deserialize_platform_partner(partner)
     return ConnectPartnerCounterpartyResponse(partner)

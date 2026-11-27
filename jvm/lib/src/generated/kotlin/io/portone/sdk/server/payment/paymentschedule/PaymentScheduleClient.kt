@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.AlreadyPaidOrWaitingError
 import io.portone.sdk.server.errors.AlreadyPaidOrWaitingException
@@ -106,7 +107,7 @@ public class PaymentScheduleClient(
   ): PaymentSchedule {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payment-schedules", paymentScheduleId.toString())
+        this.appendApiPathSegments("payment-schedules", paymentScheduleId.toString())
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -121,7 +122,7 @@ public class PaymentScheduleClient(
         json.decodeFromString<GetPaymentScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -135,7 +136,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<PaymentSchedule>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -193,7 +194,7 @@ public class PaymentScheduleClient(
         json.decodeFromString<GetPaymentSchedulesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -206,7 +207,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<GetPaymentSchedulesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -263,7 +264,7 @@ public class PaymentScheduleClient(
         json.decodeFromString<RevokePaymentSchedulesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is BillingKeyAlreadyDeletedError -> throw BillingKeyAlreadyDeletedException(httpBodyDecoded)
@@ -281,7 +282,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<RevokePaymentSchedulesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -319,7 +320,7 @@ public class PaymentScheduleClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "schedule")
+        this.appendApiPathSegments("payments", paymentId.toString(), "schedule")
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -335,7 +336,7 @@ public class PaymentScheduleClient(
         json.decodeFromString<CreatePaymentScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is AlreadyPaidOrWaitingError -> throw AlreadyPaidOrWaitingException(httpBodyDecoded)
@@ -353,7 +354,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<CreatePaymentScheduleResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

@@ -164,4 +164,4 @@ def _deserialize_create_platform_order_transfer_error(obj: Any) -> CreatePlatfor
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CreatePlatformOrderTransferError")
+    raise ValueError("Expected CreatePlatformOrderTransferError")

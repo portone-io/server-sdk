@@ -22,9 +22,9 @@ def _serialize_create_platform_additional_fee_policy_response(obj: CreatePlatfor
 
 def _deserialize_create_platform_additional_fee_policy_response(obj: Any) -> CreatePlatformAdditionalFeePolicyResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "additionalFeePolicy" not in obj:
-        raise KeyError(f"'additionalFeePolicy' is not in {obj}")
+        raise KeyError("Missing required field 'additionalFeePolicy'")
     additional_fee_policy = obj["additionalFeePolicy"]
     additional_fee_policy = _deserialize_platform_additional_fee_policy(additional_fee_policy)
     return CreatePlatformAdditionalFeePolicyResponse(additional_fee_policy)

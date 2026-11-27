@@ -52,4 +52,4 @@ def _deserialize_update_platform_contract_error(obj: Any) -> UpdatePlatformContr
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not UpdatePlatformContractError")
+    raise ValueError("Expected UpdatePlatformContractError")

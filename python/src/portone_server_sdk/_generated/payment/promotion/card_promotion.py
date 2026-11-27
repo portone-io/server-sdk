@@ -95,82 +95,82 @@ def _serialize_card_promotion(obj: CardPromotion) -> Any:
 
 def _deserialize_card_promotion(obj: Any) -> CardPromotion:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "CARD":
-        raise ValueError(f"{repr(type)} is not 'CARD'")
+        raise ValueError("Expected 'CARD' for type")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "storeId" not in obj:
-        raise KeyError(f"'storeId' is not in {obj}")
+        raise KeyError("Missing required field 'storeId'")
     store_id = obj["storeId"]
     if not isinstance(store_id, str):
-        raise ValueError(f"{repr(store_id)} is not str")
+        raise ValueError("Expected str for store_id")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "discountPolicy" not in obj:
-        raise KeyError(f"'discountPolicy' is not in {obj}")
+        raise KeyError("Missing required field 'discountPolicy'")
     discount_policy = obj["discountPolicy"]
     discount_policy = _deserialize_promotion_discount_policy(discount_policy)
     if "totalBudget" not in obj:
-        raise KeyError(f"'totalBudget' is not in {obj}")
+        raise KeyError("Missing required field 'totalBudget'")
     total_budget = obj["totalBudget"]
     if not isinstance(total_budget, int):
-        raise ValueError(f"{repr(total_budget)} is not int")
+        raise ValueError("Expected int for total_budget")
     if "spentAmount" not in obj:
-        raise KeyError(f"'spentAmount' is not in {obj}")
+        raise KeyError("Missing required field 'spentAmount'")
     spent_amount = obj["spentAmount"]
     if not isinstance(spent_amount, int):
-        raise ValueError(f"{repr(spent_amount)} is not int")
+        raise ValueError("Expected int for spent_amount")
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "startAt" not in obj:
-        raise KeyError(f"'startAt' is not in {obj}")
+        raise KeyError("Missing required field 'startAt'")
     start_at = obj["startAt"]
     if not isinstance(start_at, str):
-        raise ValueError(f"{repr(start_at)} is not str")
+        raise ValueError("Expected str for start_at")
     if "endAt" not in obj:
-        raise KeyError(f"'endAt' is not in {obj}")
+        raise KeyError("Missing required field 'endAt'")
     end_at = obj["endAt"]
     if not isinstance(end_at, str):
-        raise ValueError(f"{repr(end_at)} is not str")
+        raise ValueError("Expected str for end_at")
     if "cardCompany" not in obj:
-        raise KeyError(f"'cardCompany' is not in {obj}")
+        raise KeyError("Missing required field 'cardCompany'")
     card_company = obj["cardCompany"]
     card_company = _deserialize_promotion_card_company(card_company)
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     status = _deserialize_promotion_status(status)
     if "createdAt" not in obj:
-        raise KeyError(f"'createdAt' is not in {obj}")
+        raise KeyError("Missing required field 'createdAt'")
     created_at = obj["createdAt"]
     if not isinstance(created_at, str):
-        raise ValueError(f"{repr(created_at)} is not str")
+        raise ValueError("Expected str for created_at")
     if "recoverOption" not in obj:
-        raise KeyError(f"'recoverOption' is not in {obj}")
+        raise KeyError("Missing required field 'recoverOption'")
     recover_option = obj["recoverOption"]
     recover_option = _deserialize_promotion_recover_option(recover_option)
     if "maxDiscountAmount" in obj:
         max_discount_amount = obj["maxDiscountAmount"]
         if not isinstance(max_discount_amount, int):
-            raise ValueError(f"{repr(max_discount_amount)} is not int")
+            raise ValueError("Expected int for max_discount_amount")
     else:
         max_discount_amount = None
     if "terminatedAt" in obj:
         terminated_at = obj["terminatedAt"]
         if not isinstance(terminated_at, str):
-            raise ValueError(f"{repr(terminated_at)} is not str")
+            raise ValueError("Expected str for terminated_at")
     else:
         terminated_at = None
     return CardPromotion(id, store_id, name, discount_policy, total_budget, spent_amount, currency, start_at, end_at, card_company, status, created_at, recover_option, max_discount_amount, terminated_at)

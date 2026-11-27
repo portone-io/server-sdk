@@ -45,4 +45,4 @@ def _deserialize_create_b2b_file_upload_url_error(obj: Any) -> CreateB2bFileUplo
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CreateB2bFileUploadUrlError")
+    raise ValueError("Expected CreateB2bFileUploadUrlError")

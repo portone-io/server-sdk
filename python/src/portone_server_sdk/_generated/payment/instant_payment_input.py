@@ -141,52 +141,52 @@ def _serialize_instant_payment_input(obj: InstantPaymentInput) -> Any:
 
 def _deserialize_instant_payment_input(obj: Any) -> InstantPaymentInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "method" not in obj:
-        raise KeyError(f"'method' is not in {obj}")
+        raise KeyError("Missing required field 'method'")
     method = obj["method"]
     method = _deserialize_instant_payment_method_input(method)
     if "orderName" not in obj:
-        raise KeyError(f"'orderName' is not in {obj}")
+        raise KeyError("Missing required field 'orderName'")
     order_name = obj["orderName"]
     if not isinstance(order_name, str):
-        raise ValueError(f"{repr(order_name)} is not str")
+        raise ValueError("Expected str for order_name")
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     amount = _deserialize_payment_amount_input(amount)
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "channelKey" in obj:
         channel_key = obj["channelKey"]
         if not isinstance(channel_key, str):
-            raise ValueError(f"{repr(channel_key)} is not str")
+            raise ValueError("Expected str for channel_key")
     else:
         channel_key = None
     if "channelGroupId" in obj:
         channel_group_id = obj["channelGroupId"]
         if not isinstance(channel_group_id, str):
-            raise ValueError(f"{repr(channel_group_id)} is not str")
+            raise ValueError("Expected str for channel_group_id")
     else:
         channel_group_id = None
     if "isCulturalExpense" in obj:
         is_cultural_expense = obj["isCulturalExpense"]
         if not isinstance(is_cultural_expense, bool):
-            raise ValueError(f"{repr(is_cultural_expense)} is not bool")
+            raise ValueError("Expected bool for is_cultural_expense")
     else:
         is_cultural_expense = None
     if "isEscrow" in obj:
         is_escrow = obj["isEscrow"]
         if not isinstance(is_escrow, bool):
-            raise ValueError(f"{repr(is_escrow)} is not bool")
+            raise ValueError("Expected bool for is_escrow")
     else:
         is_escrow = None
     if "customer" in obj:
@@ -197,7 +197,7 @@ def _deserialize_instant_payment_input(obj: Any) -> InstantPaymentInput:
     if "customData" in obj:
         custom_data = obj["customData"]
         if not isinstance(custom_data, str):
-            raise ValueError(f"{repr(custom_data)} is not str")
+            raise ValueError("Expected str for custom_data")
     else:
         custom_data = None
     if "country" in obj:
@@ -208,16 +208,16 @@ def _deserialize_instant_payment_input(obj: Any) -> InstantPaymentInput:
     if "noticeUrls" in obj:
         notice_urls = obj["noticeUrls"]
         if not isinstance(notice_urls, list):
-            raise ValueError(f"{repr(notice_urls)} is not list")
+            raise ValueError("Expected list for notice_urls")
         for i, item in enumerate(notice_urls):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         notice_urls = None
     if "products" in obj:
         products = obj["products"]
         if not isinstance(products, list):
-            raise ValueError(f"{repr(products)} is not list")
+            raise ValueError("Expected list for products")
         for i, item in enumerate(products):
             item = _deserialize_payment_product(item)
             products[i] = item
@@ -226,7 +226,7 @@ def _deserialize_instant_payment_input(obj: Any) -> InstantPaymentInput:
     if "productCount" in obj:
         product_count = obj["productCount"]
         if not isinstance(product_count, int):
-            raise ValueError(f"{repr(product_count)} is not int")
+            raise ValueError("Expected int for product_count")
     else:
         product_count = None
     if "productType" in obj:
@@ -242,19 +242,19 @@ def _deserialize_instant_payment_input(obj: Any) -> InstantPaymentInput:
     if "promotionId" in obj:
         promotion_id = obj["promotionId"]
         if not isinstance(promotion_id, str):
-            raise ValueError(f"{repr(promotion_id)} is not str")
+            raise ValueError("Expected str for promotion_id")
     else:
         promotion_id = None
     if "bypass" in obj:
         bypass = obj["bypass"]
         if not isinstance(bypass, dict):
-            raise ValueError(f"{repr(bypass)} is not dict")
+            raise ValueError("Expected dict for bypass")
     else:
         bypass = None
     if "skipWebhook" in obj:
         skip_webhook = obj["skipWebhook"]
         if not isinstance(skip_webhook, bool):
-            raise ValueError(f"{repr(skip_webhook)} is not bool")
+            raise ValueError("Expected bool for skip_webhook")
     else:
         skip_webhook = None
     return InstantPaymentInput(method, order_name, amount, currency, store_id, channel_key, channel_group_id, is_cultural_expense, is_escrow, customer, custom_data, country, notice_urls, products, product_count, product_type, shipping_address, promotion_id, bypass, skip_webhook)

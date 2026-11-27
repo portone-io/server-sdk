@@ -20,16 +20,16 @@ def _serialize_platform_discount_share_policy_already_exists_error(obj: Platform
 
 def _deserialize_platform_discount_share_policy_already_exists_error(obj: Any) -> PlatformDiscountSharePolicyAlreadyExistsError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_DISCOUNT_SHARE_POLICY_ALREADY_EXISTS":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_DISCOUNT_SHARE_POLICY_ALREADY_EXISTS'")
+        raise ValueError("Expected 'PLATFORM_DISCOUNT_SHARE_POLICY_ALREADY_EXISTS' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformDiscountSharePolicyAlreadyExistsError(message)

@@ -21,7 +21,7 @@ public sealed interface BillingKeyTextSearchField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CardBin::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CardBin = decoder.decodeString().let {
       if (it != "CARD_BIN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CARD_BIN")
       } else {
         return CardBin
       }
@@ -36,7 +36,7 @@ public sealed interface BillingKeyTextSearchField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CardNumber::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CardNumber = decoder.decodeString().let {
       if (it != "CARD_NUMBER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CARD_NUMBER")
       } else {
         return CardNumber
       }
@@ -51,7 +51,7 @@ public sealed interface BillingKeyTextSearchField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PgMerchantId::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PgMerchantId = decoder.decodeString().let {
       if (it != "PG_MERCHANT_ID") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PG_MERCHANT_ID")
       } else {
         return PgMerchantId
       }
@@ -66,7 +66,7 @@ public sealed interface BillingKeyTextSearchField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CustomerName::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CustomerName = decoder.decodeString().let {
       if (it != "CUSTOMER_NAME") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CUSTOMER_NAME")
       } else {
         return CustomerName
       }
@@ -81,7 +81,7 @@ public sealed interface BillingKeyTextSearchField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CustomerEmail::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CustomerEmail = decoder.decodeString().let {
       if (it != "CUSTOMER_EMAIL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CUSTOMER_EMAIL")
       } else {
         return CustomerEmail
       }
@@ -96,7 +96,7 @@ public sealed interface BillingKeyTextSearchField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CustomerPhoneNumber::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CustomerPhoneNumber = decoder.decodeString().let {
       if (it != "CUSTOMER_PHONE_NUMBER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CUSTOMER_PHONE_NUMBER")
       } else {
         return CustomerPhoneNumber
       }
@@ -111,7 +111,7 @@ public sealed interface BillingKeyTextSearchField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CustomerAddress::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CustomerAddress = decoder.decodeString().let {
       if (it != "CUSTOMER_ADDRESS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CUSTOMER_ADDRESS")
       } else {
         return CustomerAddress
       }
@@ -126,7 +126,7 @@ public sealed interface BillingKeyTextSearchField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CustomerZipcode::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CustomerZipcode = decoder.decodeString().let {
       if (it != "CUSTOMER_ZIPCODE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CUSTOMER_ZIPCODE")
       } else {
         return CustomerZipcode
       }
@@ -141,7 +141,7 @@ public sealed interface BillingKeyTextSearchField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(UserAgent::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): UserAgent = decoder.decodeString().let {
       if (it != "USER_AGENT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected USER_AGENT")
       } else {
         return UserAgent
       }
@@ -156,7 +156,7 @@ public sealed interface BillingKeyTextSearchField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BillingKey::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): BillingKey = decoder.decodeString().let {
       if (it != "BILLING_KEY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BILLING_KEY")
       } else {
         return BillingKey
       }
@@ -171,7 +171,7 @@ public sealed interface BillingKeyTextSearchField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ChannelGroupName::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ChannelGroupName = decoder.decodeString().let {
       if (it != "CHANNEL_GROUP_NAME") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CHANNEL_GROUP_NAME")
       } else {
         return ChannelGroupName
       }

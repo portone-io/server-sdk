@@ -56,22 +56,22 @@ def _serialize_create_platform_partner_body_type_business(obj: CreatePlatformPar
 
 def _deserialize_create_platform_partner_body_type_business(obj: Any) -> CreatePlatformPartnerBodyTypeBusiness:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "companyName" not in obj:
-        raise KeyError(f"'companyName' is not in {obj}")
+        raise KeyError("Missing required field 'companyName'")
     company_name = obj["companyName"]
     if not isinstance(company_name, str):
-        raise ValueError(f"{repr(company_name)} is not str")
+        raise ValueError("Expected str for company_name")
     if "businessRegistrationNumber" not in obj:
-        raise KeyError(f"'businessRegistrationNumber' is not in {obj}")
+        raise KeyError("Missing required field 'businessRegistrationNumber'")
     business_registration_number = obj["businessRegistrationNumber"]
     if not isinstance(business_registration_number, str):
-        raise ValueError(f"{repr(business_registration_number)} is not str")
+        raise ValueError("Expected str for business_registration_number")
     if "representativeName" not in obj:
-        raise KeyError(f"'representativeName' is not in {obj}")
+        raise KeyError("Missing required field 'representativeName'")
     representative_name = obj["representativeName"]
     if not isinstance(representative_name, str):
-        raise ValueError(f"{repr(representative_name)} is not str")
+        raise ValueError("Expected str for representative_name")
     if "taxationType" in obj:
         taxation_type = obj["taxationType"]
         taxation_type = _deserialize_platform_partner_taxation_type(taxation_type)
@@ -80,25 +80,25 @@ def _deserialize_create_platform_partner_body_type_business(obj: Any) -> CreateP
     if "companyAddress" in obj:
         company_address = obj["companyAddress"]
         if not isinstance(company_address, str):
-            raise ValueError(f"{repr(company_address)} is not str")
+            raise ValueError("Expected str for company_address")
     else:
         company_address = None
     if "businessType" in obj:
         business_type = obj["businessType"]
         if not isinstance(business_type, str):
-            raise ValueError(f"{repr(business_type)} is not str")
+            raise ValueError("Expected str for business_type")
     else:
         business_type = None
     if "businessClass" in obj:
         business_class = obj["businessClass"]
         if not isinstance(business_class, str):
-            raise ValueError(f"{repr(business_class)} is not str")
+            raise ValueError("Expected str for business_class")
     else:
         business_class = None
     if "companyVerificationId" in obj:
         company_verification_id = obj["companyVerificationId"]
         if not isinstance(company_verification_id, str):
-            raise ValueError(f"{repr(company_verification_id)} is not str")
+            raise ValueError("Expected str for company_verification_id")
     else:
         company_verification_id = None
     return CreatePlatformPartnerBodyTypeBusiness(company_name, business_registration_number, representative_name, taxation_type, company_address, business_type, business_class, company_verification_id)

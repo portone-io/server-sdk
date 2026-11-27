@@ -22,16 +22,16 @@ def _serialize_max_webhook_retry_count_reached_error(obj: MaxWebhookRetryCountRe
 
 def _deserialize_max_webhook_retry_count_reached_error(obj: Any) -> MaxWebhookRetryCountReachedError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "MAX_WEBHOOK_RETRY_COUNT_REACHED":
-        raise ValueError(f"{repr(type)} is not 'MAX_WEBHOOK_RETRY_COUNT_REACHED'")
+        raise ValueError("Expected 'MAX_WEBHOOK_RETRY_COUNT_REACHED' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return MaxWebhookRetryCountReachedError(message)

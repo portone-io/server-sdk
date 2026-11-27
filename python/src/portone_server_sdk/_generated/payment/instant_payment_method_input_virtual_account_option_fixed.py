@@ -35,17 +35,17 @@ def _serialize_instant_payment_method_input_virtual_account_option_fixed(obj: In
 
 def _deserialize_instant_payment_method_input_virtual_account_option_fixed(obj: Any) -> InstantPaymentMethodInputVirtualAccountOptionFixed:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "pgAccountId" in obj:
         pg_account_id = obj["pgAccountId"]
         if not isinstance(pg_account_id, str):
-            raise ValueError(f"{repr(pg_account_id)} is not str")
+            raise ValueError("Expected str for pg_account_id")
     else:
         pg_account_id = None
     if "accountNumber" in obj:
         account_number = obj["accountNumber"]
         if not isinstance(account_number, str):
-            raise ValueError(f"{repr(account_number)} is not str")
+            raise ValueError("Expected str for account_number")
     else:
         account_number = None
     return InstantPaymentMethodInputVirtualAccountOptionFixed(pg_account_id, account_number)

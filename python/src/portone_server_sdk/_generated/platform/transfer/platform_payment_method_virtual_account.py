@@ -19,10 +19,10 @@ def _serialize_platform_payment_method_virtual_account(obj: PlatformPaymentMetho
 
 def _deserialize_platform_payment_method_virtual_account(obj: Any) -> PlatformPaymentMethodVirtualAccount:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "VIRTUAL_ACCOUNT":
-        raise ValueError(f"{repr(type)} is not 'VIRTUAL_ACCOUNT'")
+        raise ValueError("Expected 'VIRTUAL_ACCOUNT' for type")
     return PlatformPaymentMethodVirtualAccount()

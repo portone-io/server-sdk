@@ -38,4 +38,4 @@ def _deserialize_get_platform_partner_filter_options_error(obj: Any) -> GetPlatf
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPlatformPartnerFilterOptionsError")
+    raise ValueError("Expected GetPlatformPartnerFilterOptionsError")

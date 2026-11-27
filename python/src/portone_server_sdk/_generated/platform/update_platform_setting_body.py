@@ -49,35 +49,35 @@ def _serialize_update_platform_setting_body(obj: UpdatePlatformSettingBody) -> A
 
 def _deserialize_update_platform_setting_body(obj: Any) -> UpdatePlatformSettingBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "defaultWithdrawalMemo" in obj:
         default_withdrawal_memo = obj["defaultWithdrawalMemo"]
         if not isinstance(default_withdrawal_memo, str):
-            raise ValueError(f"{repr(default_withdrawal_memo)} is not str")
+            raise ValueError("Expected str for default_withdrawal_memo")
     else:
         default_withdrawal_memo = None
     if "defaultDepositMemo" in obj:
         default_deposit_memo = obj["defaultDepositMemo"]
         if not isinstance(default_deposit_memo, str):
-            raise ValueError(f"{repr(default_deposit_memo)} is not str")
+            raise ValueError("Expected str for default_deposit_memo")
     else:
         default_deposit_memo = None
     if "supportsMultipleOrderTransfersPerPartner" in obj:
         supports_multiple_order_transfers_per_partner = obj["supportsMultipleOrderTransfersPerPartner"]
         if not isinstance(supports_multiple_order_transfers_per_partner, bool):
-            raise ValueError(f"{repr(supports_multiple_order_transfers_per_partner)} is not bool")
+            raise ValueError("Expected bool for supports_multiple_order_transfers_per_partner")
     else:
         supports_multiple_order_transfers_per_partner = None
     if "adjustSettlementDateAfterHolidayIfEarlier" in obj:
         adjust_settlement_date_after_holiday_if_earlier = obj["adjustSettlementDateAfterHolidayIfEarlier"]
         if not isinstance(adjust_settlement_date_after_holiday_if_earlier, bool):
-            raise ValueError(f"{repr(adjust_settlement_date_after_holiday_if_earlier)} is not bool")
+            raise ValueError("Expected bool for adjust_settlement_date_after_holiday_if_earlier")
     else:
         adjust_settlement_date_after_holiday_if_earlier = None
     if "deductWht" in obj:
         deduct_wht = obj["deductWht"]
         if not isinstance(deduct_wht, bool):
-            raise ValueError(f"{repr(deduct_wht)} is not bool")
+            raise ValueError("Expected bool for deduct_wht")
     else:
         deduct_wht = None
     if "settlementAmountType" in obj:

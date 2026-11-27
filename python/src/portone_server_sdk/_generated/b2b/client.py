@@ -4,7 +4,6 @@ import json
 from httpx import AsyncClient, Client as SyncClient
 from ..._user_agent import USER_AGENT
 from typing import Optional
-from urllib.parse import quote
 from .tax_invoice.client import TaxInvoiceClient
 from .counterparty.client import CounterpartyClient
 class B2bClient:

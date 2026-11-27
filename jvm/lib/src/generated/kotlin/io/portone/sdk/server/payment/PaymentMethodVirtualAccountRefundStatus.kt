@@ -22,7 +22,7 @@ public sealed interface PaymentMethodVirtualAccountRefundStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pending = decoder.decodeString().let {
       if (it != "PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PENDING")
       } else {
         return Pending
       }
@@ -38,7 +38,7 @@ public sealed interface PaymentMethodVirtualAccountRefundStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PartialRefundFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PartialRefundFailed = decoder.decodeString().let {
       if (it != "PARTIAL_REFUND_FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PARTIAL_REFUND_FAILED")
       } else {
         return PartialRefundFailed
       }
@@ -54,7 +54,7 @@ public sealed interface PaymentMethodVirtualAccountRefundStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Failed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Failed = decoder.decodeString().let {
       if (it != "FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FAILED")
       } else {
         return Failed
       }
@@ -70,7 +70,7 @@ public sealed interface PaymentMethodVirtualAccountRefundStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Completed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Completed = decoder.decodeString().let {
       if (it != "COMPLETED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected COMPLETED")
       } else {
         return Completed
       }

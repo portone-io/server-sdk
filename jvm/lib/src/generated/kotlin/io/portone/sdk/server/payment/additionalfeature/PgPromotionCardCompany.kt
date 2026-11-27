@@ -26,7 +26,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(KoreaDevelopmentBank::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): KoreaDevelopmentBank = decoder.decodeString().let {
       if (it != "KOREA_DEVELOPMENT_BANK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KOREA_DEVELOPMENT_BANK")
       } else {
         return KoreaDevelopmentBank
       }
@@ -42,7 +42,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kfcc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kfcc = decoder.decodeString().let {
       if (it != "KFCC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KFCC")
       } else {
         return Kfcc
       }
@@ -58,7 +58,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Shinhyup::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Shinhyup = decoder.decodeString().let {
       if (it != "SHINHYUP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SHINHYUP")
       } else {
         return Shinhyup
       }
@@ -74,7 +74,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Epost::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Epost = decoder.decodeString().let {
       if (it != "EPOST") {
-        throw SerializationException(it)
+        throw SerializationException("Expected EPOST")
       } else {
         return Epost
       }
@@ -90,7 +90,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SavingsBankKorea::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SavingsBankKorea = decoder.decodeString().let {
       if (it != "SAVINGS_BANK_KOREA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SAVINGS_BANK_KOREA")
       } else {
         return SavingsBankKorea
       }
@@ -106,7 +106,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(KakaoBank::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): KakaoBank = decoder.decodeString().let {
       if (it != "KAKAO_BANK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KAKAO_BANK")
       } else {
         return KakaoBank
       }
@@ -122,7 +122,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(WooriCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): WooriCard = decoder.decodeString().let {
       if (it != "WOORI_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WOORI_CARD")
       } else {
         return WooriCard
       }
@@ -138,7 +138,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BcCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): BcCard = decoder.decodeString().let {
       if (it != "BC_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BC_CARD")
       } else {
         return BcCard
       }
@@ -154,7 +154,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(GwangjuCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): GwangjuCard = decoder.decodeString().let {
       if (it != "GWANGJU_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GWANGJU_CARD")
       } else {
         return GwangjuCard
       }
@@ -170,7 +170,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SamsungCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SamsungCard = decoder.decodeString().let {
       if (it != "SAMSUNG_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SAMSUNG_CARD")
       } else {
         return SamsungCard
       }
@@ -186,7 +186,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ShinhanCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ShinhanCard = decoder.decodeString().let {
       if (it != "SHINHAN_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SHINHAN_CARD")
       } else {
         return ShinhanCard
       }
@@ -202,7 +202,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HyundaiCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HyundaiCard = decoder.decodeString().let {
       if (it != "HYUNDAI_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HYUNDAI_CARD")
       } else {
         return HyundaiCard
       }
@@ -218,7 +218,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(LotteCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): LotteCard = decoder.decodeString().let {
       if (it != "LOTTE_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LOTTE_CARD")
       } else {
         return LotteCard
       }
@@ -234,7 +234,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SuhyupCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SuhyupCard = decoder.decodeString().let {
       if (it != "SUHYUP_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUHYUP_CARD")
       } else {
         return SuhyupCard
       }
@@ -250,7 +250,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CitiCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CitiCard = decoder.decodeString().let {
       if (it != "CITI_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CITI_CARD")
       } else {
         return CitiCard
       }
@@ -266,7 +266,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NhCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NhCard = decoder.decodeString().let {
       if (it != "NH_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NH_CARD")
       } else {
         return NhCard
       }
@@ -282,7 +282,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(JeonbukCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): JeonbukCard = decoder.decodeString().let {
       if (it != "JEONBUK_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JEONBUK_CARD")
       } else {
         return JeonbukCard
       }
@@ -298,7 +298,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(JejuCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): JejuCard = decoder.decodeString().let {
       if (it != "JEJU_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JEJU_CARD")
       } else {
         return JejuCard
       }
@@ -314,7 +314,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HanaCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HanaCard = decoder.decodeString().let {
       if (it != "HANA_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HANA_CARD")
       } else {
         return HanaCard
       }
@@ -330,7 +330,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(KookminCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): KookminCard = decoder.decodeString().let {
       if (it != "KOOKMIN_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KOOKMIN_CARD")
       } else {
         return KookminCard
       }
@@ -346,7 +346,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(KBank::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): KBank = decoder.decodeString().let {
       if (it != "K_BANK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected K_BANK")
       } else {
         return KBank
       }
@@ -362,7 +362,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TossBank::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TossBank = decoder.decodeString().let {
       if (it != "TOSS_BANK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOSS_BANK")
       } else {
         return TossBank
       }
@@ -378,7 +378,7 @@ public sealed interface PgPromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(MiraeAssetSecurities::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): MiraeAssetSecurities = decoder.decodeString().let {
       if (it != "MIRAE_ASSET_SECURITIES") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MIRAE_ASSET_SECURITIES")
       } else {
         return MiraeAssetSecurities
       }

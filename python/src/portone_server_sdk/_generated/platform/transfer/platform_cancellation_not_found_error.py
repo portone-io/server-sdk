@@ -20,16 +20,16 @@ def _serialize_platform_cancellation_not_found_error(obj: PlatformCancellationNo
 
 def _deserialize_platform_cancellation_not_found_error(obj: Any) -> PlatformCancellationNotFoundError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_CANCELLATION_NOT_FOUND":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_CANCELLATION_NOT_FOUND'")
+        raise ValueError("Expected 'PLATFORM_CANCELLATION_NOT_FOUND' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformCancellationNotFoundError(message)

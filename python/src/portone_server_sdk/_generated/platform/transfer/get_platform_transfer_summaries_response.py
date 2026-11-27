@@ -21,17 +21,17 @@ def _serialize_get_platform_transfer_summaries_response(obj: GetPlatformTransfer
 
 def _deserialize_get_platform_transfer_summaries_response(obj: Any) -> GetPlatformTransferSummariesResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "transferSummaries" not in obj:
-        raise KeyError(f"'transferSummaries' is not in {obj}")
+        raise KeyError("Missing required field 'transferSummaries'")
     transfer_summaries = obj["transferSummaries"]
     if not isinstance(transfer_summaries, list):
-        raise ValueError(f"{repr(transfer_summaries)} is not list")
+        raise ValueError("Expected list for transfer_summaries")
     for i, item in enumerate(transfer_summaries):
         item = _deserialize_platform_transfer_summary(item)
         transfer_summaries[i] = item
     if "page" not in obj:
-        raise KeyError(f"'page' is not in {obj}")
+        raise KeyError("Missing required field 'page'")
     page = obj["page"]
     page = _deserialize_page_info(page)
     return GetPlatformTransferSummariesResponse(transfer_summaries, page)

@@ -21,7 +21,7 @@ public sealed interface DayOfWeek {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sun::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sun = decoder.decodeString().let {
       if (it != "SUN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUN")
       } else {
         return Sun
       }
@@ -36,7 +36,7 @@ public sealed interface DayOfWeek {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mon::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mon = decoder.decodeString().let {
       if (it != "MON") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MON")
       } else {
         return Mon
       }
@@ -51,7 +51,7 @@ public sealed interface DayOfWeek {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tue::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tue = decoder.decodeString().let {
       if (it != "TUE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TUE")
       } else {
         return Tue
       }
@@ -66,7 +66,7 @@ public sealed interface DayOfWeek {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Wed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Wed = decoder.decodeString().let {
       if (it != "WED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WED")
       } else {
         return Wed
       }
@@ -81,7 +81,7 @@ public sealed interface DayOfWeek {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Thu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Thu = decoder.decodeString().let {
       if (it != "THU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected THU")
       } else {
         return Thu
       }
@@ -96,7 +96,7 @@ public sealed interface DayOfWeek {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fri::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fri = decoder.decodeString().let {
       if (it != "FRI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FRI")
       } else {
         return Fri
       }
@@ -111,7 +111,7 @@ public sealed interface DayOfWeek {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sat::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sat = decoder.decodeString().let {
       if (it != "SAT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SAT")
       } else {
         return Sat
       }

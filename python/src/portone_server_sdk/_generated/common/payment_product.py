@@ -55,43 +55,43 @@ def _serialize_payment_product(obj: PaymentProduct) -> Any:
 
 def _deserialize_payment_product(obj: Any) -> PaymentProduct:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     if not isinstance(amount, int):
-        raise ValueError(f"{repr(amount)} is not int")
+        raise ValueError("Expected int for amount")
     if "quantity" not in obj:
-        raise KeyError(f"'quantity' is not in {obj}")
+        raise KeyError("Missing required field 'quantity'")
     quantity = obj["quantity"]
     if not isinstance(quantity, int):
-        raise ValueError(f"{repr(quantity)} is not int")
+        raise ValueError("Expected int for quantity")
     if "tag" in obj:
         tag = obj["tag"]
         if not isinstance(tag, str):
-            raise ValueError(f"{repr(tag)} is not str")
+            raise ValueError("Expected str for tag")
     else:
         tag = None
     if "code" in obj:
         code = obj["code"]
         if not isinstance(code, str):
-            raise ValueError(f"{repr(code)} is not str")
+            raise ValueError("Expected str for code")
     else:
         code = None
     if "link" in obj:
         link = obj["link"]
         if not isinstance(link, str):
-            raise ValueError(f"{repr(link)} is not str")
+            raise ValueError("Expected str for link")
     else:
         link = None
     return PaymentProduct(id, name, amount, quantity, tag, code, link)

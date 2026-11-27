@@ -37,7 +37,7 @@ def _serialize_download_b2b_tax_invoices_sheet_body(obj: DownloadB2bTaxInvoicesS
 
 def _deserialize_download_b2b_tax_invoices_sheet_body(obj: Any) -> DownloadB2bTaxInvoicesSheetBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "filter" in obj:
         filter = obj["filter"]
         filter = _deserialize_get_b2b_tax_invoices_body_filter(filter)
@@ -46,7 +46,7 @@ def _deserialize_download_b2b_tax_invoices_sheet_body(obj: Any) -> DownloadB2bTa
     if "fields" in obj:
         fields = obj["fields"]
         if not isinstance(fields, list):
-            raise ValueError(f"{repr(fields)} is not list")
+            raise ValueError("Expected list for fields")
         for i, item in enumerate(fields):
             item = _deserialize_tax_invoices_sheet_field(item)
             fields[i] = item
@@ -55,7 +55,7 @@ def _deserialize_download_b2b_tax_invoices_sheet_body(obj: Any) -> DownloadB2bTa
     if "test" in obj:
         test = obj["test"]
         if not isinstance(test, bool):
-            raise ValueError(f"{repr(test)} is not bool")
+            raise ValueError("Expected bool for test")
     else:
         test = None
     if "sort" in obj:

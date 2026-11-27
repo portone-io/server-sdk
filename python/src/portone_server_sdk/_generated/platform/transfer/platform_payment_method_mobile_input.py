@@ -16,5 +16,5 @@ def _serialize_platform_payment_method_mobile_input(obj: PlatformPaymentMethodMo
 
 def _deserialize_platform_payment_method_mobile_input(obj: Any) -> PlatformPaymentMethodMobileInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return PlatformPaymentMethodMobileInput()

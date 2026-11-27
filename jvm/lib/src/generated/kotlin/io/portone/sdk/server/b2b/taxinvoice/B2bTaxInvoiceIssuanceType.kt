@@ -22,7 +22,7 @@ public sealed interface B2bTaxInvoiceIssuanceType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Normal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Normal = decoder.decodeString().let {
       if (it != "NORMAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NORMAL")
       } else {
         return Normal
       }
@@ -38,7 +38,7 @@ public sealed interface B2bTaxInvoiceIssuanceType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Reverse::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Reverse = decoder.decodeString().let {
       if (it != "REVERSE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REVERSE")
       } else {
         return Reverse
       }

@@ -28,4 +28,4 @@ def _deserialize_address(obj: Any) -> Address:
         return _deserialize_separated_address(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not Address")
+    raise ValueError("Expected Address")

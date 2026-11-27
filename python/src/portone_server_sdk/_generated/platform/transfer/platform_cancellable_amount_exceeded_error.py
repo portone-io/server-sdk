@@ -33,30 +33,30 @@ def _serialize_platform_cancellable_amount_exceeded_error(obj: PlatformCancellab
 
 def _deserialize_platform_cancellable_amount_exceeded_error(obj: Any) -> PlatformCancellableAmountExceededError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_CANCELLABLE_AMOUNT_EXCEEDED":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_CANCELLABLE_AMOUNT_EXCEEDED'")
+        raise ValueError("Expected 'PLATFORM_CANCELLABLE_AMOUNT_EXCEEDED' for type")
     if "cancellableAmount" not in obj:
-        raise KeyError(f"'cancellableAmount' is not in {obj}")
+        raise KeyError("Missing required field 'cancellableAmount'")
     cancellable_amount = obj["cancellableAmount"]
     if not isinstance(cancellable_amount, int):
-        raise ValueError(f"{repr(cancellable_amount)} is not int")
+        raise ValueError("Expected int for cancellable_amount")
     if "requestAmount" not in obj:
-        raise KeyError(f"'requestAmount' is not in {obj}")
+        raise KeyError("Missing required field 'requestAmount'")
     request_amount = obj["requestAmount"]
     if not isinstance(request_amount, int):
-        raise ValueError(f"{repr(request_amount)} is not int")
+        raise ValueError("Expected int for request_amount")
     if "amountType" not in obj:
-        raise KeyError(f"'amountType' is not in {obj}")
+        raise KeyError("Missing required field 'amountType'")
     amount_type = obj["amountType"]
     amount_type = _deserialize_platform_cancellable_amount_type(amount_type)
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformCancellableAmountExceededError(cancellable_amount, request_amount, amount_type, message)

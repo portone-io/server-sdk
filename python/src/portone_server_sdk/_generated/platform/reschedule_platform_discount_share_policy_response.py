@@ -22,9 +22,9 @@ def _serialize_reschedule_platform_discount_share_policy_response(obj: Reschedul
 
 def _deserialize_reschedule_platform_discount_share_policy_response(obj: Any) -> ReschedulePlatformDiscountSharePolicyResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "scheduledDiscountSharePolicy" not in obj:
-        raise KeyError(f"'scheduledDiscountSharePolicy' is not in {obj}")
+        raise KeyError("Missing required field 'scheduledDiscountSharePolicy'")
     scheduled_discount_share_policy = obj["scheduledDiscountSharePolicy"]
     scheduled_discount_share_policy = _deserialize_platform_discount_share_policy(scheduled_discount_share_policy)
     return ReschedulePlatformDiscountSharePolicyResponse(scheduled_discount_share_policy)

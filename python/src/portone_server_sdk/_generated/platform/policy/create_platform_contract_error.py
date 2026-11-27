@@ -45,4 +45,4 @@ def _deserialize_create_platform_contract_error(obj: Any) -> CreatePlatformContr
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CreatePlatformContractError")
+    raise ValueError("Expected CreatePlatformContractError")

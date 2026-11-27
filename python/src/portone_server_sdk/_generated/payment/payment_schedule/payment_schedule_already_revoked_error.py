@@ -22,16 +22,16 @@ def _serialize_payment_schedule_already_revoked_error(obj: PaymentScheduleAlread
 
 def _deserialize_payment_schedule_already_revoked_error(obj: Any) -> PaymentScheduleAlreadyRevokedError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PAYMENT_SCHEDULE_ALREADY_REVOKED":
-        raise ValueError(f"{repr(type)} is not 'PAYMENT_SCHEDULE_ALREADY_REVOKED'")
+        raise ValueError("Expected 'PAYMENT_SCHEDULE_ALREADY_REVOKED' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PaymentScheduleAlreadyRevokedError(message)

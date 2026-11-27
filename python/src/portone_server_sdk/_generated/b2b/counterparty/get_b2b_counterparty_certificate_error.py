@@ -66,4 +66,4 @@ def _deserialize_get_b2b_counterparty_certificate_error(obj: Any) -> GetB2bCount
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetB2bCounterpartyCertificateError")
+    raise ValueError("Expected GetB2bCounterpartyCertificateError")

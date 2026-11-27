@@ -28,4 +28,4 @@ def _deserialize_platform_account_transfer(obj: Any) -> PlatformAccountTransfer:
         return _deserialize_platform_withdrawal_account_transfer(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PlatformAccountTransfer")
+    raise ValueError("Expected PlatformAccountTransfer")

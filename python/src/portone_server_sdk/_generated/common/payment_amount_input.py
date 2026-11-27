@@ -38,22 +38,22 @@ def _serialize_payment_amount_input(obj: PaymentAmountInput) -> Any:
 
 def _deserialize_payment_amount_input(obj: Any) -> PaymentAmountInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "total" not in obj:
-        raise KeyError(f"'total' is not in {obj}")
+        raise KeyError("Missing required field 'total'")
     total = obj["total"]
     if not isinstance(total, int):
-        raise ValueError(f"{repr(total)} is not int")
+        raise ValueError("Expected int for total")
     if "taxFree" in obj:
         tax_free = obj["taxFree"]
         if not isinstance(tax_free, int):
-            raise ValueError(f"{repr(tax_free)} is not int")
+            raise ValueError("Expected int for tax_free")
     else:
         tax_free = None
     if "vat" in obj:
         vat = obj["vat"]
         if not isinstance(vat, int):
-            raise ValueError(f"{repr(vat)} is not int")
+            raise ValueError("Expected int for vat")
     else:
         vat = None
     return PaymentAmountInput(total, tax_free, vat)

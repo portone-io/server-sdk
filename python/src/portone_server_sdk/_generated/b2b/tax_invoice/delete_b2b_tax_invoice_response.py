@@ -16,5 +16,5 @@ def _serialize_delete_b2b_tax_invoice_response(obj: DeleteB2bTaxInvoiceResponse)
 
 def _deserialize_delete_b2b_tax_invoice_response(obj: Any) -> DeleteB2bTaxInvoiceResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return DeleteB2bTaxInvoiceResponse()

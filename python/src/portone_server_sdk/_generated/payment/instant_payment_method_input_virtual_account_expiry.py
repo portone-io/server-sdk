@@ -34,17 +34,17 @@ def _serialize_instant_payment_method_input_virtual_account_expiry(obj: InstantP
 
 def _deserialize_instant_payment_method_input_virtual_account_expiry(obj: Any) -> InstantPaymentMethodInputVirtualAccountExpiry:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "validHours" in obj:
         valid_hours = obj["validHours"]
         if not isinstance(valid_hours, int):
-            raise ValueError(f"{repr(valid_hours)} is not int")
+            raise ValueError("Expected int for valid_hours")
     else:
         valid_hours = None
     if "dueDate" in obj:
         due_date = obj["dueDate"]
         if not isinstance(due_date, str):
-            raise ValueError(f"{repr(due_date)} is not str")
+            raise ValueError("Expected str for due_date")
     else:
         due_date = None
     return InstantPaymentMethodInputVirtualAccountExpiry(valid_hours, due_date)

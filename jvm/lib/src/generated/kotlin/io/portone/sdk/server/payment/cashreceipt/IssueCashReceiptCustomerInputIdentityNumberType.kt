@@ -22,7 +22,7 @@ public sealed interface IssueCashReceiptCustomerInputIdentityNumberType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Phone::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Phone = decoder.decodeString().let {
       if (it != "PHONE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PHONE")
       } else {
         return Phone
       }
@@ -38,7 +38,7 @@ public sealed interface IssueCashReceiptCustomerInputIdentityNumberType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Card::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Card = decoder.decodeString().let {
       if (it != "CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CARD")
       } else {
         return Card
       }
@@ -54,7 +54,7 @@ public sealed interface IssueCashReceiptCustomerInputIdentityNumberType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Business::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Business = decoder.decodeString().let {
       if (it != "BUSINESS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BUSINESS")
       } else {
         return Business
       }

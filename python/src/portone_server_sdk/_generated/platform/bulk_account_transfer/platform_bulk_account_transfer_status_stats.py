@@ -31,25 +31,25 @@ def _serialize_platform_bulk_account_transfer_status_stats(obj: PlatformBulkAcco
 
 def _deserialize_platform_bulk_account_transfer_status_stats(obj: Any) -> PlatformBulkAccountTransferStatusStats:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "prepared" not in obj:
-        raise KeyError(f"'prepared' is not in {obj}")
+        raise KeyError("Missing required field 'prepared'")
     prepared = obj["prepared"]
     if not isinstance(prepared, int):
-        raise ValueError(f"{repr(prepared)} is not int")
+        raise ValueError("Expected int for prepared")
     if "scheduled" not in obj:
-        raise KeyError(f"'scheduled' is not in {obj}")
+        raise KeyError("Missing required field 'scheduled'")
     scheduled = obj["scheduled"]
     if not isinstance(scheduled, int):
-        raise ValueError(f"{repr(scheduled)} is not int")
+        raise ValueError("Expected int for scheduled")
     if "ongoing" not in obj:
-        raise KeyError(f"'ongoing' is not in {obj}")
+        raise KeyError("Missing required field 'ongoing'")
     ongoing = obj["ongoing"]
     if not isinstance(ongoing, int):
-        raise ValueError(f"{repr(ongoing)} is not int")
+        raise ValueError("Expected int for ongoing")
     if "completed" not in obj:
-        raise KeyError(f"'completed' is not in {obj}")
+        raise KeyError("Missing required field 'completed'")
     completed = obj["completed"]
     if not isinstance(completed, int):
-        raise ValueError(f"{repr(completed)} is not int")
+        raise ValueError("Expected int for completed")
     return PlatformBulkAccountTransferStatusStats(prepared, scheduled, ongoing, completed)

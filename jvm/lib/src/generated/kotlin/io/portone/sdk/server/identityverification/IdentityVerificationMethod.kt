@@ -21,7 +21,7 @@ public sealed interface IdentityVerificationMethod {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sms::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sms = decoder.decodeString().let {
       if (it != "SMS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SMS")
       } else {
         return Sms
       }
@@ -36,7 +36,7 @@ public sealed interface IdentityVerificationMethod {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(App::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): App = decoder.decodeString().let {
       if (it != "APP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected APP")
       } else {
         return App
       }

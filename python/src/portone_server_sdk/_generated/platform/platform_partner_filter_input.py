@@ -102,26 +102,26 @@ def _serialize_platform_partner_filter_input(obj: PlatformPartnerFilterInput) ->
 
 def _deserialize_platform_partner_filter_input(obj: Any) -> PlatformPartnerFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "isArchived" in obj:
         is_archived = obj["isArchived"]
         if not isinstance(is_archived, bool):
-            raise ValueError(f"{repr(is_archived)} is not bool")
+            raise ValueError("Expected bool for is_archived")
     else:
         is_archived = None
     if "tags" in obj:
         tags = obj["tags"]
         if not isinstance(tags, list):
-            raise ValueError(f"{repr(tags)} is not list")
+            raise ValueError("Expected list for tags")
         for i, item in enumerate(tags):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         tags = None
     if "banks" in obj:
         banks = obj["banks"]
         if not isinstance(banks, list):
-            raise ValueError(f"{repr(banks)} is not list")
+            raise ValueError("Expected list for banks")
         for i, item in enumerate(banks):
             item = _deserialize_bank(item)
             banks[i] = item
@@ -130,7 +130,7 @@ def _deserialize_platform_partner_filter_input(obj: Any) -> PlatformPartnerFilte
     if "accountCurrencies" in obj:
         account_currencies = obj["accountCurrencies"]
         if not isinstance(account_currencies, list):
-            raise ValueError(f"{repr(account_currencies)} is not list")
+            raise ValueError("Expected list for account_currencies")
         for i, item in enumerate(account_currencies):
             item = _deserialize_currency(item)
             account_currencies[i] = item
@@ -139,25 +139,25 @@ def _deserialize_platform_partner_filter_input(obj: Any) -> PlatformPartnerFilte
     if "ids" in obj:
         ids = obj["ids"]
         if not isinstance(ids, list):
-            raise ValueError(f"{repr(ids)} is not list")
+            raise ValueError("Expected list for ids")
         for i, item in enumerate(ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         ids = None
     if "contractIds" in obj:
         contract_ids = obj["contractIds"]
         if not isinstance(contract_ids, list):
-            raise ValueError(f"{repr(contract_ids)} is not list")
+            raise ValueError("Expected list for contract_ids")
         for i, item in enumerate(contract_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         contract_ids = None
     if "accountStatuses" in obj:
         account_statuses = obj["accountStatuses"]
         if not isinstance(account_statuses, list):
-            raise ValueError(f"{repr(account_statuses)} is not list")
+            raise ValueError("Expected list for account_statuses")
         for i, item in enumerate(account_statuses):
             item = _deserialize_platform_account_status(item)
             account_statuses[i] = item
@@ -166,7 +166,7 @@ def _deserialize_platform_partner_filter_input(obj: Any) -> PlatformPartnerFilte
     if "businessStatuses" in obj:
         business_statuses = obj["businessStatuses"]
         if not isinstance(business_statuses, list):
-            raise ValueError(f"{repr(business_statuses)} is not list")
+            raise ValueError("Expected list for business_statuses")
         for i, item in enumerate(business_statuses):
             item = _deserialize_platform_partner_business_status(item)
             business_statuses[i] = item
@@ -175,7 +175,7 @@ def _deserialize_platform_partner_filter_input(obj: Any) -> PlatformPartnerFilte
     if "types" in obj:
         types = obj["types"]
         if not isinstance(types, list):
-            raise ValueError(f"{repr(types)} is not list")
+            raise ValueError("Expected list for types")
         for i, item in enumerate(types):
             item = _deserialize_platform_partner_type_name(item)
             types[i] = item
@@ -184,7 +184,7 @@ def _deserialize_platform_partner_filter_input(obj: Any) -> PlatformPartnerFilte
     if "taxationTypes" in obj:
         taxation_types = obj["taxationTypes"]
         if not isinstance(taxation_types, list):
-            raise ValueError(f"{repr(taxation_types)} is not list")
+            raise ValueError("Expected list for taxation_types")
         for i, item in enumerate(taxation_types):
             item = _deserialize_platform_partner_taxation_type(item)
             taxation_types[i] = item
@@ -193,7 +193,7 @@ def _deserialize_platform_partner_filter_input(obj: Any) -> PlatformPartnerFilte
     if "memberCompanyConnectionStatuses" in obj:
         member_company_connection_statuses = obj["memberCompanyConnectionStatuses"]
         if not isinstance(member_company_connection_statuses, list):
-            raise ValueError(f"{repr(member_company_connection_statuses)} is not list")
+            raise ValueError("Expected list for member_company_connection_statuses")
         for i, item in enumerate(member_company_connection_statuses):
             item = _deserialize_platform_partner_member_company_connection_status(item)
             member_company_connection_statuses[i] = item

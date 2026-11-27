@@ -44,17 +44,17 @@ def _serialize_instant_payment_method_input_virtual_account(obj: InstantPaymentM
 
 def _deserialize_instant_payment_method_input_virtual_account(obj: Any) -> InstantPaymentMethodInputVirtualAccount:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "bank" not in obj:
-        raise KeyError(f"'bank' is not in {obj}")
+        raise KeyError("Missing required field 'bank'")
     bank = obj["bank"]
     bank = _deserialize_bank(bank)
     if "expiry" not in obj:
-        raise KeyError(f"'expiry' is not in {obj}")
+        raise KeyError("Missing required field 'expiry'")
     expiry = obj["expiry"]
     expiry = _deserialize_instant_payment_method_input_virtual_account_expiry(expiry)
     if "option" not in obj:
-        raise KeyError(f"'option' is not in {obj}")
+        raise KeyError("Missing required field 'option'")
     option = obj["option"]
     option = _deserialize_instant_payment_method_input_virtual_account_option(option)
     if "cashReceipt" in obj:
@@ -65,7 +65,7 @@ def _deserialize_instant_payment_method_input_virtual_account(obj: Any) -> Insta
     if "remitteeName" in obj:
         remittee_name = obj["remitteeName"]
         if not isinstance(remittee_name, str):
-            raise ValueError(f"{repr(remittee_name)} is not str")
+            raise ValueError("Expected str for remittee_name")
     else:
         remittee_name = None
     return InstantPaymentMethodInputVirtualAccount(bank, expiry, option, cash_receipt, remittee_name)

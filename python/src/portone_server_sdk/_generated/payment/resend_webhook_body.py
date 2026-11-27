@@ -32,17 +32,17 @@ def _serialize_resend_webhook_body(obj: ResendWebhookBody) -> Any:
 
 def _deserialize_resend_webhook_body(obj: Any) -> ResendWebhookBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "webhookId" in obj:
         webhook_id = obj["webhookId"]
         if not isinstance(webhook_id, str):
-            raise ValueError(f"{repr(webhook_id)} is not str")
+            raise ValueError("Expected str for webhook_id")
     else:
         webhook_id = None
     return ResendWebhookBody(store_id, webhook_id)

@@ -10,7 +10,7 @@ from ...common.invalid_request_error import _deserialize_invalid_request_error
 from ...payment.promotion.promotion_not_found_error import _deserialize_promotion_not_found_error
 from ...common.unauthorized_error import _deserialize_unauthorized_error
 from ...payment.promotion.promotion import Promotion, _deserialize_promotion, _serialize_promotion
-from urllib.parse import quote
+from ...._api_path import encode_path_parameter
 class PromotionClient:
     _secret: str
     _base_url: str
@@ -53,7 +53,7 @@ class PromotionClient:
         query = []
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/promotions/{quote(promotion_id, safe='')}",
+            f"{self._base_url}/promotions/{encode_path_parameter(promotion_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -110,7 +110,7 @@ class PromotionClient:
         query = []
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/promotions/{quote(promotion_id, safe='')}",
+            f"{self._base_url}/promotions/{encode_path_parameter(promotion_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

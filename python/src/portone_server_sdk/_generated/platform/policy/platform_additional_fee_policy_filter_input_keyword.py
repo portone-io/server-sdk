@@ -35,23 +35,23 @@ def _serialize_platform_additional_fee_policy_filter_input_keyword(obj: Platform
 
 def _deserialize_platform_additional_fee_policy_filter_input_keyword(obj: Any) -> PlatformAdditionalFeePolicyFilterInputKeyword:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "fee" in obj:
         fee = obj["fee"]
         if not isinstance(fee, str):
-            raise ValueError(f"{repr(fee)} is not str")
+            raise ValueError("Expected str for fee")
     else:
         fee = None
     return PlatformAdditionalFeePolicyFilterInputKeyword(name, id, fee)

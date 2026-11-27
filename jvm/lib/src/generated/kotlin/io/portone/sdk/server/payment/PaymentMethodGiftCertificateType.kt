@@ -21,7 +21,7 @@ public sealed interface PaymentMethodGiftCertificateType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Booknlife::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Booknlife = decoder.decodeString().let {
       if (it != "BOOKNLIFE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BOOKNLIFE")
       } else {
         return Booknlife
       }
@@ -36,7 +36,7 @@ public sealed interface PaymentMethodGiftCertificateType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SmartMunsang::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SmartMunsang = decoder.decodeString().let {
       if (it != "SMART_MUNSANG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SMART_MUNSANG")
       } else {
         return SmartMunsang
       }
@@ -51,7 +51,7 @@ public sealed interface PaymentMethodGiftCertificateType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cultureland::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cultureland = decoder.decodeString().let {
       if (it != "CULTURELAND") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CULTURELAND")
       } else {
         return Cultureland
       }
@@ -66,7 +66,7 @@ public sealed interface PaymentMethodGiftCertificateType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Happymoney::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Happymoney = decoder.decodeString().let {
       if (it != "HAPPYMONEY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HAPPYMONEY")
       } else {
         return Happymoney
       }
@@ -81,7 +81,7 @@ public sealed interface PaymentMethodGiftCertificateType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Culturegift::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Culturegift = decoder.decodeString().let {
       if (it != "CULTUREGIFT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CULTUREGIFT")
       } else {
         return Culturegift
       }

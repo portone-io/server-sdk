@@ -41,12 +41,12 @@ def _serialize_payment_method_card(obj: PaymentMethodCard) -> Any:
 
 def _deserialize_payment_method_card(obj: Any) -> PaymentMethodCard:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PaymentMethodCard":
-        raise ValueError(f"{repr(type)} is not 'PaymentMethodCard'")
+        raise ValueError("Expected 'PaymentMethodCard' for type")
     if "card" in obj:
         card = obj["card"]
         card = _deserialize_card(card)
@@ -55,7 +55,7 @@ def _deserialize_payment_method_card(obj: Any) -> PaymentMethodCard:
     if "approvalNumber" in obj:
         approval_number = obj["approvalNumber"]
         if not isinstance(approval_number, str):
-            raise ValueError(f"{repr(approval_number)} is not str")
+            raise ValueError("Expected str for approval_number")
     else:
         approval_number = None
     if "installment" in obj:
@@ -66,7 +66,7 @@ def _deserialize_payment_method_card(obj: Any) -> PaymentMethodCard:
     if "pointUsed" in obj:
         point_used = obj["pointUsed"]
         if not isinstance(point_used, bool):
-            raise ValueError(f"{repr(point_used)} is not bool")
+            raise ValueError("Expected bool for point_used")
     else:
         point_used = None
     return PaymentMethodCard(card, approval_number, installment, point_used)

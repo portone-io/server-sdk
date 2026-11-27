@@ -31,20 +31,20 @@ def _serialize_apply_escrow_logistics_response(obj: ApplyEscrowLogisticsResponse
 
 def _deserialize_apply_escrow_logistics_response(obj: Any) -> ApplyEscrowLogisticsResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "invoiceNumber" not in obj:
-        raise KeyError(f"'invoiceNumber' is not in {obj}")
+        raise KeyError("Missing required field 'invoiceNumber'")
     invoice_number = obj["invoiceNumber"]
     if not isinstance(invoice_number, str):
-        raise ValueError(f"{repr(invoice_number)} is not str")
+        raise ValueError("Expected str for invoice_number")
     if "sentAt" not in obj:
-        raise KeyError(f"'sentAt' is not in {obj}")
+        raise KeyError("Missing required field 'sentAt'")
     sent_at = obj["sentAt"]
     if not isinstance(sent_at, str):
-        raise ValueError(f"{repr(sent_at)} is not str")
+        raise ValueError("Expected str for sent_at")
     if "appliedAt" not in obj:
-        raise KeyError(f"'appliedAt' is not in {obj}")
+        raise KeyError("Missing required field 'appliedAt'")
     applied_at = obj["appliedAt"]
     if not isinstance(applied_at, str):
-        raise ValueError(f"{repr(applied_at)} is not str")
+        raise ValueError("Expected str for applied_at")
     return ApplyEscrowLogisticsResponse(invoice_number, sent_at, applied_at)

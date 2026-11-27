@@ -59,4 +59,4 @@ def _deserialize_delete_platform_transfer_error(obj: Any) -> DeletePlatformTrans
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not DeletePlatformTransferError")
+    raise ValueError("Expected DeletePlatformTransferError")

@@ -15,6 +15,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.ChannelNotFoundError
 import io.portone.sdk.server.errors.ChannelNotFoundException
@@ -116,7 +117,7 @@ public class IdentityVerificationClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "confirm")
+        this.appendApiPathSegments("identity-verifications", identityVerificationId.toString(), "confirm")
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -132,7 +133,7 @@ public class IdentityVerificationClient(
         json.decodeFromString<ConfirmIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -149,7 +150,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<ConfirmIdentityVerificationResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -177,7 +178,7 @@ public class IdentityVerificationClient(
   ): ResendIdentityVerificationResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "resend")
+        this.appendApiPathSegments("identity-verifications", identityVerificationId.toString(), "resend")
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -192,7 +193,7 @@ public class IdentityVerificationClient(
         json.decodeFromString<ResendIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -209,7 +210,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<ResendIdentityVerificationResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -263,7 +264,7 @@ public class IdentityVerificationClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "send")
+        this.appendApiPathSegments("identity-verifications", identityVerificationId.toString(), "send")
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -279,7 +280,7 @@ public class IdentityVerificationClient(
         json.decodeFromString<SendIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ChannelNotFoundError -> throw ChannelNotFoundException(httpBodyDecoded)
@@ -298,7 +299,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<SendIdentityVerificationResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -331,7 +332,7 @@ public class IdentityVerificationClient(
   ): IdentityVerification {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString())
+        this.appendApiPathSegments("identity-verifications", identityVerificationId.toString())
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -346,7 +347,7 @@ public class IdentityVerificationClient(
         json.decodeFromString<GetIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -360,7 +361,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<IdentityVerification>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -417,7 +418,7 @@ public class IdentityVerificationClient(
         json.decodeFromString<GetIdentityVerificationsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -430,7 +431,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<GetIdentityVerificationsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

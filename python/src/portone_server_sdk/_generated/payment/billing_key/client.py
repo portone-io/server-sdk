@@ -30,7 +30,7 @@ from ...payment.billing_key.get_billing_key_infos_response import GetBillingKeyI
 from ...payment.billing_key.instant_billing_key_payment_method_input import InstantBillingKeyPaymentMethodInput, _deserialize_instant_billing_key_payment_method_input, _serialize_instant_billing_key_payment_method_input
 from ...payment.billing_key.issue_billing_key_response import IssueBillingKeyResponse, _deserialize_issue_billing_key_response, _serialize_issue_billing_key_response
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
-from urllib.parse import quote
+from ...._api_path import encode_path_parameter
 class BillingKeyClient:
     _secret: str
     _base_url: str
@@ -899,7 +899,7 @@ class BillingKeyClient:
             query.append(("storeId", self._store_id))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
+            f"{self._base_url}/billing-keys/{encode_path_parameter(billing_key)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -958,7 +958,7 @@ class BillingKeyClient:
             query.append(("storeId", self._store_id))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
+            f"{self._base_url}/billing-keys/{encode_path_parameter(billing_key)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1038,7 +1038,7 @@ class BillingKeyClient:
             query.append(("skipWebhook", skip_webhook))
         response = self._sync_client.request(
             "DELETE",
-            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
+            f"{self._base_url}/billing-keys/{encode_path_parameter(billing_key)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1148,7 +1148,7 @@ class BillingKeyClient:
             query.append(("skipWebhook", skip_webhook))
         response = await self._async_client.request(
             "DELETE",
-            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
+            f"{self._base_url}/billing-keys/{encode_path_parameter(billing_key)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

@@ -37,35 +37,35 @@ def _serialize_platform_settlement_cancel_amount_exceeded_port_one_cancel_error(
 
 def _deserialize_platform_settlement_cancel_amount_exceeded_port_one_cancel_error(obj: Any) -> PlatformSettlementCancelAmountExceededPortOneCancelError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL'")
+        raise ValueError("Expected 'PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL' for type")
     if "registeredSettlementCancelAmount" not in obj:
-        raise KeyError(f"'registeredSettlementCancelAmount' is not in {obj}")
+        raise KeyError("Missing required field 'registeredSettlementCancelAmount'")
     registered_settlement_cancel_amount = obj["registeredSettlementCancelAmount"]
     if not isinstance(registered_settlement_cancel_amount, int):
-        raise ValueError(f"{repr(registered_settlement_cancel_amount)} is not int")
+        raise ValueError("Expected int for registered_settlement_cancel_amount")
     if "requestSettlementCancelAmount" not in obj:
-        raise KeyError(f"'requestSettlementCancelAmount' is not in {obj}")
+        raise KeyError("Missing required field 'requestSettlementCancelAmount'")
     request_settlement_cancel_amount = obj["requestSettlementCancelAmount"]
     if not isinstance(request_settlement_cancel_amount, int):
-        raise ValueError(f"{repr(request_settlement_cancel_amount)} is not int")
+        raise ValueError("Expected int for request_settlement_cancel_amount")
     if "portOneCancelAmount" not in obj:
-        raise KeyError(f"'portOneCancelAmount' is not in {obj}")
+        raise KeyError("Missing required field 'portOneCancelAmount'")
     port_one_cancel_amount = obj["portOneCancelAmount"]
     if not isinstance(port_one_cancel_amount, int):
-        raise ValueError(f"{repr(port_one_cancel_amount)} is not int")
+        raise ValueError("Expected int for port_one_cancel_amount")
     if "amountType" not in obj:
-        raise KeyError(f"'amountType' is not in {obj}")
+        raise KeyError("Missing required field 'amountType'")
     amount_type = obj["amountType"]
     amount_type = _deserialize_platform_port_one_payment_cancel_amount_type(amount_type)
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformSettlementCancelAmountExceededPortOneCancelError(registered_settlement_cancel_amount, request_settlement_cancel_amount, port_one_cancel_amount, amount_type, message)

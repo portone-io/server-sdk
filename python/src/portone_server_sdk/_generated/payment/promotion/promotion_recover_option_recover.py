@@ -21,10 +21,10 @@ def _serialize_promotion_recover_option_recover(obj: PromotionRecoverOptionRecov
 
 def _deserialize_promotion_recover_option_recover(obj: Any) -> PromotionRecoverOptionRecover:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "RECOVER":
-        raise ValueError(f"{repr(type)} is not 'RECOVER'")
+        raise ValueError("Expected 'RECOVER' for type")
     return PromotionRecoverOptionRecover()

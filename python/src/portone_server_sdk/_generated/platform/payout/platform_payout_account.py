@@ -22,19 +22,19 @@ def _serialize_platform_payout_account(obj: PlatformPayoutAccount) -> Any:
 
 def _deserialize_platform_payout_account(obj: Any) -> PlatformPayoutAccount:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "bank" not in obj:
-        raise KeyError(f"'bank' is not in {obj}")
+        raise KeyError("Missing required field 'bank'")
     bank = obj["bank"]
     bank = _deserialize_bank(bank)
     if "number" not in obj:
-        raise KeyError(f"'number' is not in {obj}")
+        raise KeyError("Missing required field 'number'")
     number = obj["number"]
     if not isinstance(number, str):
-        raise ValueError(f"{repr(number)} is not str")
+        raise ValueError("Expected str for number")
     if "holder" not in obj:
-        raise KeyError(f"'holder' is not in {obj}")
+        raise KeyError("Missing required field 'holder'")
     holder = obj["holder"]
     if not isinstance(holder, str):
-        raise ValueError(f"{repr(holder)} is not str")
+        raise ValueError("Expected str for holder")
     return PlatformPayoutAccount(bank, number, holder)

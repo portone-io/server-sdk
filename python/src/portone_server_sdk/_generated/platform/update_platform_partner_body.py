@@ -64,11 +64,11 @@ def _serialize_update_platform_partner_body(obj: UpdatePlatformPartnerBody) -> A
 
 def _deserialize_update_platform_partner_body(obj: Any) -> UpdatePlatformPartnerBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "contact" in obj:
@@ -84,22 +84,22 @@ def _deserialize_update_platform_partner_body(obj: Any) -> UpdatePlatformPartner
     if "defaultContractId" in obj:
         default_contract_id = obj["defaultContractId"]
         if not isinstance(default_contract_id, str):
-            raise ValueError(f"{repr(default_contract_id)} is not str")
+            raise ValueError("Expected str for default_contract_id")
     else:
         default_contract_id = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "tags" in obj:
         tags = obj["tags"]
         if not isinstance(tags, list):
-            raise ValueError(f"{repr(tags)} is not list")
+            raise ValueError("Expected list for tags")
         for i, item in enumerate(tags):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         tags = None
     if "type" in obj:

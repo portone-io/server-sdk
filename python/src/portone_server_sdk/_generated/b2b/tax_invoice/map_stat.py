@@ -21,7 +21,7 @@ def _serialize_map_stat(obj: Map_Stat) -> Any:
 
 def _deserialize_map_stat(obj: Any) -> Map_Stat:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     additional_properties = {}
     for key, value in obj.items():
         if key in []:

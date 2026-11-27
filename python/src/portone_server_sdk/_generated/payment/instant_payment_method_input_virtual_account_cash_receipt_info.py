@@ -26,14 +26,14 @@ def _serialize_instant_payment_method_input_virtual_account_cash_receipt_info(ob
 
 def _deserialize_instant_payment_method_input_virtual_account_cash_receipt_info(obj: Any) -> InstantPaymentMethodInputVirtualAccountCashReceiptInfo:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     type = _deserialize_cash_receipt_input_type(type)
     if "customerIdentityNumber" not in obj:
-        raise KeyError(f"'customerIdentityNumber' is not in {obj}")
+        raise KeyError("Missing required field 'customerIdentityNumber'")
     customer_identity_number = obj["customerIdentityNumber"]
     if not isinstance(customer_identity_number, str):
-        raise ValueError(f"{repr(customer_identity_number)} is not str")
+        raise ValueError("Expected str for customer_identity_number")
     return InstantPaymentMethodInputVirtualAccountCashReceiptInfo(type, customer_identity_number)

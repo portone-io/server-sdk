@@ -30,20 +30,20 @@ def _serialize_b2b_tax_invoice_attachment(obj: B2bTaxInvoiceAttachment) -> Any:
 
 def _deserialize_b2b_tax_invoice_attachment(obj: Any) -> B2bTaxInvoiceAttachment:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "attachedAt" not in obj:
-        raise KeyError(f"'attachedAt' is not in {obj}")
+        raise KeyError("Missing required field 'attachedAt'")
     attached_at = obj["attachedAt"]
     if not isinstance(attached_at, str):
-        raise ValueError(f"{repr(attached_at)} is not str")
+        raise ValueError("Expected str for attached_at")
     return B2bTaxInvoiceAttachment(id, name, attached_at)

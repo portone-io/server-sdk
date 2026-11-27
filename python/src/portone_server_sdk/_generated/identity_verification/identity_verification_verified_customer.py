@@ -88,16 +88,16 @@ def _serialize_identity_verification_verified_customer(obj: IdentityVerification
 
 def _deserialize_identity_verification_verified_customer(obj: Any) -> IdentityVerificationVerifiedCustomer:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "operator" in obj:
@@ -108,13 +108,13 @@ def _deserialize_identity_verification_verified_customer(obj: Any) -> IdentityVe
     if "phoneNumber" in obj:
         phone_number = obj["phoneNumber"]
         if not isinstance(phone_number, str):
-            raise ValueError(f"{repr(phone_number)} is not str")
+            raise ValueError("Expected str for phone_number")
     else:
         phone_number = None
     if "birthDate" in obj:
         birth_date = obj["birthDate"]
         if not isinstance(birth_date, str):
-            raise ValueError(f"{repr(birth_date)} is not str")
+            raise ValueError("Expected str for birth_date")
     else:
         birth_date = None
     if "gender" in obj:
@@ -125,19 +125,19 @@ def _deserialize_identity_verification_verified_customer(obj: Any) -> IdentityVe
     if "isForeigner" in obj:
         is_foreigner = obj["isForeigner"]
         if not isinstance(is_foreigner, bool):
-            raise ValueError(f"{repr(is_foreigner)} is not bool")
+            raise ValueError("Expected bool for is_foreigner")
     else:
         is_foreigner = None
     if "ci" in obj:
         ci = obj["ci"]
         if not isinstance(ci, str):
-            raise ValueError(f"{repr(ci)} is not str")
+            raise ValueError("Expected str for ci")
     else:
         ci = None
     if "di" in obj:
         di = obj["di"]
         if not isinstance(di, str):
-            raise ValueError(f"{repr(di)} is not str")
+            raise ValueError("Expected str for di")
     else:
         di = None
     return IdentityVerificationVerifiedCustomer(name, id, operator, phone_number, birth_date, gender, is_foreigner, ci, di)

@@ -22,16 +22,16 @@ def _serialize_b2b_file_not_found_error(obj: B2bFileNotFoundError) -> Any:
 
 def _deserialize_b2b_file_not_found_error(obj: Any) -> B2bFileNotFoundError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "B2B_FILE_NOT_FOUND":
-        raise ValueError(f"{repr(type)} is not 'B2B_FILE_NOT_FOUND'")
+        raise ValueError("Expected 'B2B_FILE_NOT_FOUND' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return B2bFileNotFoundError(message)

@@ -27,15 +27,15 @@ def _serialize_cancel_cash_receipt_response(obj: CancelCashReceiptResponse) -> A
 
 def _deserialize_cancel_cash_receipt_response(obj: Any) -> CancelCashReceiptResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "cancelledAmount" not in obj:
-        raise KeyError(f"'cancelledAmount' is not in {obj}")
+        raise KeyError("Missing required field 'cancelledAmount'")
     cancelled_amount = obj["cancelledAmount"]
     if not isinstance(cancelled_amount, int):
-        raise ValueError(f"{repr(cancelled_amount)} is not int")
+        raise ValueError("Expected int for cancelled_amount")
     if "cancelledAt" not in obj:
-        raise KeyError(f"'cancelledAt' is not in {obj}")
+        raise KeyError("Missing required field 'cancelledAt'")
     cancelled_at = obj["cancelledAt"]
     if not isinstance(cancelled_at, str):
-        raise ValueError(f"{repr(cancelled_at)} is not str")
+        raise ValueError("Expected str for cancelled_at")
     return CancelCashReceiptResponse(cancelled_amount, cancelled_at)

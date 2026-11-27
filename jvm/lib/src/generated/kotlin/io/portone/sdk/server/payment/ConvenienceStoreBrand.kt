@@ -22,7 +22,7 @@ public sealed interface ConvenienceStoreBrand {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lawson::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lawson = decoder.decodeString().let {
       if (it != "LAWSON") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LAWSON")
       } else {
         return Lawson
       }
@@ -38,7 +38,7 @@ public sealed interface ConvenienceStoreBrand {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(FamilyMart::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): FamilyMart = decoder.decodeString().let {
       if (it != "FAMILY_MART") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FAMILY_MART")
       } else {
         return FamilyMart
       }
@@ -54,7 +54,7 @@ public sealed interface ConvenienceStoreBrand {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(MiniStop::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): MiniStop = decoder.decodeString().let {
       if (it != "MINI_STOP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MINI_STOP")
       } else {
         return MiniStop
       }
@@ -70,7 +70,7 @@ public sealed interface ConvenienceStoreBrand {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SevenEleven::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SevenEleven = decoder.decodeString().let {
       if (it != "SEVEN_ELEVEN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SEVEN_ELEVEN")
       } else {
         return SevenEleven
       }
@@ -86,7 +86,7 @@ public sealed interface ConvenienceStoreBrand {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Seicomart::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Seicomart = decoder.decodeString().let {
       if (it != "SEICOMART") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SEICOMART")
       } else {
         return Seicomart
       }

@@ -33,4 +33,4 @@ def _deserialize_payment_cancellation(obj: Any) -> PaymentCancellation:
         return _deserialize_succeeded_payment_cancellation(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PaymentCancellation")
+    raise ValueError("Expected PaymentCancellation")

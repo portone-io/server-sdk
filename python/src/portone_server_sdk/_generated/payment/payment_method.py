@@ -68,4 +68,4 @@ def _deserialize_payment_method(obj: Any) -> PaymentMethod:
         return _deserialize_payment_method_virtual_account(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PaymentMethod")
+    raise ValueError("Expected PaymentMethod")

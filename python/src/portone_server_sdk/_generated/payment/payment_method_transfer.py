@@ -30,12 +30,12 @@ def _serialize_payment_method_transfer(obj: PaymentMethodTransfer) -> Any:
 
 def _deserialize_payment_method_transfer(obj: Any) -> PaymentMethodTransfer:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PaymentMethodTransfer":
-        raise ValueError(f"{repr(type)} is not 'PaymentMethodTransfer'")
+        raise ValueError("Expected 'PaymentMethodTransfer' for type")
     if "bank" in obj:
         bank = obj["bank"]
         bank = _deserialize_bank(bank)
@@ -44,7 +44,7 @@ def _deserialize_payment_method_transfer(obj: Any) -> PaymentMethodTransfer:
     if "accountNumber" in obj:
         account_number = obj["accountNumber"]
         if not isinstance(account_number, str):
-            raise ValueError(f"{repr(account_number)} is not str")
+            raise ValueError("Expected str for account_number")
     else:
         account_number = None
     return PaymentMethodTransfer(bank, account_number)

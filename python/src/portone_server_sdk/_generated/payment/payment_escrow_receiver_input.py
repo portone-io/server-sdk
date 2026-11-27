@@ -39,23 +39,23 @@ def _serialize_payment_escrow_receiver_input(obj: PaymentEscrowReceiverInput) ->
 
 def _deserialize_payment_escrow_receiver_input(obj: Any) -> PaymentEscrowReceiverInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "phoneNumber" in obj:
         phone_number = obj["phoneNumber"]
         if not isinstance(phone_number, str):
-            raise ValueError(f"{repr(phone_number)} is not str")
+            raise ValueError("Expected str for phone_number")
     else:
         phone_number = None
     if "zipcode" in obj:
         zipcode = obj["zipcode"]
         if not isinstance(zipcode, str):
-            raise ValueError(f"{repr(zipcode)} is not str")
+            raise ValueError("Expected str for zipcode")
     else:
         zipcode = None
     if "address" in obj:

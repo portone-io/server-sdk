@@ -21,13 +21,13 @@ def _serialize_platform_discount_share_policy_filter_options(obj: PlatformDiscou
 
 def _deserialize_platform_discount_share_policy_filter_options(obj: Any) -> PlatformDiscountSharePolicyFilterOptions:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "partnerShareRates" not in obj:
-        raise KeyError(f"'partnerShareRates' is not in {obj}")
+        raise KeyError("Missing required field 'partnerShareRates'")
     partner_share_rates = obj["partnerShareRates"]
     if not isinstance(partner_share_rates, list):
-        raise ValueError(f"{repr(partner_share_rates)} is not list")
+        raise ValueError("Expected list for partner_share_rates")
     for i, item in enumerate(partner_share_rates):
         if not isinstance(item, int):
-            raise ValueError(f"{repr(item)} is not int")
+            raise ValueError("Expected int for item")
     return PlatformDiscountSharePolicyFilterOptions(partner_share_rates)

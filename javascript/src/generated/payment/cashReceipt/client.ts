@@ -1,6 +1,6 @@
 import { CashReceiptError } from "./CashReceiptError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { CancelCashReceiptResponse } from "../../../generated/payment/cashReceipt/CancelCashReceiptResponse"
 import type { CashReceipt } from "../../../generated/payment/cashReceipt/CashReceipt"
 import type { CashReceiptAlreadyIssuedError } from "../../../generated/payment/cashReceipt/CashReceiptAlreadyIssuedError"
@@ -140,7 +140,7 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/cash-receipt/cancel?${query}`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/cash-receipt/cancel?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -170,7 +170,7 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/cash-receipt?${query}`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/cash-receipt?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {

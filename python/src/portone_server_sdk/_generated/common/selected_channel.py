@@ -47,36 +47,36 @@ def _serialize_selected_channel(obj: SelectedChannel) -> Any:
 
 def _deserialize_selected_channel(obj: Any) -> SelectedChannel:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     type = _deserialize_selected_channel_type(type)
     if "pgProvider" not in obj:
-        raise KeyError(f"'pgProvider' is not in {obj}")
+        raise KeyError("Missing required field 'pgProvider'")
     pg_provider = obj["pgProvider"]
     pg_provider = _deserialize_pg_provider(pg_provider)
     if "pgMerchantId" not in obj:
-        raise KeyError(f"'pgMerchantId' is not in {obj}")
+        raise KeyError("Missing required field 'pgMerchantId'")
     pg_merchant_id = obj["pgMerchantId"]
     if not isinstance(pg_merchant_id, str):
-        raise ValueError(f"{repr(pg_merchant_id)} is not str")
+        raise ValueError("Expected str for pg_merchant_id")
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "key" in obj:
         key = obj["key"]
         if not isinstance(key, str):
-            raise ValueError(f"{repr(key)} is not str")
+            raise ValueError("Expected str for key")
     else:
         key = None
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     return SelectedChannel(type, pg_provider, pg_merchant_id, id, key, name)

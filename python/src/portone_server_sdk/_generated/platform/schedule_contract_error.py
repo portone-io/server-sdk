@@ -59,4 +59,4 @@ def _deserialize_schedule_contract_error(obj: Any) -> ScheduleContractError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ScheduleContractError")
+    raise ValueError("Expected ScheduleContractError")

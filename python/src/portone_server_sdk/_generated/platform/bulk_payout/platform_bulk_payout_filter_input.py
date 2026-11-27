@@ -28,11 +28,11 @@ def _serialize_platform_bulk_payout_filter_input(obj: PlatformBulkPayoutFilterIn
 
 def _deserialize_platform_bulk_payout_filter_input(obj: Any) -> PlatformBulkPayoutFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "statuses" in obj:
         statuses = obj["statuses"]
         if not isinstance(statuses, list):
-            raise ValueError(f"{repr(statuses)} is not list")
+            raise ValueError("Expected list for statuses")
         for i, item in enumerate(statuses):
             item = _deserialize_platform_bulk_payout_status(item)
             statuses[i] = item
@@ -41,7 +41,7 @@ def _deserialize_platform_bulk_payout_filter_input(obj: Any) -> PlatformBulkPayo
     if "methods" in obj:
         methods = obj["methods"]
         if not isinstance(methods, list):
-            raise ValueError(f"{repr(methods)} is not list")
+            raise ValueError("Expected list for methods")
         for i, item in enumerate(methods):
             item = _deserialize_platform_payout_method(item)
             methods[i] = item

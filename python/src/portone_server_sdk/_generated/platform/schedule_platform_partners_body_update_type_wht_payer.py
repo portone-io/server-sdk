@@ -24,11 +24,11 @@ def _serialize_schedule_platform_partners_body_update_type_wht_payer(obj: Schedu
 
 def _deserialize_schedule_platform_partners_body_update_type_wht_payer(obj: Any) -> SchedulePlatformPartnersBodyUpdateTypeWhtPayer:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "birthdate" in obj:
         birthdate = obj["birthdate"]
         if not isinstance(birthdate, str):
-            raise ValueError(f"{repr(birthdate)} is not str")
+            raise ValueError("Expected str for birthdate")
     else:
         birthdate = None
     return SchedulePlatformPartnersBodyUpdateTypeWhtPayer(birthdate)

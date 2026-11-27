@@ -20,9 +20,9 @@ def _serialize_issue_b2b_tax_invoice_response(obj: IssueB2bTaxInvoiceResponse) -
 
 def _deserialize_issue_b2b_tax_invoice_response(obj: Any) -> IssueB2bTaxInvoiceResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "taxInvoice" not in obj:
-        raise KeyError(f"'taxInvoice' is not in {obj}")
+        raise KeyError("Missing required field 'taxInvoice'")
     tax_invoice = obj["taxInvoice"]
     tax_invoice = _deserialize_b2b_tax_invoice(tax_invoice)
     return IssueB2bTaxInvoiceResponse(tax_invoice)

@@ -30,7 +30,7 @@ def _serialize_platform_payment_method_easy_pay_input(obj: PlatformPaymentMethod
 
 def _deserialize_platform_payment_method_easy_pay_input(obj: Any) -> PlatformPaymentMethodEasyPayInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "provider" in obj:
         provider = obj["provider"]
         provider = _deserialize_easy_pay_provider(provider)

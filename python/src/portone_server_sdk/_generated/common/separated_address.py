@@ -50,37 +50,37 @@ def _serialize_separated_address(obj: SeparatedAddress) -> Any:
 
 def _deserialize_separated_address(obj: Any) -> SeparatedAddress:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "SEPARATED":
-        raise ValueError(f"{repr(type)} is not 'SEPARATED'")
+        raise ValueError("Expected 'SEPARATED' for type")
     if "oneLine" not in obj:
-        raise KeyError(f"'oneLine' is not in {obj}")
+        raise KeyError("Missing required field 'oneLine'")
     one_line = obj["oneLine"]
     if not isinstance(one_line, str):
-        raise ValueError(f"{repr(one_line)} is not str")
+        raise ValueError("Expected str for one_line")
     if "addressLine1" not in obj:
-        raise KeyError(f"'addressLine1' is not in {obj}")
+        raise KeyError("Missing required field 'addressLine1'")
     address_line_1 = obj["addressLine1"]
     if not isinstance(address_line_1, str):
-        raise ValueError(f"{repr(address_line_1)} is not str")
+        raise ValueError("Expected str for address_line_1")
     if "addressLine2" not in obj:
-        raise KeyError(f"'addressLine2' is not in {obj}")
+        raise KeyError("Missing required field 'addressLine2'")
     address_line_2 = obj["addressLine2"]
     if not isinstance(address_line_2, str):
-        raise ValueError(f"{repr(address_line_2)} is not str")
+        raise ValueError("Expected str for address_line_2")
     if "city" in obj:
         city = obj["city"]
         if not isinstance(city, str):
-            raise ValueError(f"{repr(city)} is not str")
+            raise ValueError("Expected str for city")
     else:
         city = None
     if "province" in obj:
         province = obj["province"]
         if not isinstance(province, str):
-            raise ValueError(f"{repr(province)} is not str")
+            raise ValueError("Expected str for province")
     else:
         province = None
     if "country" in obj:

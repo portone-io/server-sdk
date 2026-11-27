@@ -55,11 +55,11 @@ def _serialize_platform_contract_filter_input(obj: PlatformContractFilterInput) 
 
 def _deserialize_platform_contract_filter_input(obj: Any) -> PlatformContractFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "platformFeePayers" in obj:
         platform_fee_payers = obj["platformFeePayers"]
         if not isinstance(platform_fee_payers, list):
-            raise ValueError(f"{repr(platform_fee_payers)} is not list")
+            raise ValueError("Expected list for platform_fee_payers")
         for i, item in enumerate(platform_fee_payers):
             item = _deserialize_platform_payer(item)
             platform_fee_payers[i] = item
@@ -68,7 +68,7 @@ def _deserialize_platform_contract_filter_input(obj: Any) -> PlatformContractFil
     if "cycleTypes" in obj:
         cycle_types = obj["cycleTypes"]
         if not isinstance(cycle_types, list):
-            raise ValueError(f"{repr(cycle_types)} is not list")
+            raise ValueError("Expected list for cycle_types")
         for i, item in enumerate(cycle_types):
             item = _deserialize_platform_settlement_cycle_type(item)
             cycle_types[i] = item
@@ -77,7 +77,7 @@ def _deserialize_platform_contract_filter_input(obj: Any) -> PlatformContractFil
     if "datePolicies" in obj:
         date_policies = obj["datePolicies"]
         if not isinstance(date_policies, list):
-            raise ValueError(f"{repr(date_policies)} is not list")
+            raise ValueError("Expected list for date_policies")
         for i, item in enumerate(date_policies):
             item = _deserialize_platform_settlement_cycle_date_policy(item)
             date_policies[i] = item
@@ -86,7 +86,7 @@ def _deserialize_platform_contract_filter_input(obj: Any) -> PlatformContractFil
     if "isArchived" in obj:
         is_archived = obj["isArchived"]
         if not isinstance(is_archived, bool):
-            raise ValueError(f"{repr(is_archived)} is not bool")
+            raise ValueError("Expected bool for is_archived")
     else:
         is_archived = None
     if "keyword" in obj:

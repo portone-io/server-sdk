@@ -20,7 +20,7 @@ public sealed interface Type {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PartnerPayout::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PartnerPayout = decoder.decodeString().let {
       if (it != "PARTNER_PAYOUT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PARTNER_PAYOUT")
       } else {
         return PartnerPayout
       }
@@ -35,7 +35,7 @@ public sealed interface Type {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Remit::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Remit = decoder.decodeString().let {
       if (it != "REMIT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REMIT")
       } else {
         return Remit
       }

@@ -22,7 +22,7 @@ public sealed interface B2bTaxInvoiceKeyType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Supplier::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Supplier = decoder.decodeString().let {
       if (it != "SUPPLIER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUPPLIER")
       } else {
         return Supplier
       }
@@ -38,7 +38,7 @@ public sealed interface B2bTaxInvoiceKeyType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Recipient::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Recipient = decoder.decodeString().let {
       if (it != "RECIPIENT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RECIPIENT")
       } else {
         return Recipient
       }
@@ -54,7 +54,7 @@ public sealed interface B2bTaxInvoiceKeyType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TaxInvoiceId::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TaxInvoiceId = decoder.decodeString().let {
       if (it != "TAX_INVOICE_ID") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TAX_INVOICE_ID")
       } else {
         return TaxInvoiceId
       }

@@ -22,7 +22,7 @@ public sealed interface PlatformBankAccountProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HyphenData::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HyphenData = decoder.decodeString().let {
       if (it != "HYPHEN_DATA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HYPHEN_DATA")
       } else {
         return HyphenData
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformBankAccountProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HyphenFirm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HyphenFirm = decoder.decodeString().let {
       if (it != "HYPHEN_FIRM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HYPHEN_FIRM")
       } else {
         return HyphenFirm
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformBankAccountProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dozn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dozn = decoder.decodeString().let {
       if (it != "DOZN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DOZN")
       } else {
         return Dozn
       }
@@ -70,7 +70,7 @@ public sealed interface PlatformBankAccountProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mock::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mock = decoder.decodeString().let {
       if (it != "MOCK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MOCK")
       } else {
         return Mock
       }

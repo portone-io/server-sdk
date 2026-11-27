@@ -22,9 +22,9 @@ def _serialize_update_platform_contract_response(obj: UpdatePlatformContractResp
 
 def _deserialize_update_platform_contract_response(obj: Any) -> UpdatePlatformContractResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "contract" not in obj:
-        raise KeyError(f"'contract' is not in {obj}")
+        raise KeyError("Missing required field 'contract'")
     contract = obj["contract"]
     contract = _deserialize_platform_contract(contract)
     return UpdatePlatformContractResponse(contract)

@@ -22,12 +22,12 @@ def _serialize_create_platform_partners_response(obj: CreatePlatformPartnersResp
 
 def _deserialize_create_platform_partners_response(obj: Any) -> CreatePlatformPartnersResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "partners" not in obj:
-        raise KeyError(f"'partners' is not in {obj}")
+        raise KeyError("Missing required field 'partners'")
     partners = obj["partners"]
     if not isinstance(partners, list):
-        raise ValueError(f"{repr(partners)} is not list")
+        raise ValueError("Expected list for partners")
     for i, item in enumerate(partners):
         item = _deserialize_platform_partner(item)
         partners[i] = item

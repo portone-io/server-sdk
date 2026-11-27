@@ -69,62 +69,62 @@ def _serialize_platform_bulk_payout(obj: PlatformBulkPayout) -> Any:
 
 def _deserialize_platform_bulk_payout(obj: Any) -> PlatformBulkPayout:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "graphqlId" not in obj:
-        raise KeyError(f"'graphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'graphqlId'")
     graphql_id = obj["graphqlId"]
     if not isinstance(graphql_id, str):
-        raise ValueError(f"{repr(graphql_id)} is not str")
+        raise ValueError("Expected str for graphql_id")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "creatorId" not in obj:
-        raise KeyError(f"'creatorId' is not in {obj}")
+        raise KeyError("Missing required field 'creatorId'")
     creator_id = obj["creatorId"]
     if not isinstance(creator_id, str):
-        raise ValueError(f"{repr(creator_id)} is not str")
+        raise ValueError("Expected str for creator_id")
     if "method" not in obj:
-        raise KeyError(f"'method' is not in {obj}")
+        raise KeyError("Missing required field 'method'")
     method = obj["method"]
     method = _deserialize_platform_payout_method(method)
     if "totalPayoutAmount" not in obj:
-        raise KeyError(f"'totalPayoutAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalPayoutAmount'")
     total_payout_amount = obj["totalPayoutAmount"]
     if not isinstance(total_payout_amount, int):
-        raise ValueError(f"{repr(total_payout_amount)} is not int")
+        raise ValueError("Expected int for total_payout_amount")
     if "totalSettlementAmount" not in obj:
-        raise KeyError(f"'totalSettlementAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalSettlementAmount'")
     total_settlement_amount = obj["totalSettlementAmount"]
     if not isinstance(total_settlement_amount, int):
-        raise ValueError(f"{repr(total_settlement_amount)} is not int")
+        raise ValueError("Expected int for total_settlement_amount")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     status = _deserialize_platform_bulk_payout_status(status)
     if "payoutStats" not in obj:
-        raise KeyError(f"'payoutStats' is not in {obj}")
+        raise KeyError("Missing required field 'payoutStats'")
     payout_stats = obj["payoutStats"]
     payout_stats = _deserialize_platform_bulk_payout_stats(payout_stats)
     if "statusUpdatedAt" not in obj:
-        raise KeyError(f"'statusUpdatedAt' is not in {obj}")
+        raise KeyError("Missing required field 'statusUpdatedAt'")
     status_updated_at = obj["statusUpdatedAt"]
     if not isinstance(status_updated_at, str):
-        raise ValueError(f"{repr(status_updated_at)} is not str")
+        raise ValueError("Expected str for status_updated_at")
     if "createdAt" not in obj:
-        raise KeyError(f"'createdAt' is not in {obj}")
+        raise KeyError("Missing required field 'createdAt'")
     created_at = obj["createdAt"]
     if not isinstance(created_at, str):
-        raise ValueError(f"{repr(created_at)} is not str")
+        raise ValueError("Expected str for created_at")
     if "updatedAt" not in obj:
-        raise KeyError(f"'updatedAt' is not in {obj}")
+        raise KeyError("Missing required field 'updatedAt'")
     updated_at = obj["updatedAt"]
     if not isinstance(updated_at, str):
-        raise ValueError(f"{repr(updated_at)} is not str")
+        raise ValueError("Expected str for updated_at")
     return PlatformBulkPayout(id, graphql_id, name, creator_id, method, total_payout_amount, total_settlement_amount, status, payout_stats, status_updated_at, created_at, updated_at)

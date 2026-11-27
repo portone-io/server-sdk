@@ -66,4 +66,4 @@ def _deserialize_delete_b2b_counterparty_error(obj: Any) -> DeleteB2bCounterpart
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not DeleteB2bCounterpartyError")
+    raise ValueError("Expected DeleteB2bCounterpartyError")

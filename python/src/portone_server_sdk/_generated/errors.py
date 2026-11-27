@@ -326,7 +326,7 @@ from .platform.transfer.platform_cancellable_amount_type import PlatformCancella
 from .platform.transfer.platform_port_one_payment_cancel_amount_type import PlatformPortOnePaymentCancelAmountType
 from .common.selected_channel import SelectedChannel
 
-@dataclass
+@dataclass(repr=False)
 class B2bBulkTaxInvoiceNotFoundError(DeleteB2bTaxInvoiceError, GetB2bBulkTaxInvoiceError):
     """일괄 세금계산서가 존재하지 않은 경우
     """
@@ -335,7 +335,7 @@ class B2bBulkTaxInvoiceNotFoundError(DeleteB2bTaxInvoiceError, GetB2bBulkTaxInvo
     def __post_init__(self, _error: InternalB2bBulkTaxInvoiceNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bExternalServiceError(AttachB2bTaxInvoiceFileError, CancelB2bTaxInvoiceIssuanceError, CancelB2bTaxInvoiceRequestError, CreateB2bCounterpartyError, CreateB2bFileUploadUrlError, DeleteB2bCounterpartyError, DeleteB2bTaxInvoiceAttachmentError, DeleteB2bTaxInvoiceError, DraftB2bTaxInvoiceError, GetB2bBulkTaxInvoiceError, GetB2bBusinessInfosError, GetB2bCounterpartiesError, GetB2bCounterpartyCertificateError, GetB2bCounterpartyCertificateRegistrationUrlError, GetB2bCounterpartyError, GetB2bTaxInvoiceAttachmentsError, GetB2bTaxInvoiceError, GetB2bTaxInvoicePdfDownloadUrlError, GetB2bTaxInvoicePopupUrlError, GetB2bTaxInvoicePrintUrlError, GetB2bTaxInvoicesError, IssueB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RefuseB2bTaxInvoiceRequestError, RequestB2bTaxInvoiceReverseIssuanceError, SendToNtsB2bTaxInvoiceError, UpdateB2bCounterpartyError, UpdateB2bTaxInvoiceDraftError, ValidateB2bCounterpartyCertificateError, requestB2bTaxInvoiceError):
     """외부 서비스에서 에러가 발생한 경우
     """
@@ -344,7 +344,7 @@ class B2bExternalServiceError(AttachB2bTaxInvoiceFileError, CancelB2bTaxInvoiceI
     def __post_init__(self, _error: InternalB2bExternalServiceError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bNotEnabledError(AttachB2bTaxInvoiceFileError, CancelB2bTaxInvoiceIssuanceError, CancelB2bTaxInvoiceRequestError, CreateB2bCounterpartyError, CreateB2bFileUploadUrlError, DeleteB2bCounterpartyError, DeleteB2bTaxInvoiceAttachmentError, DeleteB2bTaxInvoiceError, DraftB2bTaxInvoiceError, GetB2bBulkTaxInvoiceError, GetB2bBusinessInfosError, GetB2bCounterpartiesError, GetB2bCounterpartyCertificateError, GetB2bCounterpartyCertificateRegistrationUrlError, GetB2bCounterpartyError, GetB2bTaxInvoiceAttachmentsError, GetB2bTaxInvoiceError, GetB2bTaxInvoicePdfDownloadUrlError, GetB2bTaxInvoicePopupUrlError, GetB2bTaxInvoicePrintUrlError, GetB2bTaxInvoicesError, IssueB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RefuseB2bTaxInvoiceRequestError, RequestB2bTaxInvoiceReverseIssuanceError, SendToNtsB2bTaxInvoiceError, UpdateB2bCounterpartyError, UpdateB2bTaxInvoiceDraftError, ValidateB2bCounterpartyCertificateError, requestB2bTaxInvoiceError):
     """B2B 기능이 활성화되지 않은 경우
     """
@@ -353,7 +353,7 @@ class B2bNotEnabledError(AttachB2bTaxInvoiceFileError, CancelB2bTaxInvoiceIssuan
     def __post_init__(self, _error: InternalB2bNotEnabledError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class ForbiddenError(ApplyEscrowLogisticsError, ArchivePlatformAdditionalFeePolicyError, ArchivePlatformContractError, ArchivePlatformDiscountSharePolicyError, ArchivePlatformPartnerError, AttachB2bTaxInvoiceFileError, CancelB2bTaxInvoiceIssuanceError, CancelB2bTaxInvoiceRequestError, CancelCashReceiptError, CancelPaymentError, CancelPlatformAdditionalFeePolicyScheduleError, CancelPlatformContractScheduleError, CancelPlatformDiscountSharePolicyScheduleError, CancelPlatformPartnerScheduleError, CapturePaymentError, CloseVirtualAccountError, CompletePlatformPayoutByPartnerSettlementIdsError, ConfirmBillingKeyError, ConfirmBillingKeyIssueAndPayError, ConfirmEscrowError, ConfirmIdentityVerificationError, ConfirmPaymentError, ConnectBulkPartnerCounterpartyError, ConnectPartnerCounterpartyError, CreateB2bCounterpartyError, CreateB2bFileUploadUrlError, CreatePaymentScheduleError, CreatePlatformAdditionalFeePolicyError, CreatePlatformContractError, CreatePlatformDiscountSharePolicyError, CreatePlatformManualTransferError, CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError, CreatePlatformPartnerError, CreatePlatformPartnersError, DeleteB2bCounterpartyError, DeleteB2bTaxInvoiceAttachmentError, DeleteB2bTaxInvoiceError, DeleteBillingKeyError, DeletePlatformPartnerSettlementsError, DeletePlatformTransferError, DisconnectBulkPartnerCounterpartyError, DisconnectPartnerCounterpartyError, DraftB2bTaxInvoiceError, GetAllPaymentEventsError, GetAllPaymentsError, GetB2bBulkTaxInvoiceError, GetB2bBusinessInfosError, GetB2bCounterpartiesError, GetB2bCounterpartyCertificateError, GetB2bCounterpartyCertificateRegistrationUrlError, GetB2bCounterpartyError, GetB2bTaxInvoiceAttachmentsError, GetB2bTaxInvoiceError, GetB2bTaxInvoicePdfDownloadUrlError, GetB2bTaxInvoicePopupUrlError, GetB2bTaxInvoicePrintUrlError, GetB2bTaxInvoicesError, GetBillingKeyInfoError, GetBillingKeyInfosError, GetCashReceiptError, GetCashReceiptsError, GetIdentityVerificationError, GetIdentityVerificationsError, GetPaymentError, GetPaymentReconciliationSettlementVatReportError, GetPaymentReconciliationTransactionVatReportError, GetPaymentScheduleError, GetPaymentSchedulesError, GetPaymentTransactionsError, GetPaymentsError, GetPlatformAccountHolderError, GetPlatformAccountTransfersError, GetPlatformAdditionalFeePoliciesError, GetPlatformAdditionalFeePolicyError, GetPlatformAdditionalFeePolicyScheduleError, GetPlatformBulkAccountTransfersError, GetPlatformBulkPayoutsError, GetPlatformCompanyStateError, GetPlatformContractError, GetPlatformContractScheduleError, GetPlatformContractsError, GetPlatformDiscountSharePoliciesError, GetPlatformDiscountSharePolicyError, GetPlatformDiscountSharePolicyFilterOptionsError, GetPlatformDiscountSharePolicyScheduleError, GetPlatformPartnerError, GetPlatformPartnerFilterOptionsError, GetPlatformPartnerScheduleError, GetPlatformPartnerSettlementsError, GetPlatformPartnersError, GetPlatformPayoutsError, GetPlatformSettingError, GetPlatformTransferError, GetPlatformTransferSummariesError, GetPromotionError, IssueB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, IssueBillingKeyError, IssueCashReceiptError, ModifyEscrowLogisticsError, PayInstantlyError, PayWithBillingKeyError, PreRegisterPaymentError, RecoverPlatformAdditionalFeePolicyError, RecoverPlatformContractError, RecoverPlatformDiscountSharePolicyError, RecoverPlatformPartnerError, RefuseB2bTaxInvoiceRequestError, RegisterStoreReceiptError, RequestB2bTaxInvoiceReverseIssuanceError, RescheduleAdditionalFeePolicyError, RescheduleContractError, RescheduleDiscountSharePolicyError, ReschedulePartnerError, ResendIdentityVerificationError, ResendWebhookError, RevokePaymentSchedulesError, ScheduleAdditionalFeePolicyError, ScheduleContractError, ScheduleDiscountSharePolicyError, SchedulePartnerError, SchedulePlatformPartnersError, SendIdentityVerificationError, SendToNtsB2bTaxInvoiceError, StopPaymentCancellationError, UpdateB2bCounterpartyError, UpdateB2bTaxInvoiceDraftError, UpdatePlatformAdditionalFeePolicyError, UpdatePlatformContractError, UpdatePlatformDiscountSharePolicyError, UpdatePlatformPartnerError, UpdatePlatformSettingError, ValidateB2bCounterpartyCertificateError, requestB2bTaxInvoiceError):
     """요청이 거절된 경우
     """
@@ -362,7 +362,7 @@ class ForbiddenError(ApplyEscrowLogisticsError, ArchivePlatformAdditionalFeePoli
     def __post_init__(self, _error: InternalForbiddenError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class InvalidRequestError(ApplyEscrowLogisticsError, ArchivePlatformAdditionalFeePolicyError, ArchivePlatformContractError, ArchivePlatformDiscountSharePolicyError, ArchivePlatformPartnerError, AttachB2bTaxInvoiceFileError, CancelB2bTaxInvoiceIssuanceError, CancelB2bTaxInvoiceRequestError, CancelCashReceiptError, CancelPaymentError, CancelPlatformAdditionalFeePolicyScheduleError, CancelPlatformContractScheduleError, CancelPlatformDiscountSharePolicyScheduleError, CancelPlatformPartnerScheduleError, CapturePaymentError, CloseVirtualAccountError, CompletePlatformPayoutByPartnerSettlementIdsError, ConfirmBillingKeyError, ConfirmBillingKeyIssueAndPayError, ConfirmEscrowError, ConfirmIdentityVerificationError, ConfirmPaymentError, ConfirmPaymentwallDeliveryError, ConnectBulkPartnerCounterpartyError, ConnectPartnerCounterpartyError, CreateB2bCounterpartyError, CreateB2bFileUploadUrlError, CreatePaymentScheduleError, CreatePlatformAdditionalFeePolicyError, CreatePlatformContractError, CreatePlatformDiscountSharePolicyError, CreatePlatformManualTransferError, CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError, CreatePlatformPartnerError, CreatePlatformPartnersError, DeleteB2bCounterpartyError, DeleteB2bTaxInvoiceAttachmentError, DeleteB2bTaxInvoiceError, DeleteBillingKeyError, DeletePlatformPartnerSettlementsError, DeletePlatformTransferError, DisconnectBulkPartnerCounterpartyError, DisconnectPartnerCounterpartyError, DownloadB2bTaxInvoicesSheetError, DownloadPlatformTransferSheetError, DraftB2bTaxInvoiceError, GetAllPaymentEventsError, GetAllPaymentsError, GetB2bBulkTaxInvoiceError, GetB2bBusinessInfosError, GetB2bCounterpartiesError, GetB2bCounterpartyCertificateError, GetB2bCounterpartyCertificateRegistrationUrlError, GetB2bCounterpartyError, GetB2bTaxInvoiceAttachmentsError, GetB2bTaxInvoiceError, GetB2bTaxInvoicePdfDownloadUrlError, GetB2bTaxInvoicePopupUrlError, GetB2bTaxInvoicePrintUrlError, GetB2bTaxInvoicesError, GetBillingKeyInfoError, GetBillingKeyInfosError, GetCashReceiptError, GetCashReceiptsError, GetIdentityVerificationError, GetIdentityVerificationsError, GetKakaopayPaymentOrderError, GetPaymentError, GetPaymentReconciliationSettlementVatReportError, GetPaymentReconciliationTransactionVatReportError, GetPaymentScheduleError, GetPaymentSchedulesError, GetPaymentTransactionsError, GetPaymentsError, GetPgCardPromotionsError, GetPlatformAccountHolderError, GetPlatformAccountTransfersError, GetPlatformAdditionalFeePoliciesError, GetPlatformAdditionalFeePolicyError, GetPlatformAdditionalFeePolicyScheduleError, GetPlatformBulkAccountTransfersError, GetPlatformBulkPayoutsError, GetPlatformCompanyStateError, GetPlatformContractError, GetPlatformContractScheduleError, GetPlatformContractsError, GetPlatformDiscountSharePoliciesError, GetPlatformDiscountSharePolicyError, GetPlatformDiscountSharePolicyFilterOptionsError, GetPlatformDiscountSharePolicyScheduleError, GetPlatformPartnerError, GetPlatformPartnerFilterOptionsError, GetPlatformPartnerScheduleError, GetPlatformPartnerSettlementsError, GetPlatformPartnersError, GetPlatformPayoutsError, GetPlatformSettingError, GetPlatformTransferError, GetPlatformTransferSummariesError, GetPromotionError, IssueB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, IssueBillingKeyError, IssueCashReceiptError, LoginViaApiSecretError, ModifyEscrowLogisticsError, PayInstantlyError, PayWithBillingKeyError, PreRegisterPaymentError, RecoverPlatformAdditionalFeePolicyError, RecoverPlatformContractError, RecoverPlatformDiscountSharePolicyError, RecoverPlatformPartnerError, RefreshTokenError, RefuseB2bTaxInvoiceRequestError, RegisterStoreReceiptError, RequestB2bTaxInvoiceReverseIssuanceError, RescheduleAdditionalFeePolicyError, RescheduleContractError, RescheduleDiscountSharePolicyError, ReschedulePartnerError, ResendIdentityVerificationError, ResendWebhookError, RevokePaymentSchedulesError, ScheduleAdditionalFeePolicyError, ScheduleContractError, ScheduleDiscountSharePolicyError, SchedulePartnerError, SchedulePlatformPartnersError, SendIdentityVerificationError, SendToNtsB2bTaxInvoiceError, StopPaymentCancellationError, UpdateB2bCounterpartyError, UpdateB2bTaxInvoiceDraftError, UpdatePlatformAdditionalFeePolicyError, UpdatePlatformContractError, UpdatePlatformDiscountSharePolicyError, UpdatePlatformPartnerError, UpdatePlatformSettingError, ValidateB2bCounterpartyCertificateError, requestB2bTaxInvoiceError):
     """요청된 입력 정보가 유효하지 않은 경우
 
@@ -373,7 +373,7 @@ class InvalidRequestError(ApplyEscrowLogisticsError, ArchivePlatformAdditionalFe
     def __post_init__(self, _error: InternalInvalidRequestError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class UnauthorizedError(ApplyEscrowLogisticsError, ArchivePlatformAdditionalFeePolicyError, ArchivePlatformContractError, ArchivePlatformDiscountSharePolicyError, ArchivePlatformPartnerError, AttachB2bTaxInvoiceFileError, CancelB2bTaxInvoiceIssuanceError, CancelB2bTaxInvoiceRequestError, CancelCashReceiptError, CancelPaymentError, CancelPlatformAdditionalFeePolicyScheduleError, CancelPlatformContractScheduleError, CancelPlatformDiscountSharePolicyScheduleError, CancelPlatformPartnerScheduleError, CapturePaymentError, CloseVirtualAccountError, CompletePlatformPayoutByPartnerSettlementIdsError, ConfirmBillingKeyError, ConfirmBillingKeyIssueAndPayError, ConfirmEscrowError, ConfirmIdentityVerificationError, ConfirmPaymentError, ConfirmPaymentwallDeliveryError, ConnectBulkPartnerCounterpartyError, ConnectPartnerCounterpartyError, CreateB2bCounterpartyError, CreateB2bFileUploadUrlError, CreatePaymentScheduleError, CreatePlatformAdditionalFeePolicyError, CreatePlatformContractError, CreatePlatformDiscountSharePolicyError, CreatePlatformManualTransferError, CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError, CreatePlatformPartnerError, CreatePlatformPartnersError, DeleteB2bCounterpartyError, DeleteB2bTaxInvoiceAttachmentError, DeleteB2bTaxInvoiceError, DeleteBillingKeyError, DeletePlatformPartnerSettlementsError, DeletePlatformTransferError, DisconnectBulkPartnerCounterpartyError, DisconnectPartnerCounterpartyError, DownloadB2bTaxInvoicesSheetError, DownloadPlatformTransferSheetError, DraftB2bTaxInvoiceError, GetAllPaymentEventsError, GetAllPaymentsError, GetB2bBulkTaxInvoiceError, GetB2bBusinessInfosError, GetB2bCounterpartiesError, GetB2bCounterpartyCertificateError, GetB2bCounterpartyCertificateRegistrationUrlError, GetB2bCounterpartyError, GetB2bTaxInvoiceAttachmentsError, GetB2bTaxInvoiceError, GetB2bTaxInvoicePdfDownloadUrlError, GetB2bTaxInvoicePopupUrlError, GetB2bTaxInvoicePrintUrlError, GetB2bTaxInvoicesError, GetBillingKeyInfoError, GetBillingKeyInfosError, GetCashReceiptError, GetCashReceiptsError, GetIdentityVerificationError, GetIdentityVerificationsError, GetKakaopayPaymentOrderError, GetPaymentError, GetPaymentReconciliationSettlementVatReportError, GetPaymentReconciliationTransactionVatReportError, GetPaymentScheduleError, GetPaymentSchedulesError, GetPaymentTransactionsError, GetPaymentsError, GetPgCardPromotionsError, GetPlatformAccountHolderError, GetPlatformAccountTransfersError, GetPlatformAdditionalFeePoliciesError, GetPlatformAdditionalFeePolicyError, GetPlatformAdditionalFeePolicyScheduleError, GetPlatformBulkAccountTransfersError, GetPlatformBulkPayoutsError, GetPlatformCompanyStateError, GetPlatformContractError, GetPlatformContractScheduleError, GetPlatformContractsError, GetPlatformDiscountSharePoliciesError, GetPlatformDiscountSharePolicyError, GetPlatformDiscountSharePolicyFilterOptionsError, GetPlatformDiscountSharePolicyScheduleError, GetPlatformPartnerError, GetPlatformPartnerFilterOptionsError, GetPlatformPartnerScheduleError, GetPlatformPartnerSettlementsError, GetPlatformPartnersError, GetPlatformPayoutsError, GetPlatformSettingError, GetPlatformTransferError, GetPlatformTransferSummariesError, GetPromotionError, IssueB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, IssueBillingKeyError, IssueCashReceiptError, LoginViaApiSecretError, ModifyEscrowLogisticsError, PayInstantlyError, PayWithBillingKeyError, PreRegisterPaymentError, RecoverPlatformAdditionalFeePolicyError, RecoverPlatformContractError, RecoverPlatformDiscountSharePolicyError, RecoverPlatformPartnerError, RefreshTokenError, RefuseB2bTaxInvoiceRequestError, RegisterStoreReceiptError, RequestB2bTaxInvoiceReverseIssuanceError, RescheduleAdditionalFeePolicyError, RescheduleContractError, RescheduleDiscountSharePolicyError, ReschedulePartnerError, ResendIdentityVerificationError, ResendWebhookError, RevokePaymentSchedulesError, ScheduleAdditionalFeePolicyError, ScheduleContractError, ScheduleDiscountSharePolicyError, SchedulePartnerError, SchedulePlatformPartnersError, SendIdentityVerificationError, SendToNtsB2bTaxInvoiceError, StopPaymentCancellationError, UpdateB2bCounterpartyError, UpdateB2bTaxInvoiceDraftError, UpdatePlatformAdditionalFeePolicyError, UpdatePlatformContractError, UpdatePlatformDiscountSharePolicyError, UpdatePlatformPartnerError, UpdatePlatformSettingError, ValidateB2bCounterpartyCertificateError, requestB2bTaxInvoiceError):
     """인증 정보가 올바르지 않은 경우
     """
@@ -382,7 +382,7 @@ class UnauthorizedError(ApplyEscrowLogisticsError, ArchivePlatformAdditionalFeeP
     def __post_init__(self, _error: InternalUnauthorizedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2BCannotChangeTaxTypeError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bTaxInvoiceDraftError, requestB2bTaxInvoiceError):
     """세금계산서 과세 유형을 수정할 수 없는 경우
     """
@@ -391,7 +391,7 @@ class B2BCannotChangeTaxTypeError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImm
     def __post_init__(self, _error: InternalB2BCannotChangeTaxTypeError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyNotFoundError(DeleteB2bCounterpartyError, DraftB2bTaxInvoiceError, GetB2bCounterpartyCertificateError, GetB2bCounterpartyCertificateRegistrationUrlError, GetB2bCounterpartyError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bCounterpartyError, UpdateB2bTaxInvoiceDraftError, ValidateB2bCounterpartyCertificateError):
     """거래처가 존재하지 않는 경우
     """
@@ -402,7 +402,7 @@ class B2bCounterpartyNotFoundError(DeleteB2bCounterpartyError, DraftB2bTaxInvoic
         self.message = _error.message
         self.counterparty_id = _error.counterparty_id
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyNtsNotConnectedError(DraftB2bTaxInvoiceError, GetB2bCounterpartyCertificateError, GetB2bCounterpartyCertificateRegistrationUrlError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bTaxInvoiceDraftError, ValidateB2bCounterpartyCertificateError):
     """국세청에 연동되어 있지 않은 경우
     """
@@ -415,7 +415,7 @@ class B2bCounterpartyNtsNotConnectedError(DraftB2bTaxInvoiceError, GetB2bCounter
         self.brn = _error.brn
         self.counterparty_id = _error.counterparty_id
 
-@dataclass
+@dataclass(repr=False)
 class B2bDocumentKeyCannotBeChangedError(UpdateB2bTaxInvoiceDraftError):
     """문서번호 수정이 요청된 경우
     """
@@ -424,7 +424,7 @@ class B2bDocumentKeyCannotBeChangedError(UpdateB2bTaxInvoiceDraftError):
     def __post_init__(self, _error: InternalB2bDocumentKeyCannotBeChangedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bIdAlreadyExistsError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bTaxInvoiceDraftError):
     """ID가 이미 사용중인 경우
     """
@@ -433,7 +433,7 @@ class B2bIdAlreadyExistsError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmedia
     def __post_init__(self, _error: InternalB2bIdAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bIssuanceTypeMismatchError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bTaxInvoiceDraftError, requestB2bTaxInvoiceError):
     """세금계산서 발행 유형이 올바르지 않은 경우
     """
@@ -442,7 +442,7 @@ class B2bIssuanceTypeMismatchError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceIm
     def __post_init__(self, _error: InternalB2bIssuanceTypeMismatchError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bModificationNotProvidedError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bTaxInvoiceDraftError, requestB2bTaxInvoiceError):
     """세금계산서 수정 입력 정보를 찾을 수 없는 경우
     """
@@ -451,7 +451,7 @@ class B2bModificationNotProvidedError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoic
     def __post_init__(self, _error: InternalB2bModificationNotProvidedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bOriginalTaxInvoiceNotFoundError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bTaxInvoiceDraftError, requestB2bTaxInvoiceError):
     """원본 세금계산서가 존재하지 않은 경우
     """
@@ -460,7 +460,7 @@ class B2bOriginalTaxInvoiceNotFoundError(DraftB2bTaxInvoiceError, IssueB2bTaxInv
     def __post_init__(self, _error: InternalB2bOriginalTaxInvoiceNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bRecipientNotFoundError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bTaxInvoiceDraftError):
     """공급받는자가 존재하지 않은 경우
     """
@@ -473,7 +473,7 @@ class B2bRecipientNotFoundError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmed
         self.brn = _error.brn
         self.counterparty_id = _error.counterparty_id
 
-@dataclass
+@dataclass(repr=False)
 class B2bSupplierNotFoundError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bTaxInvoiceDraftError):
     """공급자가 존재하지 않은 경우
     """
@@ -486,7 +486,7 @@ class B2bSupplierNotFoundError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmedi
         self.brn = _error.brn
         self.counterparty_id = _error.counterparty_id
 
-@dataclass
+@dataclass(repr=False)
 class B2bTaxInvoiceNotDraftedStatusError(AttachB2bTaxInvoiceFileError, DeleteB2bTaxInvoiceAttachmentError, IssueB2bTaxInvoiceError, UpdateB2bTaxInvoiceDraftError, requestB2bTaxInvoiceError):
     """세금계산서가 임시저장 완료 상태가 아닌 경우
     """
@@ -495,7 +495,7 @@ class B2bTaxInvoiceNotDraftedStatusError(AttachB2bTaxInvoiceFileError, DeleteB2b
     def __post_init__(self, _error: InternalB2bTaxInvoiceNotDraftedStatusError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bTaxInvoiceNotFoundError(AttachB2bTaxInvoiceFileError, CancelB2bTaxInvoiceIssuanceError, CancelB2bTaxInvoiceRequestError, DeleteB2bTaxInvoiceAttachmentError, DeleteB2bTaxInvoiceError, DraftB2bTaxInvoiceError, GetB2bTaxInvoiceAttachmentsError, GetB2bTaxInvoiceError, GetB2bTaxInvoicePdfDownloadUrlError, GetB2bTaxInvoicePopupUrlError, GetB2bTaxInvoicePrintUrlError, GetB2bTaxInvoicesError, IssueB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RefuseB2bTaxInvoiceRequestError, RequestB2bTaxInvoiceReverseIssuanceError, SendToNtsB2bTaxInvoiceError, UpdateB2bTaxInvoiceDraftError, requestB2bTaxInvoiceError):
     """세금계산서가 존재하지 않은 경우
     """
@@ -504,7 +504,7 @@ class B2bTaxInvoiceNotFoundError(AttachB2bTaxInvoiceFileError, CancelB2bTaxInvoi
     def __post_init__(self, _error: InternalB2bTaxInvoiceNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bTaxInvoiceDraftError):
     """세금계산서에 공급 받는자 문서 번호가 이미 사용 중인 경우
     """
@@ -513,7 +513,7 @@ class B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError(DraftB2bTaxInvoiceError,
     def __post_init__(self, _error: InternalB2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2BTaxInvoiceStatusNotSendingCompletedError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bTaxInvoiceDraftError, requestB2bTaxInvoiceError):
     """원본 세금계산서가 전송완료 상태가 아닌 경우
     """
@@ -522,7 +522,7 @@ class B2BTaxInvoiceStatusNotSendingCompletedError(DraftB2bTaxInvoiceError, Issue
     def __post_init__(self, _error: InternalB2BTaxInvoiceStatusNotSendingCompletedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError(DraftB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RequestB2bTaxInvoiceReverseIssuanceError, UpdateB2bTaxInvoiceDraftError):
     """세금계산서에 공급자 문서 번호가 이미 사용 중인 경우
     """
@@ -531,7 +531,7 @@ class B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError(DraftB2bTaxInvoiceError, 
     def __post_init__(self, _error: InternalB2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bFileNotFoundError(AttachB2bTaxInvoiceFileError):
     """업로드한 파일을 찾을 수 없는 경우
     """
@@ -540,7 +540,7 @@ class B2bFileNotFoundError(AttachB2bTaxInvoiceFileError):
     def __post_init__(self, _error: InternalB2bFileNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bTaxInvoiceAttachmentNotFoundError(DeleteB2bTaxInvoiceAttachmentError):
     """세금계산서의 첨부파일을 찾을 수 없는 경우
     """
@@ -549,7 +549,7 @@ class B2bTaxInvoiceAttachmentNotFoundError(DeleteB2bTaxInvoiceAttachmentError):
     def __post_init__(self, _error: InternalB2bTaxInvoiceAttachmentNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bTaxInvoiceNotIssuedStatusError(CancelB2bTaxInvoiceIssuanceError, SendToNtsB2bTaxInvoiceError):
     """세금계산서가 발행된(ISSUED) 상태가 아닌 경우
     """
@@ -558,7 +558,7 @@ class B2bTaxInvoiceNotIssuedStatusError(CancelB2bTaxInvoiceIssuanceError, SendTo
     def __post_init__(self, _error: InternalB2bTaxInvoiceNotIssuedStatusError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bTaxInvoiceNotRequestedStatusError(CancelB2bTaxInvoiceRequestError, IssueB2bTaxInvoiceError, RefuseB2bTaxInvoiceRequestError):
     """세금계산서가 역발행 대기 상태가 아닌 경우
     """
@@ -567,7 +567,7 @@ class B2bTaxInvoiceNotRequestedStatusError(CancelB2bTaxInvoiceRequestError, Issu
     def __post_init__(self, _error: InternalB2bTaxInvoiceNotRequestedStatusError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bTaxInvoiceNoRecipientDocumentKeyError(CancelB2bTaxInvoiceRequestError, requestB2bTaxInvoiceError):
     """세금계산서에 공급받는자 문서 번호가 기입되지 않은 경우
     """
@@ -576,7 +576,7 @@ class B2bTaxInvoiceNoRecipientDocumentKeyError(CancelB2bTaxInvoiceRequestError, 
     def __post_init__(self, _error: InternalB2bTaxInvoiceNoRecipientDocumentKeyError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bTaxInvoiceNoSupplierDocumentKeyError(IssueB2bTaxInvoiceError, RefuseB2bTaxInvoiceRequestError):
     """세금계산서에 공급자 문서 번호가 기입되지 않은 경우
     """
@@ -585,7 +585,7 @@ class B2bTaxInvoiceNoSupplierDocumentKeyError(IssueB2bTaxInvoiceError, RefuseB2b
     def __post_init__(self, _error: InternalB2bTaxInvoiceNoSupplierDocumentKeyError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bTaxInvoiceNonDeletableStatusError(DeleteB2bTaxInvoiceError):
     """세금계산서가 삭제 가능한 상태가 아닌 경우
 
@@ -596,7 +596,7 @@ class B2bTaxInvoiceNonDeletableStatusError(DeleteB2bTaxInvoiceError):
     def __post_init__(self, _error: InternalB2bTaxInvoiceNonDeletableStatusError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCertificateUnregisteredError(GetB2bCounterpartyCertificateError, ValidateB2bCounterpartyCertificateError):
     """인증서가 등록되어 있지 않은 경우
     """
@@ -605,7 +605,7 @@ class B2bCertificateUnregisteredError(GetB2bCounterpartyCertificateError, Valida
     def __post_init__(self, _error: InternalB2bCertificateUnregisteredError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyOngoingTaxInvoiceExistsError(DeleteB2bCounterpartyError):
     """진행 중인 세금계산서가 존재하여 거래처를 삭제할 수 없는 경우
     """
@@ -614,7 +614,7 @@ class B2bCounterpartyOngoingTaxInvoiceExistsError(DeleteB2bCounterpartyError):
     def __post_init__(self, _error: InternalB2bCounterpartyOngoingTaxInvoiceExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyPartnerNotDeletableError(DeleteB2bCounterpartyError):
     """파트너 연동 거래처는 삭제할 수 없는 경우
 
@@ -625,7 +625,7 @@ class B2bCounterpartyPartnerNotDeletableError(DeleteB2bCounterpartyError):
     def __post_init__(self, _error: InternalB2bCounterpartyPartnerNotDeletableError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyBrnModificationNotAllowedError(UpdateB2bCounterpartyError):
     """사업자등록번호 수정이 허용되지 않는 경우
 
@@ -636,7 +636,7 @@ class B2bCounterpartyBrnModificationNotAllowedError(UpdateB2bCounterpartyError):
     def __post_init__(self, _error: InternalB2bCounterpartyBrnModificationNotAllowedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyMissingRequiredFieldsError(CreateB2bCounterpartyError, UpdateB2bCounterpartyError):
     """필수 입력 항목이 누락된 경우
 
@@ -647,7 +647,7 @@ class B2bCounterpartyMissingRequiredFieldsError(CreateB2bCounterpartyError, Upda
     def __post_init__(self, _error: InternalB2bCounterpartyMissingRequiredFieldsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyPartnerNotUpdatableError(UpdateB2bCounterpartyError):
     """파트너 연동 거래처는 수정할 수 없는 경우
 
@@ -658,7 +658,7 @@ class B2bCounterpartyPartnerNotUpdatableError(UpdateB2bCounterpartyError):
     def __post_init__(self, _error: InternalB2bCounterpartyPartnerNotUpdatableError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyTooManyAdditionalContactsError(CreateB2bCounterpartyError, UpdateB2bCounterpartyError):
     """추가 담당자가 너무 많은 경우
 
@@ -669,7 +669,7 @@ class B2bCounterpartyTooManyAdditionalContactsError(CreateB2bCounterpartyError, 
     def __post_init__(self, _error: InternalB2bCounterpartyTooManyAdditionalContactsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyVerificationBrnMismatchError(CreateB2bCounterpartyError, UpdateB2bCounterpartyError):
     """검증 결과의 사업자등록번호가 일치하지 않는 경우
     """
@@ -678,7 +678,7 @@ class B2bCounterpartyVerificationBrnMismatchError(CreateB2bCounterpartyError, Up
     def __post_init__(self, _error: InternalB2bCounterpartyVerificationBrnMismatchError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyVerificationInvalidError(CreateB2bCounterpartyError, UpdateB2bCounterpartyError):
     """검증 결과가 유효하지 않은 경우
     """
@@ -687,7 +687,7 @@ class B2bCounterpartyVerificationInvalidError(CreateB2bCounterpartyError, Update
     def __post_init__(self, _error: InternalB2bCounterpartyVerificationInvalidError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyVerificationNotFoundError(CreateB2bCounterpartyError, UpdateB2bCounterpartyError):
     """검증 결과를 찾을 수 없는 경우
 
@@ -698,7 +698,7 @@ class B2bCounterpartyVerificationNotFoundError(CreateB2bCounterpartyError, Updat
     def __post_init__(self, _error: InternalB2bCounterpartyVerificationNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyVerificationTypeMismatchError(CreateB2bCounterpartyError, UpdateB2bCounterpartyError):
     """검증 유형이 일치하지 않는 경우
     """
@@ -707,7 +707,7 @@ class B2bCounterpartyVerificationTypeMismatchError(CreateB2bCounterpartyError, U
     def __post_init__(self, _error: InternalB2bCounterpartyVerificationTypeMismatchError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyBrnInvalidError(CreateB2bCounterpartyError):
     """사업자등록번호가 유효하지 않은 경우
     """
@@ -716,7 +716,7 @@ class B2bCounterpartyBrnInvalidError(CreateB2bCounterpartyError):
     def __post_init__(self, _error: InternalB2bCounterpartyBrnInvalidError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyIdAlreadyExistsError(CreateB2bCounterpartyError):
     """거래처 ID가 이미 사용중인 경우
     """
@@ -725,7 +725,7 @@ class B2bCounterpartyIdAlreadyExistsError(CreateB2bCounterpartyError):
     def __post_init__(self, _error: InternalB2bCounterpartyIdAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyIdAlreadyExistsByPartnerError(CreateB2bCounterpartyError):
     """파트너 연동으로 생성된 거래처 ID가 이미 사용중인 경우
 
@@ -736,7 +736,7 @@ class B2bCounterpartyIdAlreadyExistsByPartnerError(CreateB2bCounterpartyError):
     def __post_init__(self, _error: InternalB2bCounterpartyIdAlreadyExistsByPartnerError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyNtsConnectionFailedError(CreateB2bCounterpartyError):
     """국세청 연동에 실패한 경우
     """
@@ -745,7 +745,7 @@ class B2bCounterpartyNtsConnectionFailedError(CreateB2bCounterpartyError):
     def __post_init__(self, _error: InternalB2bCounterpartyNtsConnectionFailedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartyPartnerNotConnectableError(CreateB2bCounterpartyError):
     """파트너 연동 거래처는 국세청 연동이 허용되지 않는 경우
 
@@ -756,7 +756,7 @@ class B2bCounterpartyPartnerNotConnectableError(CreateB2bCounterpartyError):
     def __post_init__(self, _error: InternalB2bCounterpartyPartnerNotConnectableError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class B2bCounterpartySelfOriginBrnMismatchError(CreateB2bCounterpartyError):
     """자사 사업자등록번호와 동일한 거래처를 생성할 수 없는 경우
     """
@@ -765,14 +765,14 @@ class B2bCounterpartySelfOriginBrnMismatchError(CreateB2bCounterpartyError):
     def __post_init__(self, _error: InternalB2bCounterpartySelfOriginBrnMismatchError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformAdditionalFeePolicyNotFoundError(ArchivePlatformAdditionalFeePolicyError, CancelPlatformAdditionalFeePolicyScheduleError, GetPlatformAdditionalFeePolicyError, GetPlatformAdditionalFeePolicyScheduleError, RecoverPlatformAdditionalFeePolicyError, RescheduleAdditionalFeePolicyError, ScheduleAdditionalFeePolicyError, UpdatePlatformAdditionalFeePolicyError):
     _error: InitVar[InternalPlatformAdditionalFeePolicyNotFoundError]
 
     def __post_init__(self, _error: InternalPlatformAdditionalFeePolicyNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformNotEnabledError(ArchivePlatformAdditionalFeePolicyError, ArchivePlatformContractError, ArchivePlatformDiscountSharePolicyError, ArchivePlatformPartnerError, CancelPlatformAdditionalFeePolicyScheduleError, CancelPlatformContractScheduleError, CancelPlatformDiscountSharePolicyScheduleError, CancelPlatformPartnerScheduleError, CompletePlatformPayoutByPartnerSettlementIdsError, ConnectBulkPartnerCounterpartyError, ConnectPartnerCounterpartyError, CreatePlatformAdditionalFeePolicyError, CreatePlatformContractError, CreatePlatformDiscountSharePolicyError, CreatePlatformManualTransferError, CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError, CreatePlatformPartnerError, CreatePlatformPartnersError, DeletePlatformPartnerSettlementsError, DeletePlatformTransferError, DisconnectBulkPartnerCounterpartyError, DisconnectPartnerCounterpartyError, GetPlatformAccountHolderError, GetPlatformAccountTransfersError, GetPlatformAdditionalFeePoliciesError, GetPlatformAdditionalFeePolicyError, GetPlatformAdditionalFeePolicyScheduleError, GetPlatformBulkAccountTransfersError, GetPlatformBulkPayoutsError, GetPlatformCompanyStateError, GetPlatformContractError, GetPlatformContractScheduleError, GetPlatformContractsError, GetPlatformDiscountSharePoliciesError, GetPlatformDiscountSharePolicyError, GetPlatformDiscountSharePolicyFilterOptionsError, GetPlatformDiscountSharePolicyScheduleError, GetPlatformPartnerError, GetPlatformPartnerFilterOptionsError, GetPlatformPartnerScheduleError, GetPlatformPartnerSettlementsError, GetPlatformPartnersError, GetPlatformPayoutsError, GetPlatformSettingError, GetPlatformTransferError, GetPlatformTransferSummariesError, RecoverPlatformAdditionalFeePolicyError, RecoverPlatformContractError, RecoverPlatformDiscountSharePolicyError, RecoverPlatformPartnerError, RescheduleAdditionalFeePolicyError, RescheduleContractError, RescheduleDiscountSharePolicyError, ReschedulePartnerError, ScheduleAdditionalFeePolicyError, ScheduleContractError, ScheduleDiscountSharePolicyError, SchedulePartnerError, SchedulePlatformPartnersError, UpdatePlatformAdditionalFeePolicyError, UpdatePlatformContractError, UpdatePlatformDiscountSharePolicyError, UpdatePlatformPartnerError, UpdatePlatformSettingError):
     """플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
     """
@@ -781,14 +781,14 @@ class PlatformNotEnabledError(ArchivePlatformAdditionalFeePolicyError, ArchivePl
     def __post_init__(self, _error: InternalPlatformNotEnabledError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformAdditionalFeePolicyScheduleAlreadyExistsError(ScheduleAdditionalFeePolicyError):
     _error: InitVar[InternalPlatformAdditionalFeePolicyScheduleAlreadyExistsError]
 
     def __post_init__(self, _error: InternalPlatformAdditionalFeePolicyScheduleAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformArchivedAdditionalFeePolicyError(ScheduleAdditionalFeePolicyError, UpdatePlatformAdditionalFeePolicyError):
     """보관된 추가 수수료 정책을 업데이트하려고 하는 경우
     """
@@ -797,14 +797,14 @@ class PlatformArchivedAdditionalFeePolicyError(ScheduleAdditionalFeePolicyError,
     def __post_init__(self, _error: InternalPlatformArchivedAdditionalFeePolicyError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformContractNotFoundError(ArchivePlatformContractError, CancelPlatformContractScheduleError, CreatePlatformOrderTransferError, CreatePlatformPartnerError, GetPlatformContractError, GetPlatformContractScheduleError, RecoverPlatformContractError, RescheduleContractError, ReschedulePartnerError, ScheduleContractError, SchedulePartnerError, SchedulePlatformPartnersError, UpdatePlatformContractError, UpdatePlatformPartnerError):
     _error: InitVar[InternalPlatformContractNotFoundError]
 
     def __post_init__(self, _error: InternalPlatformContractNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformArchivedContractError(ScheduleContractError, UpdatePlatformContractError):
     """보관된 계약을 업데이트하려고 하는 경우
     """
@@ -813,21 +813,21 @@ class PlatformArchivedContractError(ScheduleContractError, UpdatePlatformContrac
     def __post_init__(self, _error: InternalPlatformArchivedContractError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformContractScheduleAlreadyExistsError(ScheduleContractError):
     _error: InitVar[InternalPlatformContractScheduleAlreadyExistsError]
 
     def __post_init__(self, _error: InternalPlatformContractScheduleAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformDiscountSharePolicyNotFoundError(ArchivePlatformDiscountSharePolicyError, CancelPlatformDiscountSharePolicyScheduleError, GetPlatformDiscountSharePolicyError, GetPlatformDiscountSharePolicyScheduleError, RecoverPlatformDiscountSharePolicyError, RescheduleDiscountSharePolicyError, ScheduleDiscountSharePolicyError, UpdatePlatformDiscountSharePolicyError):
     _error: InitVar[InternalPlatformDiscountSharePolicyNotFoundError]
 
     def __post_init__(self, _error: InternalPlatformDiscountSharePolicyNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformArchivedDiscountSharePolicyError(ScheduleDiscountSharePolicyError, UpdatePlatformDiscountSharePolicyError):
     """보관된 할인 분담 정책을 업데이트하려고 하는 경우
     """
@@ -836,14 +836,14 @@ class PlatformArchivedDiscountSharePolicyError(ScheduleDiscountSharePolicyError,
     def __post_init__(self, _error: InternalPlatformArchivedDiscountSharePolicyError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformDiscountSharePolicyScheduleAlreadyExistsError(ScheduleDiscountSharePolicyError):
     _error: InitVar[InternalPlatformDiscountSharePolicyScheduleAlreadyExistsError]
 
     def __post_init__(self, _error: InternalPlatformDiscountSharePolicyScheduleAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformArchivedPartnersCannotBeScheduledError(SchedulePlatformPartnersError):
     """보관된 파트너들을 예약 업데이트하려고 하는 경우
     """
@@ -852,7 +852,7 @@ class PlatformArchivedPartnersCannotBeScheduledError(SchedulePlatformPartnersErr
     def __post_init__(self, _error: InternalPlatformArchivedPartnersCannotBeScheduledError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformMemberCompanyConnectedPartnersCannotBeScheduledError(SchedulePlatformPartnersError):
     """연동 사업자로 연동된 파트너들을 예약 수정하려고 시도한 경우
     """
@@ -865,7 +865,7 @@ class PlatformMemberCompanyConnectedPartnersCannotBeScheduledError(SchedulePlatf
         self.graphql_ids = _error.graphql_ids
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPartnerSchedulesAlreadyExistError(SchedulePlatformPartnersError):
     ids: list[str] = field(init=False)
     graphql_ids: list[str] = field(init=False)
@@ -876,7 +876,7 @@ class PlatformPartnerSchedulesAlreadyExistError(SchedulePlatformPartnersError):
         self.graphql_ids = _error.graphql_ids
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformUserDefinedPropertyNotFoundError(CreatePlatformManualTransferError, CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError, CreatePlatformPartnerError, CreatePlatformPartnersError, SchedulePartnerError, SchedulePlatformPartnersError, UpdatePlatformPartnerError):
     """사용자 정의 속성이 존재 하지 않는 경우
     """
@@ -885,14 +885,14 @@ class PlatformUserDefinedPropertyNotFoundError(CreatePlatformManualTransferError
     def __post_init__(self, _error: InternalPlatformUserDefinedPropertyNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPartnerNotFoundError(ArchivePlatformPartnerError, CancelPlatformPartnerScheduleError, ConnectBulkPartnerCounterpartyError, ConnectPartnerCounterpartyError, CreatePlatformManualTransferError, CreatePlatformOrderTransferError, DisconnectBulkPartnerCounterpartyError, DisconnectPartnerCounterpartyError, GetPlatformPartnerError, GetPlatformPartnerScheduleError, RecoverPlatformPartnerError, ReschedulePartnerError, SchedulePartnerError, UpdatePlatformPartnerError):
     _error: InitVar[InternalPlatformPartnerNotFoundError]
 
     def __post_init__(self, _error: InternalPlatformPartnerNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformMemberCompanyConnectedPartnerCannotBeScheduledError(ReschedulePartnerError, SchedulePartnerError):
     """연동 사업자로 연동된 파트너를 예약 수정하려고 시도한 경우
     """
@@ -901,7 +901,7 @@ class PlatformMemberCompanyConnectedPartnerCannotBeScheduledError(ReschedulePart
     def __post_init__(self, _error: InternalPlatformMemberCompanyConnectedPartnerCannotBeScheduledError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformAccountVerificationAlreadyUsedError(CreatePlatformPartnerError, SchedulePartnerError, UpdatePlatformPartnerError):
     """파트너 계좌 검증 아이디를 이미 사용한 경우
     """
@@ -910,7 +910,7 @@ class PlatformAccountVerificationAlreadyUsedError(CreatePlatformPartnerError, Sc
     def __post_init__(self, _error: InternalPlatformAccountVerificationAlreadyUsedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformAccountVerificationFailedError(CreatePlatformPartnerError, SchedulePartnerError, UpdatePlatformPartnerError):
     """파트너 계좌 인증이 실패한 경우
     """
@@ -919,7 +919,7 @@ class PlatformAccountVerificationFailedError(CreatePlatformPartnerError, Schedul
     def __post_init__(self, _error: InternalPlatformAccountVerificationFailedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformAccountVerificationNotFoundError(CreatePlatformPartnerError, SchedulePartnerError, UpdatePlatformPartnerError):
     """파트너 계좌 검증 아이디를 찾을 수 없는 경우
     """
@@ -928,7 +928,7 @@ class PlatformAccountVerificationNotFoundError(CreatePlatformPartnerError, Sched
     def __post_init__(self, _error: InternalPlatformAccountVerificationNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformArchivedPartnerError(ConnectPartnerCounterpartyError, SchedulePartnerError, UpdatePlatformPartnerError):
     """보관된 파트너를 업데이트하려고 하는 경우
     """
@@ -937,7 +937,7 @@ class PlatformArchivedPartnerError(ConnectPartnerCounterpartyError, SchedulePart
     def __post_init__(self, _error: InternalPlatformArchivedPartnerError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCompanyVerificationAlreadyUsedError(CreatePlatformPartnerError, SchedulePartnerError, UpdatePlatformPartnerError):
     """파트너 사업자 검증 아이디를 이미 사용한 경우
     """
@@ -946,7 +946,7 @@ class PlatformCompanyVerificationAlreadyUsedError(CreatePlatformPartnerError, Sc
     def __post_init__(self, _error: InternalPlatformCompanyVerificationAlreadyUsedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformInsufficientDataToChangePartnerTypeError(SchedulePartnerError, UpdatePlatformPartnerError):
     """파트너 타입 수정에 필요한 데이터가 부족한 경우
     """
@@ -955,7 +955,7 @@ class PlatformInsufficientDataToChangePartnerTypeError(SchedulePartnerError, Upd
     def __post_init__(self, _error: InternalPlatformInsufficientDataToChangePartnerTypeError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformMemberCompanyConnectedPartnerBrnUnchangeableError(SchedulePartnerError, UpdatePlatformPartnerError):
     """연동 사업자로 연동된 파트너의 사업자등록번호를 변경하려고 시도한 경우
     """
@@ -964,7 +964,7 @@ class PlatformMemberCompanyConnectedPartnerBrnUnchangeableError(SchedulePartnerE
     def __post_init__(self, _error: InternalPlatformMemberCompanyConnectedPartnerBrnUnchangeableError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformMemberCompanyConnectedPartnerTypeUnchangeableError(SchedulePartnerError, UpdatePlatformPartnerError):
     """연동 사업자로 연동된 파트너의 파트너 유형을 변경하려고 시도한 경우
     """
@@ -973,14 +973,14 @@ class PlatformMemberCompanyConnectedPartnerTypeUnchangeableError(SchedulePartner
     def __post_init__(self, _error: InternalPlatformMemberCompanyConnectedPartnerTypeUnchangeableError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPartnerScheduleAlreadyExistsError(SchedulePartnerError):
     _error: InitVar[InternalPlatformPartnerScheduleAlreadyExistsError]
 
     def __post_init__(self, _error: InternalPlatformPartnerScheduleAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCompanyNotFoundError(GetPlatformCompanyStateError):
     """사업자 정보를 찾을 수 없는 경우
     """
@@ -989,7 +989,7 @@ class PlatformCompanyNotFoundError(GetPlatformCompanyStateError):
     def __post_init__(self, _error: InternalPlatformCompanyNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformExternalApiFailedError(ConnectBulkPartnerCounterpartyError, ConnectPartnerCounterpartyError, DisconnectBulkPartnerCounterpartyError, DisconnectPartnerCounterpartyError, GetPlatformAccountHolderError, GetPlatformCompanyStateError):
     """외부 api 오류
     """
@@ -998,7 +998,7 @@ class PlatformExternalApiFailedError(ConnectBulkPartnerCounterpartyError, Connec
     def __post_init__(self, _error: InternalPlatformExternalApiFailedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCannotArchiveScheduledAdditionalFeePolicyError(ArchivePlatformAdditionalFeePolicyError):
     """예약된 업데이트가 있는 추가 수수료 정책을 보관하려고 하는 경우
     """
@@ -1007,14 +1007,14 @@ class PlatformCannotArchiveScheduledAdditionalFeePolicyError(ArchivePlatformAddi
     def __post_init__(self, _error: InternalPlatformCannotArchiveScheduledAdditionalFeePolicyError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformAdditionalFeePolicyAlreadyExistsError(CreatePlatformAdditionalFeePolicyError):
     _error: InitVar[InternalPlatformAdditionalFeePolicyAlreadyExistsError]
 
     def __post_init__(self, _error: InternalPlatformAdditionalFeePolicyAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCannotArchiveScheduledContractError(ArchivePlatformContractError):
     """예약된 업데이트가 있는 계약을 보관하려고 하는 경우
     """
@@ -1023,14 +1023,14 @@ class PlatformCannotArchiveScheduledContractError(ArchivePlatformContractError):
     def __post_init__(self, _error: InternalPlatformCannotArchiveScheduledContractError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformContractAlreadyExistsError(CreatePlatformContractError):
     _error: InitVar[InternalPlatformContractAlreadyExistsError]
 
     def __post_init__(self, _error: InternalPlatformContractAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCannotArchiveScheduledDiscountSharePolicyError(ArchivePlatformDiscountSharePolicyError):
     """예약된 업데이트가 있는 할인 분담 정책을 보관하려고 하는 경우
     """
@@ -1039,14 +1039,14 @@ class PlatformCannotArchiveScheduledDiscountSharePolicyError(ArchivePlatformDisc
     def __post_init__(self, _error: InternalPlatformCannotArchiveScheduledDiscountSharePolicyError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformDiscountSharePolicyAlreadyExistsError(CreatePlatformDiscountSharePolicyError):
     _error: InitVar[InternalPlatformDiscountSharePolicyAlreadyExistsError]
 
     def __post_init__(self, _error: InternalPlatformDiscountSharePolicyAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformExternalApiTemporarilyFailedError(GetPlatformAccountHolderError):
     """외부 api의 일시적인 오류
     """
@@ -1055,7 +1055,7 @@ class PlatformExternalApiTemporarilyFailedError(GetPlatformAccountHolderError):
     def __post_init__(self, _error: InternalPlatformExternalApiTemporarilyFailedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformNotSupportedBankError(GetPlatformAccountHolderError):
     """지원하지 않는 은행인 경우
     """
@@ -1064,7 +1064,7 @@ class PlatformNotSupportedBankError(GetPlatformAccountHolderError):
     def __post_init__(self, _error: InternalPlatformNotSupportedBankError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformBulkPayoutIdAlreadyExistsError(CompletePlatformPayoutByPartnerSettlementIdsError):
     """일괄 지급 아이디가 이미 존재하는 경우
     """
@@ -1073,7 +1073,7 @@ class PlatformBulkPayoutIdAlreadyExistsError(CompletePlatformPayoutByPartnerSett
     def __post_init__(self, _error: InternalPlatformBulkPayoutIdAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformNegativePayoutAmountPartnersError(CompletePlatformPayoutByPartnerSettlementIdsError):
     """지급 금액의 총합이 음수인 파트너가 존재하는 경우
     """
@@ -1082,7 +1082,7 @@ class PlatformNegativePayoutAmountPartnersError(CompletePlatformPayoutByPartnerS
     def __post_init__(self, _error: InternalPlatformNegativePayoutAmountPartnersError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformDuplicatedPartnerSettlementIdsError(CompletePlatformPayoutByPartnerSettlementIdsError):
     """선택된 정산건 아이디에 중복이 있는 경우
     """
@@ -1091,7 +1091,7 @@ class PlatformDuplicatedPartnerSettlementIdsError(CompletePlatformPayoutByPartne
     def __post_init__(self, _error: InternalPlatformDuplicatedPartnerSettlementIdsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformNonPayablePartnerSettlementsError(CompletePlatformPayoutByPartnerSettlementIdsError):
     """지급할 수 없는 정산건이 포함된 경우
     """
@@ -1104,7 +1104,7 @@ class PlatformNonPayablePartnerSettlementsError(CompletePlatformPayoutByPartnerS
         self.graphql_ids = _error.graphql_ids
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformNoSelectedPartnerSettlementsError(CompletePlatformPayoutByPartnerSettlementIdsError):
     """선택된 정산건이 없는 경우
     """
@@ -1113,7 +1113,7 @@ class PlatformNoSelectedPartnerSettlementsError(CompletePlatformPayoutByPartnerS
     def __post_init__(self, _error: InternalPlatformNoSelectedPartnerSettlementsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPartnerSettlementsNotFoundError(CompletePlatformPayoutByPartnerSettlementIdsError, DeletePlatformPartnerSettlementsError):
     """요청한 정산건 목록을 찾을 수 없는 경우
     """
@@ -1126,7 +1126,7 @@ class PlatformPartnerSettlementsNotFoundError(CompletePlatformPayoutByPartnerSet
         self.graphql_ids = _error.graphql_ids
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformNonDeletablePartnerSettlementsError(DeletePlatformPartnerSettlementsError):
     """삭제할 수 없는 정산건이 포함된 경우
     """
@@ -1139,7 +1139,7 @@ class PlatformNonDeletablePartnerSettlementsError(DeletePlatformPartnerSettlemen
         self.graphql_ids = _error.graphql_ids
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformReferencedCancelOrderTransfersExistError(DeletePlatformPartnerSettlementsError):
     """취소 정산건이 참조 중인 정산건이 포함된 경우
     """
@@ -1150,7 +1150,7 @@ class PlatformReferencedCancelOrderTransfersExistError(DeletePlatformPartnerSett
         self.ids = _error.ids
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformContractsNotFoundError(CreatePlatformPartnersError):
     ids: list[str] = field(init=False)
     graphql_ids: list[str] = field(init=False)
@@ -1161,7 +1161,7 @@ class PlatformContractsNotFoundError(CreatePlatformPartnersError):
         self.graphql_ids = _error.graphql_ids
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCurrencyNotSupportedError(CreatePlatformManualTransferError, CreatePlatformOrderTransferError, CreatePlatformPartnerError, CreatePlatformPartnersError):
     """지원 되지 않는 통화를 선택한 경우
     """
@@ -1170,7 +1170,7 @@ class PlatformCurrencyNotSupportedError(CreatePlatformManualTransferError, Creat
     def __post_init__(self, _error: InternalPlatformCurrencyNotSupportedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPartnerIdsAlreadyExistError(CreatePlatformPartnersError):
     ids: list[str] = field(init=False)
     graphql_ids: list[str] = field(init=False)
@@ -1181,7 +1181,7 @@ class PlatformPartnerIdsAlreadyExistError(CreatePlatformPartnersError):
         self.graphql_ids = _error.graphql_ids
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPartnerIdsDuplicatedError(CreatePlatformPartnersError):
     ids: list[str] = field(init=False)
     graphql_ids: list[str] = field(init=False)
@@ -1192,7 +1192,7 @@ class PlatformPartnerIdsDuplicatedError(CreatePlatformPartnersError):
         self.graphql_ids = _error.graphql_ids
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformArchivedPartnerNtsNotAllowedError(ConnectPartnerCounterpartyError, DisconnectPartnerCounterpartyError):
     """보관된 파트너는 국세청 연동/연동해제를 할 수 없는 경우
     """
@@ -1201,7 +1201,7 @@ class PlatformArchivedPartnerNtsNotAllowedError(ConnectPartnerCounterpartyError,
     def __post_init__(self, _error: InternalPlatformArchivedPartnerNtsNotAllowedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformBtxNotEnabledError(ConnectBulkPartnerCounterpartyError, ConnectPartnerCounterpartyError, DisconnectBulkPartnerCounterpartyError, DisconnectPartnerCounterpartyError):
     """BTX 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
     """
@@ -1210,7 +1210,7 @@ class PlatformBtxNotEnabledError(ConnectBulkPartnerCounterpartyError, ConnectPar
     def __post_init__(self, _error: InternalPlatformBtxNotEnabledError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCounterpartyNotConnectableStatusError(ConnectPartnerCounterpartyError):
     """파트너 거래처 연동 상태가 연동 가능한 상태가 아닌 경우
     """
@@ -1219,7 +1219,7 @@ class PlatformCounterpartyNotConnectableStatusError(ConnectPartnerCounterpartyEr
     def __post_init__(self, _error: InternalPlatformCounterpartyNotConnectableStatusError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPartnerScheduleExistsError(ConnectPartnerCounterpartyError):
     """파트너 수정 예약 건이 존재하는 경우
     """
@@ -1228,7 +1228,7 @@ class PlatformPartnerScheduleExistsError(ConnectPartnerCounterpartyError):
     def __post_init__(self, _error: InternalPlatformPartnerScheduleExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPartnerTaxationTypeIsSimpleError(ConnectPartnerCounterpartyError, DisconnectPartnerCounterpartyError):
     """파트너의 과세 유형이 간이 과세 세금계산서 미발행 유형인 경우
     """
@@ -1237,7 +1237,7 @@ class PlatformPartnerTaxationTypeIsSimpleError(ConnectPartnerCounterpartyError, 
     def __post_init__(self, _error: InternalPlatformPartnerTaxationTypeIsSimpleError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPartnerTypeIsNotBusinessError(ConnectPartnerCounterpartyError, DisconnectPartnerCounterpartyError):
     """파트너 유형이 사업자가 아닌 경우
     """
@@ -1246,7 +1246,7 @@ class PlatformPartnerTypeIsNotBusinessError(ConnectPartnerCounterpartyError, Dis
     def __post_init__(self, _error: InternalPlatformPartnerTypeIsNotBusinessError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformTargetPartnerNotFoundError(ConnectBulkPartnerCounterpartyError, DisconnectBulkPartnerCounterpartyError):
     """처리 대상 파트너가 존재하지 않는 경우
     """
@@ -1255,7 +1255,7 @@ class PlatformTargetPartnerNotFoundError(ConnectBulkPartnerCounterpartyError, Di
     def __post_init__(self, _error: InternalPlatformTargetPartnerNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCounterpartyNotConnectedError(DisconnectPartnerCounterpartyError):
     """파트너가 거래처로 연동 되어있지 않은 경우
     """
@@ -1264,7 +1264,7 @@ class PlatformCounterpartyNotConnectedError(DisconnectPartnerCounterpartyError):
     def __post_init__(self, _error: InternalPlatformCounterpartyNotConnectedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformOngoingTaxInvoiceExistsError(DisconnectPartnerCounterpartyError):
     """진행 중인 세금계산서가 존재하는 경우
     """
@@ -1273,7 +1273,7 @@ class PlatformOngoingTaxInvoiceExistsError(DisconnectPartnerCounterpartyError):
     def __post_init__(self, _error: InternalPlatformOngoingTaxInvoiceExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCannotArchiveScheduledPartnerError(ArchivePlatformPartnerError):
     """예약된 업데이트가 있는 파트너를 보관하려고 하는 경우
     """
@@ -1282,7 +1282,7 @@ class PlatformCannotArchiveScheduledPartnerError(ArchivePlatformPartnerError):
     def __post_init__(self, _error: InternalPlatformCannotArchiveScheduledPartnerError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCounterpartyOngoingTaxInvoiceExistsError(ArchivePlatformPartnerError):
     """연동된 거래처에 진행 중인 세금계산서가 있는 경우
     """
@@ -1291,7 +1291,7 @@ class PlatformCounterpartyOngoingTaxInvoiceExistsError(ArchivePlatformPartnerErr
     def __post_init__(self, _error: InternalPlatformCounterpartyOngoingTaxInvoiceExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPartnerPendingNtsOperationError(ArchivePlatformPartnerError, RecoverPlatformPartnerError):
     """파트너의 국세청 연동/해제가 진행 중인 경우
     """
@@ -1300,21 +1300,21 @@ class PlatformPartnerPendingNtsOperationError(ArchivePlatformPartnerError, Recov
     def __post_init__(self, _error: InternalPlatformPartnerPendingNtsOperationError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPartnerIdAlreadyExistsError(CreatePlatformPartnerError):
     _error: InitVar[InternalPlatformPartnerIdAlreadyExistsError]
 
     def __post_init__(self, _error: InternalPlatformPartnerIdAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformTransferIdAlreadyUsedError(CreatePlatformManualTransferError, CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError):
     _error: InitVar[InternalPlatformTransferIdAlreadyUsedError]
 
     def __post_init__(self, _error: InternalPlatformTransferIdAlreadyUsedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCancellableAmountExceededError(CreatePlatformOrderCancelTransferError):
     """취소 가능한 금액이 초과한 경우
     """
@@ -1329,7 +1329,7 @@ class PlatformCancellableAmountExceededError(CreatePlatformOrderCancelTransferEr
         self.amount_type = _error.amount_type
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCancellableDiscountAmountExceededError(CreatePlatformOrderCancelTransferError):
     discount_share_policy_id: str = field(init=False)
     discount_share_policy_graphql_id: str = field(init=False)
@@ -1346,7 +1346,7 @@ class PlatformCancellableDiscountAmountExceededError(CreatePlatformOrderCancelTr
         self.product_id = _error.product_id
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCancellableDiscountTaxFreeAmountExceededError(CreatePlatformOrderCancelTransferError):
     discount_share_policy_id: str = field(init=False)
     discount_share_policy_graphql_id: str = field(init=False)
@@ -1363,7 +1363,7 @@ class PlatformCancellableDiscountTaxFreeAmountExceededError(CreatePlatformOrderC
         self.product_id = _error.product_id
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCancellableProductQuantityExceededError(CreatePlatformOrderCancelTransferError):
     product_id: str = field(init=False)
     cancellable_quantity: int = field(init=False)
@@ -1374,21 +1374,21 @@ class PlatformCancellableProductQuantityExceededError(CreatePlatformOrderCancelT
         self.cancellable_quantity = _error.cancellable_quantity
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCancellationAndPaymentTypeMismatchedError(CreatePlatformOrderCancelTransferError):
     _error: InitVar[InternalPlatformCancellationAndPaymentTypeMismatchedError]
 
     def __post_init__(self, _error: InternalPlatformCancellationAndPaymentTypeMismatchedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCancellationNotFoundError(CreatePlatformOrderCancelTransferError):
     _error: InitVar[InternalPlatformCancellationNotFoundError]
 
     def __post_init__(self, _error: InternalPlatformCancellationNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCannotSpecifyTransferError(CreatePlatformOrderCancelTransferError):
     """정산 건 식별에 실패한 경우
     """
@@ -1397,7 +1397,7 @@ class PlatformCannotSpecifyTransferError(CreatePlatformOrderCancelTransferError)
     def __post_init__(self, _error: InternalPlatformCannotSpecifyTransferError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformDiscountSharePolicyIdDuplicatedError(CreatePlatformOrderCancelTransferError):
     id: str = field(init=False)
     graphql_id: str = field(init=False)
@@ -1408,28 +1408,28 @@ class PlatformDiscountSharePolicyIdDuplicatedError(CreatePlatformOrderCancelTran
         self.graphql_id = _error.graphql_id
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformOrderDetailMismatchedError(CreatePlatformOrderCancelTransferError):
     _error: InitVar[InternalPlatformOrderDetailMismatchedError]
 
     def __post_init__(self, _error: InternalPlatformOrderDetailMismatchedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformOrderTransferAlreadyCancelledError(CreatePlatformOrderCancelTransferError):
     _error: InitVar[InternalPlatformOrderTransferAlreadyCancelledError]
 
     def __post_init__(self, _error: InternalPlatformOrderTransferAlreadyCancelledError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformPaymentNotFoundError(CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError):
     _error: InitVar[InternalPlatformPaymentNotFoundError]
 
     def __post_init__(self, _error: InternalPlatformPaymentNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformProductIdDuplicatedError(CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError):
     id: str = field(init=False)
     _error: InitVar[InternalPlatformProductIdDuplicatedError]
@@ -1438,7 +1438,7 @@ class PlatformProductIdDuplicatedError(CreatePlatformOrderCancelTransferError, C
         self.id = _error.id
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformProductIdNotFoundError(CreatePlatformOrderCancelTransferError):
     id: str = field(init=False)
     _error: InitVar[InternalPlatformProductIdNotFoundError]
@@ -1447,7 +1447,7 @@ class PlatformProductIdNotFoundError(CreatePlatformOrderCancelTransferError):
         self.id = _error.id
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformSettlementAmountExceededError(CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError):
     """정산 가능한 금액을 초과한 경우
     """
@@ -1462,7 +1462,7 @@ class PlatformSettlementAmountExceededError(CreatePlatformOrderCancelTransferErr
         self.requested_amount = _error.requested_amount
         self.allowed_amount = _error.allowed_amount
 
-@dataclass
+@dataclass(repr=False)
 class PlatformSettlementCancelAmountExceededPortOneCancelError(CreatePlatformOrderCancelTransferError):
     """정산 취소 요청 금액이 포트원 결제 취소 내역의 취소 금액을 초과한 경우
     """
@@ -1479,7 +1479,7 @@ class PlatformSettlementCancelAmountExceededPortOneCancelError(CreatePlatformOrd
         self.amount_type = _error.amount_type
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformSettlementDateEarlierThanSettlementStartDateError(CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError):
     """정산일이 정산 시작일보다 빠른 경우
     """
@@ -1492,7 +1492,7 @@ class PlatformSettlementDateEarlierThanSettlementStartDateError(CreatePlatformOr
         self.settlement_start_date = _error.settlement_start_date
         self.settlement_date = _error.settlement_date
 
-@dataclass
+@dataclass(repr=False)
 class PlatformTransferAlreadyExistsError(CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError):
     transfer_id: str = field(init=False)
     transfer_graphql_id: str = field(init=False)
@@ -1503,7 +1503,7 @@ class PlatformTransferAlreadyExistsError(CreatePlatformOrderCancelTransferError,
         self.transfer_graphql_id = _error.transfer_graphql_id
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformTransferDiscountSharePolicyNotFoundError(CreatePlatformOrderCancelTransferError):
     discount_share_policy_id: str = field(init=False)
     discount_share_policy_graphql_id: str = field(init=False)
@@ -1516,14 +1516,14 @@ class PlatformTransferDiscountSharePolicyNotFoundError(CreatePlatformOrderCancel
         self.product_id = _error.product_id
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformTransferNotFoundError(CreatePlatformOrderCancelTransferError, DeletePlatformTransferError, GetPlatformTransferError):
     _error: InitVar[InternalPlatformTransferNotFoundError]
 
     def __post_init__(self, _error: InternalPlatformTransferNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformAdditionalFeePoliciesNotFoundError(CreatePlatformOrderTransferError):
     ids: list[str] = field(init=False)
     graphql_ids: list[str] = field(init=False)
@@ -1534,7 +1534,7 @@ class PlatformAdditionalFeePoliciesNotFoundError(CreatePlatformOrderTransferErro
         self.graphql_ids = _error.graphql_ids
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(CreatePlatformOrderTransferError):
     id: str = field(init=False)
     graphql_id: str = field(init=False)
@@ -1549,7 +1549,7 @@ class PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedErr
         self.settlement_currency = _error.settlement_currency
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(CreatePlatformOrderTransferError):
     id: str = field(init=False)
     graphql_id: str = field(init=False)
@@ -1564,7 +1564,7 @@ class PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatc
         self.settlement_currency = _error.settlement_currency
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformDiscountSharePoliciesNotFoundError(CreatePlatformOrderTransferError):
     ids: list[str] = field(init=False)
     graphql_ids: list[str] = field(init=False)
@@ -1575,7 +1575,7 @@ class PlatformDiscountSharePoliciesNotFoundError(CreatePlatformOrderTransferErro
         self.graphql_ids = _error.graphql_ids
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformSettlementParameterNotFoundError(CreatePlatformOrderTransferError):
     """정산 파라미터가 존재하지 않는 경우
     """
@@ -1584,7 +1584,7 @@ class PlatformSettlementParameterNotFoundError(CreatePlatformOrderTransferError)
     def __post_init__(self, _error: InternalPlatformSettlementParameterNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformSettlementPaymentAmountExceededPortOnePaymentError(CreatePlatformOrderTransferError):
     """정산 요청 결제 금액이 포트원 결제 내역의 결제 금액을 초과한 경우
     """
@@ -1599,7 +1599,7 @@ class PlatformSettlementPaymentAmountExceededPortOnePaymentError(CreatePlatformO
         self.port_one_payment_amount = _error.port_one_payment_amount
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(CreatePlatformOrderTransferError):
     """정산 요청 공급대가가 포트원 결제 내역의 공급대가를 초과한 경우
     """
@@ -1614,7 +1614,7 @@ class PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(CreatePla
         self.port_one_supply_with_vat_amount = _error.port_one_supply_with_vat_amount
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(CreatePlatformOrderTransferError):
     """정산 요청 면세 금액이 포트원 결제 내역의 면세 금액을 초과한 경우
     """
@@ -1629,21 +1629,21 @@ class PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(CreatePlatformO
         self.port_one_tax_free_amount = _error.port_one_tax_free_amount
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformCancelOrderTransfersExistsError(DeletePlatformTransferError):
     _error: InitVar[InternalPlatformCancelOrderTransfersExistsError]
 
     def __post_init__(self, _error: InternalPlatformCancelOrderTransfersExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PlatformTransferNonDeletableStatusError(DeletePlatformTransferError):
     _error: InitVar[InternalPlatformTransferNonDeletableStatusError]
 
     def __post_init__(self, _error: InternalPlatformTransferNonDeletableStatusError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class AlreadyPaidError(ConfirmPaymentError, PayInstantlyError, PayWithBillingKeyError, PreRegisterPaymentError):
     """결제가 이미 완료된 경우
     """
@@ -1652,7 +1652,7 @@ class AlreadyPaidError(ConfirmPaymentError, PayInstantlyError, PayWithBillingKey
     def __post_init__(self, _error: InternalAlreadyPaidError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class BillingKeyAlreadyDeletedError(CreatePaymentScheduleError, DeleteBillingKeyError, PayWithBillingKeyError, RevokePaymentSchedulesError):
     """빌링키가 이미 삭제된 경우
     """
@@ -1661,7 +1661,7 @@ class BillingKeyAlreadyDeletedError(CreatePaymentScheduleError, DeleteBillingKey
     def __post_init__(self, _error: InternalBillingKeyAlreadyDeletedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class BillingKeyNotFoundError(ConfirmBillingKeyError, ConfirmBillingKeyIssueAndPayError, CreatePaymentScheduleError, DeleteBillingKeyError, GetBillingKeyInfoError, PayWithBillingKeyError, RevokePaymentSchedulesError):
     """빌링키가 존재하지 않는 경우
     """
@@ -1670,7 +1670,7 @@ class BillingKeyNotFoundError(ConfirmBillingKeyError, ConfirmBillingKeyIssueAndP
     def __post_init__(self, _error: InternalBillingKeyNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class ChannelNotFoundError(GetPgCardPromotionsError, IssueBillingKeyError, IssueCashReceiptError, PayInstantlyError, PayWithBillingKeyError, SendIdentityVerificationError):
     """요청된 채널이 존재하지 않는 경우
     """
@@ -1679,7 +1679,7 @@ class ChannelNotFoundError(GetPgCardPromotionsError, IssueBillingKeyError, Issue
     def __post_init__(self, _error: InternalChannelNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class DiscountAmountExceedsTotalAmountError(PayInstantlyError, PayWithBillingKeyError):
     """프로모션 할인 금액이 결제 시도 금액 이상인 경우
     """
@@ -1688,7 +1688,7 @@ class DiscountAmountExceedsTotalAmountError(PayInstantlyError, PayWithBillingKey
     def __post_init__(self, _error: InternalDiscountAmountExceedsTotalAmountError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class MaxTransactionCountReachedError(PayInstantlyError, PayWithBillingKeyError, SendIdentityVerificationError):
     """결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
     """
@@ -1697,7 +1697,7 @@ class MaxTransactionCountReachedError(PayInstantlyError, PayWithBillingKeyError,
     def __post_init__(self, _error: InternalMaxTransactionCountReachedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PaymentScheduleAlreadyExistsError(CreatePaymentScheduleError, DeleteBillingKeyError, PayInstantlyError, PayWithBillingKeyError):
     """결제 예약건이 이미 존재하는 경우
     """
@@ -1706,7 +1706,7 @@ class PaymentScheduleAlreadyExistsError(CreatePaymentScheduleError, DeleteBillin
     def __post_init__(self, _error: InternalPaymentScheduleAlreadyExistsError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PgProviderError(ApplyEscrowLogisticsError, CancelCashReceiptError, CancelPaymentError, CapturePaymentError, CloseVirtualAccountError, ConfirmBillingKeyError, ConfirmBillingKeyIssueAndPayError, ConfirmEscrowError, ConfirmIdentityVerificationError, ConfirmPaymentError, DeleteBillingKeyError, GetPgCardPromotionsError, IssueBillingKeyError, IssueCashReceiptError, ModifyEscrowLogisticsError, PayInstantlyError, PayWithBillingKeyError, RegisterStoreReceiptError, ResendIdentityVerificationError, SendIdentityVerificationError, StopPaymentCancellationError):
     """PG사에서 오류를 전달한 경우
     """
@@ -1719,7 +1719,7 @@ class PgProviderError(ApplyEscrowLogisticsError, CancelCashReceiptError, CancelP
         self.pg_code = _error.pg_code
         self.pg_message = _error.pg_message
 
-@dataclass
+@dataclass(repr=False)
 class PromotionPayMethodDoesNotMatchError(PayInstantlyError, PayWithBillingKeyError):
     """결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
     """
@@ -1728,7 +1728,7 @@ class PromotionPayMethodDoesNotMatchError(PayInstantlyError, PayWithBillingKeyEr
     def __post_init__(self, _error: InternalPromotionPayMethodDoesNotMatchError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class SumOfPartsExceedsTotalAmountError(CreatePaymentScheduleError, PayInstantlyError, PayWithBillingKeyError):
     """면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
     """
@@ -1737,7 +1737,7 @@ class SumOfPartsExceedsTotalAmountError(CreatePaymentScheduleError, PayInstantly
     def __post_init__(self, _error: InternalSumOfPartsExceedsTotalAmountError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class CancellableAmountConsistencyBrokenError(CancelPaymentError):
     """취소 가능 잔액 검증에 실패한 경우
     """
@@ -1746,7 +1746,7 @@ class CancellableAmountConsistencyBrokenError(CancelPaymentError):
     def __post_init__(self, _error: InternalCancellableAmountConsistencyBrokenError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class CancelAmountExceedsCancellableAmountError(CancelPaymentError):
     """결제 취소 금액이 취소 가능 금액을 초과한 경우
     """
@@ -1755,7 +1755,7 @@ class CancelAmountExceedsCancellableAmountError(CancelPaymentError):
     def __post_init__(self, _error: InternalCancelAmountExceedsCancellableAmountError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class CancelTaxAmountExceedsCancellableTaxAmountError(CancelPaymentError):
     """취소 과세 금액이 취소 가능한 과세 금액을 초과한 경우
     """
@@ -1764,7 +1764,7 @@ class CancelTaxAmountExceedsCancellableTaxAmountError(CancelPaymentError):
     def __post_init__(self, _error: InternalCancelTaxAmountExceedsCancellableTaxAmountError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(CancelPaymentError):
     """취소 면세 금액이 취소 가능한 면세 금액을 초과한 경우
     """
@@ -1773,7 +1773,7 @@ class CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(CancelPaymentError
     def __post_init__(self, _error: InternalCancelTaxFreeAmountExceedsCancellableTaxFreeAmountError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class NegativePromotionAdjustedCancelAmountError(CancelPaymentError):
     """프로모션에 의해 조정된 취소 금액이 음수인 경우
     """
@@ -1782,7 +1782,7 @@ class NegativePromotionAdjustedCancelAmountError(CancelPaymentError):
     def __post_init__(self, _error: InternalNegativePromotionAdjustedCancelAmountError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PaymentAlreadyCancelledError(CancelPaymentError):
     """결제가 이미 취소된 경우
     """
@@ -1791,7 +1791,7 @@ class PaymentAlreadyCancelledError(CancelPaymentError):
     def __post_init__(self, _error: InternalPaymentAlreadyCancelledError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PaymentNotFoundError(ApplyEscrowLogisticsError, CancelPaymentError, CapturePaymentError, CloseVirtualAccountError, ConfirmEscrowError, ConfirmPaymentError, ConfirmPaymentwallDeliveryError, GetPaymentError, GetPaymentTransactionsError, ModifyEscrowLogisticsError, RegisterStoreReceiptError, ResendWebhookError, StopPaymentCancellationError):
     """결제 건이 존재하지 않는 경우
     """
@@ -1800,7 +1800,7 @@ class PaymentNotFoundError(ApplyEscrowLogisticsError, CancelPaymentError, Captur
     def __post_init__(self, _error: InternalPaymentNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PaymentNotPaidError(ApplyEscrowLogisticsError, CancelPaymentError, CapturePaymentError, ConfirmEscrowError, ModifyEscrowLogisticsError, RegisterStoreReceiptError):
     """결제가 완료되지 않은 경우
     """
@@ -1809,7 +1809,7 @@ class PaymentNotPaidError(ApplyEscrowLogisticsError, CancelPaymentError, Capture
     def __post_init__(self, _error: InternalPaymentNotPaidError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PromotionDiscountRetainOptionShouldNotBeChangedError(CancelPaymentError):
     """프로모션 혜택 유지 옵션을 이전 부분 취소와 다른 것으로 입력한 경우
     """
@@ -1818,7 +1818,7 @@ class PromotionDiscountRetainOptionShouldNotBeChangedError(CancelPaymentError):
     def __post_init__(self, _error: InternalPromotionDiscountRetainOptionShouldNotBeChangedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class SumOfPartsExceedsCancelAmountError(CancelPaymentError):
     """면세 금액 등 하위 항목들의 합이 전체 취소 금액을 초과한 경우
     """
@@ -1827,7 +1827,7 @@ class SumOfPartsExceedsCancelAmountError(CancelPaymentError):
     def __post_init__(self, _error: InternalSumOfPartsExceedsCancelAmountError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PaymentCancellationNotFoundError(StopPaymentCancellationError):
     """결제 취소 내역이 존재하지 않는 경우
     """
@@ -1836,7 +1836,7 @@ class PaymentCancellationNotFoundError(StopPaymentCancellationError):
     def __post_init__(self, _error: InternalPaymentCancellationNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PaymentCancellationNotPendingError(StopPaymentCancellationError):
     """결제 취소 내역이 취소 요청 상태가 아닌 경우
     """
@@ -1845,7 +1845,7 @@ class PaymentCancellationNotPendingError(StopPaymentCancellationError):
     def __post_init__(self, _error: InternalPaymentCancellationNotPendingError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class InformationMismatchError(ConfirmBillingKeyError, ConfirmBillingKeyIssueAndPayError, ConfirmPaymentError):
     """정보가 일치하지 않는 경우
     """
@@ -1854,7 +1854,7 @@ class InformationMismatchError(ConfirmBillingKeyError, ConfirmBillingKeyIssueAnd
     def __post_init__(self, _error: InternalInformationMismatchError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class InvalidPaymentTokenError(ConfirmPaymentError):
     """유효하지 않은 결제 토큰인 경우
     """
@@ -1863,7 +1863,7 @@ class InvalidPaymentTokenError(ConfirmPaymentError):
     def __post_init__(self, _error: InternalInvalidPaymentTokenError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class MaxWebhookRetryCountReachedError(ResendWebhookError):
     """동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우
     """
@@ -1872,7 +1872,7 @@ class MaxWebhookRetryCountReachedError(ResendWebhookError):
     def __post_init__(self, _error: InternalMaxWebhookRetryCountReachedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class WebhookNotFoundError(ResendWebhookError):
     """웹훅 내역이 존재하지 않는 경우
     """
@@ -1881,7 +1881,7 @@ class WebhookNotFoundError(ResendWebhookError):
     def __post_init__(self, _error: InternalWebhookNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PaymentNotWaitingForDepositError(CloseVirtualAccountError):
     """결제 건이 입금 대기 상태가 아닌 경우
     """
@@ -1890,7 +1890,7 @@ class PaymentNotWaitingForDepositError(CloseVirtualAccountError):
     def __post_init__(self, _error: InternalPaymentNotWaitingForDepositError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class ChannelSpecificError(DeleteBillingKeyError, IssueBillingKeyError):
     """여러 채널을 지정한 요청에서, 채널 각각에서 오류가 발생한 경우
     """
@@ -1903,21 +1903,21 @@ class ChannelSpecificError(DeleteBillingKeyError, IssueBillingKeyError):
         self.failures = _error.failures
         self.succeeded_channels = _error.succeeded_channels
 
-@dataclass
+@dataclass(repr=False)
 class BillingKeyAlreadyIssuedError(ConfirmBillingKeyError, ConfirmBillingKeyIssueAndPayError):
     _error: InitVar[InternalBillingKeyAlreadyIssuedError]
 
     def __post_init__(self, _error: InternalBillingKeyAlreadyIssuedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class BillingKeyNotIssuedError(DeleteBillingKeyError):
     _error: InitVar[InternalBillingKeyNotIssuedError]
 
     def __post_init__(self, _error: InternalBillingKeyNotIssuedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class CashReceiptAlreadyIssuedError(IssueCashReceiptError):
     """현금영수증이 이미 발급된 경우
     """
@@ -1926,7 +1926,7 @@ class CashReceiptAlreadyIssuedError(IssueCashReceiptError):
     def __post_init__(self, _error: InternalCashReceiptAlreadyIssuedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class CashReceiptNotFoundError(CancelCashReceiptError, GetCashReceiptError):
     """현금영수증이 존재하지 않는 경우
     """
@@ -1935,7 +1935,7 @@ class CashReceiptNotFoundError(CancelCashReceiptError, GetCashReceiptError):
     def __post_init__(self, _error: InternalCashReceiptNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class CashReceiptNotIssuedError(CancelCashReceiptError):
     """현금영수증이 발급되지 않은 경우
     """
@@ -1944,7 +1944,7 @@ class CashReceiptNotIssuedError(CancelCashReceiptError):
     def __post_init__(self, _error: InternalCashReceiptNotIssuedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PaymentScheduleNotFoundError(GetPaymentScheduleError, RevokePaymentSchedulesError):
     """결제 예약건이 존재하지 않는 경우
     """
@@ -1953,7 +1953,7 @@ class PaymentScheduleNotFoundError(GetPaymentScheduleError, RevokePaymentSchedul
     def __post_init__(self, _error: InternalPaymentScheduleNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PaymentScheduleAlreadyProcessedError(RevokePaymentSchedulesError):
     """결제 예약건이 이미 처리된 경우
     """
@@ -1962,7 +1962,7 @@ class PaymentScheduleAlreadyProcessedError(RevokePaymentSchedulesError):
     def __post_init__(self, _error: InternalPaymentScheduleAlreadyProcessedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PaymentScheduleAlreadyRevokedError(RevokePaymentSchedulesError):
     """결제 예약건이 이미 취소된 경우
     """
@@ -1971,7 +1971,7 @@ class PaymentScheduleAlreadyRevokedError(RevokePaymentSchedulesError):
     def __post_init__(self, _error: InternalPaymentScheduleAlreadyRevokedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class AlreadyPaidOrWaitingError(CreatePaymentScheduleError):
     """결제가 이미 완료되었거나 대기중인 경우
     """
@@ -1980,7 +1980,7 @@ class AlreadyPaidOrWaitingError(CreatePaymentScheduleError):
     def __post_init__(self, _error: InternalAlreadyPaidOrWaitingError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class PromotionNotFoundError(GetPromotionError):
     """프로모션이 존재하지 않는 경우
     """
@@ -1989,7 +1989,7 @@ class PromotionNotFoundError(GetPromotionError):
     def __post_init__(self, _error: InternalPromotionNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class IdentityVerificationAlreadyVerifiedError(ConfirmIdentityVerificationError, ResendIdentityVerificationError, SendIdentityVerificationError):
     """본인인증 건이 이미 인증 완료된 상태인 경우
     """
@@ -1998,7 +1998,7 @@ class IdentityVerificationAlreadyVerifiedError(ConfirmIdentityVerificationError,
     def __post_init__(self, _error: InternalIdentityVerificationAlreadyVerifiedError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class IdentityVerificationNotFoundError(ConfirmIdentityVerificationError, GetIdentityVerificationError, ResendIdentityVerificationError, SendIdentityVerificationError):
     """요청된 본인인증 건이 존재하지 않는 경우
     """
@@ -2007,7 +2007,7 @@ class IdentityVerificationNotFoundError(ConfirmIdentityVerificationError, GetIde
     def __post_init__(self, _error: InternalIdentityVerificationNotFoundError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class IdentityVerificationNotSentError(ConfirmIdentityVerificationError, ResendIdentityVerificationError):
     """본인인증 건이 API로 요청된 상태가 아닌 경우
     """
@@ -2016,7 +2016,7 @@ class IdentityVerificationNotSentError(ConfirmIdentityVerificationError, ResendI
     def __post_init__(self, _error: InternalIdentityVerificationNotSentError) -> None:
         self.message = _error.message
 
-@dataclass
+@dataclass(repr=False)
 class IdentityVerificationAlreadySentError(SendIdentityVerificationError):
     """본인인증 건이 이미 API로 요청된 상태인 경우
     """
@@ -2024,7 +2024,7 @@ class IdentityVerificationAlreadySentError(SendIdentityVerificationError):
 
     def __post_init__(self, _error: InternalIdentityVerificationAlreadySentError) -> None:
         self.message = _error.message
-@dataclass
+@dataclass(repr=False)
 class UnknownError(LoginViaApiSecretError, RefreshTokenError, CreateB2bCounterpartyError, DeleteB2bCounterpartyError, GetB2bCounterpartiesError, GetB2bCounterpartyCertificateError, GetB2bCounterpartyCertificateRegistrationUrlError, GetB2bCounterpartyError, UpdateB2bCounterpartyError, ValidateB2bCounterpartyCertificateError, AttachB2bTaxInvoiceFileError, CancelB2bTaxInvoiceIssuanceError, CancelB2bTaxInvoiceRequestError, CreateB2bFileUploadUrlError, DeleteB2bTaxInvoiceAttachmentError, DeleteB2bTaxInvoiceError, DownloadB2bTaxInvoicesSheetError, DraftB2bTaxInvoiceError, GetB2bBulkTaxInvoiceError, GetB2bTaxInvoiceAttachmentsError, GetB2bTaxInvoiceError, GetB2bTaxInvoicePdfDownloadUrlError, GetB2bTaxInvoicePopupUrlError, GetB2bTaxInvoicePrintUrlError, GetB2bTaxInvoicesError, IssueB2bTaxInvoiceError, IssueB2bTaxInvoiceImmediatelyError, RefuseB2bTaxInvoiceRequestError, RequestB2bTaxInvoiceReverseIssuanceError, SendToNtsB2bTaxInvoiceError, UpdateB2bTaxInvoiceDraftError, requestB2bTaxInvoiceError, ConfirmIdentityVerificationError, GetIdentityVerificationError, GetIdentityVerificationsError, ResendIdentityVerificationError, SendIdentityVerificationError, GetPgCardPromotionsError, ConfirmBillingKeyError, ConfirmBillingKeyIssueAndPayError, DeleteBillingKeyError, GetBillingKeyInfoError, GetBillingKeyInfosError, IssueBillingKeyError, CancelCashReceiptError, GetCashReceiptError, GetCashReceiptsError, IssueCashReceiptError, ApplyEscrowLogisticsError, CancelPaymentError, CapturePaymentError, CloseVirtualAccountError, ConfirmEscrowError, ConfirmPaymentError, GetAllPaymentEventsError, GetAllPaymentsError, GetPaymentError, GetPaymentTransactionsError, GetPaymentsError, ModifyEscrowLogisticsError, PayInstantlyError, PayWithBillingKeyError, PreRegisterPaymentError, RegisterStoreReceiptError, ResendWebhookError, StopPaymentCancellationError, CreatePaymentScheduleError, GetPaymentScheduleError, GetPaymentSchedulesError, RevokePaymentSchedulesError, GetPromotionError, ConfirmPaymentwallDeliveryError, GetKakaopayPaymentOrderError, GetPlatformAccountHolderError, GetPlatformAccountTransfersError, GetPlatformBulkAccountTransfersError, GetPlatformBulkPayoutsError, GetB2bBusinessInfosError, GetPlatformCompanyStateError, CancelPlatformAdditionalFeePolicyScheduleError, CancelPlatformContractScheduleError, CancelPlatformDiscountSharePolicyScheduleError, CancelPlatformPartnerScheduleError, GetPlatformAdditionalFeePolicyScheduleError, GetPlatformContractScheduleError, GetPlatformDiscountSharePolicyFilterOptionsError, GetPlatformDiscountSharePolicyScheduleError, GetPlatformPartnerFilterOptionsError, GetPlatformPartnerScheduleError, GetPlatformSettingError, RescheduleAdditionalFeePolicyError, RescheduleContractError, RescheduleDiscountSharePolicyError, ReschedulePartnerError, ScheduleAdditionalFeePolicyError, ScheduleContractError, ScheduleDiscountSharePolicyError, SchedulePartnerError, SchedulePlatformPartnersError, UpdatePlatformSettingError, ArchivePlatformPartnerError, ConnectBulkPartnerCounterpartyError, ConnectPartnerCounterpartyError, CreatePlatformPartnerError, CreatePlatformPartnersError, DisconnectBulkPartnerCounterpartyError, DisconnectPartnerCounterpartyError, GetPlatformPartnerError, GetPlatformPartnersError, RecoverPlatformPartnerError, UpdatePlatformPartnerError, DeletePlatformPartnerSettlementsError, GetPlatformPartnerSettlementsError, CompletePlatformPayoutByPartnerSettlementIdsError, GetPlatformPayoutsError, ArchivePlatformAdditionalFeePolicyError, ArchivePlatformContractError, ArchivePlatformDiscountSharePolicyError, CreatePlatformAdditionalFeePolicyError, CreatePlatformContractError, CreatePlatformDiscountSharePolicyError, GetPlatformAdditionalFeePoliciesError, GetPlatformAdditionalFeePolicyError, GetPlatformContractError, GetPlatformContractsError, GetPlatformDiscountSharePoliciesError, GetPlatformDiscountSharePolicyError, RecoverPlatformAdditionalFeePolicyError, RecoverPlatformContractError, RecoverPlatformDiscountSharePolicyError, UpdatePlatformAdditionalFeePolicyError, UpdatePlatformContractError, UpdatePlatformDiscountSharePolicyError, CreatePlatformManualTransferError, CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError, DeletePlatformTransferError, DownloadPlatformTransferSheetError, GetPlatformTransferError, GetPlatformTransferSummariesError, GetPaymentReconciliationSettlementVatReportError, GetPaymentReconciliationTransactionVatReportError):
     """알 수 없는 경우"""
     message: Optional[str] = field(default="알 수 없는 오류가 발생했습니다.", init=False)

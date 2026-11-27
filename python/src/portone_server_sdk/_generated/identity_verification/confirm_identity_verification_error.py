@@ -59,4 +59,4 @@ def _deserialize_confirm_identity_verification_error(obj: Any) -> ConfirmIdentit
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ConfirmIdentityVerificationError")
+    raise ValueError("Expected ConfirmIdentityVerificationError")

@@ -30,15 +30,15 @@ def _serialize_refresh_token_response(obj: RefreshTokenResponse) -> Any:
 
 def _deserialize_refresh_token_response(obj: Any) -> RefreshTokenResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "accessToken" not in obj:
-        raise KeyError(f"'accessToken' is not in {obj}")
+        raise KeyError("Missing required field 'accessToken'")
     access_token = obj["accessToken"]
     if not isinstance(access_token, str):
-        raise ValueError(f"{repr(access_token)} is not str")
+        raise ValueError("Expected str for access_token")
     if "refreshToken" not in obj:
-        raise KeyError(f"'refreshToken' is not in {obj}")
+        raise KeyError("Missing required field 'refreshToken'")
     refresh_token = obj["refreshToken"]
     if not isinstance(refresh_token, str):
-        raise ValueError(f"{repr(refresh_token)} is not str")
+        raise ValueError("Expected str for refresh_token")
     return RefreshTokenResponse(access_token, refresh_token)

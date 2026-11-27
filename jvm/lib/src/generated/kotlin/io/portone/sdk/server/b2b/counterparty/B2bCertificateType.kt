@@ -22,7 +22,7 @@ public sealed interface B2bCertificateType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ETax::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ETax = decoder.decodeString().let {
       if (it != "E_TAX") {
-        throw SerializationException(it)
+        throw SerializationException("Expected E_TAX")
       } else {
         return ETax
       }
@@ -38,7 +38,7 @@ public sealed interface B2bCertificateType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Portone::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Portone = decoder.decodeString().let {
       if (it != "PORTONE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PORTONE")
       } else {
         return Portone
       }
@@ -54,7 +54,7 @@ public sealed interface B2bCertificateType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Etc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Etc = decoder.decodeString().let {
       if (it != "ETC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ETC")
       } else {
         return Etc
       }

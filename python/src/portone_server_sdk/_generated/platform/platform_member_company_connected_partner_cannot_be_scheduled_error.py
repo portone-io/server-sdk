@@ -22,16 +22,16 @@ def _serialize_platform_member_company_connected_partner_cannot_be_scheduled_err
 
 def _deserialize_platform_member_company_connected_partner_cannot_be_scheduled_error(obj: Any) -> PlatformMemberCompanyConnectedPartnerCannotBeScheduledError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_MEMBER_COMPANY_CONNECTED_PARTNER_CANNOT_BE_SCHEDULED":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_MEMBER_COMPANY_CONNECTED_PARTNER_CANNOT_BE_SCHEDULED'")
+        raise ValueError("Expected 'PLATFORM_MEMBER_COMPANY_CONNECTED_PARTNER_CANNOT_BE_SCHEDULED' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformMemberCompanyConnectedPartnerCannotBeScheduledError(message)

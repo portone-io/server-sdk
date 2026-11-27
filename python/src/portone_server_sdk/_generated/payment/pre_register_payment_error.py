@@ -38,4 +38,4 @@ def _deserialize_pre_register_payment_error(obj: Any) -> PreRegisterPaymentError
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PreRegisterPaymentError")
+    raise ValueError("Expected PreRegisterPaymentError")

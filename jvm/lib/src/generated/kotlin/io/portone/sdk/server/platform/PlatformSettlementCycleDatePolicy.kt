@@ -22,7 +22,7 @@ public sealed interface PlatformSettlementCycleDatePolicy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HolidayBefore::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HolidayBefore = decoder.decodeString().let {
       if (it != "HOLIDAY_BEFORE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HOLIDAY_BEFORE")
       } else {
         return HolidayBefore
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformSettlementCycleDatePolicy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HolidayAfter::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HolidayAfter = decoder.decodeString().let {
       if (it != "HOLIDAY_AFTER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HOLIDAY_AFTER")
       } else {
         return HolidayAfter
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformSettlementCycleDatePolicy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CalendarDay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CalendarDay = decoder.decodeString().let {
       if (it != "CALENDAR_DAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CALENDAR_DAY")
       } else {
         return CalendarDay
       }

@@ -27,16 +27,16 @@ def _serialize_schedule_platform_partners_body(obj: SchedulePlatformPartnersBody
 
 def _deserialize_schedule_platform_partners_body(obj: Any) -> SchedulePlatformPartnersBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "update" not in obj:
-        raise KeyError(f"'update' is not in {obj}")
+        raise KeyError("Missing required field 'update'")
     update = obj["update"]
     update = _deserialize_schedule_platform_partners_body_update(update)
     if "appliedAt" not in obj:
-        raise KeyError(f"'appliedAt' is not in {obj}")
+        raise KeyError("Missing required field 'appliedAt'")
     applied_at = obj["appliedAt"]
     if not isinstance(applied_at, str):
-        raise ValueError(f"{repr(applied_at)} is not str")
+        raise ValueError("Expected str for applied_at")
     if "filter" in obj:
         filter = obj["filter"]
         filter = _deserialize_platform_partner_filter_input(filter)

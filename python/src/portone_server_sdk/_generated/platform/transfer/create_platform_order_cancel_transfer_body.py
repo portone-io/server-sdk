@@ -111,42 +111,42 @@ def _serialize_create_platform_order_cancel_transfer_body(obj: CreatePlatformOrd
 
 def _deserialize_create_platform_order_cancel_transfer_body(obj: Any) -> CreatePlatformOrderCancelTransferBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "cancellationId" not in obj:
-        raise KeyError(f"'cancellationId' is not in {obj}")
+        raise KeyError("Missing required field 'cancellationId'")
     cancellation_id = obj["cancellationId"]
     if not isinstance(cancellation_id, str):
-        raise ValueError(f"{repr(cancellation_id)} is not str")
+        raise ValueError("Expected str for cancellation_id")
     if "discounts" not in obj:
-        raise KeyError(f"'discounts' is not in {obj}")
+        raise KeyError("Missing required field 'discounts'")
     discounts = obj["discounts"]
     if not isinstance(discounts, list):
-        raise ValueError(f"{repr(discounts)} is not list")
+        raise ValueError("Expected list for discounts")
     for i, item in enumerate(discounts):
         item = _deserialize_create_platform_order_cancel_transfer_body_discount(item)
         discounts[i] = item
     if "partnerId" in obj:
         partner_id = obj["partnerId"]
         if not isinstance(partner_id, str):
-            raise ValueError(f"{repr(partner_id)} is not str")
+            raise ValueError("Expected str for partner_id")
     else:
         partner_id = None
     if "paymentId" in obj:
         payment_id = obj["paymentId"]
         if not isinstance(payment_id, str):
-            raise ValueError(f"{repr(payment_id)} is not str")
+            raise ValueError("Expected str for payment_id")
     else:
         payment_id = None
     if "transferId" in obj:
         transfer_id = obj["transferId"]
         if not isinstance(transfer_id, str):
-            raise ValueError(f"{repr(transfer_id)} is not str")
+            raise ValueError("Expected str for transfer_id")
     else:
         transfer_id = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "orderDetail" in obj:
@@ -157,19 +157,19 @@ def _deserialize_create_platform_order_cancel_transfer_body(obj: Any) -> CreateP
     if "taxFreeAmount" in obj:
         tax_free_amount = obj["taxFreeAmount"]
         if not isinstance(tax_free_amount, int):
-            raise ValueError(f"{repr(tax_free_amount)} is not int")
+            raise ValueError("Expected int for tax_free_amount")
     else:
         tax_free_amount = None
     if "settlementStartDate" in obj:
         settlement_start_date = obj["settlementStartDate"]
         if not isinstance(settlement_start_date, str):
-            raise ValueError(f"{repr(settlement_start_date)} is not str")
+            raise ValueError("Expected str for settlement_start_date")
     else:
         settlement_start_date = None
     if "settlementDate" in obj:
         settlement_date = obj["settlementDate"]
         if not isinstance(settlement_date, str):
-            raise ValueError(f"{repr(settlement_date)} is not str")
+            raise ValueError("Expected str for settlement_date")
     else:
         settlement_date = None
     if "externalCancellationDetail" in obj:
@@ -180,13 +180,13 @@ def _deserialize_create_platform_order_cancel_transfer_body(obj: Any) -> CreateP
     if "isForTest" in obj:
         is_for_test = obj["isForTest"]
         if not isinstance(is_for_test, bool):
-            raise ValueError(f"{repr(is_for_test)} is not bool")
+            raise ValueError("Expected bool for is_for_test")
     else:
         is_for_test = None
     if "userDefinedProperties" in obj:
         user_defined_properties = obj["userDefinedProperties"]
         if not isinstance(user_defined_properties, list):
-            raise ValueError(f"{repr(user_defined_properties)} is not list")
+            raise ValueError("Expected list for user_defined_properties")
         for i, item in enumerate(user_defined_properties):
             item = _deserialize_platform_user_defined_property_key_value(item)
             user_defined_properties[i] = item
@@ -195,7 +195,7 @@ def _deserialize_create_platform_order_cancel_transfer_body(obj: Any) -> CreateP
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     return CreatePlatformOrderCancelTransferBody(cancellation_id, discounts, partner_id, payment_id, transfer_id, memo, order_detail, tax_free_amount, settlement_start_date, settlement_date, external_cancellation_detail, is_for_test, user_defined_properties, id)

@@ -25,12 +25,12 @@ def _serialize_promotion_recover_option_no_recover(obj: PromotionRecoverOptionNo
 
 def _deserialize_promotion_recover_option_no_recover(obj: Any) -> PromotionRecoverOptionNoRecover:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "NO_RECOVER":
-        raise ValueError(f"{repr(type)} is not 'NO_RECOVER'")
+        raise ValueError("Expected 'NO_RECOVER' for type")
     if "spareBudget" in obj:
         spare_budget = obj["spareBudget"]
         spare_budget = _deserialize_promotion_spare_budget(spare_budget)

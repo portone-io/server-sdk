@@ -40,7 +40,7 @@ def _serialize_get_identity_verifications_body(obj: GetIdentityVerificationsBody
 
 def _deserialize_get_identity_verifications_body(obj: Any) -> GetIdentityVerificationsBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "page" in obj:
         page = obj["page"]
         page = _deserialize_page_input(page)

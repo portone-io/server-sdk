@@ -40,12 +40,12 @@ def _serialize_b2b_business_info_result(obj: B2bBusinessInfoResult) -> Any:
 
 def _deserialize_b2b_business_info_result(obj: Any) -> B2bBusinessInfoResult:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "brn" not in obj:
-        raise KeyError(f"'brn' is not in {obj}")
+        raise KeyError("Missing required field 'brn'")
     brn = obj["brn"]
     if not isinstance(brn, str):
-        raise ValueError(f"{repr(brn)} is not str")
+        raise ValueError("Expected str for brn")
     if "businessInfo" in obj:
         business_info = obj["businessInfo"]
         business_info = _deserialize_b2b_business_info(business_info)
@@ -54,13 +54,13 @@ def _deserialize_b2b_business_info_result(obj: Any) -> B2bBusinessInfoResult:
     if "error" in obj:
         error = obj["error"]
         if not isinstance(error, str):
-            raise ValueError(f"{repr(error)} is not str")
+            raise ValueError("Expected str for error")
     else:
         error = None
     if "verificationId" in obj:
         verification_id = obj["verificationId"]
         if not isinstance(verification_id, str):
-            raise ValueError(f"{repr(verification_id)} is not str")
+            raise ValueError("Expected str for verification_id")
     else:
         verification_id = None
     return B2bBusinessInfoResult(brn, business_info, error, verification_id)

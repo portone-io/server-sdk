@@ -22,7 +22,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Status::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Status = decoder.decodeString().let {
       if (it != "STATUS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected STATUS")
       } else {
         return Status
       }
@@ -38,7 +38,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CancelReason::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CancelReason = decoder.decodeString().let {
       if (it != "CANCEL_REASON") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CANCEL_REASON")
       } else {
         return CancelReason
       }
@@ -54,7 +54,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuanceType::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuanceType = decoder.decodeString().let {
       if (it != "ISSUANCE_TYPE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUANCE_TYPE")
       } else {
         return IssuanceType
       }
@@ -70,7 +70,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DocumentModificationType::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DocumentModificationType = decoder.decodeString().let {
       if (it != "DOCUMENT_MODIFICATION_TYPE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DOCUMENT_MODIFICATION_TYPE")
       } else {
         return DocumentModificationType
       }
@@ -86,7 +86,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IsDelayed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IsDelayed = decoder.decodeString().let {
       if (it != "IS_DELAYED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IS_DELAYED")
       } else {
         return IsDelayed
       }
@@ -102,7 +102,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(WriteDate::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): WriteDate = decoder.decodeString().let {
       if (it != "WRITE_DATE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WRITE_DATE")
       } else {
         return WriteDate
       }
@@ -118,7 +118,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuanceDueDate::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuanceDueDate = decoder.decodeString().let {
       if (it != "ISSUANCE_DUE_DATE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUANCE_DUE_DATE")
       } else {
         return IssuanceDueDate
       }
@@ -134,7 +134,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TaxationType::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TaxationType = decoder.decodeString().let {
       if (it != "TAXATION_TYPE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TAXATION_TYPE")
       } else {
         return TaxationType
       }
@@ -150,7 +150,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PurposeType::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PurposeType = decoder.decodeString().let {
       if (it != "PURPOSE_TYPE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PURPOSE_TYPE")
       } else {
         return PurposeType
       }
@@ -166,7 +166,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplierCompanyName::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SupplierCompanyName = decoder.decodeString().let {
       if (it != "SUPPLIER_COMPANY_NAME") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUPPLIER_COMPANY_NAME")
       } else {
         return SupplierCompanyName
       }
@@ -182,7 +182,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplierBrn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SupplierBrn = decoder.decodeString().let {
       if (it != "SUPPLIER_BRN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUPPLIER_BRN")
       } else {
         return SupplierBrn
       }
@@ -198,7 +198,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplierRepresentativeName::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SupplierRepresentativeName = decoder.decodeString().let {
       if (it != "SUPPLIER_REPRESENTATIVE_NAME") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUPPLIER_REPRESENTATIVE_NAME")
       } else {
         return SupplierRepresentativeName
       }
@@ -214,7 +214,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TotalAmount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TotalAmount = decoder.decodeString().let {
       if (it != "TOTAL_AMOUNT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOTAL_AMOUNT")
       } else {
         return TotalAmount
       }
@@ -230,7 +230,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TotalSupplyAmount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TotalSupplyAmount = decoder.decodeString().let {
       if (it != "TOTAL_SUPPLY_AMOUNT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOTAL_SUPPLY_AMOUNT")
       } else {
         return TotalSupplyAmount
       }
@@ -246,7 +246,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TotalTaxAmount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TotalTaxAmount = decoder.decodeString().let {
       if (it != "TOTAL_TAX_AMOUNT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOTAL_TAX_AMOUNT")
       } else {
         return TotalTaxAmount
       }
@@ -262,7 +262,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Memo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Memo = decoder.decodeString().let {
       if (it != "MEMO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MEMO")
       } else {
         return Memo
       }
@@ -278,7 +278,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestedAt = decoder.decodeString().let {
       if (it != "REQUESTED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REQUESTED_AT")
       } else {
         return RequestedAt
       }
@@ -294,7 +294,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuedAt = decoder.decodeString().let {
       if (it != "ISSUED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUED_AT")
       } else {
         return IssuedAt
       }
@@ -310,7 +310,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NtsSentAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NtsSentAt = decoder.decodeString().let {
       if (it != "NTS_SENT_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NTS_SENT_AT")
       } else {
         return NtsSentAt
       }
@@ -326,7 +326,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusUpdatedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): StatusUpdatedAt = decoder.decodeString().let {
       if (it != "STATUS_UPDATED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected STATUS_UPDATED_AT")
       } else {
         return StatusUpdatedAt
       }
@@ -342,7 +342,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BulkTaxInvoiceId::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): BulkTaxInvoiceId = decoder.decodeString().let {
       if (it != "BULK_TAX_INVOICE_ID") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BULK_TAX_INVOICE_ID")
       } else {
         return BulkTaxInvoiceId
       }
@@ -358,7 +358,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlainId::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PlainId = decoder.decodeString().let {
       if (it != "PLAIN_ID") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PLAIN_ID")
       } else {
         return PlainId
       }
@@ -374,7 +374,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplierDocumentKey::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SupplierDocumentKey = decoder.decodeString().let {
       if (it != "SUPPLIER_DOCUMENT_KEY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUPPLIER_DOCUMENT_KEY")
       } else {
         return SupplierDocumentKey
       }
@@ -390,7 +390,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RecipientDocumentKey::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RecipientDocumentKey = decoder.decodeString().let {
       if (it != "RECIPIENT_DOCUMENT_KEY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RECIPIENT_DOCUMENT_KEY")
       } else {
         return RecipientDocumentKey
       }
@@ -406,7 +406,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RecipientCompanyName::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RecipientCompanyName = decoder.decodeString().let {
       if (it != "RECIPIENT_COMPANY_NAME") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RECIPIENT_COMPANY_NAME")
       } else {
         return RecipientCompanyName
       }
@@ -422,7 +422,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RecipientBrn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RecipientBrn = decoder.decodeString().let {
       if (it != "RECIPIENT_BRN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RECIPIENT_BRN")
       } else {
         return RecipientBrn
       }
@@ -438,7 +438,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RecipientRepresentativeName::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RecipientRepresentativeName = decoder.decodeString().let {
       if (it != "RECIPIENT_REPRESENTATIVE_NAME") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RECIPIENT_REPRESENTATIVE_NAME")
       } else {
         return RecipientRepresentativeName
       }
@@ -454,7 +454,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplierCounterpartyId::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SupplierCounterpartyId = decoder.decodeString().let {
       if (it != "SUPPLIER_COUNTERPARTY_ID") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUPPLIER_COUNTERPARTY_ID")
       } else {
         return SupplierCounterpartyId
       }
@@ -470,7 +470,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RecipientCounterpartyId::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RecipientCounterpartyId = decoder.decodeString().let {
       if (it != "RECIPIENT_COUNTERPARTY_ID") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RECIPIENT_COUNTERPARTY_ID")
       } else {
         return RecipientCounterpartyId
       }
@@ -486,7 +486,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayoutId::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PayoutId = decoder.decodeString().let {
       if (it != "PAYOUT_ID") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYOUT_ID")
       } else {
         return PayoutId
       }
@@ -502,7 +502,7 @@ public sealed interface TaxInvoicesSheetField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Items::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Items = decoder.decodeString().let {
       if (it != "ITEMS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ITEMS")
       } else {
         return Items
       }

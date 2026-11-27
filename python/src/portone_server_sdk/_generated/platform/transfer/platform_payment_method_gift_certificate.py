@@ -19,10 +19,10 @@ def _serialize_platform_payment_method_gift_certificate(obj: PlatformPaymentMeth
 
 def _deserialize_platform_payment_method_gift_certificate(obj: Any) -> PlatformPaymentMethodGiftCertificate:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "GIFT_CERTIFICATE":
-        raise ValueError(f"{repr(type)} is not 'GIFT_CERTIFICATE'")
+        raise ValueError("Expected 'GIFT_CERTIFICATE' for type")
     return PlatformPaymentMethodGiftCertificate()

@@ -190,8 +190,10 @@ function generateClient(
       importWriter.writeLine(
         `import type { Unrecognized } from "./${hierarchyToSrc}/utils/unrecognized"`,
       )
+      const hasPathParams = pack.operations.some((op) => op.params.path.length)
+      const pathEncoder = hasPathParams ? "encodePathParameter, " : ""
       importWriter.writeLine(
-        `import { USER_AGENT, type PortOneClientInit } from "${hierarchyToSrc}/client"`,
+        `import { ${pathEncoder}USER_AGENT, type PortOneClientInit } from "${hierarchyToSrc}/client"`,
       )
     } else {
       importWriter.writeLine(
@@ -387,7 +389,7 @@ function generateCategoryIndex(
       )
       errorWriter.indent()
       errorWriter.writeLine(
-        `const message = "message" in data ? data.message : undefined`,
+        `const message = data !== null && typeof data === "object" && "message" in data && typeof data.message === "string" ? data.message : undefined`,
       )
       errorWriter.writeLine("super(message)")
       errorWriter.writeLine("this.data = data")

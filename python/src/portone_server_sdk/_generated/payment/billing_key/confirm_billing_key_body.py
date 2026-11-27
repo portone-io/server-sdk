@@ -45,28 +45,28 @@ def _serialize_confirm_billing_key_body(obj: ConfirmBillingKeyBody) -> Any:
 
 def _deserialize_confirm_billing_key_body(obj: Any) -> ConfirmBillingKeyBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "billingIssueToken" not in obj:
-        raise KeyError(f"'billingIssueToken' is not in {obj}")
+        raise KeyError("Missing required field 'billingIssueToken'")
     billing_issue_token = obj["billingIssueToken"]
     if not isinstance(billing_issue_token, str):
-        raise ValueError(f"{repr(billing_issue_token)} is not str")
+        raise ValueError("Expected str for billing_issue_token")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "isTest" in obj:
         is_test = obj["isTest"]
         if not isinstance(is_test, bool):
-            raise ValueError(f"{repr(is_test)} is not bool")
+            raise ValueError("Expected bool for is_test")
     else:
         is_test = None
     if "skipWebhook" in obj:
         skip_webhook = obj["skipWebhook"]
         if not isinstance(skip_webhook, bool):
-            raise ValueError(f"{repr(skip_webhook)} is not bool")
+            raise ValueError("Expected bool for skip_webhook")
     else:
         skip_webhook = None
     return ConfirmBillingKeyBody(billing_issue_token, store_id, is_test, skip_webhook)
