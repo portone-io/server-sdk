@@ -1,6 +1,6 @@
 import { BillingKeyError } from "./BillingKeyError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { BillingKeyAlreadyDeletedError } from "../../../generated/common/BillingKeyAlreadyDeletedError"
 import type { BillingKeyAlreadyIssuedError } from "../../../generated/payment/billingKey/BillingKeyAlreadyIssuedError"
 import type { BillingKeyDeleteRequester } from "../../../generated/payment/billingKey/BillingKeyDeleteRequester"
@@ -64,9 +64,9 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetBillingKeyInfosError(await readJsonResponse(response))
+				throw new GetBillingKeyInfosError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		issueBillingKey: async (
 			options: {
@@ -115,9 +115,9 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new IssueBillingKeyError(await readJsonResponse(response))
+				throw new IssueBillingKeyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		confirmBillingKey: async (
 			options: {
@@ -151,9 +151,9 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ConfirmBillingKeyError(await readJsonResponse(response))
+				throw new ConfirmBillingKeyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		confirmBillingKeyIssueAndPay: async (
 			options: {
@@ -199,9 +199,9 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ConfirmBillingKeyIssueAndPayError(await readJsonResponse(response))
+				throw new ConfirmBillingKeyIssueAndPayError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getBillingKeyInfo: async (
 			options: {
@@ -229,9 +229,9 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetBillingKeyInfoError(await readJsonResponse(response))
+				throw new GetBillingKeyInfoError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		deleteBillingKey: async (
 			options: {
@@ -268,9 +268,9 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new DeleteBillingKeyError(await readJsonResponse(response))
+				throw new DeleteBillingKeyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 	}
 }

@@ -97,14 +97,14 @@ class ClientTest {
     }
 
     @Test
-    fun testUndecodableResponsesOmitBody() =
+    fun testSchemaMismatchMessagesOmitBody() =
         runTest {
-            response = "private-body"
+            response = """{"detail":"private-body"}"""
             for ((code, message) in listOf(200 to "Unknown API response", 502 to "Unknown API error")) {
                 status = code
-                val error = assertThrows<UnknownException> { client.getPayment("test-server-sdk") }
+                val error = assertThrows<UnknownException> { client.getPayments() }
                 assertEquals("$message (HTTP $code)", error.message)
-                assertRequest("GET", "/payments/test-server-sdk")
+                assertRequest("GET", "/payments", "requestBody={}")
             }
         }
 

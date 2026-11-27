@@ -1,6 +1,6 @@
 import { PaymentError } from "./PaymentError"
 import type { Unrecognized } from "./../../utils/unrecognized"
-import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../client"
 import { BillingKeyClient } from "./billingKey/client"
 import { CashReceiptClient } from "./cashReceipt/client"
 import { AdditionalFeatureClient } from "./additionalFeature/client"
@@ -117,9 +117,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetAllPaymentEventsError(await readJsonResponse(response))
+				throw new GetAllPaymentEventsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getAllPaymentsByCursor: async (
 			options?: {
@@ -158,9 +158,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetAllPaymentsError(await readJsonResponse(response))
+				throw new GetAllPaymentsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		payWithBillingKey: async (
 			options: {
@@ -250,9 +250,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new PayWithBillingKeyError(await readJsonResponse(response))
+				throw new PayWithBillingKeyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		cancelPayment: async (
 			options: {
@@ -309,9 +309,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CancelPaymentError(await readJsonResponse(response))
+				throw new CancelPaymentError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		stopPaymentCancellation: async (
 			options: {
@@ -340,9 +340,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new StopPaymentCancellationError(await readJsonResponse(response))
+				throw new StopPaymentCancellationError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		capturePayment: async (
 			options: {
@@ -369,9 +369,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CapturePaymentError(await readJsonResponse(response))
+				throw new CapturePaymentError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		confirmPayment: async (
 			options: {
@@ -419,9 +419,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ConfirmPaymentError(await readJsonResponse(response))
+				throw new ConfirmPaymentError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		confirmEscrow: async (
 			options: {
@@ -451,9 +451,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ConfirmEscrowError(await readJsonResponse(response))
+				throw new ConfirmEscrowError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		applyEscrowLogistics: async (
 			options: {
@@ -495,9 +495,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ApplyEscrowLogisticsError(await readJsonResponse(response))
+				throw new ApplyEscrowLogisticsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		modifyEscrowLogistics: async (
 			options: {
@@ -539,9 +539,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ModifyEscrowLogisticsError(await readJsonResponse(response))
+				throw new ModifyEscrowLogisticsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		payInstantly: async (
 			options: {
@@ -625,9 +625,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new PayInstantlyError(await readJsonResponse(response))
+				throw new PayInstantlyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		preRegisterPayment: async (
 			options: {
@@ -663,9 +663,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new PreRegisterPaymentError(await readJsonResponse(response))
+				throw new PreRegisterPaymentError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		registerStoreReceipt: async (
 			options: {
@@ -695,9 +695,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new RegisterStoreReceiptError(await readJsonResponse(response))
+				throw new RegisterStoreReceiptError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		resendWebhook: async (
 			options: {
@@ -727,9 +727,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ResendWebhookError(await readJsonResponse(response))
+				throw new ResendWebhookError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPaymentTransactions: async (
 			options: {
@@ -757,9 +757,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPaymentTransactionsError(await readJsonResponse(response))
+				throw new GetPaymentTransactionsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		closeVirtualAccount: async (
 			options: {
@@ -787,9 +787,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CloseVirtualAccountError(await readJsonResponse(response))
+				throw new CloseVirtualAccountError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPayment: async (
 			options: {
@@ -817,9 +817,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPaymentError(await readJsonResponse(response))
+				throw new GetPaymentError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPayments: async (
 			options?: {
@@ -849,9 +849,9 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPaymentsError(await readJsonResponse(response))
+				throw new GetPaymentsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		billingKey: BillingKeyClient(init),
 		cashReceipt: CashReceiptClient(init),

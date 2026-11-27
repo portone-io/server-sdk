@@ -1,6 +1,6 @@
 import { PolicyError } from "./PolicyError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ArchivePlatformAdditionalFeePolicyResponse } from "../../../generated/platform/policy/ArchivePlatformAdditionalFeePolicyResponse"
 import type { ArchivePlatformContractResponse } from "../../../generated/platform/policy/ArchivePlatformContractResponse"
 import type { ArchivePlatformDiscountSharePolicyResponse } from "../../../generated/platform/policy/ArchivePlatformDiscountSharePolicyResponse"
@@ -75,9 +75,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ArchivePlatformAdditionalFeePolicyError(await readJsonResponse(response))
+				throw new ArchivePlatformAdditionalFeePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		recoverPlatformAdditionalFeePolicy: async (
 			options: {
@@ -105,9 +105,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new RecoverPlatformAdditionalFeePolicyError(await readJsonResponse(response))
+				throw new RecoverPlatformAdditionalFeePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformAdditionalFeePolicy: async (
 			options: {
@@ -135,9 +135,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformAdditionalFeePolicyError(await readJsonResponse(response))
+				throw new GetPlatformAdditionalFeePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		updatePlatformAdditionalFeePolicy: async (
 			options: {
@@ -180,9 +180,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new UpdatePlatformAdditionalFeePolicyError(await readJsonResponse(response))
+				throw new UpdatePlatformAdditionalFeePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformAdditionalFeePolicies: async (
 			options?: {
@@ -215,9 +215,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformAdditionalFeePoliciesError(await readJsonResponse(response))
+				throw new GetPlatformAdditionalFeePoliciesError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		createPlatformAdditionalFeePolicy: async (
 			options: {
@@ -261,9 +261,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CreatePlatformAdditionalFeePolicyError(await readJsonResponse(response))
+				throw new CreatePlatformAdditionalFeePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		archivePlatformContract: async (
 			options: {
@@ -291,9 +291,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ArchivePlatformContractError(await readJsonResponse(response))
+				throw new ArchivePlatformContractError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		recoverPlatformContract: async (
 			options: {
@@ -321,9 +321,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new RecoverPlatformContractError(await readJsonResponse(response))
+				throw new RecoverPlatformContractError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformContract: async (
 			options: {
@@ -351,9 +351,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformContractError(await readJsonResponse(response))
+				throw new GetPlatformContractError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		updatePlatformContract: async (
 			options: {
@@ -402,9 +402,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new UpdatePlatformContractError(await readJsonResponse(response))
+				throw new UpdatePlatformContractError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformContracts: async (
 			options?: {
@@ -437,9 +437,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformContractsError(await readJsonResponse(response))
+				throw new GetPlatformContractsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		createPlatformContract: async (
 			options: {
@@ -489,9 +489,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CreatePlatformContractError(await readJsonResponse(response))
+				throw new CreatePlatformContractError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		archivePlatformDiscountSharePolicy: async (
 			options: {
@@ -519,9 +519,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ArchivePlatformDiscountSharePolicyError(await readJsonResponse(response))
+				throw new ArchivePlatformDiscountSharePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		recoverPlatformDiscountSharePolicy: async (
 			options: {
@@ -549,9 +549,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new RecoverPlatformDiscountSharePolicyError(await readJsonResponse(response))
+				throw new RecoverPlatformDiscountSharePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformDiscountSharePolicy: async (
 			options: {
@@ -579,9 +579,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformDiscountSharePolicyError(await readJsonResponse(response))
+				throw new GetPlatformDiscountSharePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		updatePlatformDiscountSharePolicy: async (
 			options: {
@@ -621,9 +621,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new UpdatePlatformDiscountSharePolicyError(await readJsonResponse(response))
+				throw new UpdatePlatformDiscountSharePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformDiscountSharePolicies: async (
 			options?: {
@@ -656,9 +656,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformDiscountSharePoliciesError(await readJsonResponse(response))
+				throw new GetPlatformDiscountSharePoliciesError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		createPlatformDiscountSharePolicy: async (
 			options: {
@@ -699,9 +699,9 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CreatePlatformDiscountSharePolicyError(await readJsonResponse(response))
+				throw new CreatePlatformDiscountSharePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 	}
 }

@@ -1,6 +1,6 @@
 import { PartnerError } from "./PartnerError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ArchivePlatformPartnerResponse } from "../../../generated/platform/partner/ArchivePlatformPartnerResponse"
 import type { ConnectBulkPartnerCounterpartyResponse } from "../../../generated/platform/partner/ConnectBulkPartnerCounterpartyResponse"
 import type { ConnectPartnerCounterpartyResponse } from "../../../generated/platform/partner/ConnectPartnerCounterpartyResponse"
@@ -92,9 +92,9 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CreatePlatformPartnersError(await readJsonResponse(response))
+				throw new CreatePlatformPartnersError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		connectPartnerCounterparty: async (
 			options: {
@@ -122,9 +122,9 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ConnectPartnerCounterpartyError(await readJsonResponse(response))
+				throw new ConnectPartnerCounterpartyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		connectBulkPartnerCounterparty: async (
 			options?: {
@@ -154,9 +154,9 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ConnectBulkPartnerCounterpartyError(await readJsonResponse(response))
+				throw new ConnectBulkPartnerCounterpartyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		disconnectPartnerCounterparty: async (
 			options: {
@@ -184,9 +184,9 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new DisconnectPartnerCounterpartyError(await readJsonResponse(response))
+				throw new DisconnectPartnerCounterpartyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		disconnectBulkPartnerCounterparty: async (
 			options?: {
@@ -216,9 +216,9 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new DisconnectBulkPartnerCounterpartyError(await readJsonResponse(response))
+				throw new DisconnectBulkPartnerCounterpartyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		archivePlatformPartner: async (
 			options: {
@@ -246,9 +246,9 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ArchivePlatformPartnerError(await readJsonResponse(response))
+				throw new ArchivePlatformPartnerError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		recoverPlatformPartner: async (
 			options: {
@@ -276,9 +276,9 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new RecoverPlatformPartnerError(await readJsonResponse(response))
+				throw new RecoverPlatformPartnerError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformPartner: async (
 			options: {
@@ -306,9 +306,9 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformPartnerError(await readJsonResponse(response))
+				throw new GetPlatformPartnerError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		updatePlatformPartner: async (
 			options: {
@@ -363,9 +363,9 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new UpdatePlatformPartnerError(await readJsonResponse(response))
+				throw new UpdatePlatformPartnerError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformPartners: async (
 			options?: {
@@ -398,9 +398,9 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformPartnersError(await readJsonResponse(response))
+				throw new GetPlatformPartnersError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		createPlatformPartner: async (
 			options: {
@@ -456,9 +456,9 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CreatePlatformPartnerError(await readJsonResponse(response))
+				throw new CreatePlatformPartnerError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 	}
 }

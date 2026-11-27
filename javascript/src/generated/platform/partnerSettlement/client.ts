@@ -1,6 +1,6 @@
 import { PartnerSettlementError } from "./PartnerSettlementError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { DeletePlatformPartnerSettlementsResponse } from "../../../generated/platform/partnerSettlement/DeletePlatformPartnerSettlementsResponse"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformPartnerSettlementsResponse } from "../../../generated/platform/partnerSettlement/GetPlatformPartnerSettlementsResponse"
@@ -52,9 +52,9 @@ export function PartnerSettlementClient(init: PortOneClientInit): PartnerSettlem
 				},
 			)
 			if (!response.ok) {
-				throw new DeletePlatformPartnerSettlementsError(await readJsonResponse(response))
+				throw new DeletePlatformPartnerSettlementsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformPartnerSettlements: async (
 			options: {
@@ -92,9 +92,9 @@ export function PartnerSettlementClient(init: PortOneClientInit): PartnerSettlem
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformPartnerSettlementsError(await readJsonResponse(response))
+				throw new GetPlatformPartnerSettlementsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 	}
 }

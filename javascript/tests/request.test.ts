@@ -65,15 +65,12 @@ afterEach(() => vi.unstubAllGlobals());
 describe("payment requests", () => {
 	it.each([
 		200, 502,
-	])("omits malformed JSON from HTTP %i errors", async (status) => {
-		vi.stubGlobal(
-			"fetch",
-			vi.fn().mockResolvedValue(new Response("private-body", { status })),
-		);
-		await expect(client.getPayments()).rejects.toMatchObject({
-			name: "SyntaxError",
-			message: `Invalid JSON response (HTTP ${status})`,
-		});
+	])("propagates the JSON parser error for HTTP %i", async (status) => {
+		const response = new Response(null, { status });
+		const error = new SyntaxError("native parser diagnostic");
+		vi.spyOn(response, "json").mockRejectedValue(error);
+		vi.stubGlobal("fetch", vi.fn().mockResolvedValue(response));
+		await expect(client.getPayments()).rejects.toBe(error);
 	});
 	it.each([
 		"private-body",

@@ -193,7 +193,7 @@ function generateClient(
       const hasPathParams = pack.operations.some((op) => op.params.path.length)
       const pathEncoder = hasPathParams ? "encodePathParameter, " : ""
       importWriter.writeLine(
-        `import { ${pathEncoder}readJsonResponse, USER_AGENT, type PortOneClientInit } from "${hierarchyToSrc}/client"`,
+        `import { ${pathEncoder}USER_AGENT, type PortOneClientInit } from "${hierarchyToSrc}/client"`,
       )
     } else {
       importWriter.writeLine(

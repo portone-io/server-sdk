@@ -1,6 +1,6 @@
 import { PromotionError } from "./PromotionError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { Promotion } from "../../../generated/payment/promotion/Promotion"
@@ -32,9 +32,9 @@ export function PromotionClient(init: PortOneClientInit): PromotionClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPromotionError(await readJsonResponse(response))
+				throw new GetPromotionError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 	}
 }

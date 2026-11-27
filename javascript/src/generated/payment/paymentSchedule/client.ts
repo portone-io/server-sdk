@@ -1,6 +1,6 @@
 import { PaymentScheduleError } from "./PaymentScheduleError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { AlreadyPaidOrWaitingError } from "../../../generated/payment/paymentSchedule/AlreadyPaidOrWaitingError"
 import type { BillingKeyAlreadyDeletedError } from "../../../generated/common/BillingKeyAlreadyDeletedError"
 import type { BillingKeyNotFoundError } from "../../../generated/common/BillingKeyNotFoundError"
@@ -53,9 +53,9 @@ export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleC
 				},
 			)
 			if (!response.ok) {
-				throw new GetPaymentScheduleError(await readJsonResponse(response))
+				throw new GetPaymentScheduleError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPaymentSchedules: async (
 			options?: {
@@ -88,9 +88,9 @@ export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleC
 				},
 			)
 			if (!response.ok) {
-				throw new GetPaymentSchedulesError(await readJsonResponse(response))
+				throw new GetPaymentSchedulesError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		revokePaymentSchedules: async (
 			options?: {
@@ -123,9 +123,9 @@ export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleC
 				},
 			)
 			if (!response.ok) {
-				throw new RevokePaymentSchedulesError(await readJsonResponse(response))
+				throw new RevokePaymentSchedulesError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		createPaymentSchedule: async (
 			options: {
@@ -155,9 +155,9 @@ export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleC
 				},
 			)
 			if (!response.ok) {
-				throw new CreatePaymentScheduleError(await readJsonResponse(response))
+				throw new CreatePaymentScheduleError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 	}
 }

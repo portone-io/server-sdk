@@ -1,6 +1,6 @@
 import { BulkPayoutError } from "./BulkPayoutError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformBulkPayoutsResponse } from "../../../generated/platform/bulkPayout/GetPlatformBulkPayoutsResponse"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
@@ -49,9 +49,9 @@ export function BulkPayoutClient(init: PortOneClientInit): BulkPayoutClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformBulkPayoutsError(await readJsonResponse(response))
+				throw new GetPlatformBulkPayoutsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 	}
 }

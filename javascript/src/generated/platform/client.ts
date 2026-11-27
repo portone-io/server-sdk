@@ -1,6 +1,6 @@
 import { PlatformError } from "./PlatformError"
 import type { Unrecognized } from "./../../utils/unrecognized"
-import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../client"
 import { CompanyClient } from "./company/client"
 import { AccountTransferClient } from "./accountTransfer/client"
 import { PolicyClient } from "./policy/client"
@@ -100,9 +100,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformAdditionalFeePolicyScheduleError(await readJsonResponse(response))
+				throw new GetPlatformAdditionalFeePolicyScheduleError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		rescheduleAdditionalFeePolicy: async (
 			options: {
@@ -139,9 +139,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new RescheduleAdditionalFeePolicyError(await readJsonResponse(response))
+				throw new RescheduleAdditionalFeePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		scheduleAdditionalFeePolicy: async (
 			options: {
@@ -178,9 +178,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ScheduleAdditionalFeePolicyError(await readJsonResponse(response))
+				throw new ScheduleAdditionalFeePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		cancelPlatformAdditionalFeePolicySchedule: async (
 			options: {
@@ -208,9 +208,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CancelPlatformAdditionalFeePolicyScheduleError(await readJsonResponse(response))
+				throw new CancelPlatformAdditionalFeePolicyScheduleError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformContractSchedule: async (
 			options: {
@@ -238,9 +238,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformContractScheduleError(await readJsonResponse(response))
+				throw new GetPlatformContractScheduleError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		rescheduleContract: async (
 			options: {
@@ -277,9 +277,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new RescheduleContractError(await readJsonResponse(response))
+				throw new RescheduleContractError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		scheduleContract: async (
 			options: {
@@ -316,9 +316,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ScheduleContractError(await readJsonResponse(response))
+				throw new ScheduleContractError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		cancelPlatformContractSchedule: async (
 			options: {
@@ -346,9 +346,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CancelPlatformContractScheduleError(await readJsonResponse(response))
+				throw new CancelPlatformContractScheduleError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformDiscountSharePolicySchedule: async (
 			options: {
@@ -376,9 +376,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformDiscountSharePolicyScheduleError(await readJsonResponse(response))
+				throw new GetPlatformDiscountSharePolicyScheduleError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		rescheduleDiscountSharePolicy: async (
 			options: {
@@ -415,9 +415,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new RescheduleDiscountSharePolicyError(await readJsonResponse(response))
+				throw new RescheduleDiscountSharePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		scheduleDiscountSharePolicy: async (
 			options: {
@@ -454,9 +454,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ScheduleDiscountSharePolicyError(await readJsonResponse(response))
+				throw new ScheduleDiscountSharePolicyError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		cancelPlatformDiscountSharePolicySchedule: async (
 			options: {
@@ -484,9 +484,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CancelPlatformDiscountSharePolicyScheduleError(await readJsonResponse(response))
+				throw new CancelPlatformDiscountSharePolicyScheduleError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformDiscountSharePolicyFilterOptions: async (
 			options?: {
@@ -513,9 +513,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformDiscountSharePolicyFilterOptionsError(await readJsonResponse(response))
+				throw new GetPlatformDiscountSharePolicyFilterOptionsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformPartnerFilterOptions: async (
 			options?: {
@@ -542,9 +542,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformPartnerFilterOptionsError(await readJsonResponse(response))
+				throw new GetPlatformPartnerFilterOptionsError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		schedulePlatformPartners: async (
 			options: {
@@ -582,9 +582,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new SchedulePlatformPartnersError(await readJsonResponse(response))
+				throw new SchedulePlatformPartnersError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformPartnerSchedule: async (
 			options: {
@@ -612,9 +612,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformPartnerScheduleError(await readJsonResponse(response))
+				throw new GetPlatformPartnerScheduleError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		reschedulePartner: async (
 			options: {
@@ -651,9 +651,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ReschedulePartnerError(await readJsonResponse(response))
+				throw new ReschedulePartnerError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		schedulePartner: async (
 			options: {
@@ -690,9 +690,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new SchedulePartnerError(await readJsonResponse(response))
+				throw new SchedulePartnerError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		cancelPlatformPartnerSchedule: async (
 			options: {
@@ -720,9 +720,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CancelPlatformPartnerScheduleError(await readJsonResponse(response))
+				throw new CancelPlatformPartnerScheduleError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		getPlatformSetting: async (
 			options?: {
@@ -746,9 +746,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformSettingError(await readJsonResponse(response))
+				throw new GetPlatformSettingError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		updatePlatformSetting: async (
 			options?: {
@@ -793,9 +793,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				throw new UpdatePlatformSettingError(await readJsonResponse(response))
+				throw new UpdatePlatformSettingError(await response.json())
 			}
-			return readJsonResponse(response)
+			return response.json()
 		},
 		company: CompanyClient(init),
 		accountTransfer: AccountTransferClient(init),
