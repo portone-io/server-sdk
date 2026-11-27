@@ -186,7 +186,7 @@ public class PartnerClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", "batch")
+        this.appendPathSegments("platform", "partners", "batch", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -255,7 +255,7 @@ public class PartnerClient(
   ): ConnectPartnerCounterpartyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", "counterparty-connect", id.toString())
+        this.appendPathSegments("platform", "partners", "counterparty-connect", id.toString(), encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -329,7 +329,7 @@ public class PartnerClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", "counterparty-connect")
+        this.appendPathSegments("platform", "partners", "counterparty-connect", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -397,7 +397,7 @@ public class PartnerClient(
   ): DisconnectPartnerCounterpartyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", "counterparty-disconnect", id.toString())
+        this.appendPathSegments("platform", "partners", "counterparty-disconnect", id.toString(), encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -470,7 +470,7 @@ public class PartnerClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", "counterparty-disconnect")
+        this.appendPathSegments("platform", "partners", "counterparty-disconnect", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -538,7 +538,7 @@ public class PartnerClient(
   ): ArchivePlatformPartnerResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString(), "archive")
+        this.appendPathSegments("platform", "partners", id.toString(), "archive", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -604,7 +604,7 @@ public class PartnerClient(
   ): RecoverPlatformPartnerResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString(), "recover")
+        this.appendPathSegments("platform", "partners", id.toString(), "recover", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -668,7 +668,7 @@ public class PartnerClient(
   ): PlatformPartner {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString())
+        this.appendPathSegments("platform", "partners", id.toString(), encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -765,7 +765,7 @@ public class PartnerClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString())
+        this.appendPathSegments("platform", "partners", id.toString(), encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -855,7 +855,7 @@ public class PartnerClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners")
+        this.appendPathSegments("platform", "partners", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
@@ -966,7 +966,7 @@ public class PartnerClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners")
+        this.appendPathSegments("platform", "partners", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {

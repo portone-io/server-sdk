@@ -116,7 +116,7 @@ public class IdentityVerificationClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "confirm")
+        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "confirm", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -177,7 +177,7 @@ public class IdentityVerificationClient(
   ): ResendIdentityVerificationResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "resend")
+        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "resend", encodeSlash = true)
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -263,7 +263,7 @@ public class IdentityVerificationClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "send")
+        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "send", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -331,7 +331,7 @@ public class IdentityVerificationClient(
   ): IdentityVerification {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString())
+        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), encodeSlash = true)
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -402,7 +402,7 @@ public class IdentityVerificationClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications")
+        this.appendPathSegments("identity-verifications", encodeSlash = true)
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {

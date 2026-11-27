@@ -69,7 +69,7 @@ public class PromotionClient(
   ): Promotion {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("promotions", promotionId.toString())
+        this.appendPathSegments("promotions", promotionId.toString(), encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")

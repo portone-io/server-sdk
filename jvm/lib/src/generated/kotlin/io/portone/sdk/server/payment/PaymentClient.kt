@@ -245,7 +245,7 @@ public class PaymentClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payment-events-by-cursor")
+        this.appendPathSegments("payment-events-by-cursor", encodeSlash = true)
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
@@ -329,7 +329,7 @@ public class PaymentClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payments-by-cursor")
+        this.appendPathSegments("payments-by-cursor", encodeSlash = true)
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
@@ -489,7 +489,7 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "billing-key")
+        this.appendPathSegments("payments", paymentId.toString(), "billing-key", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -640,7 +640,7 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "cancel")
+        this.appendPathSegments("payments", paymentId.toString(), "cancel", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -724,7 +724,7 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "cancellations", cancellationId.toString(), "stop")
+        this.appendPathSegments("payments", paymentId.toString(), "cancellations", cancellationId.toString(), "stop", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -788,7 +788,7 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "capture")
+        this.appendPathSegments("payments", paymentId.toString(), "capture", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -892,7 +892,7 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "confirm")
+        this.appendPathSegments("payments", paymentId.toString(), "confirm", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -970,7 +970,7 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "escrow", "complete")
+        this.appendPathSegments("payments", paymentId.toString(), "escrow", "complete", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1055,7 +1055,7 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "escrow", "logistics")
+        this.appendPathSegments("payments", paymentId.toString(), "escrow", "logistics", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1144,7 +1144,7 @@ public class PaymentClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "escrow", "logistics")
+        this.appendPathSegments("payments", paymentId.toString(), "escrow", "logistics", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1303,7 +1303,7 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "instant")
+        this.appendPathSegments("payments", paymentId.toString(), "instant", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1401,7 +1401,7 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "pre-register")
+        this.appendPathSegments("payments", paymentId.toString(), "pre-register", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1470,7 +1470,7 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "register-store-receipt")
+        this.appendPathSegments("payments", paymentId.toString(), "register-store-receipt", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1539,7 +1539,7 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "resend-webhook")
+        this.appendPathSegments("payments", paymentId.toString(), "resend-webhook", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1600,7 +1600,7 @@ public class PaymentClient(
   ): GetPaymentTransactionsResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "transactions")
+        this.appendPathSegments("payments", paymentId.toString(), "transactions", encodeSlash = true)
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -1657,7 +1657,7 @@ public class PaymentClient(
   ): CloseVirtualAccountResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "virtual-account", "close")
+        this.appendPathSegments("payments", paymentId.toString(), "virtual-account", "close", encodeSlash = true)
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -1715,7 +1715,7 @@ public class PaymentClient(
   ): Payment {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString())
+        this.appendPathSegments("payments", paymentId.toString(), encodeSlash = true)
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -1782,7 +1782,7 @@ public class PaymentClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payments")
+        this.appendPathSegments("payments", encodeSlash = true)
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {

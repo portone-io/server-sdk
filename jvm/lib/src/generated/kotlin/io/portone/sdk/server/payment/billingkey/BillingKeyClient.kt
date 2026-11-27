@@ -135,7 +135,7 @@ public class BillingKeyClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("billing-keys")
+        this.appendPathSegments("billing-keys", encodeSlash = true)
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
@@ -234,7 +234,7 @@ public class BillingKeyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("billing-keys")
+        this.appendPathSegments("billing-keys", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -318,7 +318,7 @@ public class BillingKeyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", "confirm")
+        this.appendPathSegments("billing-keys", "confirm", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -422,7 +422,7 @@ public class BillingKeyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", "confirm-issue-and-pay")
+        this.appendPathSegments("billing-keys", "confirm-issue-and-pay", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -488,7 +488,7 @@ public class BillingKeyClient(
   ): BillingKeyInfo {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", billingKey.toString())
+        this.appendPathSegments("billing-keys", billingKey.toString(), encodeSlash = true)
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -559,7 +559,7 @@ public class BillingKeyClient(
   ): DeleteBillingKeyResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", billingKey.toString())
+        this.appendPathSegments("billing-keys", billingKey.toString(), encodeSlash = true)
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
         if (reason != null) this.parameters.append("reason", reason.toString())
         if (requester != null) this.parameters.append("requester", requester.toString())

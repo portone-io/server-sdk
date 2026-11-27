@@ -117,7 +117,7 @@ public class CashReceiptClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("cash-receipts")
+        this.appendPathSegments("cash-receipts", encodeSlash = true)
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
@@ -224,7 +224,7 @@ public class CashReceiptClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("cash-receipts")
+        this.appendPathSegments("cash-receipts", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -293,7 +293,7 @@ public class CashReceiptClient(
   ): CancelCashReceiptResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "cash-receipt", "cancel")
+        this.appendPathSegments("payments", paymentId.toString(), "cash-receipt", "cancel", encodeSlash = true)
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -351,7 +351,7 @@ public class CashReceiptClient(
   ): CashReceipt {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "cash-receipt")
+        this.appendPathSegments("payments", paymentId.toString(), "cash-receipt", encodeSlash = true)
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {

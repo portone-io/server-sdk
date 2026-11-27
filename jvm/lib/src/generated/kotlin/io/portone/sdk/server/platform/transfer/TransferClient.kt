@@ -222,7 +222,7 @@ public class TransferClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfer-summaries", "sheet-file")
+        this.appendPathSegments("platform", "transfer-summaries", "sheet-file", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
@@ -285,7 +285,7 @@ public class TransferClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfer-summaries")
+        this.appendPathSegments("platform", "transfer-summaries", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
@@ -392,7 +392,7 @@ public class TransferClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", "manual")
+        this.appendPathSegments("platform", "transfers", "manual", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -538,7 +538,7 @@ public class TransferClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", "order-cancel")
+        this.appendPathSegments("platform", "transfers", "order-cancel", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -712,7 +712,7 @@ public class TransferClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", "order")
+        this.appendPathSegments("platform", "transfers", "order", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -808,7 +808,7 @@ public class TransferClient(
   ): PlatformTransfer {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", id.toString())
+        this.appendPathSegments("platform", "transfers", id.toString(), encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -871,7 +871,7 @@ public class TransferClient(
   ): DeletePlatformTransferResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", id.toString())
+        this.appendPathSegments("platform", "transfers", id.toString(), encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {

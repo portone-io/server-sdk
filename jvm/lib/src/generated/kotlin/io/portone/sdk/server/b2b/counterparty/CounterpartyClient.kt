@@ -148,7 +148,7 @@ public class CounterpartyClient(
   ): GetB2bCounterpartyCertificateRegistrationUrlResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", brn.toString(), "certificate", "registration-url")
+        this.appendPathSegments("b2b", "counterparties", brn.toString(), "certificate", "registration-url", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -213,7 +213,7 @@ public class CounterpartyClient(
   ): ValidateB2bCounterpartyCertificateResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", brn.toString(), "certificate", "validate")
+        this.appendPathSegments("b2b", "counterparties", brn.toString(), "certificate", "validate", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -279,7 +279,7 @@ public class CounterpartyClient(
   ): B2bCertificate {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", brn.toString(), "certificate")
+        this.appendPathSegments("b2b", "counterparties", brn.toString(), "certificate", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -345,7 +345,7 @@ public class CounterpartyClient(
   ): B2bCounterparty {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", counterpartyId.toString())
+        this.appendPathSegments("b2b", "counterparties", counterpartyId.toString(), encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -409,7 +409,7 @@ public class CounterpartyClient(
   ): DeleteB2bCounterpartyResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", counterpartyId.toString())
+        this.appendPathSegments("b2b", "counterparties", counterpartyId.toString(), encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -487,7 +487,7 @@ public class CounterpartyClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", counterpartyId.toString())
+        this.appendPathSegments("b2b", "counterparties", counterpartyId.toString(), encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -570,7 +570,7 @@ public class CounterpartyClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties")
+        this.appendPathSegments("b2b", "counterparties", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
@@ -648,7 +648,7 @@ public class CounterpartyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties")
+        this.appendPathSegments("b2b", "counterparties", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {

@@ -95,7 +95,7 @@ public class CompanyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "companies", "business-info")
+        this.appendPathSegments("b2b", "companies", "business-info", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -160,7 +160,7 @@ public class CompanyClient(
   ): GetPlatformCompanyStatePayload {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "companies", businessRegistrationNumber.toString(), "state")
+        this.appendPathSegments("platform", "companies", businessRegistrationNumber.toString(), "state", encodeSlash = true)
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {

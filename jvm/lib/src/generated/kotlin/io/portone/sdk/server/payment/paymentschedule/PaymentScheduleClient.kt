@@ -106,7 +106,7 @@ public class PaymentScheduleClient(
   ): PaymentSchedule {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payment-schedules", paymentScheduleId.toString())
+        this.appendPathSegments("payment-schedules", paymentScheduleId.toString(), encodeSlash = true)
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -178,7 +178,7 @@ public class PaymentScheduleClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payment-schedules")
+        this.appendPathSegments("payment-schedules", encodeSlash = true)
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
@@ -248,7 +248,7 @@ public class PaymentScheduleClient(
     )
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("payment-schedules")
+        this.appendPathSegments("payment-schedules", encodeSlash = true)
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
@@ -319,7 +319,7 @@ public class PaymentScheduleClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "schedule")
+        this.appendPathSegments("payments", paymentId.toString(), "schedule", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")

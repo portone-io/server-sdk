@@ -76,7 +76,7 @@ public class AuthClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("login", "api-secret")
+        this.appendPathSegments("login", "api-secret", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -134,7 +134,7 @@ public class AuthClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("token", "refresh")
+        this.appendPathSegments("token", "refresh", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")

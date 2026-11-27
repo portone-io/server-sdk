@@ -224,7 +224,7 @@ export function writeOperation(
     })
     .join(", ")
   crossRef.add("io.ktor.http.appendPathSegments")
-  writer.writeLine(`this.appendPathSegments(${path})`)
+  writer.writeLine(`this.appendPathSegments(${path}, encodeSlash = true)`)
   for (const property of operation.params.query) {
     if (property.required) {
       writer.writeLine(

@@ -84,7 +84,7 @@ public class PgSpecificClient(
   ): GetKakaopayPaymentOrderResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("kakaopay", "payment", "order")
+        this.appendPathSegments("kakaopay", "payment", "order", encodeSlash = true)
         this.parameters.append("pgTxId", pgTxId.toString())
         this.parameters.append("channelKey", channelKey.toString())
       }
@@ -246,7 +246,7 @@ public class PgSpecificClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("paymentwall", "delivery", "confirm")
+        this.appendPathSegments("paymentwall", "delivery", "confirm", encodeSlash = true)
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")

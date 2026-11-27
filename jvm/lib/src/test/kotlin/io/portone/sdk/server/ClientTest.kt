@@ -132,6 +132,15 @@ class ClientTest {
         }
 
     @Test
+    fun testGetPaymentEncodesSlashInPaymentId() =
+        runTest {
+            status = 404
+            response = """{"type":"PAYMENT_NOT_FOUND","message":"Payment not found"}"""
+            assertThrows<PaymentNotFoundException> { client.getPayment("order/part") }
+            assertRequest("GET", "/payments/order%2Fpart")
+        }
+
+    @Test
     fun testCancelPaymentWithAlreadyCancelledPaymentId() =
         runTest {
             status = 409
