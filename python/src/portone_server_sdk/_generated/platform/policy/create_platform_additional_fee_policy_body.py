@@ -44,30 +44,30 @@ def _serialize_create_platform_additional_fee_policy_body(obj: CreatePlatformAdd
 
 def _deserialize_create_platform_additional_fee_policy_body(obj: Any) -> CreatePlatformAdditionalFeePolicyBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "fee" not in obj:
-        raise KeyError(f"'fee' is not in {obj}")
+        raise KeyError("Missing required field 'fee'")
     fee = obj["fee"]
     fee = _deserialize_platform_fee_input(fee)
     if "vatPayer" not in obj:
-        raise KeyError(f"'vatPayer' is not in {obj}")
+        raise KeyError("Missing required field 'vatPayer'")
     vat_payer = obj["vatPayer"]
     vat_payer = _deserialize_platform_payer(vat_payer)
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return CreatePlatformAdditionalFeePolicyBody(name, fee, vat_payer, id, memo)

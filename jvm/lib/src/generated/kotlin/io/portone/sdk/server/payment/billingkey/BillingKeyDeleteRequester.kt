@@ -22,7 +22,7 @@ public sealed interface BillingKeyDeleteRequester {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Customer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Customer = decoder.decodeString().let {
       if (it != "CUSTOMER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CUSTOMER")
       } else {
         return Customer
       }
@@ -38,7 +38,7 @@ public sealed interface BillingKeyDeleteRequester {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Admin::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Admin = decoder.decodeString().let {
       if (it != "ADMIN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ADMIN")
       } else {
         return Admin
       }

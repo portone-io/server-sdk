@@ -26,20 +26,20 @@ def _serialize_platform_partner_filter_options(obj: PlatformPartnerFilterOptions
 
 def _deserialize_platform_partner_filter_options(obj: Any) -> PlatformPartnerFilterOptions:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "tags" not in obj:
-        raise KeyError(f"'tags' is not in {obj}")
+        raise KeyError("Missing required field 'tags'")
     tags = obj["tags"]
     if not isinstance(tags, list):
-        raise ValueError(f"{repr(tags)} is not list")
+        raise ValueError("Expected list for tags")
     for i, item in enumerate(tags):
         if not isinstance(item, str):
-            raise ValueError(f"{repr(item)} is not str")
+            raise ValueError("Expected str for item")
     if "contractSummary" not in obj:
-        raise KeyError(f"'contractSummary' is not in {obj}")
+        raise KeyError("Missing required field 'contractSummary'")
     contract_summary = obj["contractSummary"]
     if not isinstance(contract_summary, list):
-        raise ValueError(f"{repr(contract_summary)} is not list")
+        raise ValueError("Expected list for contract_summary")
     for i, item in enumerate(contract_summary):
         item = _deserialize_platform_partner_contract_summary(item)
         contract_summary[i] = item

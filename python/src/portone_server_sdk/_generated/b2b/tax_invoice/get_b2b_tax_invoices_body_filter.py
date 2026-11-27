@@ -89,7 +89,7 @@ def _serialize_get_b2b_tax_invoices_body_filter(obj: GetB2bTaxInvoicesBodyFilter
 
 def _deserialize_get_b2b_tax_invoices_body_filter(obj: Any) -> GetB2bTaxInvoicesBodyFilter:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "primaryFilter" in obj:
         primary_filter = obj["primaryFilter"]
         primary_filter = _deserialize_get_b2b_tax_invoices_body_primary_filter(primary_filter)
@@ -98,19 +98,19 @@ def _deserialize_get_b2b_tax_invoices_body_filter(obj: Any) -> GetB2bTaxInvoices
     if "supplierBrn" in obj:
         supplier_brn = obj["supplierBrn"]
         if not isinstance(supplier_brn, str):
-            raise ValueError(f"{repr(supplier_brn)} is not str")
+            raise ValueError("Expected str for supplier_brn")
     else:
         supplier_brn = None
     if "partnerBrn" in obj:
         partner_brn = obj["partnerBrn"]
         if not isinstance(partner_brn, str):
-            raise ValueError(f"{repr(partner_brn)} is not str")
+            raise ValueError("Expected str for partner_brn")
     else:
         partner_brn = None
     if "statuses" in obj:
         statuses = obj["statuses"]
         if not isinstance(statuses, list):
-            raise ValueError(f"{repr(statuses)} is not list")
+            raise ValueError("Expected list for statuses")
         for i, item in enumerate(statuses):
             item = _deserialize_b2b_tax_invoice_status(item)
             statuses[i] = item
@@ -119,7 +119,7 @@ def _deserialize_get_b2b_tax_invoices_body_filter(obj: Any) -> GetB2bTaxInvoices
     if "taxationTypes" in obj:
         taxation_types = obj["taxationTypes"]
         if not isinstance(taxation_types, list):
-            raise ValueError(f"{repr(taxation_types)} is not list")
+            raise ValueError("Expected list for taxation_types")
         for i, item in enumerate(taxation_types):
             item = _deserialize_b2b_tax_invoice_taxation_type(item)
             taxation_types[i] = item
@@ -128,7 +128,7 @@ def _deserialize_get_b2b_tax_invoices_body_filter(obj: Any) -> GetB2bTaxInvoices
     if "documentModificationTypes" in obj:
         document_modification_types = obj["documentModificationTypes"]
         if not isinstance(document_modification_types, list):
-            raise ValueError(f"{repr(document_modification_types)} is not list")
+            raise ValueError("Expected list for document_modification_types")
         for i, item in enumerate(document_modification_types):
             item = _deserialize_b2b_tax_invoice_document_modification_type(item)
             document_modification_types[i] = item
@@ -137,13 +137,13 @@ def _deserialize_get_b2b_tax_invoices_body_filter(obj: Any) -> GetB2bTaxInvoices
     if "isDelayed" in obj:
         is_delayed = obj["isDelayed"]
         if not isinstance(is_delayed, bool):
-            raise ValueError(f"{repr(is_delayed)} is not bool")
+            raise ValueError("Expected bool for is_delayed")
     else:
         is_delayed = None
     if "issuanceTypes" in obj:
         issuance_types = obj["issuanceTypes"]
         if not isinstance(issuance_types, list):
-            raise ValueError(f"{repr(issuance_types)} is not list")
+            raise ValueError("Expected list for issuance_types")
         for i, item in enumerate(issuance_types):
             item = _deserialize_b2b_tax_invoice_issuance_type(item)
             issuance_types[i] = item
@@ -152,7 +152,7 @@ def _deserialize_get_b2b_tax_invoices_body_filter(obj: Any) -> GetB2bTaxInvoices
     if "purposeTypes" in obj:
         purpose_types = obj["purposeTypes"]
         if not isinstance(purpose_types, list):
-            raise ValueError(f"{repr(purpose_types)} is not list")
+            raise ValueError("Expected list for purpose_types")
         for i, item in enumerate(purpose_types):
             item = _deserialize_b2b_tax_invoice_purpose_type(item)
             purpose_types[i] = item
@@ -161,13 +161,13 @@ def _deserialize_get_b2b_tax_invoices_body_filter(obj: Any) -> GetB2bTaxInvoices
     if "counterpartyId" in obj:
         counterparty_id = obj["counterpartyId"]
         if not isinstance(counterparty_id, str):
-            raise ValueError(f"{repr(counterparty_id)} is not str")
+            raise ValueError("Expected str for counterparty_id")
     else:
         counterparty_id = None
     if "includeBrnMatch" in obj:
         include_brn_match = obj["includeBrnMatch"]
         if not isinstance(include_brn_match, bool):
-            raise ValueError(f"{repr(include_brn_match)} is not bool")
+            raise ValueError("Expected bool for include_brn_match")
     else:
         include_brn_match = None
     return GetB2bTaxInvoicesBodyFilter(primary_filter, supplier_brn, partner_brn, statuses, taxation_types, document_modification_types, is_delayed, issuance_types, purpose_types, counterparty_id, include_brn_match)

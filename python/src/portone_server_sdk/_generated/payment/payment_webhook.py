@@ -85,17 +85,17 @@ def _serialize_payment_webhook(obj: PaymentWebhook) -> Any:
 
 def _deserialize_payment_webhook(obj: Any) -> PaymentWebhook:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "url" not in obj:
-        raise KeyError(f"'url' is not in {obj}")
+        raise KeyError("Missing required field 'url'")
     url = obj["url"]
     if not isinstance(url, str):
-        raise ValueError(f"{repr(url)} is not str")
+        raise ValueError("Expected str for url")
     if "paymentStatus" in obj:
         payment_status = obj["paymentStatus"]
         payment_status = _deserialize_payment_webhook_payment_status(payment_status)
@@ -109,19 +109,19 @@ def _deserialize_payment_webhook(obj: Any) -> PaymentWebhook:
     if "isAsync" in obj:
         is_async = obj["isAsync"]
         if not isinstance(is_async, bool):
-            raise ValueError(f"{repr(is_async)} is not bool")
+            raise ValueError("Expected bool for is_async")
     else:
         is_async = None
     if "currentExecutionCount" in obj:
         current_execution_count = obj["currentExecutionCount"]
         if not isinstance(current_execution_count, int):
-            raise ValueError(f"{repr(current_execution_count)} is not int")
+            raise ValueError("Expected int for current_execution_count")
     else:
         current_execution_count = None
     if "maxExecutionCount" in obj:
         max_execution_count = obj["maxExecutionCount"]
         if not isinstance(max_execution_count, int):
-            raise ValueError(f"{repr(max_execution_count)} is not int")
+            raise ValueError("Expected int for max_execution_count")
     else:
         max_execution_count = None
     if "trigger" in obj:
@@ -142,7 +142,7 @@ def _deserialize_payment_webhook(obj: Any) -> PaymentWebhook:
     if "triggeredAt" in obj:
         triggered_at = obj["triggeredAt"]
         if not isinstance(triggered_at, str):
-            raise ValueError(f"{repr(triggered_at)} is not str")
+            raise ValueError("Expected str for triggered_at")
     else:
         triggered_at = None
     return PaymentWebhook(id, url, payment_status, status, is_async, current_execution_count, max_execution_count, trigger, request, response, triggered_at)

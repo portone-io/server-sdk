@@ -16,7 +16,6 @@ from ...platform.partner_settlement.delete_platform_partner_settlements_response
 from ...platform.partner_settlement.get_platform_partner_settlements_response import GetPlatformPartnerSettlementsResponse, _deserialize_get_platform_partner_settlements_response, _serialize_get_platform_partner_settlements_response
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from ...platform.partner_settlement.platform_partner_settlement_filter_input import PlatformPartnerSettlementFilterInput, _deserialize_platform_partner_settlement_filter_input, _serialize_platform_partner_settlement_filter_input
-from urllib.parse import quote
 class PartnerSettlementClient:
     _secret: str
     _base_url: str

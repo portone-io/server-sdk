@@ -25,15 +25,15 @@ def _serialize_platform_transfer_property_exact_match_input(obj: PlatformTransfe
 
 def _deserialize_platform_transfer_property_exact_match_input(obj: Any) -> PlatformTransferPropertyExactMatchInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "key" not in obj:
-        raise KeyError(f"'key' is not in {obj}")
+        raise KeyError("Missing required field 'key'")
     key = obj["key"]
     if not isinstance(key, str):
-        raise ValueError(f"{repr(key)} is not str")
+        raise ValueError("Expected str for key")
     if "value" not in obj:
-        raise KeyError(f"'value' is not in {obj}")
+        raise KeyError("Missing required field 'value'")
     value = obj["value"]
     if not isinstance(value, str):
-        raise ValueError(f"{repr(value)} is not str")
+        raise ValueError("Expected str for value")
     return PlatformTransferPropertyExactMatchInput(key, value)

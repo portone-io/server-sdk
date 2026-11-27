@@ -76,22 +76,22 @@ def _serialize_confirm_billing_key_issue_and_pay_body(obj: ConfirmBillingKeyIssu
 
 def _deserialize_confirm_billing_key_issue_and_pay_body(obj: Any) -> ConfirmBillingKeyIssueAndPayBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "billingIssueToken" not in obj:
-        raise KeyError(f"'billingIssueToken' is not in {obj}")
+        raise KeyError("Missing required field 'billingIssueToken'")
     billing_issue_token = obj["billingIssueToken"]
     if not isinstance(billing_issue_token, str):
-        raise ValueError(f"{repr(billing_issue_token)} is not str")
+        raise ValueError("Expected str for billing_issue_token")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "paymentId" in obj:
         payment_id = obj["paymentId"]
         if not isinstance(payment_id, str):
-            raise ValueError(f"{repr(payment_id)} is not str")
+            raise ValueError("Expected str for payment_id")
     else:
         payment_id = None
     if "currency" in obj:
@@ -102,25 +102,25 @@ def _deserialize_confirm_billing_key_issue_and_pay_body(obj: Any) -> ConfirmBill
     if "totalAmount" in obj:
         total_amount = obj["totalAmount"]
         if not isinstance(total_amount, int):
-            raise ValueError(f"{repr(total_amount)} is not int")
+            raise ValueError("Expected int for total_amount")
     else:
         total_amount = None
     if "taxFreeAmount" in obj:
         tax_free_amount = obj["taxFreeAmount"]
         if not isinstance(tax_free_amount, int):
-            raise ValueError(f"{repr(tax_free_amount)} is not int")
+            raise ValueError("Expected int for tax_free_amount")
     else:
         tax_free_amount = None
     if "isTest" in obj:
         is_test = obj["isTest"]
         if not isinstance(is_test, bool):
-            raise ValueError(f"{repr(is_test)} is not bool")
+            raise ValueError("Expected bool for is_test")
     else:
         is_test = None
     if "skipWebhook" in obj:
         skip_webhook = obj["skipWebhook"]
         if not isinstance(skip_webhook, bool):
-            raise ValueError(f"{repr(skip_webhook)} is not bool")
+            raise ValueError("Expected bool for skip_webhook")
     else:
         skip_webhook = None
     return ConfirmBillingKeyIssueAndPayBody(billing_issue_token, store_id, payment_id, currency, total_amount, tax_free_amount, is_test, skip_webhook)

@@ -22,7 +22,7 @@ public sealed interface PlatformAccountStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Verified::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Verified = decoder.decodeString().let {
       if (it != "VERIFIED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VERIFIED")
       } else {
         return Verified
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformAccountStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VerifyFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VerifyFailed = decoder.decodeString().let {
       if (it != "VERIFY_FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VERIFY_FAILED")
       } else {
         return VerifyFailed
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformAccountStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VerifyError::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VerifyError = decoder.decodeString().let {
       if (it != "VERIFY_ERROR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VERIFY_ERROR")
       } else {
         return VerifyError
       }
@@ -70,7 +70,7 @@ public sealed interface PlatformAccountStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NotVerified::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NotVerified = decoder.decodeString().let {
       if (it != "NOT_VERIFIED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NOT_VERIFIED")
       } else {
         return NotVerified
       }
@@ -86,7 +86,7 @@ public sealed interface PlatformAccountStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Unknown::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Unknown = decoder.decodeString().let {
       if (it != "UNKNOWN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UNKNOWN")
       } else {
         return Unknown
       }

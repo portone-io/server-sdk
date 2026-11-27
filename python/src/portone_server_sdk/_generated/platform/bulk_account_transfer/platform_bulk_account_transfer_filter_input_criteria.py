@@ -32,7 +32,7 @@ def _serialize_platform_bulk_account_transfer_filter_input_criteria(obj: Platfor
 
 def _deserialize_platform_bulk_account_transfer_filter_input_criteria(obj: Any) -> PlatformBulkAccountTransferFilterInputCriteria:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "timestampRange" in obj:
         timestamp_range = obj["timestampRange"]
         timestamp_range = _deserialize_date_time_range(timestamp_range)
@@ -46,7 +46,7 @@ def _deserialize_platform_bulk_account_transfer_filter_input_criteria(obj: Any) 
     if "bulkAccountTransferId" in obj:
         bulk_account_transfer_id = obj["bulkAccountTransferId"]
         if not isinstance(bulk_account_transfer_id, str):
-            raise ValueError(f"{repr(bulk_account_transfer_id)} is not str")
+            raise ValueError("Expected str for bulk_account_transfer_id")
     else:
         bulk_account_transfer_id = None
     return PlatformBulkAccountTransferFilterInputCriteria(timestamp_range, status_updated_timestamp_range, bulk_account_transfer_id)

@@ -36,18 +36,18 @@ def _serialize_platform_settlement_cycle(obj: PlatformSettlementCycle) -> Any:
 
 def _deserialize_platform_settlement_cycle(obj: Any) -> PlatformSettlementCycle:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "lagDays" not in obj:
-        raise KeyError(f"'lagDays' is not in {obj}")
+        raise KeyError("Missing required field 'lagDays'")
     lag_days = obj["lagDays"]
     if not isinstance(lag_days, int):
-        raise ValueError(f"{repr(lag_days)} is not int")
+        raise ValueError("Expected int for lag_days")
     if "datePolicy" not in obj:
-        raise KeyError(f"'datePolicy' is not in {obj}")
+        raise KeyError("Missing required field 'datePolicy'")
     date_policy = obj["datePolicy"]
     date_policy = _deserialize_platform_settlement_cycle_date_policy(date_policy)
     if "method" not in obj:
-        raise KeyError(f"'method' is not in {obj}")
+        raise KeyError("Missing required field 'method'")
     method = obj["method"]
     method = _deserialize_platform_settlement_cycle_method(method)
     return PlatformSettlementCycle(lag_days, date_policy, method)

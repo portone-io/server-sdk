@@ -31,11 +31,11 @@ def _serialize_customer_name_input(obj: CustomerNameInput) -> Any:
 
 def _deserialize_customer_name_input(obj: Any) -> CustomerNameInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "full" in obj:
         full = obj["full"]
         if not isinstance(full, str):
-            raise ValueError(f"{repr(full)} is not str")
+            raise ValueError("Expected str for full")
     else:
         full = None
     if "separated" in obj:

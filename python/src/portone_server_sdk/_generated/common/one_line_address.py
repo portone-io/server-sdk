@@ -24,15 +24,15 @@ def _serialize_one_line_address(obj: OneLineAddress) -> Any:
 
 def _deserialize_one_line_address(obj: Any) -> OneLineAddress:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "ONE_LINE":
-        raise ValueError(f"{repr(type)} is not 'ONE_LINE'")
+        raise ValueError("Expected 'ONE_LINE' for type")
     if "oneLine" not in obj:
-        raise KeyError(f"'oneLine' is not in {obj}")
+        raise KeyError("Missing required field 'oneLine'")
     one_line = obj["oneLine"]
     if not isinstance(one_line, str):
-        raise ValueError(f"{repr(one_line)} is not str")
+        raise ValueError("Expected str for one_line")
     return OneLineAddress(one_line)

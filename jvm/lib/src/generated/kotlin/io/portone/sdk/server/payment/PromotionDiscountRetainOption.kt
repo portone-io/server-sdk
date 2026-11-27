@@ -20,7 +20,7 @@ public sealed interface PromotionDiscountRetainOption {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Retain::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Retain = decoder.decodeString().let {
       if (it != "RETAIN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RETAIN")
       } else {
         return Retain
       }
@@ -35,7 +35,7 @@ public sealed interface PromotionDiscountRetainOption {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Release::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Release = decoder.decodeString().let {
       if (it != "RELEASE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RELEASE")
       } else {
         return Release
       }

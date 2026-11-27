@@ -55,23 +55,23 @@ def _serialize_get_b2b_tax_invoices_body(obj: GetB2bTaxInvoicesBody) -> Any:
 
 def _deserialize_get_b2b_tax_invoices_body(obj: Any) -> GetB2bTaxInvoicesBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "test" in obj:
         test = obj["test"]
         if not isinstance(test, bool):
-            raise ValueError(f"{repr(test)} is not bool")
+            raise ValueError("Expected bool for test")
     else:
         test = None
     if "pageNumber" in obj:
         page_number = obj["pageNumber"]
         if not isinstance(page_number, int):
-            raise ValueError(f"{repr(page_number)} is not int")
+            raise ValueError("Expected int for page_number")
     else:
         page_number = None
     if "pageSize" in obj:
         page_size = obj["pageSize"]
         if not isinstance(page_size, int):
-            raise ValueError(f"{repr(page_size)} is not int")
+            raise ValueError("Expected int for page_size")
     else:
         page_size = None
     if "filter" in obj:

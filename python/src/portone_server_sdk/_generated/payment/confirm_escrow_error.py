@@ -52,4 +52,4 @@ def _deserialize_confirm_escrow_error(obj: Any) -> ConfirmEscrowError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ConfirmEscrowError")
+    raise ValueError("Expected ConfirmEscrowError")

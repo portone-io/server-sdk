@@ -221,140 +221,140 @@ def _serialize_b2b_tax_invoice_summary(obj: B2bTaxInvoiceSummary) -> Any:
 
 def _deserialize_b2b_tax_invoice_summary(obj: Any) -> B2bTaxInvoiceSummary:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "taxationType" not in obj:
-        raise KeyError(f"'taxationType' is not in {obj}")
+        raise KeyError("Missing required field 'taxationType'")
     taxation_type = obj["taxationType"]
     taxation_type = _deserialize_b2b_tax_invoice_taxation_type(taxation_type)
     if "documentModificationType" not in obj:
-        raise KeyError(f"'documentModificationType' is not in {obj}")
+        raise KeyError("Missing required field 'documentModificationType'")
     document_modification_type = obj["documentModificationType"]
     document_modification_type = _deserialize_b2b_tax_invoice_document_modification_type(document_modification_type)
     if "issuanceType" not in obj:
-        raise KeyError(f"'issuanceType' is not in {obj}")
+        raise KeyError("Missing required field 'issuanceType'")
     issuance_type = obj["issuanceType"]
     issuance_type = _deserialize_b2b_tax_invoice_issuance_type(issuance_type)
     if "totalSupplyAmount" not in obj:
-        raise KeyError(f"'totalSupplyAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalSupplyAmount'")
     total_supply_amount = obj["totalSupplyAmount"]
     if not isinstance(total_supply_amount, int):
-        raise ValueError(f"{repr(total_supply_amount)} is not int")
+        raise ValueError("Expected int for total_supply_amount")
     if "totalTaxAmount" not in obj:
-        raise KeyError(f"'totalTaxAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalTaxAmount'")
     total_tax_amount = obj["totalTaxAmount"]
     if not isinstance(total_tax_amount, int):
-        raise ValueError(f"{repr(total_tax_amount)} is not int")
+        raise ValueError("Expected int for total_tax_amount")
     if "totalAmount" not in obj:
-        raise KeyError(f"'totalAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalAmount'")
     total_amount = obj["totalAmount"]
     if not isinstance(total_amount, int):
-        raise ValueError(f"{repr(total_amount)} is not int")
+        raise ValueError("Expected int for total_amount")
     if "purposeType" not in obj:
-        raise KeyError(f"'purposeType' is not in {obj}")
+        raise KeyError("Missing required field 'purposeType'")
     purpose_type = obj["purposeType"]
     purpose_type = _deserialize_b2b_tax_invoice_purpose_type(purpose_type)
     if "supplierBrn" not in obj:
-        raise KeyError(f"'supplierBrn' is not in {obj}")
+        raise KeyError("Missing required field 'supplierBrn'")
     supplier_brn = obj["supplierBrn"]
     if not isinstance(supplier_brn, str):
-        raise ValueError(f"{repr(supplier_brn)} is not str")
+        raise ValueError("Expected str for supplier_brn")
     if "supplierName" not in obj:
-        raise KeyError(f"'supplierName' is not in {obj}")
+        raise KeyError("Missing required field 'supplierName'")
     supplier_name = obj["supplierName"]
     if not isinstance(supplier_name, str):
-        raise ValueError(f"{repr(supplier_name)} is not str")
+        raise ValueError("Expected str for supplier_name")
     if "supplierRepresentativeName" not in obj:
-        raise KeyError(f"'supplierRepresentativeName' is not in {obj}")
+        raise KeyError("Missing required field 'supplierRepresentativeName'")
     supplier_representative_name = obj["supplierRepresentativeName"]
     if not isinstance(supplier_representative_name, str):
-        raise ValueError(f"{repr(supplier_representative_name)} is not str")
+        raise ValueError("Expected str for supplier_representative_name")
     if "recipientBrn" not in obj:
-        raise KeyError(f"'recipientBrn' is not in {obj}")
+        raise KeyError("Missing required field 'recipientBrn'")
     recipient_brn = obj["recipientBrn"]
     if not isinstance(recipient_brn, str):
-        raise ValueError(f"{repr(recipient_brn)} is not str")
+        raise ValueError("Expected str for recipient_brn")
     if "recipientName" not in obj:
-        raise KeyError(f"'recipientName' is not in {obj}")
+        raise KeyError("Missing required field 'recipientName'")
     recipient_name = obj["recipientName"]
     if not isinstance(recipient_name, str):
-        raise ValueError(f"{repr(recipient_name)} is not str")
+        raise ValueError("Expected str for recipient_name")
     if "recipientRepresentativeName" not in obj:
-        raise KeyError(f"'recipientRepresentativeName' is not in {obj}")
+        raise KeyError("Missing required field 'recipientRepresentativeName'")
     recipient_representative_name = obj["recipientRepresentativeName"]
     if not isinstance(recipient_representative_name, str):
-        raise ValueError(f"{repr(recipient_representative_name)} is not str")
+        raise ValueError("Expected str for recipient_representative_name")
     if "writeDate" not in obj:
-        raise KeyError(f"'writeDate' is not in {obj}")
+        raise KeyError("Missing required field 'writeDate'")
     write_date = obj["writeDate"]
     if not isinstance(write_date, str):
-        raise ValueError(f"{repr(write_date)} is not str")
+        raise ValueError("Expected str for write_date")
     if "issuanceDueDate" not in obj:
-        raise KeyError(f"'issuanceDueDate' is not in {obj}")
+        raise KeyError("Missing required field 'issuanceDueDate'")
     issuance_due_date = obj["issuanceDueDate"]
     if not isinstance(issuance_due_date, str):
-        raise ValueError(f"{repr(issuance_due_date)} is not str")
+        raise ValueError("Expected str for issuance_due_date")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     status = _deserialize_b2b_tax_invoice_status(status)
     if "statusUpdatedAt" not in obj:
-        raise KeyError(f"'statusUpdatedAt' is not in {obj}")
+        raise KeyError("Missing required field 'statusUpdatedAt'")
     status_updated_at = obj["statusUpdatedAt"]
     if not isinstance(status_updated_at, str):
-        raise ValueError(f"{repr(status_updated_at)} is not str")
+        raise ValueError("Expected str for status_updated_at")
     if "items" not in obj:
-        raise KeyError(f"'items' is not in {obj}")
+        raise KeyError("Missing required field 'items'")
     items = obj["items"]
     if not isinstance(items, list):
-        raise ValueError(f"{repr(items)} is not list")
+        raise ValueError("Expected list for items")
     for i, item in enumerate(items):
         item = _deserialize_b2b_tax_invoice_item(item)
         items[i] = item
     if "isDelayed" in obj:
         is_delayed = obj["isDelayed"]
         if not isinstance(is_delayed, bool):
-            raise ValueError(f"{repr(is_delayed)} is not bool")
+            raise ValueError("Expected bool for is_delayed")
     else:
         is_delayed = None
     if "bulkTaxInvoiceId" in obj:
         bulk_tax_invoice_id = obj["bulkTaxInvoiceId"]
         if not isinstance(bulk_tax_invoice_id, str):
-            raise ValueError(f"{repr(bulk_tax_invoice_id)} is not str")
+            raise ValueError("Expected str for bulk_tax_invoice_id")
     else:
         bulk_tax_invoice_id = None
     if "payoutId" in obj:
         payout_id = obj["payoutId"]
         if not isinstance(payout_id, str):
-            raise ValueError(f"{repr(payout_id)} is not str")
+            raise ValueError("Expected str for payout_id")
     else:
         payout_id = None
     if "supplierDocumentKey" in obj:
         supplier_document_key = obj["supplierDocumentKey"]
         if not isinstance(supplier_document_key, str):
-            raise ValueError(f"{repr(supplier_document_key)} is not str")
+            raise ValueError("Expected str for supplier_document_key")
     else:
         supplier_document_key = None
     if "supplierCounterpartyId" in obj:
         supplier_counterparty_id = obj["supplierCounterpartyId"]
         if not isinstance(supplier_counterparty_id, str):
-            raise ValueError(f"{repr(supplier_counterparty_id)} is not str")
+            raise ValueError("Expected str for supplier_counterparty_id")
     else:
         supplier_counterparty_id = None
     if "recipientDocumentKey" in obj:
         recipient_document_key = obj["recipientDocumentKey"]
         if not isinstance(recipient_document_key, str):
-            raise ValueError(f"{repr(recipient_document_key)} is not str")
+            raise ValueError("Expected str for recipient_document_key")
     else:
         recipient_document_key = None
     if "recipientCounterpartyId" in obj:
         recipient_counterparty_id = obj["recipientCounterpartyId"]
         if not isinstance(recipient_counterparty_id, str):
-            raise ValueError(f"{repr(recipient_counterparty_id)} is not str")
+            raise ValueError("Expected str for recipient_counterparty_id")
     else:
         recipient_counterparty_id = None
     if "recipientBusinessStatus" in obj:
@@ -365,67 +365,67 @@ def _deserialize_b2b_tax_invoice_summary(obj: Any) -> B2bTaxInvoiceSummary:
     if "recipientClosedSuspendedDate" in obj:
         recipient_closed_suspended_date = obj["recipientClosedSuspendedDate"]
         if not isinstance(recipient_closed_suspended_date, str):
-            raise ValueError(f"{repr(recipient_closed_suspended_date)} is not str")
+            raise ValueError("Expected str for recipient_closed_suspended_date")
     else:
         recipient_closed_suspended_date = None
     if "draftedAt" in obj:
         drafted_at = obj["draftedAt"]
         if not isinstance(drafted_at, str):
-            raise ValueError(f"{repr(drafted_at)} is not str")
+            raise ValueError("Expected str for drafted_at")
     else:
         drafted_at = None
     if "requestedAt" in obj:
         requested_at = obj["requestedAt"]
         if not isinstance(requested_at, str):
-            raise ValueError(f"{repr(requested_at)} is not str")
+            raise ValueError("Expected str for requested_at")
     else:
         requested_at = None
     if "issuedAt" in obj:
         issued_at = obj["issuedAt"]
         if not isinstance(issued_at, str):
-            raise ValueError(f"{repr(issued_at)} is not str")
+            raise ValueError("Expected str for issued_at")
     else:
         issued_at = None
     if "openedAt" in obj:
         opened_at = obj["openedAt"]
         if not isinstance(opened_at, str):
-            raise ValueError(f"{repr(opened_at)} is not str")
+            raise ValueError("Expected str for opened_at")
     else:
         opened_at = None
     if "ntsSentAt" in obj:
         nts_sent_at = obj["ntsSentAt"]
         if not isinstance(nts_sent_at, str):
-            raise ValueError(f"{repr(nts_sent_at)} is not str")
+            raise ValueError("Expected str for nts_sent_at")
     else:
         nts_sent_at = None
     if "ntsApprovalNumber" in obj:
         nts_approval_number = obj["ntsApprovalNumber"]
         if not isinstance(nts_approval_number, str):
-            raise ValueError(f"{repr(nts_approval_number)} is not str")
+            raise ValueError("Expected str for nts_approval_number")
     else:
         nts_approval_number = None
     if "ntsResult" in obj:
         nts_result = obj["ntsResult"]
         if not isinstance(nts_result, str):
-            raise ValueError(f"{repr(nts_result)} is not str")
+            raise ValueError("Expected str for nts_result")
     else:
         nts_result = None
     if "ntsResultReceivedAt" in obj:
         nts_result_received_at = obj["ntsResultReceivedAt"]
         if not isinstance(nts_result_received_at, str):
-            raise ValueError(f"{repr(nts_result_received_at)} is not str")
+            raise ValueError("Expected str for nts_result_received_at")
     else:
         nts_result_received_at = None
     if "ntsResultCode" in obj:
         nts_result_code = obj["ntsResultCode"]
         if not isinstance(nts_result_code, str):
-            raise ValueError(f"{repr(nts_result_code)} is not str")
+            raise ValueError("Expected str for nts_result_code")
     else:
         nts_result_code = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return B2bTaxInvoiceSummary(id, taxation_type, document_modification_type, issuance_type, total_supply_amount, total_tax_amount, total_amount, purpose_type, supplier_brn, supplier_name, supplier_representative_name, recipient_brn, recipient_name, recipient_representative_name, write_date, issuance_due_date, status, status_updated_at, items, is_delayed, bulk_tax_invoice_id, payout_id, supplier_document_key, supplier_counterparty_id, recipient_document_key, recipient_counterparty_id, recipient_business_status, recipient_closed_suspended_date, drafted_at, requested_at, issued_at, opened_at, nts_sent_at, nts_approval_number, nts_result, nts_result_received_at, nts_result_code, memo)

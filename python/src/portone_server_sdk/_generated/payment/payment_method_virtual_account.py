@@ -63,17 +63,17 @@ def _serialize_payment_method_virtual_account(obj: PaymentMethodVirtualAccount) 
 
 def _deserialize_payment_method_virtual_account(obj: Any) -> PaymentMethodVirtualAccount:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PaymentMethodVirtualAccount":
-        raise ValueError(f"{repr(type)} is not 'PaymentMethodVirtualAccount'")
+        raise ValueError("Expected 'PaymentMethodVirtualAccount' for type")
     if "accountNumber" not in obj:
-        raise KeyError(f"'accountNumber' is not in {obj}")
+        raise KeyError("Missing required field 'accountNumber'")
     account_number = obj["accountNumber"]
     if not isinstance(account_number, str):
-        raise ValueError(f"{repr(account_number)} is not str")
+        raise ValueError("Expected str for account_number")
     if "bank" in obj:
         bank = obj["bank"]
         bank = _deserialize_bank(bank)
@@ -87,25 +87,25 @@ def _deserialize_payment_method_virtual_account(obj: Any) -> PaymentMethodVirtua
     if "remitteeName" in obj:
         remittee_name = obj["remitteeName"]
         if not isinstance(remittee_name, str):
-            raise ValueError(f"{repr(remittee_name)} is not str")
+            raise ValueError("Expected str for remittee_name")
     else:
         remittee_name = None
     if "remitterName" in obj:
         remitter_name = obj["remitterName"]
         if not isinstance(remitter_name, str):
-            raise ValueError(f"{repr(remitter_name)} is not str")
+            raise ValueError("Expected str for remitter_name")
     else:
         remitter_name = None
     if "expiredAt" in obj:
         expired_at = obj["expiredAt"]
         if not isinstance(expired_at, str):
-            raise ValueError(f"{repr(expired_at)} is not str")
+            raise ValueError("Expected str for expired_at")
     else:
         expired_at = None
     if "issuedAt" in obj:
         issued_at = obj["issuedAt"]
         if not isinstance(issued_at, str):
-            raise ValueError(f"{repr(issued_at)} is not str")
+            raise ValueError("Expected str for issued_at")
     else:
         issued_at = None
     if "refundStatus" in obj:

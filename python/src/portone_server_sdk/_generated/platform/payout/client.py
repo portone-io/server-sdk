@@ -19,7 +19,6 @@ from ...platform.payout.complete_platform_payout_by_partner_settlement_ids_respo
 from ...platform.payout.get_platform_payouts_response import GetPlatformPayoutsResponse, _deserialize_get_platform_payouts_response, _serialize_get_platform_payouts_response
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from ...platform.payout.platform_payout_filter_input import PlatformPayoutFilterInput, _deserialize_platform_payout_filter_input, _serialize_platform_payout_filter_input
-from urllib.parse import quote
 class PayoutClient:
     _secret: str
     _base_url: str

@@ -45,4 +45,4 @@ def _deserialize_get_platform_partner_error(obj: Any) -> GetPlatformPartnerError
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPlatformPartnerError")
+    raise ValueError("Expected GetPlatformPartnerError")

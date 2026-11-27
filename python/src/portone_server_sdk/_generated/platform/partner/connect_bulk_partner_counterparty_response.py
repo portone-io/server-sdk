@@ -20,9 +20,9 @@ def _serialize_connect_bulk_partner_counterparty_response(obj: ConnectBulkPartne
 
 def _deserialize_connect_bulk_partner_counterparty_response(obj: Any) -> ConnectBulkPartnerCounterpartyResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "bulkTask" not in obj:
-        raise KeyError(f"'bulkTask' is not in {obj}")
+        raise KeyError("Missing required field 'bulkTask'")
     bulk_task = obj["bulkTask"]
     bulk_task = _deserialize_platform_bulk_task(bulk_task)
     return ConnectBulkPartnerCounterpartyResponse(bulk_task)

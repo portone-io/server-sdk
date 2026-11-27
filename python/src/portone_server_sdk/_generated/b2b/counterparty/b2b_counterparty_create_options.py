@@ -46,29 +46,29 @@ def _serialize_b2b_counterparty_create_options(obj: B2bCounterpartyCreateOptions
 
 def _deserialize_b2b_counterparty_create_options(obj: Any) -> B2bCounterpartyCreateOptions:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "checkBusinessInfo" in obj:
         check_business_info = obj["checkBusinessInfo"]
         if not isinstance(check_business_info, bool):
-            raise ValueError(f"{repr(check_business_info)} is not bool")
+            raise ValueError("Expected bool for check_business_info")
     else:
         check_business_info = None
     if "checkBusinessStatus" in obj:
         check_business_status = obj["checkBusinessStatus"]
         if not isinstance(check_business_status, bool):
-            raise ValueError(f"{repr(check_business_status)} is not bool")
+            raise ValueError("Expected bool for check_business_status")
     else:
         check_business_status = None
     if "businessInfoVerificationId" in obj:
         business_info_verification_id = obj["businessInfoVerificationId"]
         if not isinstance(business_info_verification_id, str):
-            raise ValueError(f"{repr(business_info_verification_id)} is not str")
+            raise ValueError("Expected str for business_info_verification_id")
     else:
         business_info_verification_id = None
     if "businessStatusVerificationId" in obj:
         business_status_verification_id = obj["businessStatusVerificationId"]
         if not isinstance(business_status_verification_id, str):
-            raise ValueError(f"{repr(business_status_verification_id)} is not str")
+            raise ValueError("Expected str for business_status_verification_id")
     else:
         business_status_verification_id = None
     return B2bCounterpartyCreateOptions(check_business_info, check_business_status, business_info_verification_id, business_status_verification_id)

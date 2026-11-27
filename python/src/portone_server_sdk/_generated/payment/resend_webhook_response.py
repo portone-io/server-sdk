@@ -22,9 +22,9 @@ def _serialize_resend_webhook_response(obj: ResendWebhookResponse) -> Any:
 
 def _deserialize_resend_webhook_response(obj: Any) -> ResendWebhookResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "webhook" not in obj:
-        raise KeyError(f"'webhook' is not in {obj}")
+        raise KeyError("Missing required field 'webhook'")
     webhook = obj["webhook"]
     webhook = _deserialize_payment_webhook(webhook)
     return ResendWebhookResponse(webhook)

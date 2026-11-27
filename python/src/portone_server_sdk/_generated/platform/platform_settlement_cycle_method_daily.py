@@ -19,10 +19,10 @@ def _serialize_platform_settlement_cycle_method_daily(obj: PlatformSettlementCyc
 
 def _deserialize_platform_settlement_cycle_method_daily(obj: Any) -> PlatformSettlementCycleMethodDaily:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "DAILY":
-        raise ValueError(f"{repr(type)} is not 'DAILY'")
+        raise ValueError("Expected 'DAILY' for type")
     return PlatformSettlementCycleMethodDaily()

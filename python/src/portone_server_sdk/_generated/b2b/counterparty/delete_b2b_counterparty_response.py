@@ -18,5 +18,5 @@ def _serialize_delete_b2b_counterparty_response(obj: DeleteB2bCounterpartyRespon
 
 def _deserialize_delete_b2b_counterparty_response(obj: Any) -> DeleteB2bCounterpartyResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return DeleteB2bCounterpartyResponse()

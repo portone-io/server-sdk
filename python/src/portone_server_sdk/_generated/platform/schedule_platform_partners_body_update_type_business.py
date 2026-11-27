@@ -57,11 +57,11 @@ def _serialize_schedule_platform_partners_body_update_type_business(obj: Schedul
 
 def _deserialize_schedule_platform_partners_body_update_type_business(obj: Any) -> SchedulePlatformPartnersBodyUpdateTypeBusiness:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "companyName" in obj:
         company_name = obj["companyName"]
         if not isinstance(company_name, str):
-            raise ValueError(f"{repr(company_name)} is not str")
+            raise ValueError("Expected str for company_name")
     else:
         company_name = None
     if "taxationType" in obj:
@@ -72,37 +72,37 @@ def _deserialize_schedule_platform_partners_body_update_type_business(obj: Any) 
     if "businessRegistrationNumber" in obj:
         business_registration_number = obj["businessRegistrationNumber"]
         if not isinstance(business_registration_number, str):
-            raise ValueError(f"{repr(business_registration_number)} is not str")
+            raise ValueError("Expected str for business_registration_number")
     else:
         business_registration_number = None
     if "representativeName" in obj:
         representative_name = obj["representativeName"]
         if not isinstance(representative_name, str):
-            raise ValueError(f"{repr(representative_name)} is not str")
+            raise ValueError("Expected str for representative_name")
     else:
         representative_name = None
     if "companyAddress" in obj:
         company_address = obj["companyAddress"]
         if not isinstance(company_address, str):
-            raise ValueError(f"{repr(company_address)} is not str")
+            raise ValueError("Expected str for company_address")
     else:
         company_address = None
     if "businessType" in obj:
         business_type = obj["businessType"]
         if not isinstance(business_type, str):
-            raise ValueError(f"{repr(business_type)} is not str")
+            raise ValueError("Expected str for business_type")
     else:
         business_type = None
     if "businessClass" in obj:
         business_class = obj["businessClass"]
         if not isinstance(business_class, str):
-            raise ValueError(f"{repr(business_class)} is not str")
+            raise ValueError("Expected str for business_class")
     else:
         business_class = None
     if "companyVerificationId" in obj:
         company_verification_id = obj["companyVerificationId"]
         if not isinstance(company_verification_id, str):
-            raise ValueError(f"{repr(company_verification_id)} is not str")
+            raise ValueError("Expected str for company_verification_id")
     else:
         company_verification_id = None
     return SchedulePlatformPartnersBodyUpdateTypeBusiness(company_name, taxation_type, business_registration_number, representative_name, company_address, business_type, business_class, company_verification_id)

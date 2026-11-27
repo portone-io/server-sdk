@@ -34,31 +34,31 @@ def _serialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_err
 
 def _deserialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_error(obj: Any) -> PlatformSettlementTaxFreeAmountExceededPortOnePaymentError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_SETTLEMENT_TAX_FREE_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_SETTLEMENT_TAX_FREE_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT'")
+        raise ValueError("Expected 'PLATFORM_SETTLEMENT_TAX_FREE_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT' for type")
     if "registeredSettlementTaxFreeAmount" not in obj:
-        raise KeyError(f"'registeredSettlementTaxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'registeredSettlementTaxFreeAmount'")
     registered_settlement_tax_free_amount = obj["registeredSettlementTaxFreeAmount"]
     if not isinstance(registered_settlement_tax_free_amount, int):
-        raise ValueError(f"{repr(registered_settlement_tax_free_amount)} is not int")
+        raise ValueError("Expected int for registered_settlement_tax_free_amount")
     if "requestSettlementTaxFreeAmount" not in obj:
-        raise KeyError(f"'requestSettlementTaxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'requestSettlementTaxFreeAmount'")
     request_settlement_tax_free_amount = obj["requestSettlementTaxFreeAmount"]
     if not isinstance(request_settlement_tax_free_amount, int):
-        raise ValueError(f"{repr(request_settlement_tax_free_amount)} is not int")
+        raise ValueError("Expected int for request_settlement_tax_free_amount")
     if "portOneTaxFreeAmount" not in obj:
-        raise KeyError(f"'portOneTaxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'portOneTaxFreeAmount'")
     port_one_tax_free_amount = obj["portOneTaxFreeAmount"]
     if not isinstance(port_one_tax_free_amount, int):
-        raise ValueError(f"{repr(port_one_tax_free_amount)} is not int")
+        raise ValueError("Expected int for port_one_tax_free_amount")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(registered_settlement_tax_free_amount, request_settlement_tax_free_amount, port_one_tax_free_amount, message)

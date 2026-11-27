@@ -66,4 +66,4 @@ def _deserialize_delete_b2b_tax_invoice_error(obj: Any) -> DeleteB2bTaxInvoiceEr
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not DeleteB2bTaxInvoiceError")
+    raise ValueError("Expected DeleteB2bTaxInvoiceError")

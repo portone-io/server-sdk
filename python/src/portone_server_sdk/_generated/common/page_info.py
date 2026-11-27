@@ -32,20 +32,20 @@ def _serialize_page_info(obj: PageInfo) -> Any:
 
 def _deserialize_page_info(obj: Any) -> PageInfo:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "number" not in obj:
-        raise KeyError(f"'number' is not in {obj}")
+        raise KeyError("Missing required field 'number'")
     number = obj["number"]
     if not isinstance(number, int):
-        raise ValueError(f"{repr(number)} is not int")
+        raise ValueError("Expected int for number")
     if "size" not in obj:
-        raise KeyError(f"'size' is not in {obj}")
+        raise KeyError("Missing required field 'size'")
     size = obj["size"]
     if not isinstance(size, int):
-        raise ValueError(f"{repr(size)} is not int")
+        raise ValueError("Expected int for size")
     if "totalCount" not in obj:
-        raise KeyError(f"'totalCount' is not in {obj}")
+        raise KeyError("Missing required field 'totalCount'")
     total_count = obj["totalCount"]
     if not isinstance(total_count, int):
-        raise ValueError(f"{repr(total_count)} is not int")
+        raise ValueError("Expected int for total_count")
     return PageInfo(number, size, total_count)

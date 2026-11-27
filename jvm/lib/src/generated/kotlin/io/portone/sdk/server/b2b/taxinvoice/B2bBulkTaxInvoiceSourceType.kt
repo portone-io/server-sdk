@@ -22,7 +22,7 @@ public sealed interface B2bBulkTaxInvoiceSourceType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sheet::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sheet = decoder.decodeString().let {
       if (it != "SHEET") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SHEET")
       } else {
         return Sheet
       }
@@ -38,7 +38,7 @@ public sealed interface B2bBulkTaxInvoiceSourceType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Platform::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Platform = decoder.decodeString().let {
       if (it != "PLATFORM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PLATFORM")
       } else {
         return Platform
       }

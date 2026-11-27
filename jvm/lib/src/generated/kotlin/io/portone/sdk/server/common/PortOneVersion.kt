@@ -21,7 +21,7 @@ public sealed interface PortOneVersion {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(V1::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): V1 = decoder.decodeString().let {
       if (it != "V1") {
-        throw SerializationException(it)
+        throw SerializationException("Expected V1")
       } else {
         return V1
       }
@@ -36,7 +36,7 @@ public sealed interface PortOneVersion {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(V2::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): V2 = decoder.decodeString().let {
       if (it != "V2") {
-        throw SerializationException(it)
+        throw SerializationException("Expected V2")
       } else {
         return V2
       }

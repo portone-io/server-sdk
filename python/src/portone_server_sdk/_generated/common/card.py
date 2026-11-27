@@ -61,17 +61,17 @@ def _serialize_card(obj: Card) -> Any:
 
 def _deserialize_card(obj: Any) -> Card:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "publisher" in obj:
         publisher = obj["publisher"]
         if not isinstance(publisher, str):
-            raise ValueError(f"{repr(publisher)} is not str")
+            raise ValueError("Expected str for publisher")
     else:
         publisher = None
     if "issuer" in obj:
         issuer = obj["issuer"]
         if not isinstance(issuer, str):
-            raise ValueError(f"{repr(issuer)} is not str")
+            raise ValueError("Expected str for issuer")
     else:
         issuer = None
     if "brand" in obj:
@@ -92,19 +92,19 @@ def _deserialize_card(obj: Any) -> Card:
     if "bin" in obj:
         bin = obj["bin"]
         if not isinstance(bin, str):
-            raise ValueError(f"{repr(bin)} is not str")
+            raise ValueError("Expected str for bin")
     else:
         bin = None
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "number" in obj:
         number = obj["number"]
         if not isinstance(number, str):
-            raise ValueError(f"{repr(number)} is not str")
+            raise ValueError("Expected str for number")
     else:
         number = None
     return Card(publisher, issuer, brand, type, owner_type, bin, name, number)

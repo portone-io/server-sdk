@@ -66,4 +66,4 @@ def _deserialize_connect_bulk_partner_counterparty_error(obj: Any) -> ConnectBul
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ConnectBulkPartnerCounterpartyError")
+    raise ValueError("Expected ConnectBulkPartnerCounterpartyError")

@@ -52,4 +52,4 @@ def _deserialize_issue_cash_receipt_error(obj: Any) -> IssueCashReceiptError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not IssueCashReceiptError")
+    raise ValueError("Expected IssueCashReceiptError")

@@ -23,11 +23,11 @@ def _serialize_refuse_b2b_tax_invoice_request_body(obj: RefuseB2bTaxInvoiceReque
 
 def _deserialize_refuse_b2b_tax_invoice_request_body(obj: Any) -> RefuseB2bTaxInvoiceRequestBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return RefuseB2bTaxInvoiceRequestBody(memo)

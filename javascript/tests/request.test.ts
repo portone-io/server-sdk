@@ -63,6 +63,25 @@ function expectRequest(
 afterEach(() => vi.unstubAllGlobals());
 
 describe("payment requests", () => {
+	it.each([
+		200, 502,
+	])("propagates the JSON parser error for HTTP %i", async (status) => {
+		const response = new Response(null, { status });
+		const error = new SyntaxError("native parser diagnostic");
+		vi.spyOn(response, "json").mockRejectedValue(error);
+		vi.stubGlobal("fetch", vi.fn().mockResolvedValue(response));
+		await expect(client.getPayments()).rejects.toBe(error);
+	});
+	it.each([
+		"private-body",
+		{ message: ["private-body"] },
+	])("omits unexpected error data from the message", async (body) => {
+		mockFetch(body, 502);
+		await expect(client.getPayments()).rejects.toMatchObject({
+			message: "",
+			data: body,
+		});
+	});
 	it("gets payments without parameters", async () => {
 		const fetchMock = mockFetch(payments);
 		await expect(client.getPayments()).resolves.toEqual(payments);
@@ -86,13 +105,37 @@ describe("payment requests", () => {
 		).resolves.toEqual(cancelledPayment);
 		expectRequest(fetchMock, "GET", "/payments/test-server-sdk");
 	});
-	it("encodes an invalid payment ID and returns its error", async () => {
+	it("rejects dot segments before fetching", async () => {
+		const fetchMock = mockFetch(cancelledPayment);
+		const dots = [".", "%2e", "%2E"];
+		for (const first of dots) {
+			for (const second of ["", ...dots]) {
+				await expect(
+					client.getPayment({ paymentId: first + second }),
+				).rejects.toThrow(RangeError);
+			}
+		}
+		expect(fetchMock).not.toHaveBeenCalled();
+	});
+	it("preserves native coercion for JavaScript callers", async () => {
+		const fetchMock = mockFetch(cancelledPayment);
+		const stringifyId = vi.fn(() => "order/part");
+		// @ts-expect-error Exercise an untyped JavaScript call.
+		await client.getPayment({ paymentId: { toString: stringifyId } });
+		expect(stringifyId).toHaveBeenCalledOnce();
+		expectRequest(fetchMock, "GET", "/payments/order%2Fpart");
+	});
+	it.each([
+		[" ", "/payments/%20"],
+		["order.v2/part", "/payments/order.v2%2Fpart"],
+		["...", "/payments/..."],
+	])("encodes payment ID %s and returns its error", async (paymentId, path) => {
 		const error = { type: "PAYMENT_NOT_FOUND", message: "Payment not found" };
 		const fetchMock = mockFetch(error, 404);
-		const result = client.getPayment({ paymentId: " " });
+		const result = client.getPayment({ paymentId });
 		await expect(result).rejects.toBeInstanceOf(GetPaymentError);
 		await expect(result).rejects.toMatchObject({ data: error });
-		expectRequest(fetchMock, "GET", "/payments/%20");
+		expectRequest(fetchMock, "GET", path);
 	});
 	it("returns a cancellation error", async () => {
 		const error = {

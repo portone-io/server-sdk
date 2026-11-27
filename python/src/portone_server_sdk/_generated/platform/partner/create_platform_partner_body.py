@@ -73,47 +73,47 @@ def _serialize_create_platform_partner_body(obj: CreatePlatformPartnerBody) -> A
 
 def _deserialize_create_platform_partner_body(obj: Any) -> CreatePlatformPartnerBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "contact" not in obj:
-        raise KeyError(f"'contact' is not in {obj}")
+        raise KeyError("Missing required field 'contact'")
     contact = obj["contact"]
     contact = _deserialize_create_platform_partner_body_contact(contact)
     if "account" not in obj:
-        raise KeyError(f"'account' is not in {obj}")
+        raise KeyError("Missing required field 'account'")
     account = obj["account"]
     account = _deserialize_create_platform_partner_body_account(account)
     if "defaultContractId" not in obj:
-        raise KeyError(f"'defaultContractId' is not in {obj}")
+        raise KeyError("Missing required field 'defaultContractId'")
     default_contract_id = obj["defaultContractId"]
     if not isinstance(default_contract_id, str):
-        raise ValueError(f"{repr(default_contract_id)} is not str")
+        raise ValueError("Expected str for default_contract_id")
     if "tags" not in obj:
-        raise KeyError(f"'tags' is not in {obj}")
+        raise KeyError("Missing required field 'tags'")
     tags = obj["tags"]
     if not isinstance(tags, list):
-        raise ValueError(f"{repr(tags)} is not list")
+        raise ValueError("Expected list for tags")
     for i, item in enumerate(tags):
         if not isinstance(item, str):
-            raise ValueError(f"{repr(item)} is not str")
+            raise ValueError("Expected str for item")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     type = _deserialize_create_platform_partner_body_type(type)
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "userDefinedProperties" in obj:

@@ -30,7 +30,7 @@ def _serialize_get_b2b_counterparties_body(obj: GetB2bCounterpartiesBody) -> Any
 
 def _deserialize_get_b2b_counterparties_body(obj: Any) -> GetB2bCounterpartiesBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "page" in obj:
         page = obj["page"]
         page = _deserialize_page_input(page)

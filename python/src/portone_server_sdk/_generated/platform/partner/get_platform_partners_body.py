@@ -30,7 +30,7 @@ def _serialize_get_platform_partners_body(obj: GetPlatformPartnersBody) -> Any:
 
 def _deserialize_get_platform_partners_body(obj: Any) -> GetPlatformPartnersBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "page" in obj:
         page = obj["page"]
         page = _deserialize_page_input(page)

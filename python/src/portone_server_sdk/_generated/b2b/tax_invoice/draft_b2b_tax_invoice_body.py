@@ -41,9 +41,9 @@ def _serialize_draft_b2b_tax_invoice_body(obj: DraftB2bTaxInvoiceBody) -> Any:
 
 def _deserialize_draft_b2b_tax_invoice_body(obj: Any) -> DraftB2bTaxInvoiceBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "taxInvoice" not in obj:
-        raise KeyError(f"'taxInvoice' is not in {obj}")
+        raise KeyError("Missing required field 'taxInvoice'")
     tax_invoice = obj["taxInvoice"]
     tax_invoice = _deserialize_b2b_tax_invoice_input(tax_invoice)
     if "modification" in obj:
@@ -54,13 +54,13 @@ def _deserialize_draft_b2b_tax_invoice_body(obj: Any) -> DraftB2bTaxInvoiceBody:
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "createRecipientCounterparty" in obj:
         create_recipient_counterparty = obj["createRecipientCounterparty"]
         if not isinstance(create_recipient_counterparty, bool):
-            raise ValueError(f"{repr(create_recipient_counterparty)} is not bool")
+            raise ValueError("Expected bool for create_recipient_counterparty")
     else:
         create_recipient_counterparty = None
     return DraftB2bTaxInvoiceBody(tax_invoice, modification, memo, create_recipient_counterparty)

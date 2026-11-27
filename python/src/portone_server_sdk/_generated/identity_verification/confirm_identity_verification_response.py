@@ -22,9 +22,9 @@ def _serialize_confirm_identity_verification_response(obj: ConfirmIdentityVerifi
 
 def _deserialize_confirm_identity_verification_response(obj: Any) -> ConfirmIdentityVerificationResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "identityVerification" not in obj:
-        raise KeyError(f"'identityVerification' is not in {obj}")
+        raise KeyError("Missing required field 'identityVerification'")
     identity_verification = obj["identityVerification"]
     identity_verification = _deserialize_verified_identity_verification(identity_verification)
     return ConfirmIdentityVerificationResponse(identity_verification)

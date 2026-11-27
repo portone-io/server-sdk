@@ -61,4 +61,4 @@ def _deserialize_payment(obj: Any) -> Payment:
         return _deserialize_virtual_account_issued_payment(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not Payment")
+    raise ValueError("Expected Payment")

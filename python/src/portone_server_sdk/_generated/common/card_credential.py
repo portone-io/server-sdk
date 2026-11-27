@@ -40,32 +40,32 @@ def _serialize_card_credential(obj: CardCredential) -> Any:
 
 def _deserialize_card_credential(obj: Any) -> CardCredential:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "number" not in obj:
-        raise KeyError(f"'number' is not in {obj}")
+        raise KeyError("Missing required field 'number'")
     number = obj["number"]
     if not isinstance(number, str):
-        raise ValueError(f"{repr(number)} is not str")
+        raise ValueError("Expected str for number")
     if "expiryYear" not in obj:
-        raise KeyError(f"'expiryYear' is not in {obj}")
+        raise KeyError("Missing required field 'expiryYear'")
     expiry_year = obj["expiryYear"]
     if not isinstance(expiry_year, str):
-        raise ValueError(f"{repr(expiry_year)} is not str")
+        raise ValueError("Expected str for expiry_year")
     if "expiryMonth" not in obj:
-        raise KeyError(f"'expiryMonth' is not in {obj}")
+        raise KeyError("Missing required field 'expiryMonth'")
     expiry_month = obj["expiryMonth"]
     if not isinstance(expiry_month, str):
-        raise ValueError(f"{repr(expiry_month)} is not str")
+        raise ValueError("Expected str for expiry_month")
     if "birthOrBusinessRegistrationNumber" in obj:
         birth_or_business_registration_number = obj["birthOrBusinessRegistrationNumber"]
         if not isinstance(birth_or_business_registration_number, str):
-            raise ValueError(f"{repr(birth_or_business_registration_number)} is not str")
+            raise ValueError("Expected str for birth_or_business_registration_number")
     else:
         birth_or_business_registration_number = None
     if "passwordTwoDigits" in obj:
         password_two_digits = obj["passwordTwoDigits"]
         if not isinstance(password_two_digits, str):
-            raise ValueError(f"{repr(password_two_digits)} is not str")
+            raise ValueError("Expected str for password_two_digits")
     else:
         password_two_digits = None
     return CardCredential(number, expiry_year, expiry_month, birth_or_business_registration_number, password_two_digits)

@@ -26,15 +26,15 @@ def _serialize_platform_order_transfer_cancellation(obj: PlatformOrderTransferCa
 
 def _deserialize_platform_order_transfer_cancellation(obj: Any) -> PlatformOrderTransferCancellation:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "cancelledAt" not in obj:
-        raise KeyError(f"'cancelledAt' is not in {obj}")
+        raise KeyError("Missing required field 'cancelledAt'")
     cancelled_at = obj["cancelledAt"]
     if not isinstance(cancelled_at, str):
-        raise ValueError(f"{repr(cancelled_at)} is not str")
+        raise ValueError("Expected str for cancelled_at")
     return PlatformOrderTransferCancellation(id, cancelled_at)

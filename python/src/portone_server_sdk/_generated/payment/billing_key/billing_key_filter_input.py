@@ -109,11 +109,11 @@ def _serialize_billing_key_filter_input(obj: BillingKeyFilterInput) -> Any:
 
 def _deserialize_billing_key_filter_input(obj: Any) -> BillingKeyFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "timeRangeField" in obj:
@@ -124,19 +124,19 @@ def _deserialize_billing_key_filter_input(obj: Any) -> BillingKeyFilterInput:
     if "from" in obj:
         from_ = obj["from"]
         if not isinstance(from_, str):
-            raise ValueError(f"{repr(from_)} is not str")
+            raise ValueError("Expected str for from_")
     else:
         from_ = None
     if "until" in obj:
         until = obj["until"]
         if not isinstance(until, str):
-            raise ValueError(f"{repr(until)} is not str")
+            raise ValueError("Expected str for until")
     else:
         until = None
     if "status" in obj:
         status = obj["status"]
         if not isinstance(status, list):
-            raise ValueError(f"{repr(status)} is not list")
+            raise ValueError("Expected list for status")
         for i, item in enumerate(status):
             item = _deserialize_billing_key_status(item)
             status[i] = item
@@ -145,16 +145,16 @@ def _deserialize_billing_key_filter_input(obj: Any) -> BillingKeyFilterInput:
     if "channelGroupIds" in obj:
         channel_group_ids = obj["channelGroupIds"]
         if not isinstance(channel_group_ids, list):
-            raise ValueError(f"{repr(channel_group_ids)} is not list")
+            raise ValueError("Expected list for channel_group_ids")
         for i, item in enumerate(channel_group_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         channel_group_ids = None
     if "customerId" in obj:
         customer_id = obj["customerId"]
         if not isinstance(customer_id, str):
-            raise ValueError(f"{repr(customer_id)} is not str")
+            raise ValueError("Expected str for customer_id")
     else:
         customer_id = None
     if "platformType" in obj:
@@ -170,7 +170,7 @@ def _deserialize_billing_key_filter_input(obj: Any) -> BillingKeyFilterInput:
     if "pgProviders" in obj:
         pg_providers = obj["pgProviders"]
         if not isinstance(pg_providers, list):
-            raise ValueError(f"{repr(pg_providers)} is not list")
+            raise ValueError("Expected list for pg_providers")
         for i, item in enumerate(pg_providers):
             item = _deserialize_pg_provider(item)
             pg_providers[i] = item
@@ -179,7 +179,7 @@ def _deserialize_billing_key_filter_input(obj: Any) -> BillingKeyFilterInput:
     if "pgCompanies" in obj:
         pg_companies = obj["pgCompanies"]
         if not isinstance(pg_companies, list):
-            raise ValueError(f"{repr(pg_companies)} is not list")
+            raise ValueError("Expected list for pg_companies")
         for i, item in enumerate(pg_companies):
             item = _deserialize_pg_company(item)
             pg_companies[i] = item
@@ -188,7 +188,7 @@ def _deserialize_billing_key_filter_input(obj: Any) -> BillingKeyFilterInput:
     if "methods" in obj:
         methods = obj["methods"]
         if not isinstance(methods, list):
-            raise ValueError(f"{repr(methods)} is not list")
+            raise ValueError("Expected list for methods")
         for i, item in enumerate(methods):
             item = _deserialize_billing_key_payment_method_type(item)
             methods[i] = item

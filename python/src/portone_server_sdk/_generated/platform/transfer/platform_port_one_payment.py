@@ -51,41 +51,41 @@ def _serialize_platform_port_one_payment(obj: PlatformPortOnePayment) -> Any:
 
 def _deserialize_platform_port_one_payment(obj: Any) -> PlatformPortOnePayment:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PORT_ONE":
-        raise ValueError(f"{repr(type)} is not 'PORT_ONE'")
+        raise ValueError("Expected 'PORT_ONE' for type")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "storeId" not in obj:
-        raise KeyError(f"'storeId' is not in {obj}")
+        raise KeyError("Missing required field 'storeId'")
     store_id = obj["storeId"]
     if not isinstance(store_id, str):
-        raise ValueError(f"{repr(store_id)} is not str")
+        raise ValueError("Expected str for store_id")
     if "channelKey" not in obj:
-        raise KeyError(f"'channelKey' is not in {obj}")
+        raise KeyError("Missing required field 'channelKey'")
     channel_key = obj["channelKey"]
     if not isinstance(channel_key, str):
-        raise ValueError(f"{repr(channel_key)} is not str")
+        raise ValueError("Expected str for channel_key")
     if "orderName" not in obj:
-        raise KeyError(f"'orderName' is not in {obj}")
+        raise KeyError("Missing required field 'orderName'")
     order_name = obj["orderName"]
     if not isinstance(order_name, str):
-        raise ValueError(f"{repr(order_name)} is not str")
+        raise ValueError("Expected str for order_name")
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "paidAt" not in obj:
-        raise KeyError(f"'paidAt' is not in {obj}")
+        raise KeyError("Missing required field 'paidAt'")
     paid_at = obj["paidAt"]
     if not isinstance(paid_at, str):
-        raise ValueError(f"{repr(paid_at)} is not str")
+        raise ValueError("Expected str for paid_at")
     if "method" in obj:
         method = obj["method"]
         method = _deserialize_platform_payment_method(method)

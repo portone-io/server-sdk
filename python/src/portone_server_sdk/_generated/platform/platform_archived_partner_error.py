@@ -22,16 +22,16 @@ def _serialize_platform_archived_partner_error(obj: PlatformArchivedPartnerError
 
 def _deserialize_platform_archived_partner_error(obj: Any) -> PlatformArchivedPartnerError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_ARCHIVED_PARTNER":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_ARCHIVED_PARTNER'")
+        raise ValueError("Expected 'PLATFORM_ARCHIVED_PARTNER' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformArchivedPartnerError(message)

@@ -20,9 +20,9 @@ def _serialize_update_platform_setting_response(obj: UpdatePlatformSettingRespon
 
 def _deserialize_update_platform_setting_response(obj: Any) -> UpdatePlatformSettingResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "setting" not in obj:
-        raise KeyError(f"'setting' is not in {obj}")
+        raise KeyError("Missing required field 'setting'")
     setting = obj["setting"]
     setting = _deserialize_platform_setting(setting)
     return UpdatePlatformSettingResponse(setting)

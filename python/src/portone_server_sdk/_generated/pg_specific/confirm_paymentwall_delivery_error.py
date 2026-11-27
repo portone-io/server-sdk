@@ -31,4 +31,4 @@ def _deserialize_confirm_paymentwall_delivery_error(obj: Any) -> ConfirmPaymentw
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ConfirmPaymentwallDeliveryError")
+    raise ValueError("Expected ConfirmPaymentwallDeliveryError")

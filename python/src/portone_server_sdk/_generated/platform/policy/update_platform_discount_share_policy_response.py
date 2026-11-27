@@ -22,9 +22,9 @@ def _serialize_update_platform_discount_share_policy_response(obj: UpdatePlatfor
 
 def _deserialize_update_platform_discount_share_policy_response(obj: Any) -> UpdatePlatformDiscountSharePolicyResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "discountSharePolicy" not in obj:
-        raise KeyError(f"'discountSharePolicy' is not in {obj}")
+        raise KeyError("Missing required field 'discountSharePolicy'")
     discount_share_policy = obj["discountSharePolicy"]
     discount_share_policy = _deserialize_platform_discount_share_policy(discount_share_policy)
     return UpdatePlatformDiscountSharePolicyResponse(discount_share_policy)

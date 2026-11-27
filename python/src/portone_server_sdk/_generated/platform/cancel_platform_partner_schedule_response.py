@@ -18,5 +18,5 @@ def _serialize_cancel_platform_partner_schedule_response(obj: CancelPlatformPart
 
 def _deserialize_cancel_platform_partner_schedule_response(obj: Any) -> CancelPlatformPartnerScheduleResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return CancelPlatformPartnerScheduleResponse()

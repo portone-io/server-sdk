@@ -59,4 +59,4 @@ def _deserialize_stop_payment_cancellation_error(obj: Any) -> StopPaymentCancell
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not StopPaymentCancellationError")
+    raise ValueError("Expected StopPaymentCancellationError")

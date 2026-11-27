@@ -41,29 +41,29 @@ def _serialize_schedule_platform_partners_body_update_account(obj: SchedulePlatf
 
 def _deserialize_schedule_platform_partners_body_update_account(obj: Any) -> SchedulePlatformPartnersBodyUpdateAccount:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "bank" not in obj:
-        raise KeyError(f"'bank' is not in {obj}")
+        raise KeyError("Missing required field 'bank'")
     bank = obj["bank"]
     bank = _deserialize_bank(bank)
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "number" not in obj:
-        raise KeyError(f"'number' is not in {obj}")
+        raise KeyError("Missing required field 'number'")
     number = obj["number"]
     if not isinstance(number, str):
-        raise ValueError(f"{repr(number)} is not str")
+        raise ValueError("Expected str for number")
     if "holder" not in obj:
-        raise KeyError(f"'holder' is not in {obj}")
+        raise KeyError("Missing required field 'holder'")
     holder = obj["holder"]
     if not isinstance(holder, str):
-        raise ValueError(f"{repr(holder)} is not str")
+        raise ValueError("Expected str for holder")
     if "accountVerificationId" in obj:
         account_verification_id = obj["accountVerificationId"]
         if not isinstance(account_verification_id, str):
-            raise ValueError(f"{repr(account_verification_id)} is not str")
+            raise ValueError("Expected str for account_verification_id")
     else:
         account_verification_id = None
     return SchedulePlatformPartnersBodyUpdateAccount(bank, currency, number, holder, account_verification_id)

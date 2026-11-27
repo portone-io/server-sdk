@@ -31,21 +31,21 @@ def _serialize_billing_key_info_summary(obj: BillingKeyInfoSummary) -> Any:
 
 def _deserialize_billing_key_info_summary(obj: Any) -> BillingKeyInfoSummary:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "billingKey" not in obj:
-        raise KeyError(f"'billingKey' is not in {obj}")
+        raise KeyError("Missing required field 'billingKey'")
     billing_key = obj["billingKey"]
     if not isinstance(billing_key, str):
-        raise ValueError(f"{repr(billing_key)} is not str")
+        raise ValueError("Expected str for billing_key")
     if "issuedAt" not in obj:
-        raise KeyError(f"'issuedAt' is not in {obj}")
+        raise KeyError("Missing required field 'issuedAt'")
     issued_at = obj["issuedAt"]
     if not isinstance(issued_at, str):
-        raise ValueError(f"{repr(issued_at)} is not str")
+        raise ValueError("Expected str for issued_at")
     if "channels" in obj:
         channels = obj["channels"]
         if not isinstance(channels, list):
-            raise ValueError(f"{repr(channels)} is not list")
+            raise ValueError("Expected list for channels")
         for i, item in enumerate(channels):
             item = _deserialize_selected_channel(item)
             channels[i] = item

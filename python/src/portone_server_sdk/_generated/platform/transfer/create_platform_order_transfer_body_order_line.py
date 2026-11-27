@@ -37,29 +37,29 @@ def _serialize_create_platform_order_transfer_body_order_line(obj: CreatePlatfor
 
 def _deserialize_create_platform_order_transfer_body_order_line(obj: Any) -> CreatePlatformOrderTransferBodyOrderLine:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "product" not in obj:
-        raise KeyError(f"'product' is not in {obj}")
+        raise KeyError("Missing required field 'product'")
     product = obj["product"]
     product = _deserialize_create_platform_order_transfer_body_product(product)
     if "quantity" not in obj:
-        raise KeyError(f"'quantity' is not in {obj}")
+        raise KeyError("Missing required field 'quantity'")
     quantity = obj["quantity"]
     if not isinstance(quantity, int):
-        raise ValueError(f"{repr(quantity)} is not int")
+        raise ValueError("Expected int for quantity")
     if "discounts" not in obj:
-        raise KeyError(f"'discounts' is not in {obj}")
+        raise KeyError("Missing required field 'discounts'")
     discounts = obj["discounts"]
     if not isinstance(discounts, list):
-        raise ValueError(f"{repr(discounts)} is not list")
+        raise ValueError("Expected list for discounts")
     for i, item in enumerate(discounts):
         item = _deserialize_create_platform_order_transfer_body_discount(item)
         discounts[i] = item
     if "additionalFees" not in obj:
-        raise KeyError(f"'additionalFees' is not in {obj}")
+        raise KeyError("Missing required field 'additionalFees'")
     additional_fees = obj["additionalFees"]
     if not isinstance(additional_fees, list):
-        raise ValueError(f"{repr(additional_fees)} is not list")
+        raise ValueError("Expected list for additional_fees")
     for i, item in enumerate(additional_fees):
         item = _deserialize_create_platform_order_transfer_body_additional_fee(item)
         additional_fees[i] = item

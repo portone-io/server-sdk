@@ -99,70 +99,70 @@ def _serialize_issued_cash_receipt(obj: IssuedCashReceipt) -> Any:
 
 def _deserialize_issued_cash_receipt(obj: Any) -> IssuedCashReceipt:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     if status != "ISSUED":
-        raise ValueError(f"{repr(status)} is not 'ISSUED'")
+        raise ValueError("Expected 'ISSUED' for status")
     if "merchantId" not in obj:
-        raise KeyError(f"'merchantId' is not in {obj}")
+        raise KeyError("Missing required field 'merchantId'")
     merchant_id = obj["merchantId"]
     if not isinstance(merchant_id, str):
-        raise ValueError(f"{repr(merchant_id)} is not str")
+        raise ValueError("Expected str for merchant_id")
     if "storeId" not in obj:
-        raise KeyError(f"'storeId' is not in {obj}")
+        raise KeyError("Missing required field 'storeId'")
     store_id = obj["storeId"]
     if not isinstance(store_id, str):
-        raise ValueError(f"{repr(store_id)} is not str")
+        raise ValueError("Expected str for store_id")
     if "paymentId" not in obj:
-        raise KeyError(f"'paymentId' is not in {obj}")
+        raise KeyError("Missing required field 'paymentId'")
     payment_id = obj["paymentId"]
     if not isinstance(payment_id, str):
-        raise ValueError(f"{repr(payment_id)} is not str")
+        raise ValueError("Expected str for payment_id")
     if "channel" not in obj:
-        raise KeyError(f"'channel' is not in {obj}")
+        raise KeyError("Missing required field 'channel'")
     channel = obj["channel"]
     channel = _deserialize_selected_channel(channel)
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     if not isinstance(amount, int):
-        raise ValueError(f"{repr(amount)} is not int")
+        raise ValueError("Expected int for amount")
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "orderName" not in obj:
-        raise KeyError(f"'orderName' is not in {obj}")
+        raise KeyError("Missing required field 'orderName'")
     order_name = obj["orderName"]
     if not isinstance(order_name, str):
-        raise ValueError(f"{repr(order_name)} is not str")
+        raise ValueError("Expected str for order_name")
     if "isManual" not in obj:
-        raise KeyError(f"'isManual' is not in {obj}")
+        raise KeyError("Missing required field 'isManual'")
     is_manual = obj["isManual"]
     if not isinstance(is_manual, bool):
-        raise ValueError(f"{repr(is_manual)} is not bool")
+        raise ValueError("Expected bool for is_manual")
     if "issueNumber" not in obj:
-        raise KeyError(f"'issueNumber' is not in {obj}")
+        raise KeyError("Missing required field 'issueNumber'")
     issue_number = obj["issueNumber"]
     if not isinstance(issue_number, str):
-        raise ValueError(f"{repr(issue_number)} is not str")
+        raise ValueError("Expected str for issue_number")
     if "issuedAt" not in obj:
-        raise KeyError(f"'issuedAt' is not in {obj}")
+        raise KeyError("Missing required field 'issuedAt'")
     issued_at = obj["issuedAt"]
     if not isinstance(issued_at, str):
-        raise ValueError(f"{repr(issued_at)} is not str")
+        raise ValueError("Expected str for issued_at")
     if "taxFreeAmount" in obj:
         tax_free_amount = obj["taxFreeAmount"]
         if not isinstance(tax_free_amount, int):
-            raise ValueError(f"{repr(tax_free_amount)} is not int")
+            raise ValueError("Expected int for tax_free_amount")
     else:
         tax_free_amount = None
     if "vatAmount" in obj:
         vat_amount = obj["vatAmount"]
         if not isinstance(vat_amount, int):
-            raise ValueError(f"{repr(vat_amount)} is not int")
+            raise ValueError("Expected int for vat_amount")
     else:
         vat_amount = None
     if "type" in obj:
@@ -173,19 +173,19 @@ def _deserialize_issued_cash_receipt(obj: Any) -> IssuedCashReceipt:
     if "pgReceiptId" in obj:
         pg_receipt_id = obj["pgReceiptId"]
         if not isinstance(pg_receipt_id, str):
-            raise ValueError(f"{repr(pg_receipt_id)} is not str")
+            raise ValueError("Expected str for pg_receipt_id")
     else:
         pg_receipt_id = None
     if "url" in obj:
         url = obj["url"]
         if not isinstance(url, str):
-            raise ValueError(f"{repr(url)} is not str")
+            raise ValueError("Expected str for url")
     else:
         url = None
     if "statusUpdatedAt" in obj:
         status_updated_at = obj["statusUpdatedAt"]
         if not isinstance(status_updated_at, str):
-            raise ValueError(f"{repr(status_updated_at)} is not str")
+            raise ValueError("Expected str for status_updated_at")
     else:
         status_updated_at = None
     return IssuedCashReceipt(merchant_id, store_id, payment_id, channel, amount, currency, order_name, is_manual, issue_number, issued_at, tax_free_amount, vat_amount, type, pg_receipt_id, url, status_updated_at)

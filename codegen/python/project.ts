@@ -209,7 +209,11 @@ function generateCategoryIndex(
     )
   }
   if (hasClient) {
-    importWriter.writeLine("from urllib.parse import quote")
+    if (pack.operations.some((op) => op.params.path.length > 0)) {
+      importWriter.writeLine(
+        `from ${toRoot}._api_path import encode_path_parameter`,
+      )
+    }
     for (const subpackage of pack.subpackages) {
       if (
         isClientPackage(subpackage)
@@ -237,10 +241,10 @@ function generateCategoryIndex(
       const errorWriter = PythonWriter()
       errorWriter.writeLine("from dataclasses import dataclass")
       errorWriter.writeLine(
-        `from .${toRoot}._portone_error import PortOneError`,
+        `from .${toRoot}._portone_error import ApiError`,
       )
       errorWriter.writeLine("@dataclass")
-      errorWriter.writeLine(`class ${error}(PortOneError):`)
+      errorWriter.writeLine(`class ${error}(ApiError):`)
       errorWriter.indent()
       errorWriter.writeLine("pass")
       errorWriter.outdent()
@@ -556,7 +560,7 @@ function generateErrors(
       name !== "type"
     )
     writer.writeLine("")
-    writer.writeLine("@dataclass")
+    writer.writeLine("@dataclass(repr=False)")
     const extension = [...parents].map((hierarchy) =>
       hierarchy.split(".").at(-1)!
     ).toSorted().join(", ")
@@ -584,7 +588,7 @@ function generateErrors(
     writer.outdent()
     writer.outdent()
   }
-  writer.writeLine("@dataclass")
+  writer.writeLine("@dataclass(repr=False)")
   writer.writeLine(
     `class UnknownError(${
       allParents.map((hierarchy) => hierarchy.split(".").at(-1)!).join(", ")

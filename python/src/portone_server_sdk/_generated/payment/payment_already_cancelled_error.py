@@ -22,16 +22,16 @@ def _serialize_payment_already_cancelled_error(obj: PaymentAlreadyCancelledError
 
 def _deserialize_payment_already_cancelled_error(obj: Any) -> PaymentAlreadyCancelledError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PAYMENT_ALREADY_CANCELLED":
-        raise ValueError(f"{repr(type)} is not 'PAYMENT_ALREADY_CANCELLED'")
+        raise ValueError("Expected 'PAYMENT_ALREADY_CANCELLED' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PaymentAlreadyCancelledError(message)

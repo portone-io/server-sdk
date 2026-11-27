@@ -59,35 +59,35 @@ def _serialize_payment_schedule_filter_input(obj: PaymentScheduleFilterInput) ->
 
 def _deserialize_payment_schedule_filter_input(obj: Any) -> PaymentScheduleFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "billingKey" in obj:
         billing_key = obj["billingKey"]
         if not isinstance(billing_key, str):
-            raise ValueError(f"{repr(billing_key)} is not str")
+            raise ValueError("Expected str for billing_key")
     else:
         billing_key = None
     if "from" in obj:
         from_ = obj["from"]
         if not isinstance(from_, str):
-            raise ValueError(f"{repr(from_)} is not str")
+            raise ValueError("Expected str for from_")
     else:
         from_ = None
     if "until" in obj:
         until = obj["until"]
         if not isinstance(until, str):
-            raise ValueError(f"{repr(until)} is not str")
+            raise ValueError("Expected str for until")
     else:
         until = None
     if "status" in obj:
         status = obj["status"]
         if not isinstance(status, list):
-            raise ValueError(f"{repr(status)} is not list")
+            raise ValueError("Expected list for status")
         for i, item in enumerate(status):
             item = _deserialize_payment_schedule_status(item)
             status[i] = item
@@ -96,7 +96,7 @@ def _deserialize_payment_schedule_filter_input(obj: Any) -> PaymentScheduleFilte
     if "isForTest" in obj:
         is_for_test = obj["isForTest"]
         if not isinstance(is_for_test, bool):
-            raise ValueError(f"{repr(is_for_test)} is not bool")
+            raise ValueError("Expected bool for is_for_test")
     else:
         is_for_test = None
     return PaymentScheduleFilterInput(store_id, billing_key, from_, until, status, is_for_test)

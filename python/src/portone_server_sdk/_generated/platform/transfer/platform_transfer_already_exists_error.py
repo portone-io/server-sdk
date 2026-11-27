@@ -24,26 +24,26 @@ def _serialize_platform_transfer_already_exists_error(obj: PlatformTransferAlrea
 
 def _deserialize_platform_transfer_already_exists_error(obj: Any) -> PlatformTransferAlreadyExistsError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_TRANSFER_ALREADY_EXISTS":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_TRANSFER_ALREADY_EXISTS'")
+        raise ValueError("Expected 'PLATFORM_TRANSFER_ALREADY_EXISTS' for type")
     if "transferId" not in obj:
-        raise KeyError(f"'transferId' is not in {obj}")
+        raise KeyError("Missing required field 'transferId'")
     transfer_id = obj["transferId"]
     if not isinstance(transfer_id, str):
-        raise ValueError(f"{repr(transfer_id)} is not str")
+        raise ValueError("Expected str for transfer_id")
     if "transferGraphqlId" not in obj:
-        raise KeyError(f"'transferGraphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'transferGraphqlId'")
     transfer_graphql_id = obj["transferGraphqlId"]
     if not isinstance(transfer_graphql_id, str):
-        raise ValueError(f"{repr(transfer_graphql_id)} is not str")
+        raise ValueError("Expected str for transfer_graphql_id")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformTransferAlreadyExistsError(transfer_id, transfer_graphql_id, message)

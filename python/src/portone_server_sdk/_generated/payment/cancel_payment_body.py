@@ -102,34 +102,34 @@ def _serialize_cancel_payment_body(obj: CancelPaymentBody) -> Any:
 
 def _deserialize_cancel_payment_body(obj: Any) -> CancelPaymentBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "reason" not in obj:
-        raise KeyError(f"'reason' is not in {obj}")
+        raise KeyError("Missing required field 'reason'")
     reason = obj["reason"]
     if not isinstance(reason, str):
-        raise ValueError(f"{repr(reason)} is not str")
+        raise ValueError("Expected str for reason")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "amount" in obj:
         amount = obj["amount"]
         if not isinstance(amount, int):
-            raise ValueError(f"{repr(amount)} is not int")
+            raise ValueError("Expected int for amount")
     else:
         amount = None
     if "taxFreeAmount" in obj:
         tax_free_amount = obj["taxFreeAmount"]
         if not isinstance(tax_free_amount, int):
-            raise ValueError(f"{repr(tax_free_amount)} is not int")
+            raise ValueError("Expected int for tax_free_amount")
     else:
         tax_free_amount = None
     if "vatAmount" in obj:
         vat_amount = obj["vatAmount"]
         if not isinstance(vat_amount, int):
-            raise ValueError(f"{repr(vat_amount)} is not int")
+            raise ValueError("Expected int for vat_amount")
     else:
         vat_amount = None
     if "requester" in obj:
@@ -145,7 +145,7 @@ def _deserialize_cancel_payment_body(obj: Any) -> CancelPaymentBody:
     if "currentCancellableAmount" in obj:
         current_cancellable_amount = obj["currentCancellableAmount"]
         if not isinstance(current_cancellable_amount, int):
-            raise ValueError(f"{repr(current_cancellable_amount)} is not int")
+            raise ValueError("Expected int for current_cancellable_amount")
     else:
         current_cancellable_amount = None
     if "refundAccount" in obj:
@@ -156,13 +156,13 @@ def _deserialize_cancel_payment_body(obj: Any) -> CancelPaymentBody:
     if "refundEmail" in obj:
         refund_email = obj["refundEmail"]
         if not isinstance(refund_email, str):
-            raise ValueError(f"{repr(refund_email)} is not str")
+            raise ValueError("Expected str for refund_email")
     else:
         refund_email = None
     if "skipWebhook" in obj:
         skip_webhook = obj["skipWebhook"]
         if not isinstance(skip_webhook, bool):
-            raise ValueError(f"{repr(skip_webhook)} is not bool")
+            raise ValueError("Expected bool for skip_webhook")
     else:
         skip_webhook = None
     return CancelPaymentBody(reason, store_id, amount, tax_free_amount, vat_amount, requester, promotion_discount_retain_option, current_cancellable_amount, refund_account, refund_email, skip_webhook)

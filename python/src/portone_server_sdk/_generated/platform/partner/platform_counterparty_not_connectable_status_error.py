@@ -22,16 +22,16 @@ def _serialize_platform_counterparty_not_connectable_status_error(obj: PlatformC
 
 def _deserialize_platform_counterparty_not_connectable_status_error(obj: Any) -> PlatformCounterpartyNotConnectableStatusError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_COUNTERPARTY_NOT_CONNECTABLE_STATUS":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_COUNTERPARTY_NOT_CONNECTABLE_STATUS'")
+        raise ValueError("Expected 'PLATFORM_COUNTERPARTY_NOT_CONNECTABLE_STATUS' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformCounterpartyNotConnectableStatusError(message)

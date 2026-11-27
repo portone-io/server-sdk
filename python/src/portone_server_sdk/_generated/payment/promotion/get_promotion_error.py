@@ -38,4 +38,4 @@ def _deserialize_get_promotion_error(obj: Any) -> GetPromotionError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPromotionError")
+    raise ValueError("Expected GetPromotionError")

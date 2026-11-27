@@ -39,20 +39,20 @@ def _serialize_issued_pg_billing_key_issue_response(obj: IssuedPgBillingKeyIssue
 
 def _deserialize_issued_pg_billing_key_issue_response(obj: Any) -> IssuedPgBillingKeyIssueResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "ISSUED":
-        raise ValueError(f"{repr(type)} is not 'ISSUED'")
+        raise ValueError("Expected 'ISSUED' for type")
     if "channel" not in obj:
-        raise KeyError(f"'channel' is not in {obj}")
+        raise KeyError("Missing required field 'channel'")
     channel = obj["channel"]
     channel = _deserialize_selected_channel(channel)
     if "pgTxId" in obj:
         pg_tx_id = obj["pgTxId"]
         if not isinstance(pg_tx_id, str):
-            raise ValueError(f"{repr(pg_tx_id)} is not str")
+            raise ValueError("Expected str for pg_tx_id")
     else:
         pg_tx_id = None
     if "method" in obj:

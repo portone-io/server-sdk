@@ -47,41 +47,41 @@ def _serialize_platform_setting(obj: PlatformSetting) -> Any:
 
 def _deserialize_platform_setting(obj: Any) -> PlatformSetting:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "supportsMultipleOrderTransfersPerPartner" not in obj:
-        raise KeyError(f"'supportsMultipleOrderTransfersPerPartner' is not in {obj}")
+        raise KeyError("Missing required field 'supportsMultipleOrderTransfersPerPartner'")
     supports_multiple_order_transfers_per_partner = obj["supportsMultipleOrderTransfersPerPartner"]
     if not isinstance(supports_multiple_order_transfers_per_partner, bool):
-        raise ValueError(f"{repr(supports_multiple_order_transfers_per_partner)} is not bool")
+        raise ValueError("Expected bool for supports_multiple_order_transfers_per_partner")
     if "adjustSettlementDateAfterHolidayIfEarlier" not in obj:
-        raise KeyError(f"'adjustSettlementDateAfterHolidayIfEarlier' is not in {obj}")
+        raise KeyError("Missing required field 'adjustSettlementDateAfterHolidayIfEarlier'")
     adjust_settlement_date_after_holiday_if_earlier = obj["adjustSettlementDateAfterHolidayIfEarlier"]
     if not isinstance(adjust_settlement_date_after_holiday_if_earlier, bool):
-        raise ValueError(f"{repr(adjust_settlement_date_after_holiday_if_earlier)} is not bool")
+        raise ValueError("Expected bool for adjust_settlement_date_after_holiday_if_earlier")
     if "deductWht" not in obj:
-        raise KeyError(f"'deductWht' is not in {obj}")
+        raise KeyError("Missing required field 'deductWht'")
     deduct_wht = obj["deductWht"]
     if not isinstance(deduct_wht, bool):
-        raise ValueError(f"{repr(deduct_wht)} is not bool")
+        raise ValueError("Expected bool for deduct_wht")
     if "settlementAmountType" not in obj:
-        raise KeyError(f"'settlementAmountType' is not in {obj}")
+        raise KeyError("Missing required field 'settlementAmountType'")
     settlement_amount_type = obj["settlementAmountType"]
     settlement_amount_type = _deserialize_settlement_amount_type(settlement_amount_type)
     if "isForTest" not in obj:
-        raise KeyError(f"'isForTest' is not in {obj}")
+        raise KeyError("Missing required field 'isForTest'")
     is_for_test = obj["isForTest"]
     if not isinstance(is_for_test, bool):
-        raise ValueError(f"{repr(is_for_test)} is not bool")
+        raise ValueError("Expected bool for is_for_test")
     if "defaultWithdrawalMemo" in obj:
         default_withdrawal_memo = obj["defaultWithdrawalMemo"]
         if not isinstance(default_withdrawal_memo, str):
-            raise ValueError(f"{repr(default_withdrawal_memo)} is not str")
+            raise ValueError("Expected str for default_withdrawal_memo")
     else:
         default_withdrawal_memo = None
     if "defaultDepositMemo" in obj:
         default_deposit_memo = obj["defaultDepositMemo"]
         if not isinstance(default_deposit_memo, str):
-            raise ValueError(f"{repr(default_deposit_memo)} is not str")
+            raise ValueError("Expected str for default_deposit_memo")
     else:
         default_deposit_memo = None
     return PlatformSetting(supports_multiple_order_transfers_per_partner, adjust_settlement_date_after_holiday_if_earlier, deduct_wht, settlement_amount_type, is_for_test, default_withdrawal_memo, default_deposit_memo)

@@ -92,7 +92,7 @@ public class AuthClient(
         json.decodeFromString<LoginViaApiSecretError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
@@ -104,7 +104,7 @@ public class AuthClient(
       json.decodeFromString<LoginViaApiSecretResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -150,7 +150,7 @@ public class AuthClient(
         json.decodeFromString<RefreshTokenError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
@@ -162,7 +162,7 @@ public class AuthClient(
       json.decodeFromString<RefreshTokenResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

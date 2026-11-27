@@ -26,26 +26,26 @@ def _serialize_platform_cancellable_product_quantity_exceeded_error(obj: Platfor
 
 def _deserialize_platform_cancellable_product_quantity_exceeded_error(obj: Any) -> PlatformCancellableProductQuantityExceededError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_CANCELLABLE_PRODUCT_QUANTITY_EXCEEDED":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_CANCELLABLE_PRODUCT_QUANTITY_EXCEEDED'")
+        raise ValueError("Expected 'PLATFORM_CANCELLABLE_PRODUCT_QUANTITY_EXCEEDED' for type")
     if "productId" not in obj:
-        raise KeyError(f"'productId' is not in {obj}")
+        raise KeyError("Missing required field 'productId'")
     product_id = obj["productId"]
     if not isinstance(product_id, str):
-        raise ValueError(f"{repr(product_id)} is not str")
+        raise ValueError("Expected str for product_id")
     if "cancellableQuantity" not in obj:
-        raise KeyError(f"'cancellableQuantity' is not in {obj}")
+        raise KeyError("Missing required field 'cancellableQuantity'")
     cancellable_quantity = obj["cancellableQuantity"]
     if not isinstance(cancellable_quantity, int):
-        raise ValueError(f"{repr(cancellable_quantity)} is not int")
+        raise ValueError("Expected int for cancellable_quantity")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformCancellableProductQuantityExceededError(product_id, cancellable_quantity, message)

@@ -18,5 +18,5 @@ def _serialize_confirm_paymentwall_delivery_response(obj: ConfirmPaymentwallDeli
 
 def _deserialize_confirm_paymentwall_delivery_response(obj: Any) -> ConfirmPaymentwallDeliveryResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return ConfirmPaymentwallDeliveryResponse()

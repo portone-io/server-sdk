@@ -45,4 +45,4 @@ def _deserialize_cancel_platform_partner_schedule_error(obj: Any) -> CancelPlatf
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CancelPlatformPartnerScheduleError")
+    raise ValueError("Expected CancelPlatformPartnerScheduleError")

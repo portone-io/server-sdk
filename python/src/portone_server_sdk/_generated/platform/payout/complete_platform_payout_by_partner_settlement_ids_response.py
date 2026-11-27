@@ -32,27 +32,27 @@ def _serialize_complete_platform_payout_by_partner_settlement_ids_response(obj: 
 
 def _deserialize_complete_platform_payout_by_partner_settlement_ids_response(obj: Any) -> CompletePlatformPayoutByPartnerSettlementIdsResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "payoutCount" not in obj:
-        raise KeyError(f"'payoutCount' is not in {obj}")
+        raise KeyError("Missing required field 'payoutCount'")
     payout_count = obj["payoutCount"]
     if not isinstance(payout_count, int):
-        raise ValueError(f"{repr(payout_count)} is not int")
+        raise ValueError("Expected int for payout_count")
     if "partnerSettlementCount" not in obj:
-        raise KeyError(f"'partnerSettlementCount' is not in {obj}")
+        raise KeyError("Missing required field 'partnerSettlementCount'")
     partner_settlement_count = obj["partnerSettlementCount"]
     if not isinstance(partner_settlement_count, int):
-        raise ValueError(f"{repr(partner_settlement_count)} is not int")
+        raise ValueError("Expected int for partner_settlement_count")
     if "bulkPayoutId" in obj:
         bulk_payout_id = obj["bulkPayoutId"]
         if not isinstance(bulk_payout_id, str):
-            raise ValueError(f"{repr(bulk_payout_id)} is not str")
+            raise ValueError("Expected str for bulk_payout_id")
     else:
         bulk_payout_id = None
     if "bulkPayoutGraphqlId" in obj:
         bulk_payout_graphql_id = obj["bulkPayoutGraphqlId"]
         if not isinstance(bulk_payout_graphql_id, str):
-            raise ValueError(f"{repr(bulk_payout_graphql_id)} is not str")
+            raise ValueError("Expected str for bulk_payout_graphql_id")
     else:
         bulk_payout_graphql_id = None
     return CompletePlatformPayoutByPartnerSettlementIdsResponse(payout_count, partner_settlement_count, bulk_payout_id, bulk_payout_graphql_id)

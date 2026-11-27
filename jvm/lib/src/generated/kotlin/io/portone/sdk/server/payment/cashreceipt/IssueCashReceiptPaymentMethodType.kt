@@ -22,7 +22,7 @@ public sealed interface IssueCashReceiptPaymentMethodType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Transfer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Transfer = decoder.decodeString().let {
       if (it != "TRANSFER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TRANSFER")
       } else {
         return Transfer
       }
@@ -38,7 +38,7 @@ public sealed interface IssueCashReceiptPaymentMethodType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VirtualAccount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VirtualAccount = decoder.decodeString().let {
       if (it != "VIRTUAL_ACCOUNT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VIRTUAL_ACCOUNT")
       } else {
         return VirtualAccount
       }

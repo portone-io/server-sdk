@@ -18,5 +18,5 @@ def _serialize_resend_identity_verification_response(obj: ResendIdentityVerifica
 
 def _deserialize_resend_identity_verification_response(obj: Any) -> ResendIdentityVerificationResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return ResendIdentityVerificationResponse()

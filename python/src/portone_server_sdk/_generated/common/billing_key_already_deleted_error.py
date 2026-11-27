@@ -22,16 +22,16 @@ def _serialize_billing_key_already_deleted_error(obj: BillingKeyAlreadyDeletedEr
 
 def _deserialize_billing_key_already_deleted_error(obj: Any) -> BillingKeyAlreadyDeletedError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "BILLING_KEY_ALREADY_DELETED":
-        raise ValueError(f"{repr(type)} is not 'BILLING_KEY_ALREADY_DELETED'")
+        raise ValueError("Expected 'BILLING_KEY_ALREADY_DELETED' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return BillingKeyAlreadyDeletedError(message)

@@ -12,7 +12,6 @@ from ...common.unauthorized_error import _deserialize_unauthorized_error
 from ...platform.account_transfer.get_platform_account_transfers_response import GetPlatformAccountTransfersResponse, _deserialize_get_platform_account_transfers_response, _serialize_get_platform_account_transfers_response
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from ...platform.account_transfer.platform_account_transfer_filter import PlatformAccountTransferFilter, _deserialize_platform_account_transfer_filter, _serialize_platform_account_transfer_filter
-from urllib.parse import quote
 class AccountTransferClient:
     _secret: str
     _base_url: str

@@ -31,22 +31,22 @@ def _serialize_create_platform_order_cancel_transfer_body_order_line(obj: Create
 
 def _deserialize_create_platform_order_cancel_transfer_body_order_line(obj: Any) -> CreatePlatformOrderCancelTransferBodyOrderLine:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "productId" not in obj:
-        raise KeyError(f"'productId' is not in {obj}")
+        raise KeyError("Missing required field 'productId'")
     product_id = obj["productId"]
     if not isinstance(product_id, str):
-        raise ValueError(f"{repr(product_id)} is not str")
+        raise ValueError("Expected str for product_id")
     if "quantity" not in obj:
-        raise KeyError(f"'quantity' is not in {obj}")
+        raise KeyError("Missing required field 'quantity'")
     quantity = obj["quantity"]
     if not isinstance(quantity, int):
-        raise ValueError(f"{repr(quantity)} is not int")
+        raise ValueError("Expected int for quantity")
     if "discounts" not in obj:
-        raise KeyError(f"'discounts' is not in {obj}")
+        raise KeyError("Missing required field 'discounts'")
     discounts = obj["discounts"]
     if not isinstance(discounts, list):
-        raise ValueError(f"{repr(discounts)} is not list")
+        raise ValueError("Expected list for discounts")
     for i, item in enumerate(discounts):
         item = _deserialize_create_platform_order_cancel_transfer_body_discount(item)
         discounts[i] = item

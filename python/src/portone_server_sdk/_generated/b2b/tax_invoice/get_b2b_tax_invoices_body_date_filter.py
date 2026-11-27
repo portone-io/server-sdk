@@ -34,7 +34,7 @@ def _serialize_get_b2b_tax_invoices_body_date_filter(obj: GetB2bTaxInvoicesBodyD
 
 def _deserialize_get_b2b_tax_invoices_body_date_filter(obj: Any) -> GetB2bTaxInvoicesBodyDateFilter:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "dateType" in obj:
         date_type = obj["dateType"]
         date_type = _deserialize_b2b_search_date_type(date_type)
@@ -43,7 +43,7 @@ def _deserialize_get_b2b_tax_invoices_body_date_filter(obj: Any) -> GetB2bTaxInv
     if "dateRange" in obj:
         date_range = obj["dateRange"]
         if not isinstance(date_range, list):
-            raise ValueError(f"{repr(date_range)} is not list")
+            raise ValueError("Expected list for date_range")
         for i, item in enumerate(date_range):
             item = _deserialize_date_range_option(item)
             date_range[i] = item

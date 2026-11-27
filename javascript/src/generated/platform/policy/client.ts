@@ -1,6 +1,6 @@
 import { PolicyError } from "./PolicyError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ArchivePlatformAdditionalFeePolicyResponse } from "../../../generated/platform/policy/ArchivePlatformAdditionalFeePolicyResponse"
 import type { ArchivePlatformContractResponse } from "../../../generated/platform/policy/ArchivePlatformContractResponse"
 import type { ArchivePlatformDiscountSharePolicyResponse } from "../../../generated/platform/policy/ArchivePlatformDiscountSharePolicyResponse"
@@ -65,7 +65,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/archive?${query}`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodePathParameter(id)}/archive?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -95,7 +95,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/recover?${query}`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodePathParameter(id)}/recover?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -125,7 +125,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -169,7 +169,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "PATCH",
 					headers: {
@@ -281,7 +281,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}/archive?${query}`, baseUrl),
+				new URL(`/platform/contracts/${encodePathParameter(id)}/archive?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -311,7 +311,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}/recover?${query}`, baseUrl),
+				new URL(`/platform/contracts/${encodePathParameter(id)}/recover?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -341,7 +341,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/contracts/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -391,7 +391,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/contracts/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "PATCH",
 					headers: {
@@ -509,7 +509,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/archive?${query}`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodePathParameter(id)}/archive?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -539,7 +539,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/recover?${query}`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodePathParameter(id)}/recover?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -569,7 +569,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -610,7 +610,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "PATCH",
 					headers: {

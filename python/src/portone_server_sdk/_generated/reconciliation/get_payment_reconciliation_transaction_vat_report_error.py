@@ -31,4 +31,4 @@ def _deserialize_get_payment_reconciliation_transaction_vat_report_error(obj: An
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPaymentReconciliationTransactionVatReportError")
+    raise ValueError("Expected GetPaymentReconciliationTransactionVatReportError")

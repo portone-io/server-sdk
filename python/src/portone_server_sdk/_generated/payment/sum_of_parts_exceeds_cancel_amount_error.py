@@ -22,16 +22,16 @@ def _serialize_sum_of_parts_exceeds_cancel_amount_error(obj: SumOfPartsExceedsCa
 
 def _deserialize_sum_of_parts_exceeds_cancel_amount_error(obj: Any) -> SumOfPartsExceedsCancelAmountError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT":
-        raise ValueError(f"{repr(type)} is not 'SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT'")
+        raise ValueError("Expected 'SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return SumOfPartsExceedsCancelAmountError(message)

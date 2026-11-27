@@ -17,6 +17,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.b2b.counterparty.B2bCertificate
 import io.portone.sdk.server.b2b.counterparty.B2bCounterparty
 import io.portone.sdk.server.b2b.counterparty.B2bCounterpartyCreateOptions
@@ -148,7 +149,7 @@ public class CounterpartyClient(
   ): GetB2bCounterpartyCertificateRegistrationUrlResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", brn.toString(), "certificate", "registration-url")
+        this.appendApiPathSegments("b2b", "counterparties", brn.toString(), "certificate", "registration-url")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -163,7 +164,7 @@ public class CounterpartyClient(
         json.decodeFromString<GetB2bCounterpartyCertificateRegistrationUrlError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCounterpartyNotFoundError -> throw B2bCounterpartyNotFoundException(httpBodyDecoded)
@@ -180,7 +181,7 @@ public class CounterpartyClient(
       json.decodeFromString<GetB2bCounterpartyCertificateRegistrationUrlResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -213,7 +214,7 @@ public class CounterpartyClient(
   ): ValidateB2bCounterpartyCertificateResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", brn.toString(), "certificate", "validate")
+        this.appendApiPathSegments("b2b", "counterparties", brn.toString(), "certificate", "validate")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -228,7 +229,7 @@ public class CounterpartyClient(
         json.decodeFromString<ValidateB2bCounterpartyCertificateError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCertificateUnregisteredError -> throw B2bCertificateUnregisteredException(httpBodyDecoded)
@@ -246,7 +247,7 @@ public class CounterpartyClient(
       json.decodeFromString<ValidateB2bCounterpartyCertificateResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -279,7 +280,7 @@ public class CounterpartyClient(
   ): B2bCertificate {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", brn.toString(), "certificate")
+        this.appendApiPathSegments("b2b", "counterparties", brn.toString(), "certificate")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -294,7 +295,7 @@ public class CounterpartyClient(
         json.decodeFromString<GetB2bCounterpartyCertificateError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCertificateUnregisteredError -> throw B2bCertificateUnregisteredException(httpBodyDecoded)
@@ -312,7 +313,7 @@ public class CounterpartyClient(
       json.decodeFromString<B2bCertificate>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -345,7 +346,7 @@ public class CounterpartyClient(
   ): B2bCounterparty {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", counterpartyId.toString())
+        this.appendApiPathSegments("b2b", "counterparties", counterpartyId.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -360,7 +361,7 @@ public class CounterpartyClient(
         json.decodeFromString<GetB2bCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCounterpartyNotFoundError -> throw B2bCounterpartyNotFoundException(httpBodyDecoded)
@@ -376,7 +377,7 @@ public class CounterpartyClient(
       json.decodeFromString<B2bCounterparty>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -409,7 +410,7 @@ public class CounterpartyClient(
   ): DeleteB2bCounterpartyResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", counterpartyId.toString())
+        this.appendApiPathSegments("b2b", "counterparties", counterpartyId.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -424,7 +425,7 @@ public class CounterpartyClient(
         json.decodeFromString<DeleteB2bCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCounterpartyNotFoundError -> throw B2bCounterpartyNotFoundException(httpBodyDecoded)
@@ -442,7 +443,7 @@ public class CounterpartyClient(
       json.decodeFromString<DeleteB2bCounterpartyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -487,7 +488,7 @@ public class CounterpartyClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        this.appendPathSegments("b2b", "counterparties", counterpartyId.toString())
+        this.appendApiPathSegments("b2b", "counterparties", counterpartyId.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -504,7 +505,7 @@ public class CounterpartyClient(
         json.decodeFromString<UpdateB2bCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCounterpartyBrnModificationNotAllowedError -> throw B2bCounterpartyBrnModificationNotAllowedException(httpBodyDecoded)
@@ -528,7 +529,7 @@ public class CounterpartyClient(
       json.decodeFromString<UpdateB2bCounterpartyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -586,7 +587,7 @@ public class CounterpartyClient(
         json.decodeFromString<GetB2bCounterpartiesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -601,7 +602,7 @@ public class CounterpartyClient(
       json.decodeFromString<GetB2bCounterpartiesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -665,7 +666,7 @@ public class CounterpartyClient(
         json.decodeFromString<CreateB2bCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCounterpartyBrnInvalidError -> throw B2bCounterpartyBrnInvalidException(httpBodyDecoded)
@@ -692,7 +693,7 @@ public class CounterpartyClient(
       json.decodeFromString<CreateB2bCounterpartyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

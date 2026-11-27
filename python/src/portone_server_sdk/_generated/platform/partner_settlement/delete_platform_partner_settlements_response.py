@@ -18,5 +18,5 @@ def _serialize_delete_platform_partner_settlements_response(obj: DeletePlatformP
 
 def _deserialize_delete_platform_partner_settlements_response(obj: Any) -> DeletePlatformPartnerSettlementsResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return DeletePlatformPartnerSettlementsResponse()

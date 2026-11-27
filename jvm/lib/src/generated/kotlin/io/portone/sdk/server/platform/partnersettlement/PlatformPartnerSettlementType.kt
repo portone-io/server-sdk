@@ -22,7 +22,7 @@ public sealed interface PlatformPartnerSettlementType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Manual::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Manual = decoder.decodeString().let {
       if (it != "MANUAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MANUAL")
       } else {
         return Manual
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformPartnerSettlementType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Order::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Order = decoder.decodeString().let {
       if (it != "ORDER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ORDER")
       } else {
         return Order
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformPartnerSettlementType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(OrderCancel::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): OrderCancel = decoder.decodeString().let {
       if (it != "ORDER_CANCEL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ORDER_CANCEL")
       } else {
         return OrderCancel
       }

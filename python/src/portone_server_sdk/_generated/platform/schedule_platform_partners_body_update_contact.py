@@ -33,23 +33,23 @@ def _serialize_schedule_platform_partners_body_update_contact(obj: SchedulePlatf
 
 def _deserialize_schedule_platform_partners_body_update_contact(obj: Any) -> SchedulePlatformPartnersBodyUpdateContact:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "phoneNumber" in obj:
         phone_number = obj["phoneNumber"]
         if not isinstance(phone_number, str):
-            raise ValueError(f"{repr(phone_number)} is not str")
+            raise ValueError("Expected str for phone_number")
     else:
         phone_number = None
     if "email" in obj:
         email = obj["email"]
         if not isinstance(email, str):
-            raise ValueError(f"{repr(email)} is not str")
+            raise ValueError("Expected str for email")
     else:
         email = None
     return SchedulePlatformPartnersBodyUpdateContact(name, phone_number, email)

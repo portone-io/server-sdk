@@ -15,7 +15,7 @@ from ...platform.platform_not_enabled_error import _deserialize_platform_not_ena
 from ...common.unauthorized_error import _deserialize_unauthorized_error
 from ...platform.company.get_b2b_business_infos_response import GetB2bBusinessInfosResponse, _deserialize_get_b2b_business_infos_response, _serialize_get_b2b_business_infos_response
 from ...platform.company.get_platform_company_state_payload import GetPlatformCompanyStatePayload, _deserialize_get_platform_company_state_payload, _serialize_get_platform_company_state_payload
-from urllib.parse import quote
+from ...._api_path import encode_path_parameter
 class CompanyClient:
     _secret: str
     _base_url: str
@@ -213,7 +213,7 @@ class CompanyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/companies/{quote(business_registration_number, safe='')}/state",
+            f"{self._base_url}/platform/companies/{encode_path_parameter(business_registration_number)}/state",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -289,7 +289,7 @@ class CompanyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/companies/{quote(business_registration_number, safe='')}/state",
+            f"{self._base_url}/platform/companies/{encode_path_parameter(business_registration_number)}/state",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

@@ -37,24 +37,24 @@ def _serialize_platform_bank_account_detail(obj: PlatformBankAccountDetail) -> A
 
 def _deserialize_platform_bank_account_detail(obj: Any) -> PlatformBankAccountDetail:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "accountNumber" not in obj:
-        raise KeyError(f"'accountNumber' is not in {obj}")
+        raise KeyError("Missing required field 'accountNumber'")
     account_number = obj["accountNumber"]
     if not isinstance(account_number, str):
-        raise ValueError(f"{repr(account_number)} is not str")
+        raise ValueError("Expected str for account_number")
     if "bank" not in obj:
-        raise KeyError(f"'bank' is not in {obj}")
+        raise KeyError("Missing required field 'bank'")
     bank = obj["bank"]
     bank = _deserialize_bank(bank)
     if "provider" not in obj:
-        raise KeyError(f"'provider' is not in {obj}")
+        raise KeyError("Missing required field 'provider'")
     provider = obj["provider"]
     provider = _deserialize_platform_bank_account_provider(provider)
     if "holder" in obj:
         holder = obj["holder"]
         if not isinstance(holder, str):
-            raise ValueError(f"{repr(holder)} is not str")
+            raise ValueError("Expected str for holder")
     else:
         holder = None
     return PlatformBankAccountDetail(account_number, bank, provider, holder)

@@ -46,7 +46,7 @@ from ...platform.policy.recover_platform_discount_share_policy_response import R
 from ...platform.policy.update_platform_additional_fee_policy_response import UpdatePlatformAdditionalFeePolicyResponse, _deserialize_update_platform_additional_fee_policy_response, _serialize_update_platform_additional_fee_policy_response
 from ...platform.policy.update_platform_contract_response import UpdatePlatformContractResponse, _deserialize_update_platform_contract_response, _serialize_update_platform_contract_response
 from ...platform.policy.update_platform_discount_share_policy_response import UpdatePlatformDiscountSharePolicyResponse, _deserialize_update_platform_discount_share_policy_response, _serialize_update_platform_discount_share_policy_response
-from urllib.parse import quote
+from ...._api_path import encode_path_parameter
 class PolicyClient:
     _secret: str
     _base_url: str
@@ -96,7 +96,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/archive",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -172,7 +172,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/archive",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -248,7 +248,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/recover",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -318,7 +318,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/recover",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -388,7 +388,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -458,7 +458,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -549,7 +549,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "PATCH",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -647,7 +647,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "PATCH",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1056,7 +1056,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/archive",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1132,7 +1132,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/archive",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1208,7 +1208,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/recover",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1278,7 +1278,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/recover",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1348,7 +1348,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1418,7 +1418,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1519,7 +1519,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "PATCH",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1627,7 +1627,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "PATCH",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2052,7 +2052,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2128,7 +2128,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2204,7 +2204,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2274,7 +2274,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2344,7 +2344,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2414,7 +2414,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2503,7 +2503,7 @@ class PolicyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "PATCH",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2599,7 +2599,7 @@ class PolicyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "PATCH",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

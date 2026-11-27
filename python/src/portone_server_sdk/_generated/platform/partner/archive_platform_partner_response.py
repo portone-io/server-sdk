@@ -22,9 +22,9 @@ def _serialize_archive_platform_partner_response(obj: ArchivePlatformPartnerResp
 
 def _deserialize_archive_platform_partner_response(obj: Any) -> ArchivePlatformPartnerResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "partner" not in obj:
-        raise KeyError(f"'partner' is not in {obj}")
+        raise KeyError("Missing required field 'partner'")
     partner = obj["partner"]
     partner = _deserialize_platform_partner(partner)
     return ArchivePlatformPartnerResponse(partner)

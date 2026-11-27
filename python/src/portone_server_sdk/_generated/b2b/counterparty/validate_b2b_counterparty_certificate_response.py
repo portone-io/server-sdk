@@ -21,10 +21,10 @@ def _serialize_validate_b2b_counterparty_certificate_response(obj: ValidateB2bCo
 
 def _deserialize_validate_b2b_counterparty_certificate_response(obj: Any) -> ValidateB2bCounterpartyCertificateResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "isValid" not in obj:
-        raise KeyError(f"'isValid' is not in {obj}")
+        raise KeyError("Missing required field 'isValid'")
     is_valid = obj["isValid"]
     if not isinstance(is_valid, bool):
-        raise ValueError(f"{repr(is_valid)} is not bool")
+        raise ValueError("Expected bool for is_valid")
     return ValidateB2bCounterpartyCertificateResponse(is_valid)

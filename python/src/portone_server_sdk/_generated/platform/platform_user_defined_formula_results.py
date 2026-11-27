@@ -19,12 +19,12 @@ def _serialize_platform_user_defined_formula_results(obj: PlatformUserDefinedFor
 
 def _deserialize_platform_user_defined_formula_results(obj: Any) -> PlatformUserDefinedFormulaResults:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     additional_properties = {}
     for key, value in obj.items():
         if key in []:
             continue
         if not isinstance(value, int):
-            raise ValueError(f"{repr(value)} is not int")
+            raise ValueError("Expected int for value")
         additional_properties[key] = value
     return PlatformUserDefinedFormulaResults(additional_properties)

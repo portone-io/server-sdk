@@ -66,4 +66,4 @@ def _deserialize_disconnect_bulk_partner_counterparty_error(obj: Any) -> Disconn
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not DisconnectBulkPartnerCounterpartyError")
+    raise ValueError("Expected DisconnectBulkPartnerCounterpartyError")

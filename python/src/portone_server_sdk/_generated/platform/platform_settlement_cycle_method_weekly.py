@@ -23,17 +23,17 @@ def _serialize_platform_settlement_cycle_method_weekly(obj: PlatformSettlementCy
 
 def _deserialize_platform_settlement_cycle_method_weekly(obj: Any) -> PlatformSettlementCycleMethodWeekly:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "WEEKLY":
-        raise ValueError(f"{repr(type)} is not 'WEEKLY'")
+        raise ValueError("Expected 'WEEKLY' for type")
     if "daysOfWeek" not in obj:
-        raise KeyError(f"'daysOfWeek' is not in {obj}")
+        raise KeyError("Missing required field 'daysOfWeek'")
     days_of_week = obj["daysOfWeek"]
     if not isinstance(days_of_week, list):
-        raise ValueError(f"{repr(days_of_week)} is not list")
+        raise ValueError("Expected list for days_of_week")
     for i, item in enumerate(days_of_week):
         item = _deserialize_day_of_week(item)
         days_of_week[i] = item

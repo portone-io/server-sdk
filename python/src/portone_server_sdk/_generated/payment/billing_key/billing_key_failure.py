@@ -38,28 +38,28 @@ def _serialize_billing_key_failure(obj: BillingKeyFailure) -> Any:
 
 def _deserialize_billing_key_failure(obj: Any) -> BillingKeyFailure:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "failedAt" not in obj:
-        raise KeyError(f"'failedAt' is not in {obj}")
+        raise KeyError("Missing required field 'failedAt'")
     failed_at = obj["failedAt"]
     if not isinstance(failed_at, str):
-        raise ValueError(f"{repr(failed_at)} is not str")
+        raise ValueError("Expected str for failed_at")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     if "pgCode" in obj:
         pg_code = obj["pgCode"]
         if not isinstance(pg_code, str):
-            raise ValueError(f"{repr(pg_code)} is not str")
+            raise ValueError("Expected str for pg_code")
     else:
         pg_code = None
     if "pgMessage" in obj:
         pg_message = obj["pgMessage"]
         if not isinstance(pg_message, str):
-            raise ValueError(f"{repr(pg_message)} is not str")
+            raise ValueError("Expected str for pg_message")
     else:
         pg_message = None
     return BillingKeyFailure(failed_at, message, pg_code, pg_message)

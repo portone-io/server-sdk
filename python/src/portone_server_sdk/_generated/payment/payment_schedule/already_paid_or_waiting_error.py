@@ -22,16 +22,16 @@ def _serialize_already_paid_or_waiting_error(obj: AlreadyPaidOrWaitingError) -> 
 
 def _deserialize_already_paid_or_waiting_error(obj: Any) -> AlreadyPaidOrWaitingError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "ALREADY_PAID_OR_WAITING":
-        raise ValueError(f"{repr(type)} is not 'ALREADY_PAID_OR_WAITING'")
+        raise ValueError("Expected 'ALREADY_PAID_OR_WAITING' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return AlreadyPaidOrWaitingError(message)

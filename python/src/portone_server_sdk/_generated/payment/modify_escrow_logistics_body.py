@@ -55,15 +55,15 @@ def _serialize_modify_escrow_logistics_body(obj: ModifyEscrowLogisticsBody) -> A
 
 def _deserialize_modify_escrow_logistics_body(obj: Any) -> ModifyEscrowLogisticsBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "logistics" not in obj:
-        raise KeyError(f"'logistics' is not in {obj}")
+        raise KeyError("Missing required field 'logistics'")
     logistics = obj["logistics"]
     logistics = _deserialize_payment_logistics(logistics)
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "sender" in obj:
@@ -79,13 +79,13 @@ def _deserialize_modify_escrow_logistics_body(obj: Any) -> ModifyEscrowLogistics
     if "sendEmail" in obj:
         send_email = obj["sendEmail"]
         if not isinstance(send_email, bool):
-            raise ValueError(f"{repr(send_email)} is not bool")
+            raise ValueError("Expected bool for send_email")
     else:
         send_email = None
     if "products" in obj:
         products = obj["products"]
         if not isinstance(products, list):
-            raise ValueError(f"{repr(products)} is not list")
+            raise ValueError("Expected list for products")
         for i, item in enumerate(products):
             item = _deserialize_payment_product(item)
             products[i] = item

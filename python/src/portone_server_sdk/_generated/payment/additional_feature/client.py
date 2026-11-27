@@ -11,7 +11,6 @@ from ...common.pg_provider_error import _deserialize_pg_provider_error
 from ...common.unauthorized_error import _deserialize_unauthorized_error
 from ...payment.additional_feature.get_pg_card_promotions_response import GetPgCardPromotionsResponse, _deserialize_get_pg_card_promotions_response, _serialize_get_pg_card_promotions_response
 from ...payment.additional_feature.pg_promotion_card_company import PgPromotionCardCompany, _deserialize_pg_promotion_card_company, _serialize_pg_promotion_card_company
-from urllib.parse import quote
 class AdditionalFeatureClient:
     _secret: str
     _base_url: str

@@ -18,9 +18,9 @@ def _serialize_create_manual_transfer_response(obj: CreateManualTransferResponse
 
 def _deserialize_create_manual_transfer_response(obj: Any) -> CreateManualTransferResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "transfer" not in obj:
-        raise KeyError(f"'transfer' is not in {obj}")
+        raise KeyError("Missing required field 'transfer'")
     transfer = obj["transfer"]
     transfer = _deserialize_platform_manual_transfer(transfer)
     return CreateManualTransferResponse(transfer)

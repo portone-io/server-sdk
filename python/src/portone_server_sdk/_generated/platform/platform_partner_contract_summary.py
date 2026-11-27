@@ -25,15 +25,15 @@ def _serialize_platform_partner_contract_summary(obj: PlatformPartnerContractSum
 
 def _deserialize_platform_partner_contract_summary(obj: Any) -> PlatformPartnerContractSummary:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     return PlatformPartnerContractSummary(id, name)

@@ -119,7 +119,7 @@ public class PartnerSettlementClient(
         json.decodeFromString<DeletePlatformPartnerSettlementsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -136,7 +136,7 @@ public class PartnerSettlementClient(
       json.decodeFromString<DeletePlatformPartnerSettlementsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -201,7 +201,7 @@ public class PartnerSettlementClient(
         json.decodeFromString<GetPlatformPartnerSettlementsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -215,7 +215,7 @@ public class PartnerSettlementClient(
       json.decodeFromString<GetPlatformPartnerSettlementsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

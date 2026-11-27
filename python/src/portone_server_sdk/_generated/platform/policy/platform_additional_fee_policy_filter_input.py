@@ -39,17 +39,17 @@ def _serialize_platform_additional_fee_policy_filter_input(obj: PlatformAddition
 
 def _deserialize_platform_additional_fee_policy_filter_input(obj: Any) -> PlatformAdditionalFeePolicyFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "isArchived" in obj:
         is_archived = obj["isArchived"]
         if not isinstance(is_archived, bool):
-            raise ValueError(f"{repr(is_archived)} is not bool")
+            raise ValueError("Expected bool for is_archived")
     else:
         is_archived = None
     if "vatPayers" in obj:
         vat_payers = obj["vatPayers"]
         if not isinstance(vat_payers, list):
-            raise ValueError(f"{repr(vat_payers)} is not list")
+            raise ValueError("Expected list for vat_payers")
         for i, item in enumerate(vat_payers):
             item = _deserialize_platform_payer(item)
             vat_payers[i] = item

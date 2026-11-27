@@ -21,7 +21,7 @@ public sealed interface PlatformBulkTaskType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CreateTransfers::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CreateTransfers = decoder.decodeString().let {
       if (it != "CREATE_TRANSFERS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CREATE_TRANSFERS")
       } else {
         return CreateTransfers
       }
@@ -37,7 +37,7 @@ public sealed interface PlatformBulkTaskType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CreatePartners::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CreatePartners = decoder.decodeString().let {
       if (it != "CREATE_PARTNERS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CREATE_PARTNERS")
       } else {
         return CreatePartners
       }
@@ -53,7 +53,7 @@ public sealed interface PlatformBulkTaskType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ConnectMemberCompanies::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ConnectMemberCompanies = decoder.decodeString().let {
       if (it != "CONNECT_MEMBER_COMPANIES") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CONNECT_MEMBER_COMPANIES")
       } else {
         return ConnectMemberCompanies
       }
@@ -69,7 +69,7 @@ public sealed interface PlatformBulkTaskType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DisconnectMemberCompanies::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DisconnectMemberCompanies = decoder.decodeString().let {
       if (it != "DISCONNECT_MEMBER_COMPANIES") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DISCONNECT_MEMBER_COMPANIES")
       } else {
         return DisconnectMemberCompanies
       }
@@ -85,7 +85,7 @@ public sealed interface PlatformBulkTaskType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendPayoutSettlementStatements::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SendPayoutSettlementStatements = decoder.decodeString().let {
       if (it != "SEND_PAYOUT_SETTLEMENT_STATEMENTS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SEND_PAYOUT_SETTLEMENT_STATEMENTS")
       } else {
         return SendPayoutSettlementStatements
       }

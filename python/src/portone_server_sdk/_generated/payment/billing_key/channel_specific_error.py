@@ -30,32 +30,32 @@ def _serialize_channel_specific_error(obj: ChannelSpecificError) -> Any:
 
 def _deserialize_channel_specific_error(obj: Any) -> ChannelSpecificError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "CHANNEL_SPECIFIC":
-        raise ValueError(f"{repr(type)} is not 'CHANNEL_SPECIFIC'")
+        raise ValueError("Expected 'CHANNEL_SPECIFIC' for type")
     if "failures" not in obj:
-        raise KeyError(f"'failures' is not in {obj}")
+        raise KeyError("Missing required field 'failures'")
     failures = obj["failures"]
     if not isinstance(failures, list):
-        raise ValueError(f"{repr(failures)} is not list")
+        raise ValueError("Expected list for failures")
     for i, item in enumerate(failures):
         item = _deserialize_channel_specific_failure(item)
         failures[i] = item
     if "succeededChannels" not in obj:
-        raise KeyError(f"'succeededChannels' is not in {obj}")
+        raise KeyError("Missing required field 'succeededChannels'")
     succeeded_channels = obj["succeededChannels"]
     if not isinstance(succeeded_channels, list):
-        raise ValueError(f"{repr(succeeded_channels)} is not list")
+        raise ValueError("Expected list for succeeded_channels")
     for i, item in enumerate(succeeded_channels):
         item = _deserialize_selected_channel(item)
         succeeded_channels[i] = item
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return ChannelSpecificError(failures, succeeded_channels, message)

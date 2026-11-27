@@ -20,7 +20,7 @@ public sealed interface Trigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Console::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Console = decoder.decodeString().let {
       if (it != "CONSOLE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CONSOLE")
       } else {
         return Console
       }
@@ -35,7 +35,7 @@ public sealed interface Trigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Api::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Api = decoder.decodeString().let {
       if (it != "API") {
-        throw SerializationException(it)
+        throw SerializationException("Expected API")
       } else {
         return Api
       }
@@ -50,7 +50,7 @@ public sealed interface Trigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PortoneAdmin::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PortoneAdmin = decoder.decodeString().let {
       if (it != "PORTONE_ADMIN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PORTONE_ADMIN")
       } else {
         return PortoneAdmin
       }
@@ -65,7 +65,7 @@ public sealed interface Trigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Chargeback::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Chargeback = decoder.decodeString().let {
       if (it != "CHARGEBACK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CHARGEBACK")
       } else {
         return Chargeback
       }

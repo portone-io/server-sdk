@@ -27,17 +27,17 @@ def _serialize_get_billing_key_infos_response(obj: GetBillingKeyInfosResponse) -
 
 def _deserialize_get_billing_key_infos_response(obj: Any) -> GetBillingKeyInfosResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "items" not in obj:
-        raise KeyError(f"'items' is not in {obj}")
+        raise KeyError("Missing required field 'items'")
     items = obj["items"]
     if not isinstance(items, list):
-        raise ValueError(f"{repr(items)} is not list")
+        raise ValueError("Expected list for items")
     for i, item in enumerate(items):
         item = _deserialize_billing_key_info(item)
         items[i] = item
     if "page" not in obj:
-        raise KeyError(f"'page' is not in {obj}")
+        raise KeyError("Missing required field 'page'")
     page = obj["page"]
     page = _deserialize_page_info(page)
     return GetBillingKeyInfosResponse(items, page)

@@ -76,27 +76,27 @@ def _serialize_issue_billing_key_body(obj: IssueBillingKeyBody) -> Any:
 
 def _deserialize_issue_billing_key_body(obj: Any) -> IssueBillingKeyBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "method" not in obj:
-        raise KeyError(f"'method' is not in {obj}")
+        raise KeyError("Missing required field 'method'")
     method = obj["method"]
     method = _deserialize_instant_billing_key_payment_method_input(method)
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "channelKey" in obj:
         channel_key = obj["channelKey"]
         if not isinstance(channel_key, str):
-            raise ValueError(f"{repr(channel_key)} is not str")
+            raise ValueError("Expected str for channel_key")
     else:
         channel_key = None
     if "channelGroupId" in obj:
         channel_group_id = obj["channelGroupId"]
         if not isinstance(channel_group_id, str):
-            raise ValueError(f"{repr(channel_group_id)} is not str")
+            raise ValueError("Expected str for channel_group_id")
     else:
         channel_group_id = None
     if "customer" in obj:
@@ -107,28 +107,28 @@ def _deserialize_issue_billing_key_body(obj: Any) -> IssueBillingKeyBody:
     if "customData" in obj:
         custom_data = obj["customData"]
         if not isinstance(custom_data, str):
-            raise ValueError(f"{repr(custom_data)} is not str")
+            raise ValueError("Expected str for custom_data")
     else:
         custom_data = None
     if "bypass" in obj:
         bypass = obj["bypass"]
         if not isinstance(bypass, dict):
-            raise ValueError(f"{repr(bypass)} is not dict")
+            raise ValueError("Expected dict for bypass")
     else:
         bypass = None
     if "noticeUrls" in obj:
         notice_urls = obj["noticeUrls"]
         if not isinstance(notice_urls, list):
-            raise ValueError(f"{repr(notice_urls)} is not list")
+            raise ValueError("Expected list for notice_urls")
         for i, item in enumerate(notice_urls):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         notice_urls = None
     if "skipWebhook" in obj:
         skip_webhook = obj["skipWebhook"]
         if not isinstance(skip_webhook, bool):
-            raise ValueError(f"{repr(skip_webhook)} is not bool")
+            raise ValueError("Expected bool for skip_webhook")
     else:
         skip_webhook = None
     return IssueBillingKeyBody(method, store_id, channel_key, channel_group_id, customer, custom_data, bypass, notice_urls, skip_webhook)

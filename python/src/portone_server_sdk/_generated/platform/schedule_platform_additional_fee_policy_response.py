@@ -22,9 +22,9 @@ def _serialize_schedule_platform_additional_fee_policy_response(obj: SchedulePla
 
 def _deserialize_schedule_platform_additional_fee_policy_response(obj: Any) -> SchedulePlatformAdditionalFeePolicyResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "scheduledAdditionalFeePolicy" not in obj:
-        raise KeyError(f"'scheduledAdditionalFeePolicy' is not in {obj}")
+        raise KeyError("Missing required field 'scheduledAdditionalFeePolicy'")
     scheduled_additional_fee_policy = obj["scheduledAdditionalFeePolicy"]
     scheduled_additional_fee_policy = _deserialize_platform_additional_fee_policy(scheduled_additional_fee_policy)
     return SchedulePlatformAdditionalFeePolicyResponse(scheduled_additional_fee_policy)

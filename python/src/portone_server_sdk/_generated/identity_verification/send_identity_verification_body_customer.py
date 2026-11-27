@@ -46,32 +46,32 @@ def _serialize_send_identity_verification_body_customer(obj: SendIdentityVerific
 
 def _deserialize_send_identity_verification_body_customer(obj: Any) -> SendIdentityVerificationBodyCustomer:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "phoneNumber" not in obj:
-        raise KeyError(f"'phoneNumber' is not in {obj}")
+        raise KeyError("Missing required field 'phoneNumber'")
     phone_number = obj["phoneNumber"]
     if not isinstance(phone_number, str):
-        raise ValueError(f"{repr(phone_number)} is not str")
+        raise ValueError("Expected str for phone_number")
     if "ipAddress" not in obj:
-        raise KeyError(f"'ipAddress' is not in {obj}")
+        raise KeyError("Missing required field 'ipAddress'")
     ip_address = obj["ipAddress"]
     if not isinstance(ip_address, str):
-        raise ValueError(f"{repr(ip_address)} is not str")
+        raise ValueError("Expected str for ip_address")
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "identityNumber" in obj:
         identity_number = obj["identityNumber"]
         if not isinstance(identity_number, str):
-            raise ValueError(f"{repr(identity_number)} is not str")
+            raise ValueError("Expected str for identity_number")
     else:
         identity_number = None
     return SendIdentityVerificationBodyCustomer(name, phone_number, ip_address, id, identity_number)

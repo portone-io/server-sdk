@@ -27,14 +27,14 @@ def _serialize_reschedule_platform_contract_body(obj: ReschedulePlatformContract
 
 def _deserialize_reschedule_platform_contract_body(obj: Any) -> ReschedulePlatformContractBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "update" not in obj:
-        raise KeyError(f"'update' is not in {obj}")
+        raise KeyError("Missing required field 'update'")
     update = obj["update"]
     update = _deserialize_update_platform_contract_body(update)
     if "appliedAt" not in obj:
-        raise KeyError(f"'appliedAt' is not in {obj}")
+        raise KeyError("Missing required field 'appliedAt'")
     applied_at = obj["appliedAt"]
     if not isinstance(applied_at, str):
-        raise ValueError(f"{repr(applied_at)} is not str")
+        raise ValueError("Expected str for applied_at")
     return ReschedulePlatformContractBody(update, applied_at)

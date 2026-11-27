@@ -22,7 +22,7 @@ public sealed interface Carrier {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Skt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Skt = decoder.decodeString().let {
       if (it != "SKT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SKT")
       } else {
         return Skt
       }
@@ -38,7 +38,7 @@ public sealed interface Carrier {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kt = decoder.decodeString().let {
       if (it != "KT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KT")
       } else {
         return Kt
       }
@@ -54,7 +54,7 @@ public sealed interface Carrier {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lgu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lgu = decoder.decodeString().let {
       if (it != "LGU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LGU")
       } else {
         return Lgu
       }
@@ -70,7 +70,7 @@ public sealed interface Carrier {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SktMvno::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SktMvno = decoder.decodeString().let {
       if (it != "SKT_MVNO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SKT_MVNO")
       } else {
         return SktMvno
       }
@@ -86,7 +86,7 @@ public sealed interface Carrier {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(KtMvno::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): KtMvno = decoder.decodeString().let {
       if (it != "KT_MVNO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KT_MVNO")
       } else {
         return KtMvno
       }
@@ -102,7 +102,7 @@ public sealed interface Carrier {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(LguMvno::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): LguMvno = decoder.decodeString().let {
       if (it != "LGU_MVNO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LGU_MVNO")
       } else {
         return LguMvno
       }

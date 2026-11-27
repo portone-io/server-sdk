@@ -21,7 +21,7 @@ public sealed interface PaymentOriginPlatformType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pc = decoder.decodeString().let {
       if (it != "PC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PC")
       } else {
         return Pc
       }
@@ -36,7 +36,7 @@ public sealed interface PaymentOriginPlatformType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mobile::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mobile = decoder.decodeString().let {
       if (it != "MOBILE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MOBILE")
       } else {
         return Mobile
       }
@@ -51,7 +51,7 @@ public sealed interface PaymentOriginPlatformType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Api::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Api = decoder.decodeString().let {
       if (it != "API") {
-        throw SerializationException(it)
+        throw SerializationException("Expected API")
       } else {
         return Api
       }

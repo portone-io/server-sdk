@@ -33,4 +33,4 @@ def _deserialize_payment_method_easy_pay_method(obj: Any) -> PaymentMethodEasyPa
         return _deserialize_payment_method_transfer(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PaymentMethodEasyPayMethod")
+    raise ValueError("Expected PaymentMethodEasyPayMethod")

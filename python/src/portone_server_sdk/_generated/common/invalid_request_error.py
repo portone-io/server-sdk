@@ -24,16 +24,16 @@ def _serialize_invalid_request_error(obj: InvalidRequestError) -> Any:
 
 def _deserialize_invalid_request_error(obj: Any) -> InvalidRequestError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "INVALID_REQUEST":
-        raise ValueError(f"{repr(type)} is not 'INVALID_REQUEST'")
+        raise ValueError("Expected 'INVALID_REQUEST' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return InvalidRequestError(message)

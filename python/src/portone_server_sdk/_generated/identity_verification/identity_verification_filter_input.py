@@ -122,11 +122,11 @@ def _serialize_identity_verification_filter_input(obj: IdentityVerificationFilte
 
 def _deserialize_identity_verification_filter_input(obj: Any) -> IdentityVerificationFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "timeRangeField" in obj:
@@ -137,37 +137,37 @@ def _deserialize_identity_verification_filter_input(obj: Any) -> IdentityVerific
     if "from" in obj:
         from_ = obj["from"]
         if not isinstance(from_, str):
-            raise ValueError(f"{repr(from_)} is not str")
+            raise ValueError("Expected str for from_")
     else:
         from_ = None
     if "until" in obj:
         until = obj["until"]
         if not isinstance(until, str):
-            raise ValueError(f"{repr(until)} is not str")
+            raise ValueError("Expected str for until")
     else:
         until = None
     if "identityVerificationId" in obj:
         identity_verification_id = obj["identityVerificationId"]
         if not isinstance(identity_verification_id, str):
-            raise ValueError(f"{repr(identity_verification_id)} is not str")
+            raise ValueError("Expected str for identity_verification_id")
     else:
         identity_verification_id = None
     if "identityVerificationTxId" in obj:
         identity_verification_tx_id = obj["identityVerificationTxId"]
         if not isinstance(identity_verification_tx_id, str):
-            raise ValueError(f"{repr(identity_verification_tx_id)} is not str")
+            raise ValueError("Expected str for identity_verification_tx_id")
     else:
         identity_verification_tx_id = None
     if "isTest" in obj:
         is_test = obj["isTest"]
         if not isinstance(is_test, bool):
-            raise ValueError(f"{repr(is_test)} is not bool")
+            raise ValueError("Expected bool for is_test")
     else:
         is_test = None
     if "statuses" in obj:
         statuses = obj["statuses"]
         if not isinstance(statuses, list):
-            raise ValueError(f"{repr(statuses)} is not list")
+            raise ValueError("Expected list for statuses")
         for i, item in enumerate(statuses):
             item = _deserialize_identity_verification_status(item)
             statuses[i] = item
@@ -176,19 +176,19 @@ def _deserialize_identity_verification_filter_input(obj: Any) -> IdentityVerific
     if "pgTxId" in obj:
         pg_tx_id = obj["pgTxId"]
         if not isinstance(pg_tx_id, str):
-            raise ValueError(f"{repr(pg_tx_id)} is not str")
+            raise ValueError("Expected str for pg_tx_id")
     else:
         pg_tx_id = None
     if "pgMerchantId" in obj:
         pg_merchant_id = obj["pgMerchantId"]
         if not isinstance(pg_merchant_id, str):
-            raise ValueError(f"{repr(pg_merchant_id)} is not str")
+            raise ValueError("Expected str for pg_merchant_id")
     else:
         pg_merchant_id = None
     if "pgProviders" in obj:
         pg_providers = obj["pgProviders"]
         if not isinstance(pg_providers, list):
-            raise ValueError(f"{repr(pg_providers)} is not list")
+            raise ValueError("Expected list for pg_providers")
         for i, item in enumerate(pg_providers):
             item = _deserialize_pg_provider(item)
             pg_providers[i] = item
@@ -197,7 +197,7 @@ def _deserialize_identity_verification_filter_input(obj: Any) -> IdentityVerific
     if "pgCompanies" in obj:
         pg_companies = obj["pgCompanies"]
         if not isinstance(pg_companies, list):
-            raise ValueError(f"{repr(pg_companies)} is not list")
+            raise ValueError("Expected list for pg_companies")
         for i, item in enumerate(pg_companies):
             item = _deserialize_pg_company(item)
             pg_companies[i] = item
@@ -206,7 +206,7 @@ def _deserialize_identity_verification_filter_input(obj: Any) -> IdentityVerific
     if "carriers" in obj:
         carriers = obj["carriers"]
         if not isinstance(carriers, list):
-            raise ValueError(f"{repr(carriers)} is not list")
+            raise ValueError("Expected list for carriers")
         for i, item in enumerate(carriers):
             item = _deserialize_carrier(item)
             carriers[i] = item

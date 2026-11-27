@@ -45,4 +45,4 @@ def _deserialize_get_b2b_counterparties_error(obj: Any) -> GetB2bCounterpartiesE
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetB2bCounterpartiesError")
+    raise ValueError("Expected GetB2bCounterpartiesError")

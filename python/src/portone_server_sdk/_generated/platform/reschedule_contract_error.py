@@ -45,4 +45,4 @@ def _deserialize_reschedule_contract_error(obj: Any) -> RescheduleContractError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not RescheduleContractError")
+    raise ValueError("Expected RescheduleContractError")

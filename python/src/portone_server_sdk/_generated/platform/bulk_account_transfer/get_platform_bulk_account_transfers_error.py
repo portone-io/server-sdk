@@ -38,4 +38,4 @@ def _deserialize_get_platform_bulk_account_transfers_error(obj: Any) -> GetPlatf
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPlatformBulkAccountTransfersError")
+    raise ValueError("Expected GetPlatformBulkAccountTransfersError")

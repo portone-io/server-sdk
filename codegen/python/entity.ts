@@ -262,13 +262,13 @@ function generateDeserializeEntity(
   const checkType = (type: string, value: string = "obj") => {
     writer.writeLine(`if not isinstance(${value}, ${type}):`)
     writer.indent()
-    writer.writeLine(`raise ValueError(f"{repr(${value})} is not ${type}")`)
+    writer.writeLine(`raise ValueError("Expected ${type} for ${value}")`)
     writer.outdent()
   }
   const checkKey = (key: string) => {
     writer.writeLine(`if "${key}" not in obj:`)
     writer.indent()
-    writer.writeLine(`raise KeyError(f"'${key}' is not in {obj}")`)
+    writer.writeLine(`raise KeyError("Missing required field '${key}'")`)
     writer.outdent()
   }
   switch (definition.type) {
@@ -292,7 +292,7 @@ function generateDeserializeEntity(
             writer.writeLine(`if ${name} != "${property.value}":`)
             writer.indent()
             writer.writeLine(
-              `raise ValueError(f"{repr(${name})} is not '${property.value}'")`,
+              `raise ValueError("Expected '${property.value}' for ${name}")`,
             )
             writer.outdent()
             break
@@ -433,7 +433,7 @@ function generateDeserializeEntity(
         writer.outdent()
       }
       writer.writeLine(
-        `raise ValueError(f"{repr(obj)} is not ${definition.name}")`,
+        `raise ValueError("Expected ${definition.name}")`,
       )
       break
     }

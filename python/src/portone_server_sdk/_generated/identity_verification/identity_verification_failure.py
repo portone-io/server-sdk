@@ -33,23 +33,23 @@ def _serialize_identity_verification_failure(obj: IdentityVerificationFailure) -
 
 def _deserialize_identity_verification_failure(obj: Any) -> IdentityVerificationFailure:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "reason" in obj:
         reason = obj["reason"]
         if not isinstance(reason, str):
-            raise ValueError(f"{repr(reason)} is not str")
+            raise ValueError("Expected str for reason")
     else:
         reason = None
     if "pgCode" in obj:
         pg_code = obj["pgCode"]
         if not isinstance(pg_code, str):
-            raise ValueError(f"{repr(pg_code)} is not str")
+            raise ValueError("Expected str for pg_code")
     else:
         pg_code = None
     if "pgMessage" in obj:
         pg_message = obj["pgMessage"]
         if not isinstance(pg_message, str):
-            raise ValueError(f"{repr(pg_message)} is not str")
+            raise ValueError("Expected str for pg_message")
     else:
         pg_message = None
     return IdentityVerificationFailure(reason, pg_code, pg_message)

@@ -31,9 +31,9 @@ def _serialize_instant_payment_method_input_virtual_account_option(obj: InstantP
 
 def _deserialize_instant_payment_method_input_virtual_account_option(obj: Any) -> InstantPaymentMethodInputVirtualAccountOption:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     type = _deserialize_instant_payment_method_input_virtual_account_option_type(type)
     if "fixed" in obj:

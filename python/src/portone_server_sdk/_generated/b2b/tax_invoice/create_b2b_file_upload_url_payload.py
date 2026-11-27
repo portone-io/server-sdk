@@ -25,15 +25,15 @@ def _serialize_create_b2b_file_upload_url_payload(obj: CreateB2bFileUploadUrlPay
 
 def _deserialize_create_b2b_file_upload_url_payload(obj: Any) -> CreateB2bFileUploadUrlPayload:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "fileId" not in obj:
-        raise KeyError(f"'fileId' is not in {obj}")
+        raise KeyError("Missing required field 'fileId'")
     file_id = obj["fileId"]
     if not isinstance(file_id, str):
-        raise ValueError(f"{repr(file_id)} is not str")
+        raise ValueError("Expected str for file_id")
     if "url" not in obj:
-        raise KeyError(f"'url' is not in {obj}")
+        raise KeyError("Missing required field 'url'")
     url = obj["url"]
     if not isinstance(url, str):
-        raise ValueError(f"{repr(url)} is not str")
+        raise ValueError("Expected str for url")
     return CreateB2bFileUploadUrlPayload(file_id, url)

@@ -21,10 +21,10 @@ def _serialize_create_b2b_file_upload_url_body(obj: CreateB2bFileUploadUrlBody) 
 
 def _deserialize_create_b2b_file_upload_url_body(obj: Any) -> CreateB2bFileUploadUrlBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "fileName" not in obj:
-        raise KeyError(f"'fileName' is not in {obj}")
+        raise KeyError("Missing required field 'fileName'")
     file_name = obj["fileName"]
     if not isinstance(file_name, str):
-        raise ValueError(f"{repr(file_name)} is not str")
+        raise ValueError("Expected str for file_name")
     return CreateB2bFileUploadUrlBody(file_name)

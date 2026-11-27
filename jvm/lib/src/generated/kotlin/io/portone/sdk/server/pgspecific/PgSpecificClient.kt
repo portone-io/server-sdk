@@ -100,7 +100,7 @@ public class PgSpecificClient(
         json.decodeFromString<GetKakaopayPaymentOrderError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
@@ -112,7 +112,7 @@ public class PgSpecificClient(
       json.decodeFromString<GetKakaopayPaymentOrderResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -262,7 +262,7 @@ public class PgSpecificClient(
         json.decodeFromString<ConfirmPaymentwallDeliveryError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
@@ -275,7 +275,7 @@ public class PgSpecificClient(
       json.decodeFromString<ConfirmPaymentwallDeliveryResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

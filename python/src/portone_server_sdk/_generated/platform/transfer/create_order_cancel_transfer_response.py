@@ -18,9 +18,9 @@ def _serialize_create_order_cancel_transfer_response(obj: CreateOrderCancelTrans
 
 def _deserialize_create_order_cancel_transfer_response(obj: Any) -> CreateOrderCancelTransferResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "transfer" not in obj:
-        raise KeyError(f"'transfer' is not in {obj}")
+        raise KeyError("Missing required field 'transfer'")
     transfer = obj["transfer"]
     transfer = _deserialize_platform_order_cancel_transfer(transfer)
     return CreateOrderCancelTransferResponse(transfer)

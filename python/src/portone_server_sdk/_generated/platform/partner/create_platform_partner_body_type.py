@@ -36,7 +36,7 @@ def _serialize_create_platform_partner_body_type(obj: CreatePlatformPartnerBodyT
 
 def _deserialize_create_platform_partner_body_type(obj: Any) -> CreatePlatformPartnerBodyType:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "business" in obj:
         business = obj["business"]
         business = _deserialize_create_platform_partner_body_type_business(business)

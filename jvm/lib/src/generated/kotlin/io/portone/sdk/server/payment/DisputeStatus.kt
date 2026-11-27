@@ -26,7 +26,7 @@ public sealed interface DisputeStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Unresolved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Unresolved = decoder.decodeString().let {
       if (it != "UNRESOLVED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UNRESOLVED")
       } else {
         return Unresolved
       }
@@ -46,7 +46,7 @@ public sealed interface DisputeStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Resolved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Resolved = decoder.decodeString().let {
       if (it != "RESOLVED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RESOLVED")
       } else {
         return Resolved
       }

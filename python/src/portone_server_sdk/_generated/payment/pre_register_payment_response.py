@@ -18,5 +18,5 @@ def _serialize_pre_register_payment_response(obj: PreRegisterPaymentResponse) ->
 
 def _deserialize_pre_register_payment_response(obj: Any) -> PreRegisterPaymentResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return PreRegisterPaymentResponse()

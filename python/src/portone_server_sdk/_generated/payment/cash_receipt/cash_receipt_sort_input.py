@@ -34,7 +34,7 @@ def _serialize_cash_receipt_sort_input(obj: CashReceiptSortInput) -> Any:
 
 def _deserialize_cash_receipt_sort_input(obj: Any) -> CashReceiptSortInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "by" in obj:
         by = obj["by"]
         by = _deserialize_cash_receipt_sort_by(by)

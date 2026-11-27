@@ -112,7 +112,7 @@ def _serialize_platform_transfer_filter_input(obj: PlatformTransferFilterInput) 
 
 def _deserialize_platform_transfer_filter_input(obj: Any) -> PlatformTransferFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "settlementStartDateRange" in obj:
         settlement_start_date_range = obj["settlementStartDateRange"]
         settlement_start_date_range = _deserialize_date_range(settlement_start_date_range)
@@ -126,43 +126,43 @@ def _deserialize_platform_transfer_filter_input(obj: Any) -> PlatformTransferFil
     if "partnerTags" in obj:
         partner_tags = obj["partnerTags"]
         if not isinstance(partner_tags, list):
-            raise ValueError(f"{repr(partner_tags)} is not list")
+            raise ValueError("Expected list for partner_tags")
         for i, item in enumerate(partner_tags):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         partner_tags = None
     if "contractIds" in obj:
         contract_ids = obj["contractIds"]
         if not isinstance(contract_ids, list):
-            raise ValueError(f"{repr(contract_ids)} is not list")
+            raise ValueError("Expected list for contract_ids")
         for i, item in enumerate(contract_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         contract_ids = None
     if "discountSharePolicyIds" in obj:
         discount_share_policy_ids = obj["discountSharePolicyIds"]
         if not isinstance(discount_share_policy_ids, list):
-            raise ValueError(f"{repr(discount_share_policy_ids)} is not list")
+            raise ValueError("Expected list for discount_share_policy_ids")
         for i, item in enumerate(discount_share_policy_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         discount_share_policy_ids = None
     if "additionalFeePolicyIds" in obj:
         additional_fee_policy_ids = obj["additionalFeePolicyIds"]
         if not isinstance(additional_fee_policy_ids, list):
-            raise ValueError(f"{repr(additional_fee_policy_ids)} is not list")
+            raise ValueError("Expected list for additional_fee_policy_ids")
         for i, item in enumerate(additional_fee_policy_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         additional_fee_policy_ids = None
     if "paymentMethodTypes" in obj:
         payment_method_types = obj["paymentMethodTypes"]
         if not isinstance(payment_method_types, list):
-            raise ValueError(f"{repr(payment_method_types)} is not list")
+            raise ValueError("Expected list for payment_method_types")
         for i, item in enumerate(payment_method_types):
             item = _deserialize_payment_method_type(item)
             payment_method_types[i] = item
@@ -171,16 +171,16 @@ def _deserialize_platform_transfer_filter_input(obj: Any) -> PlatformTransferFil
     if "channelKeys" in obj:
         channel_keys = obj["channelKeys"]
         if not isinstance(channel_keys, list):
-            raise ValueError(f"{repr(channel_keys)} is not list")
+            raise ValueError("Expected list for channel_keys")
         for i, item in enumerate(channel_keys):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         channel_keys = None
     if "types" in obj:
         types = obj["types"]
         if not isinstance(types, list):
-            raise ValueError(f"{repr(types)} is not list")
+            raise ValueError("Expected list for types")
         for i, item in enumerate(types):
             item = _deserialize_platform_transfer_type(item)
             types[i] = item
@@ -189,7 +189,7 @@ def _deserialize_platform_transfer_filter_input(obj: Any) -> PlatformTransferFil
     if "statuses" in obj:
         statuses = obj["statuses"]
         if not isinstance(statuses, list):
-            raise ValueError(f"{repr(statuses)} is not list")
+            raise ValueError("Expected list for statuses")
         for i, item in enumerate(statuses):
             item = _deserialize_platform_transfer_status(item)
             statuses[i] = item
@@ -208,7 +208,7 @@ def _deserialize_platform_transfer_filter_input(obj: Any) -> PlatformTransferFil
     if "isForTest" in obj:
         is_for_test = obj["isForTest"]
         if not isinstance(is_for_test, bool):
-            raise ValueError(f"{repr(is_for_test)} is not bool")
+            raise ValueError("Expected bool for is_for_test")
     else:
         is_for_test = None
     return PlatformTransferFilterInput(settlement_start_date_range, settlement_date_range, partner_tags, contract_ids, discount_share_policy_ids, additional_fee_policy_ids, payment_method_types, channel_keys, types, statuses, user_defined_property, keyword, is_for_test)

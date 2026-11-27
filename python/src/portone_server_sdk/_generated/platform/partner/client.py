@@ -59,7 +59,7 @@ from ...platform.update_platform_partner_body_account import UpdatePlatformPartn
 from ...platform.update_platform_partner_body_contact import UpdatePlatformPartnerBodyContact, _deserialize_update_platform_partner_body_contact, _serialize_update_platform_partner_body_contact
 from ...platform.update_platform_partner_body_type import UpdatePlatformPartnerBodyType, _deserialize_update_platform_partner_body_type, _serialize_update_platform_partner_body_type
 from ...platform.partner.update_platform_partner_response import UpdatePlatformPartnerResponse, _deserialize_update_platform_partner_response, _serialize_update_platform_partner_response
-from urllib.parse import quote
+from ...._api_path import encode_path_parameter
 class PartnerClient:
     _secret: str
     _base_url: str
@@ -303,7 +303,7 @@ class PartnerClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/counterparty-connect/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/counterparty-connect/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -421,7 +421,7 @@ class PartnerClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/counterparty-connect/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/counterparty-connect/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -723,7 +723,7 @@ class PartnerClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/counterparty-disconnect/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/counterparty-disconnect/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -835,7 +835,7 @@ class PartnerClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/counterparty-disconnect/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/counterparty-disconnect/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1131,7 +1131,7 @@ class PartnerClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/archive",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1219,7 +1219,7 @@ class PartnerClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/archive",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1307,7 +1307,7 @@ class PartnerClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/recover",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1383,7 +1383,7 @@ class PartnerClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/recover",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1459,7 +1459,7 @@ class PartnerClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1529,7 +1529,7 @@ class PartnerClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1640,7 +1640,7 @@ class PartnerClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "PATCH",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1812,7 +1812,7 @@ class PartnerClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "PATCH",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

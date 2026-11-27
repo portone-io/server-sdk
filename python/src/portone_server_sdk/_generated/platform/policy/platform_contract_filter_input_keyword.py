@@ -30,17 +30,17 @@ def _serialize_platform_contract_filter_input_keyword(obj: PlatformContractFilte
 
 def _deserialize_platform_contract_filter_input_keyword(obj: Any) -> PlatformContractFilterInputKeyword:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     return PlatformContractFilterInputKeyword(id, name)

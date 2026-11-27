@@ -52,4 +52,4 @@ def _deserialize_update_platform_additional_fee_policy_error(obj: Any) -> Update
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not UpdatePlatformAdditionalFeePolicyError")
+    raise ValueError("Expected UpdatePlatformAdditionalFeePolicyError")

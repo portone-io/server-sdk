@@ -21,10 +21,10 @@ def _serialize_before_registered_payment_escrow(obj: BeforeRegisteredPaymentEscr
 
 def _deserialize_before_registered_payment_escrow(obj: Any) -> BeforeRegisteredPaymentEscrow:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     if status != "BEFORE_REGISTERED":
-        raise ValueError(f"{repr(status)} is not 'BEFORE_REGISTERED'")
+        raise ValueError("Expected 'BEFORE_REGISTERED' for status")
     return BeforeRegisteredPaymentEscrow()

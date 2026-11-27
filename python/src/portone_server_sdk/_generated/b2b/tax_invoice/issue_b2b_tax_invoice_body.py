@@ -28,17 +28,17 @@ def _serialize_issue_b2b_tax_invoice_body(obj: IssueB2bTaxInvoiceBody) -> Any:
 
 def _deserialize_issue_b2b_tax_invoice_body(obj: Any) -> IssueB2bTaxInvoiceBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "emailSubject" in obj:
         email_subject = obj["emailSubject"]
         if not isinstance(email_subject, str):
-            raise ValueError(f"{repr(email_subject)} is not str")
+            raise ValueError("Expected str for email_subject")
     else:
         email_subject = None
     return IssueB2bTaxInvoiceBody(memo, email_subject)

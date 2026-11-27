@@ -22,10 +22,10 @@ def _serialize_stop_payment_cancellation_response(obj: StopPaymentCancellationRe
 
 def _deserialize_stop_payment_cancellation_response(obj: Any) -> StopPaymentCancellationResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "stoppedAt" not in obj:
-        raise KeyError(f"'stoppedAt' is not in {obj}")
+        raise KeyError("Missing required field 'stoppedAt'")
     stopped_at = obj["stoppedAt"]
     if not isinstance(stopped_at, str):
-        raise ValueError(f"{repr(stopped_at)} is not str")
+        raise ValueError("Expected str for stopped_at")
     return StopPaymentCancellationResponse(stopped_at)

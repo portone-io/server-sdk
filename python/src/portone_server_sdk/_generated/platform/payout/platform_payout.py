@@ -132,148 +132,148 @@ def _serialize_platform_payout(obj: PlatformPayout) -> Any:
 
 def _deserialize_platform_payout(obj: Any) -> PlatformPayout:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "graphqlId" not in obj:
-        raise KeyError(f"'graphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'graphqlId'")
     graphql_id = obj["graphqlId"]
     if not isinstance(graphql_id, str):
-        raise ValueError(f"{repr(graphql_id)} is not str")
+        raise ValueError("Expected str for graphql_id")
     if "bulkPayoutId" not in obj:
-        raise KeyError(f"'bulkPayoutId' is not in {obj}")
+        raise KeyError("Missing required field 'bulkPayoutId'")
     bulk_payout_id = obj["bulkPayoutId"]
     if not isinstance(bulk_payout_id, str):
-        raise ValueError(f"{repr(bulk_payout_id)} is not str")
+        raise ValueError("Expected str for bulk_payout_id")
     if "bulkPayoutGraphqlId" not in obj:
-        raise KeyError(f"'bulkPayoutGraphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'bulkPayoutGraphqlId'")
     bulk_payout_graphql_id = obj["bulkPayoutGraphqlId"]
     if not isinstance(bulk_payout_graphql_id, str):
-        raise ValueError(f"{repr(bulk_payout_graphql_id)} is not str")
+        raise ValueError("Expected str for bulk_payout_graphql_id")
     if "method" not in obj:
-        raise KeyError(f"'method' is not in {obj}")
+        raise KeyError("Missing required field 'method'")
     method = obj["method"]
     method = _deserialize_platform_payout_method(method)
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     status = _deserialize_platform_payout_status(status)
     if "statusUpdatedAt" not in obj:
-        raise KeyError(f"'statusUpdatedAt' is not in {obj}")
+        raise KeyError("Missing required field 'statusUpdatedAt'")
     status_updated_at = obj["statusUpdatedAt"]
     if not isinstance(status_updated_at, str):
-        raise ValueError(f"{repr(status_updated_at)} is not str")
+        raise ValueError("Expected str for status_updated_at")
     if "partner" not in obj:
-        raise KeyError(f"'partner' is not in {obj}")
+        raise KeyError("Missing required field 'partner'")
     partner = obj["partner"]
     partner = _deserialize_platform_partner(partner)
     if "account" not in obj:
-        raise KeyError(f"'account' is not in {obj}")
+        raise KeyError("Missing required field 'account'")
     account = obj["account"]
     account = _deserialize_platform_payout_account(account)
     if "taxInvoiceStatus" not in obj:
-        raise KeyError(f"'taxInvoiceStatus' is not in {obj}")
+        raise KeyError("Missing required field 'taxInvoiceStatus'")
     tax_invoice_status = obj["taxInvoiceStatus"]
     tax_invoice_status = _deserialize_platform_payout_tax_invoice_status(tax_invoice_status)
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     if not isinstance(amount, int):
-        raise ValueError(f"{repr(amount)} is not int")
+        raise ValueError("Expected int for amount")
     if "supplyAmount" not in obj:
-        raise KeyError(f"'supplyAmount' is not in {obj}")
+        raise KeyError("Missing required field 'supplyAmount'")
     supply_amount = obj["supplyAmount"]
     if not isinstance(supply_amount, int):
-        raise ValueError(f"{repr(supply_amount)} is not int")
+        raise ValueError("Expected int for supply_amount")
     if "taxFreeAmount" not in obj:
-        raise KeyError(f"'taxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'taxFreeAmount'")
     tax_free_amount = obj["taxFreeAmount"]
     if not isinstance(tax_free_amount, int):
-        raise ValueError(f"{repr(tax_free_amount)} is not int")
+        raise ValueError("Expected int for tax_free_amount")
     if "vatAmount" not in obj:
-        raise KeyError(f"'vatAmount' is not in {obj}")
+        raise KeyError("Missing required field 'vatAmount'")
     vat_amount = obj["vatAmount"]
     if not isinstance(vat_amount, int):
-        raise ValueError(f"{repr(vat_amount)} is not int")
+        raise ValueError("Expected int for vat_amount")
     if "settlementAmount" not in obj:
-        raise KeyError(f"'settlementAmount' is not in {obj}")
+        raise KeyError("Missing required field 'settlementAmount'")
     settlement_amount = obj["settlementAmount"]
     if not isinstance(settlement_amount, int):
-        raise ValueError(f"{repr(settlement_amount)} is not int")
+        raise ValueError("Expected int for settlement_amount")
     if "settlementTaxFreeAmount" not in obj:
-        raise KeyError(f"'settlementTaxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'settlementTaxFreeAmount'")
     settlement_tax_free_amount = obj["settlementTaxFreeAmount"]
     if not isinstance(settlement_tax_free_amount, int):
-        raise ValueError(f"{repr(settlement_tax_free_amount)} is not int")
+        raise ValueError("Expected int for settlement_tax_free_amount")
     if "incomeTaxAmount" not in obj:
-        raise KeyError(f"'incomeTaxAmount' is not in {obj}")
+        raise KeyError("Missing required field 'incomeTaxAmount'")
     income_tax_amount = obj["incomeTaxAmount"]
     if not isinstance(income_tax_amount, int):
-        raise ValueError(f"{repr(income_tax_amount)} is not int")
+        raise ValueError("Expected int for income_tax_amount")
     if "localIncomeTaxAmount" not in obj:
-        raise KeyError(f"'localIncomeTaxAmount' is not in {obj}")
+        raise KeyError("Missing required field 'localIncomeTaxAmount'")
     local_income_tax_amount = obj["localIncomeTaxAmount"]
     if not isinstance(local_income_tax_amount, int):
-        raise ValueError(f"{repr(local_income_tax_amount)} is not int")
+        raise ValueError("Expected int for local_income_tax_amount")
     if "createdAt" not in obj:
-        raise KeyError(f"'createdAt' is not in {obj}")
+        raise KeyError("Missing required field 'createdAt'")
     created_at = obj["createdAt"]
     if not isinstance(created_at, str):
-        raise ValueError(f"{repr(created_at)} is not str")
+        raise ValueError("Expected str for created_at")
     if "deductWht" not in obj:
-        raise KeyError(f"'deductWht' is not in {obj}")
+        raise KeyError("Missing required field 'deductWht'")
     deduct_wht = obj["deductWht"]
     if not isinstance(deduct_wht, bool):
-        raise ValueError(f"{repr(deduct_wht)} is not bool")
+        raise ValueError("Expected bool for deduct_wht")
     if "settlementAmountType" not in obj:
-        raise KeyError(f"'settlementAmountType' is not in {obj}")
+        raise KeyError("Missing required field 'settlementAmountType'")
     settlement_amount_type = obj["settlementAmountType"]
     settlement_amount_type = _deserialize_settlement_amount_type(settlement_amount_type)
     if "settlementStatement" not in obj:
-        raise KeyError(f"'settlementStatement' is not in {obj}")
+        raise KeyError("Missing required field 'settlementStatement'")
     settlement_statement = obj["settlementStatement"]
     settlement_statement = _deserialize_platform_payout_settlement_statement_summary(settlement_statement)
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "taxInvoiceId" in obj:
         tax_invoice_id = obj["taxInvoiceId"]
         if not isinstance(tax_invoice_id, str):
-            raise ValueError(f"{repr(tax_invoice_id)} is not str")
+            raise ValueError("Expected str for tax_invoice_id")
     else:
         tax_invoice_id = None
     if "withdrawalMemo" in obj:
         withdrawal_memo = obj["withdrawalMemo"]
         if not isinstance(withdrawal_memo, str):
-            raise ValueError(f"{repr(withdrawal_memo)} is not str")
+            raise ValueError("Expected str for withdrawal_memo")
     else:
         withdrawal_memo = None
     if "depositMemo" in obj:
         deposit_memo = obj["depositMemo"]
         if not isinstance(deposit_memo, str):
-            raise ValueError(f"{repr(deposit_memo)} is not str")
+            raise ValueError("Expected str for deposit_memo")
     else:
         deposit_memo = None
     if "scheduledAt" in obj:
         scheduled_at = obj["scheduledAt"]
         if not isinstance(scheduled_at, str):
-            raise ValueError(f"{repr(scheduled_at)} is not str")
+            raise ValueError("Expected str for scheduled_at")
     else:
         scheduled_at = None
     if "failReason" in obj:
         fail_reason = obj["failReason"]
         if not isinstance(fail_reason, str):
-            raise ValueError(f"{repr(fail_reason)} is not str")
+            raise ValueError("Expected str for fail_reason")
     else:
         fail_reason = None
     return PlatformPayout(id, graphql_id, bulk_payout_id, bulk_payout_graphql_id, method, status, status_updated_at, partner, account, tax_invoice_status, currency, amount, supply_amount, tax_free_amount, vat_amount, settlement_amount, settlement_tax_free_amount, income_tax_amount, local_income_tax_amount, created_at, deduct_wht, settlement_amount_type, settlement_statement, memo, tax_invoice_id, withdrawal_memo, deposit_memo, scheduled_at, fail_reason)

@@ -21,7 +21,7 @@ public sealed interface PromotionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Scheduled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Scheduled = decoder.decodeString().let {
       if (it != "SCHEDULED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SCHEDULED")
       } else {
         return Scheduled
       }
@@ -37,7 +37,7 @@ public sealed interface PromotionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(InProgress::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): InProgress = decoder.decodeString().let {
       if (it != "IN_PROGRESS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IN_PROGRESS")
       } else {
         return InProgress
       }
@@ -53,7 +53,7 @@ public sealed interface PromotionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Paused::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Paused = decoder.decodeString().let {
       if (it != "PAUSED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAUSED")
       } else {
         return Paused
       }
@@ -69,7 +69,7 @@ public sealed interface PromotionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BudgetExhausted::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): BudgetExhausted = decoder.decodeString().let {
       if (it != "BUDGET_EXHAUSTED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BUDGET_EXHAUSTED")
       } else {
         return BudgetExhausted
       }
@@ -85,7 +85,7 @@ public sealed interface PromotionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Terminated::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Terminated = decoder.decodeString().let {
       if (it != "TERMINATED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TERMINATED")
       } else {
         return Terminated
       }
@@ -101,7 +101,7 @@ public sealed interface PromotionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Completed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Completed = decoder.decodeString().let {
       if (it != "COMPLETED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected COMPLETED")
       } else {
         return Completed
       }

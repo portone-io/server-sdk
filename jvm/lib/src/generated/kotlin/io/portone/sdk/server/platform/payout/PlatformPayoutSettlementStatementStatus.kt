@@ -22,7 +22,7 @@ public sealed interface PlatformPayoutSettlementStatementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Unsent::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Unsent = decoder.decodeString().let {
       if (it != "UNSENT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UNSENT")
       } else {
         return Unsent
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformPayoutSettlementStatementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sent::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sent = decoder.decodeString().let {
       if (it != "SENT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SENT")
       } else {
         return Sent
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformPayoutSettlementStatementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SendFailed = decoder.decodeString().let {
       if (it != "SEND_FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SEND_FAILED")
       } else {
         return SendFailed
       }
@@ -70,7 +70,7 @@ public sealed interface PlatformPayoutSettlementStatementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendPrepared::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SendPrepared = decoder.decodeString().let {
       if (it != "SEND_PREPARED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SEND_PREPARED")
       } else {
         return SendPrepared
       }

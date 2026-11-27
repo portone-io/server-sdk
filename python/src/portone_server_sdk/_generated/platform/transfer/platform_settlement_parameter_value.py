@@ -32,16 +32,16 @@ def _serialize_platform_settlement_parameter_value(obj: PlatformSettlementParame
 
 def _deserialize_platform_settlement_parameter_value(obj: Any) -> PlatformSettlementParameterValue:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "decimal" not in obj:
-        raise KeyError(f"'decimal' is not in {obj}")
+        raise KeyError("Missing required field 'decimal'")
     decimal = obj["decimal"]
     if not isinstance(decimal, int):
-        raise ValueError(f"{repr(decimal)} is not int")
+        raise ValueError("Expected int for decimal")
     if "decimalScale" in obj:
         decimal_scale = obj["decimalScale"]
         if not isinstance(decimal_scale, int):
-            raise ValueError(f"{repr(decimal_scale)} is not int")
+            raise ValueError("Expected int for decimal_scale")
     else:
         decimal_scale = None
     return PlatformSettlementParameterValue(decimal, decimal_scale)

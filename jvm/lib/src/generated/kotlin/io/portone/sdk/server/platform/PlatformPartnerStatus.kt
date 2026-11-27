@@ -22,7 +22,7 @@ public sealed interface PlatformPartnerStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pending = decoder.decodeString().let {
       if (it != "PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PENDING")
       } else {
         return Pending
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformPartnerStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Approved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Approved = decoder.decodeString().let {
       if (it != "APPROVED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected APPROVED")
       } else {
         return Approved
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformPartnerStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Rejected::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Rejected = decoder.decodeString().let {
       if (it != "REJECTED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REJECTED")
       } else {
         return Rejected
       }

@@ -76,53 +76,53 @@ def _serialize_b2b_tax_invoice_company(obj: B2bTaxInvoiceCompany) -> Any:
 
 def _deserialize_b2b_tax_invoice_company(obj: Any) -> B2bTaxInvoiceCompany:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "brn" in obj:
         brn = obj["brn"]
         if not isinstance(brn, str):
-            raise ValueError(f"{repr(brn)} is not str")
+            raise ValueError("Expected str for brn")
     else:
         brn = None
     if "counterpartyId" in obj:
         counterparty_id = obj["counterpartyId"]
         if not isinstance(counterparty_id, str):
-            raise ValueError(f"{repr(counterparty_id)} is not str")
+            raise ValueError("Expected str for counterparty_id")
     else:
         counterparty_id = None
     if "taxRegistrationId" in obj:
         tax_registration_id = obj["taxRegistrationId"]
         if not isinstance(tax_registration_id, str):
-            raise ValueError(f"{repr(tax_registration_id)} is not str")
+            raise ValueError("Expected str for tax_registration_id")
     else:
         tax_registration_id = None
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "representativeName" in obj:
         representative_name = obj["representativeName"]
         if not isinstance(representative_name, str):
-            raise ValueError(f"{repr(representative_name)} is not str")
+            raise ValueError("Expected str for representative_name")
     else:
         representative_name = None
     if "address" in obj:
         address = obj["address"]
         if not isinstance(address, str):
-            raise ValueError(f"{repr(address)} is not str")
+            raise ValueError("Expected str for address")
     else:
         address = None
     if "businessType" in obj:
         business_type = obj["businessType"]
         if not isinstance(business_type, str):
-            raise ValueError(f"{repr(business_type)} is not str")
+            raise ValueError("Expected str for business_type")
     else:
         business_type = None
     if "businessClass" in obj:
         business_class = obj["businessClass"]
         if not isinstance(business_class, str):
-            raise ValueError(f"{repr(business_class)} is not str")
+            raise ValueError("Expected str for business_class")
     else:
         business_class = None
     if "contact" in obj:

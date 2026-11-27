@@ -67,86 +67,86 @@ def _serialize_platform_order_transfer_summary(obj: PlatformOrderTransferSummary
 
 def _deserialize_platform_order_transfer_summary(obj: Any) -> PlatformOrderTransferSummary:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "ORDER":
-        raise ValueError(f"{repr(type)} is not 'ORDER'")
+        raise ValueError("Expected 'ORDER' for type")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "graphqlId" not in obj:
-        raise KeyError(f"'graphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'graphqlId'")
     graphql_id = obj["graphqlId"]
     if not isinstance(graphql_id, str):
-        raise ValueError(f"{repr(graphql_id)} is not str")
+        raise ValueError("Expected str for graphql_id")
     if "storeId" not in obj:
-        raise KeyError(f"'storeId' is not in {obj}")
+        raise KeyError("Missing required field 'storeId'")
     store_id = obj["storeId"]
     if not isinstance(store_id, str):
-        raise ValueError(f"{repr(store_id)} is not str")
+        raise ValueError("Expected str for store_id")
     if "partner" not in obj:
-        raise KeyError(f"'partner' is not in {obj}")
+        raise KeyError("Missing required field 'partner'")
     partner = obj["partner"]
     partner = _deserialize_platform_transfer_summary_partner(partner)
     if "contract" not in obj:
-        raise KeyError(f"'contract' is not in {obj}")
+        raise KeyError("Missing required field 'contract'")
     contract = obj["contract"]
     contract = _deserialize_platform_contract(contract)
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     status = _deserialize_platform_transfer_status(status)
     if "settlementDate" not in obj:
-        raise KeyError(f"'settlementDate' is not in {obj}")
+        raise KeyError("Missing required field 'settlementDate'")
     settlement_date = obj["settlementDate"]
     if not isinstance(settlement_date, str):
-        raise ValueError(f"{repr(settlement_date)} is not str")
+        raise ValueError("Expected str for settlement_date")
     if "settlementCurrency" not in obj:
-        raise KeyError(f"'settlementCurrency' is not in {obj}")
+        raise KeyError("Missing required field 'settlementCurrency'")
     settlement_currency = obj["settlementCurrency"]
     settlement_currency = _deserialize_currency(settlement_currency)
     if "isForTest" not in obj:
-        raise KeyError(f"'isForTest' is not in {obj}")
+        raise KeyError("Missing required field 'isForTest'")
     is_for_test = obj["isForTest"]
     if not isinstance(is_for_test, bool):
-        raise ValueError(f"{repr(is_for_test)} is not bool")
+        raise ValueError("Expected bool for is_for_test")
     if "partnerUserDefinedProperties" not in obj:
-        raise KeyError(f"'partnerUserDefinedProperties' is not in {obj}")
+        raise KeyError("Missing required field 'partnerUserDefinedProperties'")
     partner_user_defined_properties = obj["partnerUserDefinedProperties"]
     if not isinstance(partner_user_defined_properties, list):
-        raise ValueError(f"{repr(partner_user_defined_properties)} is not list")
+        raise ValueError("Expected list for partner_user_defined_properties")
     for i, item in enumerate(partner_user_defined_properties):
         item = _deserialize_platform_user_defined_property_key_value(item)
         partner_user_defined_properties[i] = item
     if "userDefinedProperties" not in obj:
-        raise KeyError(f"'userDefinedProperties' is not in {obj}")
+        raise KeyError("Missing required field 'userDefinedProperties'")
     user_defined_properties = obj["userDefinedProperties"]
     if not isinstance(user_defined_properties, list):
-        raise ValueError(f"{repr(user_defined_properties)} is not list")
+        raise ValueError("Expected list for user_defined_properties")
     for i, item in enumerate(user_defined_properties):
         item = _deserialize_platform_user_defined_property_key_value(item)
         user_defined_properties[i] = item
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     amount = _deserialize_platform_order_settlement_amount(amount)
     if "payment" not in obj:
-        raise KeyError(f"'payment' is not in {obj}")
+        raise KeyError("Missing required field 'payment'")
     payment = obj["payment"]
     payment = _deserialize_platform_transfer_summary_payment(payment)
     if "settlementStartDate" not in obj:
-        raise KeyError(f"'settlementStartDate' is not in {obj}")
+        raise KeyError("Missing required field 'settlementStartDate'")
     settlement_start_date = obj["settlementStartDate"]
     if not isinstance(settlement_start_date, str):
-        raise ValueError(f"{repr(settlement_start_date)} is not str")
+        raise ValueError("Expected str for settlement_start_date")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return PlatformOrderTransferSummary(id, graphql_id, store_id, partner, contract, status, settlement_date, settlement_currency, is_for_test, partner_user_defined_properties, user_defined_properties, amount, payment, settlement_start_date, memo)

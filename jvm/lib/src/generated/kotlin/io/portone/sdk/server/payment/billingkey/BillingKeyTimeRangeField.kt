@@ -22,7 +22,7 @@ public sealed interface BillingKeyTimeRangeField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestedAt = decoder.decodeString().let {
       if (it != "REQUESTED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REQUESTED_AT")
       } else {
         return RequestedAt
       }
@@ -38,7 +38,7 @@ public sealed interface BillingKeyTimeRangeField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuedAt = decoder.decodeString().let {
       if (it != "ISSUED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUED_AT")
       } else {
         return IssuedAt
       }
@@ -54,7 +54,7 @@ public sealed interface BillingKeyTimeRangeField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DeletedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DeletedAt = decoder.decodeString().let {
       if (it != "DELETED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DELETED_AT")
       } else {
         return DeletedAt
       }
@@ -74,7 +74,7 @@ public sealed interface BillingKeyTimeRangeField {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusTimestamp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): StatusTimestamp = decoder.decodeString().let {
       if (it != "STATUS_TIMESTAMP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected STATUS_TIMESTAMP")
       } else {
         return StatusTimestamp
       }

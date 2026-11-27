@@ -22,7 +22,7 @@ public sealed interface PaymentwallDeliveryStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(OrderPlaced::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): OrderPlaced = decoder.decodeString().let {
       if (it != "ORDER_PLACED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ORDER_PLACED")
       } else {
         return OrderPlaced
       }
@@ -38,7 +38,7 @@ public sealed interface PaymentwallDeliveryStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(OrderShipped::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): OrderShipped = decoder.decodeString().let {
       if (it != "ORDER_SHIPPED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ORDER_SHIPPED")
       } else {
         return OrderShipped
       }
@@ -54,7 +54,7 @@ public sealed interface PaymentwallDeliveryStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Delivered::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Delivered = decoder.decodeString().let {
       if (it != "DELIVERED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DELIVERED")
       } else {
         return Delivered
       }

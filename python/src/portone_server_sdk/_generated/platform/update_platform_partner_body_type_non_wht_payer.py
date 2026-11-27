@@ -24,11 +24,11 @@ def _serialize_update_platform_partner_body_type_non_wht_payer(obj: UpdatePlatfo
 
 def _deserialize_update_platform_partner_body_type_non_wht_payer(obj: Any) -> UpdatePlatformPartnerBodyTypeNonWhtPayer:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "birthdate" in obj:
         birthdate = obj["birthdate"]
         if not isinstance(birthdate, str):
-            raise ValueError(f"{repr(birthdate)} is not str")
+            raise ValueError("Expected str for birthdate")
     else:
         birthdate = None
     return UpdatePlatformPartnerBodyTypeNonWhtPayer(birthdate)

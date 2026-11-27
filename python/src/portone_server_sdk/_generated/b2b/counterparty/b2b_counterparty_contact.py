@@ -36,27 +36,27 @@ def _serialize_b2b_counterparty_contact(obj: B2bCounterpartyContact) -> Any:
 
 def _deserialize_b2b_counterparty_contact(obj: Any) -> B2bCounterpartyContact:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "email" not in obj:
-        raise KeyError(f"'email' is not in {obj}")
+        raise KeyError("Missing required field 'email'")
     email = obj["email"]
     if not isinstance(email, str):
-        raise ValueError(f"{repr(email)} is not str")
+        raise ValueError("Expected str for email")
     if "phoneNumber" in obj:
         phone_number = obj["phoneNumber"]
         if not isinstance(phone_number, str):
-            raise ValueError(f"{repr(phone_number)} is not str")
+            raise ValueError("Expected str for phone_number")
     else:
         phone_number = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return B2bCounterpartyContact(name, email, phone_number, memo)

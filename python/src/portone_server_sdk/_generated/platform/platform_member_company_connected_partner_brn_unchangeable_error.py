@@ -22,16 +22,16 @@ def _serialize_platform_member_company_connected_partner_brn_unchangeable_error(
 
 def _deserialize_platform_member_company_connected_partner_brn_unchangeable_error(obj: Any) -> PlatformMemberCompanyConnectedPartnerBrnUnchangeableError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_MEMBER_COMPANY_CONNECTED_PARTNER_BRN_UNCHANGEABLE":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_MEMBER_COMPANY_CONNECTED_PARTNER_BRN_UNCHANGEABLE'")
+        raise ValueError("Expected 'PLATFORM_MEMBER_COMPANY_CONNECTED_PARTNER_BRN_UNCHANGEABLE' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformMemberCompanyConnectedPartnerBrnUnchangeableError(message)

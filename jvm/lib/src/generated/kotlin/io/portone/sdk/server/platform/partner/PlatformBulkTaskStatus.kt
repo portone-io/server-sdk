@@ -20,7 +20,7 @@ public sealed interface PlatformBulkTaskStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Prepared::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Prepared = decoder.decodeString().let {
       if (it != "PREPARED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PREPARED")
       } else {
         return Prepared
       }
@@ -35,7 +35,7 @@ public sealed interface PlatformBulkTaskStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Processing::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Processing = decoder.decodeString().let {
       if (it != "PROCESSING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PROCESSING")
       } else {
         return Processing
       }
@@ -50,7 +50,7 @@ public sealed interface PlatformBulkTaskStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Completed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Completed = decoder.decodeString().let {
       if (it != "COMPLETED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected COMPLETED")
       } else {
         return Completed
       }
@@ -65,7 +65,7 @@ public sealed interface PlatformBulkTaskStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Canceled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Canceled = decoder.decodeString().let {
       if (it != "CANCELED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CANCELED")
       } else {
         return Canceled
       }

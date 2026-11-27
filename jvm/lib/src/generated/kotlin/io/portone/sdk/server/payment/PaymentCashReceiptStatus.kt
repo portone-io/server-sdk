@@ -21,7 +21,7 @@ public sealed interface PaymentCashReceiptStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Issued::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Issued = decoder.decodeString().let {
       if (it != "ISSUED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUED")
       } else {
         return Issued
       }
@@ -36,7 +36,7 @@ public sealed interface PaymentCashReceiptStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cancelled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cancelled = decoder.decodeString().let {
       if (it != "CANCELLED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CANCELLED")
       } else {
         return Cancelled
       }

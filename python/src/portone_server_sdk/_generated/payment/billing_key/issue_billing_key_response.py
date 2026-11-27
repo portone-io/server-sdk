@@ -29,15 +29,15 @@ def _serialize_issue_billing_key_response(obj: IssueBillingKeyResponse) -> Any:
 
 def _deserialize_issue_billing_key_response(obj: Any) -> IssueBillingKeyResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "billingKeyInfo" not in obj:
-        raise KeyError(f"'billingKeyInfo' is not in {obj}")
+        raise KeyError("Missing required field 'billingKeyInfo'")
     billing_key_info = obj["billingKeyInfo"]
     billing_key_info = _deserialize_billing_key_info_summary(billing_key_info)
     if "channelSpecificFailures" in obj:
         channel_specific_failures = obj["channelSpecificFailures"]
         if not isinstance(channel_specific_failures, list):
-            raise ValueError(f"{repr(channel_specific_failures)} is not list")
+            raise ValueError("Expected list for channel_specific_failures")
         for i, item in enumerate(channel_specific_failures):
             item = _deserialize_channel_specific_failure(item)
             channel_specific_failures[i] = item

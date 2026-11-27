@@ -105,7 +105,7 @@ public class BulkPayoutClient(
         json.decodeFromString<GetPlatformBulkPayoutsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -119,7 +119,7 @@ public class BulkPayoutClient(
       json.decodeFromString<GetPlatformBulkPayoutsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

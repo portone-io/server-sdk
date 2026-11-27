@@ -22,16 +22,16 @@ def _serialize_cancel_amount_exceeds_cancellable_amount_error(obj: CancelAmountE
 
 def _deserialize_cancel_amount_exceeds_cancellable_amount_error(obj: Any) -> CancelAmountExceedsCancellableAmountError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT":
-        raise ValueError(f"{repr(type)} is not 'CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT'")
+        raise ValueError("Expected 'CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return CancelAmountExceedsCancellableAmountError(message)

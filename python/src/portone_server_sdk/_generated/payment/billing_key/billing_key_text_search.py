@@ -22,14 +22,14 @@ def _serialize_billing_key_text_search(obj: BillingKeyTextSearch) -> Any:
 
 def _deserialize_billing_key_text_search(obj: Any) -> BillingKeyTextSearch:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "field" not in obj:
-        raise KeyError(f"'field' is not in {obj}")
+        raise KeyError("Missing required field 'field'")
     field = obj["field"]
     field = _deserialize_billing_key_text_search_field(field)
     if "value" not in obj:
-        raise KeyError(f"'value' is not in {obj}")
+        raise KeyError("Missing required field 'value'")
     value = obj["value"]
     if not isinstance(value, str):
-        raise ValueError(f"{repr(value)} is not str")
+        raise ValueError("Expected str for value")
     return BillingKeyTextSearch(field, value)

@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.CustomerInput
 import io.portone.sdk.server.common.PageInput
@@ -150,7 +151,7 @@ public class BillingKeyClient(
         json.decodeFromString<GetBillingKeyInfosError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -163,7 +164,7 @@ public class BillingKeyClient(
       json.decodeFromString<GetBillingKeyInfosResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -250,7 +251,7 @@ public class BillingKeyClient(
         json.decodeFromString<IssueBillingKeyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ChannelNotFoundError -> throw ChannelNotFoundException(httpBodyDecoded)
@@ -266,7 +267,7 @@ public class BillingKeyClient(
       json.decodeFromString<IssueBillingKeyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -334,7 +335,7 @@ public class BillingKeyClient(
         json.decodeFromString<ConfirmBillingKeyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is BillingKeyAlreadyIssuedError -> throw BillingKeyAlreadyIssuedException(httpBodyDecoded)
@@ -351,7 +352,7 @@ public class BillingKeyClient(
       json.decodeFromString<ConfirmedBillingKeySummary>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -438,7 +439,7 @@ public class BillingKeyClient(
         json.decodeFromString<ConfirmBillingKeyIssueAndPayError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is BillingKeyAlreadyIssuedError -> throw BillingKeyAlreadyIssuedException(httpBodyDecoded)
@@ -455,7 +456,7 @@ public class BillingKeyClient(
       json.decodeFromString<ConfirmedBillingKeyIssueAndPaySummary>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -488,7 +489,7 @@ public class BillingKeyClient(
   ): BillingKeyInfo {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", billingKey.toString())
+        this.appendApiPathSegments("billing-keys", billingKey.toString())
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -503,7 +504,7 @@ public class BillingKeyClient(
         json.decodeFromString<GetBillingKeyInfoError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is BillingKeyNotFoundError -> throw BillingKeyNotFoundException(httpBodyDecoded)
@@ -517,7 +518,7 @@ public class BillingKeyClient(
       json.decodeFromString<BillingKeyInfo>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -559,7 +560,7 @@ public class BillingKeyClient(
   ): DeleteBillingKeyResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", billingKey.toString())
+        this.appendApiPathSegments("billing-keys", billingKey.toString())
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
         if (reason != null) this.parameters.append("reason", reason.toString())
         if (requester != null) this.parameters.append("requester", requester.toString())
@@ -577,7 +578,7 @@ public class BillingKeyClient(
         json.decodeFromString<DeleteBillingKeyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is BillingKeyAlreadyDeletedError -> throw BillingKeyAlreadyDeletedException(httpBodyDecoded)
@@ -596,7 +597,7 @@ public class BillingKeyClient(
       json.decodeFromString<DeleteBillingKeyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

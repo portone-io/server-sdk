@@ -29,30 +29,30 @@ def _serialize_channel_specific_failure_pg_provider(obj: ChannelSpecificFailureP
 
 def _deserialize_channel_specific_failure_pg_provider(obj: Any) -> ChannelSpecificFailurePgProvider:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PG_PROVIDER":
-        raise ValueError(f"{repr(type)} is not 'PG_PROVIDER'")
+        raise ValueError("Expected 'PG_PROVIDER' for type")
     if "channel" not in obj:
-        raise KeyError(f"'channel' is not in {obj}")
+        raise KeyError("Missing required field 'channel'")
     channel = obj["channel"]
     channel = _deserialize_selected_channel(channel)
     if "pgCode" not in obj:
-        raise KeyError(f"'pgCode' is not in {obj}")
+        raise KeyError("Missing required field 'pgCode'")
     pg_code = obj["pgCode"]
     if not isinstance(pg_code, str):
-        raise ValueError(f"{repr(pg_code)} is not str")
+        raise ValueError("Expected str for pg_code")
     if "pgMessage" not in obj:
-        raise KeyError(f"'pgMessage' is not in {obj}")
+        raise KeyError("Missing required field 'pgMessage'")
     pg_message = obj["pgMessage"]
     if not isinstance(pg_message, str):
-        raise ValueError(f"{repr(pg_message)} is not str")
+        raise ValueError("Expected str for pg_message")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return ChannelSpecificFailurePgProvider(channel, pg_code, pg_message, message)

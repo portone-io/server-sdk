@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpServer
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.PaymentAlreadyCancelledException
 import io.portone.sdk.server.errors.PaymentNotFoundException
+import io.portone.sdk.server.errors.UnknownException
 import io.portone.sdk.server.payment.CancelledPayment
 import io.portone.sdk.server.payment.GetPaymentsResponse
 import io.portone.sdk.server.payment.PaymentClient
@@ -96,6 +97,18 @@ class ClientTest {
     }
 
     @Test
+    fun testSchemaMismatchMessagesOmitBody() =
+        runTest {
+            response = """{"detail":"private-body"}"""
+            for ((code, message) in listOf(200 to "Unknown API response", 502 to "Unknown API error")) {
+                status = code
+                val error = assertThrows<UnknownException> { client.getPayments() }
+                assertEquals("$message (HTTP $code)", error.message)
+                assertRequest("GET", "/payments", "requestBody={}")
+            }
+        }
+
+    @Test
     fun testGetPaymentsWithoutParams() =
         runTest {
             assertIs<GetPaymentsResponse>(client.getPayments())
@@ -123,12 +136,25 @@ class ClientTest {
         }
 
     @Test
-    fun testGetPaymentWithInvalidPaymentId() =
+    fun testGetPaymentEncodesPaymentId() =
         runTest {
             status = 404
             response = """{"type":"PAYMENT_NOT_FOUND","message":"Payment not found"}"""
-            assertThrows<PaymentNotFoundException> { client.getPayment(" ") }
-            assertRequest("GET", "/payments/%20")
+            for ((id, encoded) in listOf(" " to "%20", "order.v2/part" to "order.v2%2Fpart", "..." to "...")) {
+                assertThrows<PaymentNotFoundException> { client.getPayment(id) }
+                assertRequest("GET", "/payments/$encoded")
+            }
+        }
+
+    @Test
+    fun testGetPaymentRejectsDotSegmentsBeforeSending() =
+        runTest {
+            val dots = listOf(".", "%2e", "%2E")
+            val dotSegments = dots + dots.flatMap { first -> dots.map { second -> first + second } }
+            for (id in dotSegments) {
+                assertThrows<IllegalArgumentException> { client.getPayment(id) }
+            }
+            assertTrue(requests.isEmpty())
         }
 
     @Test

@@ -26,15 +26,15 @@ def _serialize_b2b_counterparty_verification(obj: B2bCounterpartyVerification) -
 
 def _deserialize_b2b_counterparty_verification(obj: Any) -> B2bCounterpartyVerification:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "checkedAt" not in obj:
-        raise KeyError(f"'checkedAt' is not in {obj}")
+        raise KeyError("Missing required field 'checkedAt'")
     checked_at = obj["checkedAt"]
     if not isinstance(checked_at, str):
-        raise ValueError(f"{repr(checked_at)} is not str")
+        raise ValueError("Expected str for checked_at")
     return B2bCounterpartyVerification(id, checked_at)

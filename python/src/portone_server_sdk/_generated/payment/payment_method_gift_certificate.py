@@ -29,17 +29,17 @@ def _serialize_payment_method_gift_certificate(obj: PaymentMethodGiftCertificate
 
 def _deserialize_payment_method_gift_certificate(obj: Any) -> PaymentMethodGiftCertificate:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PaymentMethodGiftCertificate":
-        raise ValueError(f"{repr(type)} is not 'PaymentMethodGiftCertificate'")
+        raise ValueError("Expected 'PaymentMethodGiftCertificate' for type")
     if "approvalNumber" not in obj:
-        raise KeyError(f"'approvalNumber' is not in {obj}")
+        raise KeyError("Missing required field 'approvalNumber'")
     approval_number = obj["approvalNumber"]
     if not isinstance(approval_number, str):
-        raise ValueError(f"{repr(approval_number)} is not str")
+        raise ValueError("Expected str for approval_number")
     if "giftCertificateType" in obj:
         gift_certificate_type = obj["giftCertificateType"]
         gift_certificate_type = _deserialize_payment_method_gift_certificate_type(gift_certificate_type)

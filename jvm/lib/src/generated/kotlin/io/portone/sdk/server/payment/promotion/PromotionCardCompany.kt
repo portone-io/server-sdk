@@ -22,7 +22,7 @@ public sealed interface PromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(WooriCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): WooriCard = decoder.decodeString().let {
       if (it != "WOORI_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WOORI_CARD")
       } else {
         return WooriCard
       }
@@ -38,7 +38,7 @@ public sealed interface PromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BcCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): BcCard = decoder.decodeString().let {
       if (it != "BC_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BC_CARD")
       } else {
         return BcCard
       }
@@ -54,7 +54,7 @@ public sealed interface PromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SamsungCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SamsungCard = decoder.decodeString().let {
       if (it != "SAMSUNG_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SAMSUNG_CARD")
       } else {
         return SamsungCard
       }
@@ -70,7 +70,7 @@ public sealed interface PromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ShinhanCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ShinhanCard = decoder.decodeString().let {
       if (it != "SHINHAN_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SHINHAN_CARD")
       } else {
         return ShinhanCard
       }
@@ -86,7 +86,7 @@ public sealed interface PromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HyundaiCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HyundaiCard = decoder.decodeString().let {
       if (it != "HYUNDAI_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HYUNDAI_CARD")
       } else {
         return HyundaiCard
       }
@@ -102,7 +102,7 @@ public sealed interface PromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(LotteCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): LotteCard = decoder.decodeString().let {
       if (it != "LOTTE_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LOTTE_CARD")
       } else {
         return LotteCard
       }
@@ -118,7 +118,7 @@ public sealed interface PromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NhCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NhCard = decoder.decodeString().let {
       if (it != "NH_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NH_CARD")
       } else {
         return NhCard
       }
@@ -134,7 +134,7 @@ public sealed interface PromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HanaCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HanaCard = decoder.decodeString().let {
       if (it != "HANA_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HANA_CARD")
       } else {
         return HanaCard
       }
@@ -150,7 +150,7 @@ public sealed interface PromotionCardCompany {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(KookminCard::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): KookminCard = decoder.decodeString().let {
       if (it != "KOOKMIN_CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KOOKMIN_CARD")
       } else {
         return KookminCard
       }

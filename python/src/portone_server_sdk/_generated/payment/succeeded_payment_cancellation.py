@@ -77,64 +77,64 @@ def _serialize_succeeded_payment_cancellation(obj: SucceededPaymentCancellation)
 
 def _deserialize_succeeded_payment_cancellation(obj: Any) -> SucceededPaymentCancellation:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     if status != "SUCCEEDED":
-        raise ValueError(f"{repr(status)} is not 'SUCCEEDED'")
+        raise ValueError("Expected 'SUCCEEDED' for status")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "totalAmount" not in obj:
-        raise KeyError(f"'totalAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalAmount'")
     total_amount = obj["totalAmount"]
     if not isinstance(total_amount, int):
-        raise ValueError(f"{repr(total_amount)} is not int")
+        raise ValueError("Expected int for total_amount")
     if "taxFreeAmount" not in obj:
-        raise KeyError(f"'taxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'taxFreeAmount'")
     tax_free_amount = obj["taxFreeAmount"]
     if not isinstance(tax_free_amount, int):
-        raise ValueError(f"{repr(tax_free_amount)} is not int")
+        raise ValueError("Expected int for tax_free_amount")
     if "vatAmount" not in obj:
-        raise KeyError(f"'vatAmount' is not in {obj}")
+        raise KeyError("Missing required field 'vatAmount'")
     vat_amount = obj["vatAmount"]
     if not isinstance(vat_amount, int):
-        raise ValueError(f"{repr(vat_amount)} is not int")
+        raise ValueError("Expected int for vat_amount")
     if "reason" not in obj:
-        raise KeyError(f"'reason' is not in {obj}")
+        raise KeyError("Missing required field 'reason'")
     reason = obj["reason"]
     if not isinstance(reason, str):
-        raise ValueError(f"{repr(reason)} is not str")
+        raise ValueError("Expected str for reason")
     if "requestedAt" not in obj:
-        raise KeyError(f"'requestedAt' is not in {obj}")
+        raise KeyError("Missing required field 'requestedAt'")
     requested_at = obj["requestedAt"]
     if not isinstance(requested_at, str):
-        raise ValueError(f"{repr(requested_at)} is not str")
+        raise ValueError("Expected str for requested_at")
     if "pgCancellationId" in obj:
         pg_cancellation_id = obj["pgCancellationId"]
         if not isinstance(pg_cancellation_id, str):
-            raise ValueError(f"{repr(pg_cancellation_id)} is not str")
+            raise ValueError("Expected str for pg_cancellation_id")
     else:
         pg_cancellation_id = None
     if "easyPayDiscountAmount" in obj:
         easy_pay_discount_amount = obj["easyPayDiscountAmount"]
         if not isinstance(easy_pay_discount_amount, int):
-            raise ValueError(f"{repr(easy_pay_discount_amount)} is not int")
+            raise ValueError("Expected int for easy_pay_discount_amount")
     else:
         easy_pay_discount_amount = None
     if "cancelledAt" in obj:
         cancelled_at = obj["cancelledAt"]
         if not isinstance(cancelled_at, str):
-            raise ValueError(f"{repr(cancelled_at)} is not str")
+            raise ValueError("Expected str for cancelled_at")
     else:
         cancelled_at = None
     if "receiptUrl" in obj:
         receipt_url = obj["receiptUrl"]
         if not isinstance(receipt_url, str):
-            raise ValueError(f"{repr(receipt_url)} is not str")
+            raise ValueError("Expected str for receipt_url")
     else:
         receipt_url = None
     if "trigger" in obj:

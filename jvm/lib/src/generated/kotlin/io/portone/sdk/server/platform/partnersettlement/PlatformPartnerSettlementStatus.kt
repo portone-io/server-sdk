@@ -22,7 +22,7 @@ public sealed interface PlatformPartnerSettlementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayoutScheduled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PayoutScheduled = decoder.decodeString().let {
       if (it != "PAYOUT_SCHEDULED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYOUT_SCHEDULED")
       } else {
         return PayoutScheduled
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformPartnerSettlementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayoutPrepared::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PayoutPrepared = decoder.decodeString().let {
       if (it != "PAYOUT_PREPARED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYOUT_PREPARED")
       } else {
         return PayoutPrepared
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformPartnerSettlementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayoutWithheld::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PayoutWithheld = decoder.decodeString().let {
       if (it != "PAYOUT_WITHHELD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYOUT_WITHHELD")
       } else {
         return PayoutWithheld
       }
@@ -70,7 +70,7 @@ public sealed interface PlatformPartnerSettlementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayoutExcluded::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PayoutExcluded = decoder.decodeString().let {
       if (it != "PAYOUT_EXCLUDED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYOUT_EXCLUDED")
       } else {
         return PayoutExcluded
       }
@@ -86,7 +86,7 @@ public sealed interface PlatformPartnerSettlementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayoutFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PayoutFailed = decoder.decodeString().let {
       if (it != "PAYOUT_FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYOUT_FAILED")
       } else {
         return PayoutFailed
       }
@@ -102,7 +102,7 @@ public sealed interface PlatformPartnerSettlementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(InPayout::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): InPayout = decoder.decodeString().let {
       if (it != "IN_PAYOUT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IN_PAYOUT")
       } else {
         return InPayout
       }
@@ -118,7 +118,7 @@ public sealed interface PlatformPartnerSettlementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaidOut::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PaidOut = decoder.decodeString().let {
       if (it != "PAID_OUT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAID_OUT")
       } else {
         return PaidOut
       }
@@ -134,7 +134,7 @@ public sealed interface PlatformPartnerSettlementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cancelled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cancelled = decoder.decodeString().let {
       if (it != "CANCELLED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CANCELLED")
       } else {
         return Cancelled
       }
@@ -150,7 +150,7 @@ public sealed interface PlatformPartnerSettlementStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Confirmed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Confirmed = decoder.decodeString().let {
       if (it != "CONFIRMED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CONFIRMED")
       } else {
         return Confirmed
       }

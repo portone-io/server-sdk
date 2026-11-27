@@ -38,4 +38,4 @@ def _deserialize_get_platform_additional_fee_policies_error(obj: Any) -> GetPlat
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPlatformAdditionalFeePoliciesError")
+    raise ValueError("Expected GetPlatformAdditionalFeePoliciesError")

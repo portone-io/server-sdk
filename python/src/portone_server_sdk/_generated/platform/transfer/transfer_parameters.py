@@ -21,7 +21,7 @@ def _serialize_transfer_parameters(obj: TransferParameters) -> Any:
 
 def _deserialize_transfer_parameters(obj: Any) -> TransferParameters:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     additional_properties = {}
     for key, value in obj.items():
         if key in []:

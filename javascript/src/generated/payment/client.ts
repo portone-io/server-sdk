@@ -1,6 +1,6 @@
 import { PaymentError } from "./PaymentError"
 import type { Unrecognized } from "./../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../client"
 import { BillingKeyClient } from "./billingKey/client"
 import { CashReceiptClient } from "./cashReceipt/client"
 import { AdditionalFeatureClient } from "./additionalFeature/client"
@@ -239,7 +239,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				skipWebhook,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/billing-key`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/billing-key`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -298,7 +298,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				skipWebhook,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/cancel`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/cancel`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -329,7 +329,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				storeId: storeId ?? init.storeId,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/cancellations/${encodeURIComponent(cancellationId)}/stop`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/cancellations/${encodePathParameter(cancellationId)}/stop`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -358,7 +358,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				storeId: storeId ?? init.storeId,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/capture`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/capture`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -408,7 +408,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				skipWebhook,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/confirm`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/confirm`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -440,7 +440,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				fromStore,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/escrow/complete`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/escrow/complete`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -484,7 +484,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				products,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/escrow/logistics`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/escrow/logistics`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -528,7 +528,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				products,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/escrow/logistics`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/escrow/logistics`, baseUrl),
 				{
 					method: "PATCH",
 					headers: {
@@ -614,7 +614,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				skipWebhook,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/instant`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/instant`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -652,7 +652,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				currency,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/pre-register`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/pre-register`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -684,7 +684,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				storeId: storeId ?? init.storeId,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/register-store-receipt`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/register-store-receipt`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -716,7 +716,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				webhookId,
 			})
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/resend-webhook`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/resend-webhook`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -747,7 +747,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/transactions?${query}`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/transactions?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -777,7 +777,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/virtual-account/close?${query}`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}/virtual-account/close?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -807,7 +807,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}?${query}`, baseUrl),
+				new URL(`/payments/${encodePathParameter(paymentId)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {

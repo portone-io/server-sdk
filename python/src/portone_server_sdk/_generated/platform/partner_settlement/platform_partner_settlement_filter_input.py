@@ -50,38 +50,38 @@ def _serialize_platform_partner_settlement_filter_input(obj: PlatformPartnerSett
 
 def _deserialize_platform_partner_settlement_filter_input(obj: Any) -> PlatformPartnerSettlementFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "settlementDates" in obj:
         settlement_dates = obj["settlementDates"]
         if not isinstance(settlement_dates, list):
-            raise ValueError(f"{repr(settlement_dates)} is not list")
+            raise ValueError("Expected list for settlement_dates")
         for i, item in enumerate(settlement_dates):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         settlement_dates = None
     if "contractIds" in obj:
         contract_ids = obj["contractIds"]
         if not isinstance(contract_ids, list):
-            raise ValueError(f"{repr(contract_ids)} is not list")
+            raise ValueError("Expected list for contract_ids")
         for i, item in enumerate(contract_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         contract_ids = None
     if "partnerTags" in obj:
         partner_tags = obj["partnerTags"]
         if not isinstance(partner_tags, list):
-            raise ValueError(f"{repr(partner_tags)} is not list")
+            raise ValueError("Expected list for partner_tags")
         for i, item in enumerate(partner_tags):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         partner_tags = None
     if "settlementCurrencies" in obj:
         settlement_currencies = obj["settlementCurrencies"]
         if not isinstance(settlement_currencies, list):
-            raise ValueError(f"{repr(settlement_currencies)} is not list")
+            raise ValueError("Expected list for settlement_currencies")
         for i, item in enumerate(settlement_currencies):
             item = _deserialize_currency(item)
             settlement_currencies[i] = item
@@ -90,7 +90,7 @@ def _deserialize_platform_partner_settlement_filter_input(obj: Any) -> PlatformP
     if "statuses" in obj:
         statuses = obj["statuses"]
         if not isinstance(statuses, list):
-            raise ValueError(f"{repr(statuses)} is not list")
+            raise ValueError("Expected list for statuses")
         for i, item in enumerate(statuses):
             item = _deserialize_platform_partner_settlement_status(item)
             statuses[i] = item
@@ -99,16 +99,16 @@ def _deserialize_platform_partner_settlement_filter_input(obj: Any) -> PlatformP
     if "partnerIds" in obj:
         partner_ids = obj["partnerIds"]
         if not isinstance(partner_ids, list):
-            raise ValueError(f"{repr(partner_ids)} is not list")
+            raise ValueError("Expected list for partner_ids")
         for i, item in enumerate(partner_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         partner_ids = None
     if "settlementTypes" in obj:
         settlement_types = obj["settlementTypes"]
         if not isinstance(settlement_types, list):
-            raise ValueError(f"{repr(settlement_types)} is not list")
+            raise ValueError("Expected list for settlement_types")
         for i, item in enumerate(settlement_types):
             item = _deserialize_platform_partner_settlement_type(item)
             settlement_types[i] = item

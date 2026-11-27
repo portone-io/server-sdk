@@ -19,10 +19,10 @@ def _serialize_platform_payment_method_card(obj: PlatformPaymentMethodCard) -> A
 
 def _deserialize_platform_payment_method_card(obj: Any) -> PlatformPaymentMethodCard:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "CARD":
-        raise ValueError(f"{repr(type)} is not 'CARD'")
+        raise ValueError("Expected 'CARD' for type")
     return PlatformPaymentMethodCard()

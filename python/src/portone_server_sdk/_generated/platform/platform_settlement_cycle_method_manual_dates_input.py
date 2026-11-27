@@ -20,12 +20,12 @@ def _serialize_platform_settlement_cycle_method_manual_dates_input(obj: Platform
 
 def _deserialize_platform_settlement_cycle_method_manual_dates_input(obj: Any) -> PlatformSettlementCycleMethodManualDatesInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "dates" not in obj:
-        raise KeyError(f"'dates' is not in {obj}")
+        raise KeyError("Missing required field 'dates'")
     dates = obj["dates"]
     if not isinstance(dates, list):
-        raise ValueError(f"{repr(dates)} is not list")
+        raise ValueError("Expected list for dates")
     for i, item in enumerate(dates):
         item = _deserialize_month_day(item)
         dates[i] = item

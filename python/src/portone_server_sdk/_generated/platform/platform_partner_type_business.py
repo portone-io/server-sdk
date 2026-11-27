@@ -68,61 +68,61 @@ def _serialize_platform_partner_type_business(obj: PlatformPartnerTypeBusiness) 
 
 def _deserialize_platform_partner_type_business(obj: Any) -> PlatformPartnerTypeBusiness:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "BUSINESS":
-        raise ValueError(f"{repr(type)} is not 'BUSINESS'")
+        raise ValueError("Expected 'BUSINESS' for type")
     if "companyName" not in obj:
-        raise KeyError(f"'companyName' is not in {obj}")
+        raise KeyError("Missing required field 'companyName'")
     company_name = obj["companyName"]
     if not isinstance(company_name, str):
-        raise ValueError(f"{repr(company_name)} is not str")
+        raise ValueError("Expected str for company_name")
     if "taxationType" not in obj:
-        raise KeyError(f"'taxationType' is not in {obj}")
+        raise KeyError("Missing required field 'taxationType'")
     taxation_type = obj["taxationType"]
     taxation_type = _deserialize_platform_partner_taxation_type(taxation_type)
     if "businessStatus" not in obj:
-        raise KeyError(f"'businessStatus' is not in {obj}")
+        raise KeyError("Missing required field 'businessStatus'")
     business_status = obj["businessStatus"]
     business_status = _deserialize_platform_partner_business_status(business_status)
     if "businessRegistrationNumber" not in obj:
-        raise KeyError(f"'businessRegistrationNumber' is not in {obj}")
+        raise KeyError("Missing required field 'businessRegistrationNumber'")
     business_registration_number = obj["businessRegistrationNumber"]
     if not isinstance(business_registration_number, str):
-        raise ValueError(f"{repr(business_registration_number)} is not str")
+        raise ValueError("Expected str for business_registration_number")
     if "representativeName" not in obj:
-        raise KeyError(f"'representativeName' is not in {obj}")
+        raise KeyError("Missing required field 'representativeName'")
     representative_name = obj["representativeName"]
     if not isinstance(representative_name, str):
-        raise ValueError(f"{repr(representative_name)} is not str")
+        raise ValueError("Expected str for representative_name")
     if "memberCompanyConnectionStatus" not in obj:
-        raise KeyError(f"'memberCompanyConnectionStatus' is not in {obj}")
+        raise KeyError("Missing required field 'memberCompanyConnectionStatus'")
     member_company_connection_status = obj["memberCompanyConnectionStatus"]
     member_company_connection_status = _deserialize_platform_partner_member_company_connection_status(member_company_connection_status)
     if "companyAddress" in obj:
         company_address = obj["companyAddress"]
         if not isinstance(company_address, str):
-            raise ValueError(f"{repr(company_address)} is not str")
+            raise ValueError("Expected str for company_address")
     else:
         company_address = None
     if "businessType" in obj:
         business_type = obj["businessType"]
         if not isinstance(business_type, str):
-            raise ValueError(f"{repr(business_type)} is not str")
+            raise ValueError("Expected str for business_type")
     else:
         business_type = None
     if "businessClass" in obj:
         business_class = obj["businessClass"]
         if not isinstance(business_class, str):
-            raise ValueError(f"{repr(business_class)} is not str")
+            raise ValueError("Expected str for business_class")
     else:
         business_class = None
     if "memberCompanyConnectionFailedReason" in obj:
         member_company_connection_failed_reason = obj["memberCompanyConnectionFailedReason"]
         if not isinstance(member_company_connection_failed_reason, str):
-            raise ValueError(f"{repr(member_company_connection_failed_reason)} is not str")
+            raise ValueError("Expected str for member_company_connection_failed_reason")
     else:
         member_company_connection_failed_reason = None
     return PlatformPartnerTypeBusiness(company_name, taxation_type, business_status, business_registration_number, representative_name, member_company_connection_status, company_address, business_type, business_class, member_company_connection_failed_reason)

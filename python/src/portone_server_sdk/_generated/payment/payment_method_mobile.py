@@ -24,16 +24,16 @@ def _serialize_payment_method_mobile(obj: PaymentMethodMobile) -> Any:
 
 def _deserialize_payment_method_mobile(obj: Any) -> PaymentMethodMobile:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PaymentMethodMobile":
-        raise ValueError(f"{repr(type)} is not 'PaymentMethodMobile'")
+        raise ValueError("Expected 'PaymentMethodMobile' for type")
     if "phoneNumber" in obj:
         phone_number = obj["phoneNumber"]
         if not isinstance(phone_number, str):
-            raise ValueError(f"{repr(phone_number)} is not str")
+            raise ValueError("Expected str for phone_number")
     else:
         phone_number = None
     return PaymentMethodMobile(phone_number)

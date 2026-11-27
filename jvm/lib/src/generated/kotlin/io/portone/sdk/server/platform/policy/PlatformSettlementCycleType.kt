@@ -22,7 +22,7 @@ public sealed interface PlatformSettlementCycleType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Daily::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Daily = decoder.decodeString().let {
       if (it != "DAILY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DAILY")
       } else {
         return Daily
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformSettlementCycleType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Weekly::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Weekly = decoder.decodeString().let {
       if (it != "WEEKLY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WEEKLY")
       } else {
         return Weekly
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformSettlementCycleType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Monthly::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Monthly = decoder.decodeString().let {
       if (it != "MONTHLY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MONTHLY")
       } else {
         return Monthly
       }
@@ -70,7 +70,7 @@ public sealed interface PlatformSettlementCycleType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ManualDates::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ManualDates = decoder.decodeString().let {
       if (it != "MANUAL_DATES") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MANUAL_DATES")
       } else {
         return ManualDates
       }

@@ -19,10 +19,10 @@ def _serialize_platform_payment_method_mobile(obj: PlatformPaymentMethodMobile) 
 
 def _deserialize_platform_payment_method_mobile(obj: Any) -> PlatformPaymentMethodMobile:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "MOBILE":
-        raise ValueError(f"{repr(type)} is not 'MOBILE'")
+        raise ValueError("Expected 'MOBILE' for type")
     return PlatformPaymentMethodMobile()

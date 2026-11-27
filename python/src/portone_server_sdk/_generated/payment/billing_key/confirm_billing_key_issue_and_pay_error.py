@@ -59,4 +59,4 @@ def _deserialize_confirm_billing_key_issue_and_pay_error(obj: Any) -> ConfirmBil
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ConfirmBillingKeyIssueAndPayError")
+    raise ValueError("Expected ConfirmBillingKeyIssueAndPayError")

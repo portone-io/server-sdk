@@ -22,7 +22,7 @@ public sealed interface PlatformPartnerBusinessStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NotVerified::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NotVerified = decoder.decodeString().let {
       if (it != "NOT_VERIFIED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NOT_VERIFIED")
       } else {
         return NotVerified
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformPartnerBusinessStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VerifyError::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VerifyError = decoder.decodeString().let {
       if (it != "VERIFY_ERROR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VERIFY_ERROR")
       } else {
         return VerifyError
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformPartnerBusinessStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NotFound::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NotFound = decoder.decodeString().let {
       if (it != "NOT_FOUND") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NOT_FOUND")
       } else {
         return NotFound
       }
@@ -70,7 +70,7 @@ public sealed interface PlatformPartnerBusinessStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(InBusiness::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): InBusiness = decoder.decodeString().let {
       if (it != "IN_BUSINESS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IN_BUSINESS")
       } else {
         return InBusiness
       }
@@ -86,7 +86,7 @@ public sealed interface PlatformPartnerBusinessStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Closed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Closed = decoder.decodeString().let {
       if (it != "CLOSED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CLOSED")
       } else {
         return Closed
       }
@@ -102,7 +102,7 @@ public sealed interface PlatformPartnerBusinessStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Suspended::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Suspended = decoder.decodeString().let {
       if (it != "SUSPENDED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUSPENDED")
       } else {
         return Suspended
       }

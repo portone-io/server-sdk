@@ -16,5 +16,5 @@ def _serialize_platform_payment_method_transfer_input(obj: PlatformPaymentMethod
 
 def _deserialize_platform_payment_method_transfer_input(obj: Any) -> PlatformPaymentMethodTransferInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return PlatformPaymentMethodTransferInput()

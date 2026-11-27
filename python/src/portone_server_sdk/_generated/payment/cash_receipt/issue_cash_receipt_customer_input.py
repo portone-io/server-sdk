@@ -45,12 +45,12 @@ def _serialize_issue_cash_receipt_customer_input(obj: IssueCashReceiptCustomerIn
 
 def _deserialize_issue_cash_receipt_customer_input(obj: Any) -> IssueCashReceiptCustomerInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "identityNumber" not in obj:
-        raise KeyError(f"'identityNumber' is not in {obj}")
+        raise KeyError("Missing required field 'identityNumber'")
     identity_number = obj["identityNumber"]
     if not isinstance(identity_number, str):
-        raise ValueError(f"{repr(identity_number)} is not str")
+        raise ValueError("Expected str for identity_number")
     if "identityNumberType" in obj:
         identity_number_type = obj["identityNumberType"]
         identity_number_type = _deserialize_issue_cash_receipt_customer_input_identity_number_type(identity_number_type)
@@ -59,19 +59,19 @@ def _deserialize_issue_cash_receipt_customer_input(obj: Any) -> IssueCashReceipt
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "email" in obj:
         email = obj["email"]
         if not isinstance(email, str):
-            raise ValueError(f"{repr(email)} is not str")
+            raise ValueError("Expected str for email")
     else:
         email = None
     if "phoneNumber" in obj:
         phone_number = obj["phoneNumber"]
         if not isinstance(phone_number, str):
-            raise ValueError(f"{repr(phone_number)} is not str")
+            raise ValueError("Expected str for phone_number")
     else:
         phone_number = None
     return IssueCashReceiptCustomerInput(identity_number, identity_number_type, name, email, phone_number)

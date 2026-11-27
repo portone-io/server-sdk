@@ -26,7 +26,7 @@ public sealed interface PlatformPayer {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Partner::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Partner = decoder.decodeString().let {
       if (it != "PARTNER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PARTNER")
       } else {
         return Partner
       }
@@ -42,7 +42,7 @@ public sealed interface PlatformPayer {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Merchant::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Merchant = decoder.decodeString().let {
       if (it != "MERCHANT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MERCHANT")
       } else {
         return Merchant
       }

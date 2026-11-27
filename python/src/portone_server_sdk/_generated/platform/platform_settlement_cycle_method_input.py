@@ -44,7 +44,7 @@ def _serialize_platform_settlement_cycle_method_input(obj: PlatformSettlementCyc
 
 def _deserialize_platform_settlement_cycle_method_input(obj: Any) -> PlatformSettlementCycleMethodInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "daily" in obj:
         daily = obj["daily"]
         daily = _deserialize_platform_settlement_cycle_method_daily_input(daily)

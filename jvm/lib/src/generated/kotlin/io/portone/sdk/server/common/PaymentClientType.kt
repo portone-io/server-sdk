@@ -21,7 +21,7 @@ public sealed interface PaymentClientType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SdkMobile::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SdkMobile = decoder.decodeString().let {
       if (it != "SDK_MOBILE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SDK_MOBILE")
       } else {
         return SdkMobile
       }
@@ -36,7 +36,7 @@ public sealed interface PaymentClientType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SdkPc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SdkPc = decoder.decodeString().let {
       if (it != "SDK_PC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SDK_PC")
       } else {
         return SdkPc
       }
@@ -51,7 +51,7 @@ public sealed interface PaymentClientType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Api::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Api = decoder.decodeString().let {
       if (it != "API") {
-        throw SerializationException(it)
+        throw SerializationException("Expected API")
       } else {
         return Api
       }

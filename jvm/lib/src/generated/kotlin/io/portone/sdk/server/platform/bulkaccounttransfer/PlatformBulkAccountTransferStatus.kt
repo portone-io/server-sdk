@@ -20,7 +20,7 @@ public sealed interface PlatformBulkAccountTransferStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Prepared::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Prepared = decoder.decodeString().let {
       if (it != "PREPARED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PREPARED")
       } else {
         return Prepared
       }
@@ -35,7 +35,7 @@ public sealed interface PlatformBulkAccountTransferStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Scheduled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Scheduled = decoder.decodeString().let {
       if (it != "SCHEDULED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SCHEDULED")
       } else {
         return Scheduled
       }
@@ -50,7 +50,7 @@ public sealed interface PlatformBulkAccountTransferStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ongoing::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ongoing = decoder.decodeString().let {
       if (it != "ONGOING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ONGOING")
       } else {
         return Ongoing
       }
@@ -65,7 +65,7 @@ public sealed interface PlatformBulkAccountTransferStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Completed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Completed = decoder.decodeString().let {
       if (it != "COMPLETED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected COMPLETED")
       } else {
         return Completed
       }

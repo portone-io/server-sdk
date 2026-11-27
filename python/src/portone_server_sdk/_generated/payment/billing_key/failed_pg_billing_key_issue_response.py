@@ -30,18 +30,18 @@ def _serialize_failed_pg_billing_key_issue_response(obj: FailedPgBillingKeyIssue
 
 def _deserialize_failed_pg_billing_key_issue_response(obj: Any) -> FailedPgBillingKeyIssueResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "FAILED":
-        raise ValueError(f"{repr(type)} is not 'FAILED'")
+        raise ValueError("Expected 'FAILED' for type")
     if "channel" not in obj:
-        raise KeyError(f"'channel' is not in {obj}")
+        raise KeyError("Missing required field 'channel'")
     channel = obj["channel"]
     channel = _deserialize_selected_channel(channel)
     if "failure" not in obj:
-        raise KeyError(f"'failure' is not in {obj}")
+        raise KeyError("Missing required field 'failure'")
     failure = obj["failure"]
     failure = _deserialize_billing_key_failure(failure)
     return FailedPgBillingKeyIssueResponse(channel, failure)

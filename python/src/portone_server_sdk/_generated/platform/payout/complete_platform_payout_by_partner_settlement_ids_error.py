@@ -80,4 +80,4 @@ def _deserialize_complete_platform_payout_by_partner_settlement_ids_error(obj: A
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CompletePlatformPayoutByPartnerSettlementIdsError")
+    raise ValueError("Expected CompletePlatformPayoutByPartnerSettlementIdsError")

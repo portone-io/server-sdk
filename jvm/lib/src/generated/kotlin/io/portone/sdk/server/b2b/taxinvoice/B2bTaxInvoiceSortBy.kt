@@ -22,7 +22,7 @@ public sealed interface B2bTaxInvoiceSortBy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(WriteDate::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): WriteDate = decoder.decodeString().let {
       if (it != "WRITE_DATE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WRITE_DATE")
       } else {
         return WriteDate
       }
@@ -38,7 +38,7 @@ public sealed interface B2bTaxInvoiceSortBy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuanceDueDate::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuanceDueDate = decoder.decodeString().let {
       if (it != "ISSUANCE_DUE_DATE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUANCE_DUE_DATE")
       } else {
         return IssuanceDueDate
       }
@@ -54,7 +54,7 @@ public sealed interface B2bTaxInvoiceSortBy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TotalAmount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TotalAmount = decoder.decodeString().let {
       if (it != "TOTAL_AMOUNT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOTAL_AMOUNT")
       } else {
         return TotalAmount
       }
@@ -70,7 +70,7 @@ public sealed interface B2bTaxInvoiceSortBy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TotalSupplyAmount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TotalSupplyAmount = decoder.decodeString().let {
       if (it != "TOTAL_SUPPLY_AMOUNT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOTAL_SUPPLY_AMOUNT")
       } else {
         return TotalSupplyAmount
       }
@@ -86,7 +86,7 @@ public sealed interface B2bTaxInvoiceSortBy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TotalTaxAmount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TotalTaxAmount = decoder.decodeString().let {
       if (it != "TOTAL_TAX_AMOUNT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOTAL_TAX_AMOUNT")
       } else {
         return TotalTaxAmount
       }
@@ -102,7 +102,7 @@ public sealed interface B2bTaxInvoiceSortBy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestedAt = decoder.decodeString().let {
       if (it != "REQUESTED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REQUESTED_AT")
       } else {
         return RequestedAt
       }
@@ -118,7 +118,7 @@ public sealed interface B2bTaxInvoiceSortBy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuedAt = decoder.decodeString().let {
       if (it != "ISSUED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUED_AT")
       } else {
         return IssuedAt
       }
@@ -134,7 +134,7 @@ public sealed interface B2bTaxInvoiceSortBy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NtsSentAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NtsSentAt = decoder.decodeString().let {
       if (it != "NTS_SENT_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NTS_SENT_AT")
       } else {
         return NtsSentAt
       }
@@ -150,7 +150,7 @@ public sealed interface B2bTaxInvoiceSortBy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusUpdatedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): StatusUpdatedAt = decoder.decodeString().let {
       if (it != "STATUS_UPDATED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected STATUS_UPDATED_AT")
       } else {
         return StatusUpdatedAt
       }

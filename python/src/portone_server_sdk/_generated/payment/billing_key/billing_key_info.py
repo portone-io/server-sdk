@@ -26,4 +26,4 @@ def _deserialize_billing_key_info(obj: Any) -> BillingKeyInfo:
         return _deserialize_issued_billing_key_info(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not BillingKeyInfo")
+    raise ValueError("Expected BillingKeyInfo")

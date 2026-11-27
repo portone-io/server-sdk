@@ -1,6 +1,6 @@
 import { PromotionError } from "./PromotionError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { Promotion } from "../../../generated/payment/promotion/Promotion"
@@ -22,7 +22,7 @@ export function PromotionClient(init: PortOneClientInit): PromotionClient {
 				promotionId,
 			} = options
 			const response = await fetch(
-				new URL(`/promotions/${encodeURIComponent(promotionId)}`, baseUrl),
+				new URL(`/promotions/${encodePathParameter(promotionId)}`, baseUrl),
 				{
 					method: "GET",
 					headers: {

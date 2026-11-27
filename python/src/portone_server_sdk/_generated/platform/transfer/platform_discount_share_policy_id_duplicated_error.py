@@ -24,26 +24,26 @@ def _serialize_platform_discount_share_policy_id_duplicated_error(obj: PlatformD
 
 def _deserialize_platform_discount_share_policy_id_duplicated_error(obj: Any) -> PlatformDiscountSharePolicyIdDuplicatedError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_DISCOUNT_SHARE_POLICY_ID_DUPLICATED":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_DISCOUNT_SHARE_POLICY_ID_DUPLICATED'")
+        raise ValueError("Expected 'PLATFORM_DISCOUNT_SHARE_POLICY_ID_DUPLICATED' for type")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "graphqlId" not in obj:
-        raise KeyError(f"'graphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'graphqlId'")
     graphql_id = obj["graphqlId"]
     if not isinstance(graphql_id, str):
-        raise ValueError(f"{repr(graphql_id)} is not str")
+        raise ValueError("Expected str for graphql_id")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformDiscountSharePolicyIdDuplicatedError(id, graphql_id, message)

@@ -27,14 +27,14 @@ def _serialize_create_payment_schedule_body(obj: CreatePaymentScheduleBody) -> A
 
 def _deserialize_create_payment_schedule_body(obj: Any) -> CreatePaymentScheduleBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "payment" not in obj:
-        raise KeyError(f"'payment' is not in {obj}")
+        raise KeyError("Missing required field 'payment'")
     payment = obj["payment"]
     payment = _deserialize_billing_key_payment_schedule_input(payment)
     if "timeToPay" not in obj:
-        raise KeyError(f"'timeToPay' is not in {obj}")
+        raise KeyError("Missing required field 'timeToPay'")
     time_to_pay = obj["timeToPay"]
     if not isinstance(time_to_pay, str):
-        raise ValueError(f"{repr(time_to_pay)} is not str")
+        raise ValueError("Expected str for time_to_pay")
     return CreatePaymentScheduleBody(payment, time_to_pay)

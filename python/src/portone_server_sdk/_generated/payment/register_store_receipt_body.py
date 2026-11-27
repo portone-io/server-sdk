@@ -28,19 +28,19 @@ def _serialize_register_store_receipt_body(obj: RegisterStoreReceiptBody) -> Any
 
 def _deserialize_register_store_receipt_body(obj: Any) -> RegisterStoreReceiptBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "items" not in obj:
-        raise KeyError(f"'items' is not in {obj}")
+        raise KeyError("Missing required field 'items'")
     items = obj["items"]
     if not isinstance(items, list):
-        raise ValueError(f"{repr(items)} is not list")
+        raise ValueError("Expected list for items")
     for i, item in enumerate(items):
         item = _deserialize_register_store_receipt_body_item(item)
         items[i] = item
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     return RegisterStoreReceiptBody(items, store_id)

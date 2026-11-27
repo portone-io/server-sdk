@@ -52,46 +52,46 @@ def _serialize_platform_discount_share_policy(obj: PlatformDiscountSharePolicy) 
 
 def _deserialize_platform_discount_share_policy(obj: Any) -> PlatformDiscountSharePolicy:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "graphqlId" not in obj:
-        raise KeyError(f"'graphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'graphqlId'")
     graphql_id = obj["graphqlId"]
     if not isinstance(graphql_id, str):
-        raise ValueError(f"{repr(graphql_id)} is not str")
+        raise ValueError("Expected str for graphql_id")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "partnerShareRate" not in obj:
-        raise KeyError(f"'partnerShareRate' is not in {obj}")
+        raise KeyError("Missing required field 'partnerShareRate'")
     partner_share_rate = obj["partnerShareRate"]
     if not isinstance(partner_share_rate, int):
-        raise ValueError(f"{repr(partner_share_rate)} is not int")
+        raise ValueError("Expected int for partner_share_rate")
     if "isArchived" not in obj:
-        raise KeyError(f"'isArchived' is not in {obj}")
+        raise KeyError("Missing required field 'isArchived'")
     is_archived = obj["isArchived"]
     if not isinstance(is_archived, bool):
-        raise ValueError(f"{repr(is_archived)} is not bool")
+        raise ValueError("Expected bool for is_archived")
     if "appliedAt" not in obj:
-        raise KeyError(f"'appliedAt' is not in {obj}")
+        raise KeyError("Missing required field 'appliedAt'")
     applied_at = obj["appliedAt"]
     if not isinstance(applied_at, str):
-        raise ValueError(f"{repr(applied_at)} is not str")
+        raise ValueError("Expected str for applied_at")
     if "isForTest" not in obj:
-        raise KeyError(f"'isForTest' is not in {obj}")
+        raise KeyError("Missing required field 'isForTest'")
     is_for_test = obj["isForTest"]
     if not isinstance(is_for_test, bool):
-        raise ValueError(f"{repr(is_for_test)} is not bool")
+        raise ValueError("Expected bool for is_for_test")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return PlatformDiscountSharePolicy(id, graphql_id, name, partner_share_rate, is_archived, applied_at, is_for_test, memo)

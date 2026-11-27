@@ -74,53 +74,53 @@ def _serialize_verified_identity_verification(obj: VerifiedIdentityVerification)
 
 def _deserialize_verified_identity_verification(obj: Any) -> VerifiedIdentityVerification:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     if status != "VERIFIED":
-        raise ValueError(f"{repr(status)} is not 'VERIFIED'")
+        raise ValueError("Expected 'VERIFIED' for status")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "verifiedCustomer" not in obj:
-        raise KeyError(f"'verifiedCustomer' is not in {obj}")
+        raise KeyError("Missing required field 'verifiedCustomer'")
     verified_customer = obj["verifiedCustomer"]
     verified_customer = _deserialize_identity_verification_verified_customer(verified_customer)
     if "requestedAt" not in obj:
-        raise KeyError(f"'requestedAt' is not in {obj}")
+        raise KeyError("Missing required field 'requestedAt'")
     requested_at = obj["requestedAt"]
     if not isinstance(requested_at, str):
-        raise ValueError(f"{repr(requested_at)} is not str")
+        raise ValueError("Expected str for requested_at")
     if "updatedAt" not in obj:
-        raise KeyError(f"'updatedAt' is not in {obj}")
+        raise KeyError("Missing required field 'updatedAt'")
     updated_at = obj["updatedAt"]
     if not isinstance(updated_at, str):
-        raise ValueError(f"{repr(updated_at)} is not str")
+        raise ValueError("Expected str for updated_at")
     if "statusChangedAt" not in obj:
-        raise KeyError(f"'statusChangedAt' is not in {obj}")
+        raise KeyError("Missing required field 'statusChangedAt'")
     status_changed_at = obj["statusChangedAt"]
     if not isinstance(status_changed_at, str):
-        raise ValueError(f"{repr(status_changed_at)} is not str")
+        raise ValueError("Expected str for status_changed_at")
     if "verifiedAt" not in obj:
-        raise KeyError(f"'verifiedAt' is not in {obj}")
+        raise KeyError("Missing required field 'verifiedAt'")
     verified_at = obj["verifiedAt"]
     if not isinstance(verified_at, str):
-        raise ValueError(f"{repr(verified_at)} is not str")
+        raise ValueError("Expected str for verified_at")
     if "pgTxId" not in obj:
-        raise KeyError(f"'pgTxId' is not in {obj}")
+        raise KeyError("Missing required field 'pgTxId'")
     pg_tx_id = obj["pgTxId"]
     if not isinstance(pg_tx_id, str):
-        raise ValueError(f"{repr(pg_tx_id)} is not str")
+        raise ValueError("Expected str for pg_tx_id")
     if "pgRawResponse" not in obj:
-        raise KeyError(f"'pgRawResponse' is not in {obj}")
+        raise KeyError("Missing required field 'pgRawResponse'")
     pg_raw_response = obj["pgRawResponse"]
     if not isinstance(pg_raw_response, str):
-        raise ValueError(f"{repr(pg_raw_response)} is not str")
+        raise ValueError("Expected str for pg_raw_response")
     if "version" not in obj:
-        raise KeyError(f"'version' is not in {obj}")
+        raise KeyError("Missing required field 'version'")
     version = obj["version"]
     version = _deserialize_port_one_version(version)
     if "channel" in obj:
@@ -131,7 +131,7 @@ def _deserialize_verified_identity_verification(obj: Any) -> VerifiedIdentityVer
     if "customData" in obj:
         custom_data = obj["customData"]
         if not isinstance(custom_data, str):
-            raise ValueError(f"{repr(custom_data)} is not str")
+            raise ValueError("Expected str for custom_data")
     else:
         custom_data = None
     return VerifiedIdentityVerification(id, verified_customer, requested_at, updated_at, status_changed_at, verified_at, pg_tx_id, pg_raw_response, version, channel, custom_data)
