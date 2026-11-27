@@ -9,9 +9,9 @@ import io.ktor.client.request.accept
 import io.ktor.client.request.headers
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
-import io.ktor.http.appendPathSegments
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.Bank
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
@@ -94,7 +94,7 @@ public class AccountClient(
   ): PlatformAccountHolder {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "bank-accounts", bank.value, accountNumber.toString(), "holder")
+        this.appendApiPathSegments("platform", "bank-accounts", bank.value, accountNumber.toString(), "holder")
         if (test != null) this.parameters.append("test", test.toString())
         if (birthdate != null) this.parameters.append("birthdate", birthdate.toString())
         if (businessRegistrationNumber != null) this.parameters.append("businessRegistrationNumber", businessRegistrationNumber.toString())

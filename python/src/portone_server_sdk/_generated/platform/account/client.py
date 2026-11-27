@@ -14,7 +14,7 @@ from ...platform.account.platform_not_supported_bank_error import _deserialize_p
 from ...common.unauthorized_error import _deserialize_unauthorized_error
 from ...common.bank import Bank, _deserialize_bank, _serialize_bank
 from ...platform.account.platform_account_holder import PlatformAccountHolder, _deserialize_platform_account_holder, _serialize_platform_account_holder
-from urllib.parse import quote
+from ...._api_path import encode_path_parameter
 class AccountClient:
     _secret: str
     _base_url: str
@@ -81,7 +81,7 @@ class AccountClient:
             query.append(("businessRegistrationNumber", business_registration_number))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/bank-accounts/{quote(bank, safe='')}/{quote(account_number, safe='')}/holder",
+            f"{self._base_url}/platform/bank-accounts/{encode_path_parameter(bank)}/{encode_path_parameter(account_number)}/holder",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -180,7 +180,7 @@ class AccountClient:
             query.append(("businessRegistrationNumber", business_registration_number))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/bank-accounts/{quote(bank, safe='')}/{quote(account_number, safe='')}/holder",
+            f"{self._base_url}/platform/bank-accounts/{encode_path_parameter(bank)}/{encode_path_parameter(account_number)}/holder",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

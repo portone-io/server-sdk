@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.ArchivePlatformAdditionalFeePolicyError
 import io.portone.sdk.server.errors.ArchivePlatformAdditionalFeePolicyException
@@ -170,7 +171,7 @@ public class PolicyClient(
   ): ArchivePlatformAdditionalFeePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "archive")
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString(), "archive")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -234,7 +235,7 @@ public class PolicyClient(
   ): RecoverPlatformAdditionalFeePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "recover")
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString(), "recover")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -297,7 +298,7 @@ public class PolicyClient(
   ): PlatformAdditionalFeePolicy {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString())
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -378,7 +379,7 @@ public class PolicyClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString())
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -609,7 +610,7 @@ public class PolicyClient(
   ): ArchivePlatformContractResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString(), "archive")
+        this.appendApiPathSegments("platform", "contracts", id.toString(), "archive")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -673,7 +674,7 @@ public class PolicyClient(
   ): RecoverPlatformContractResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString(), "recover")
+        this.appendApiPathSegments("platform", "contracts", id.toString(), "recover")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -736,7 +737,7 @@ public class PolicyClient(
   ): PlatformContract {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString())
+        this.appendApiPathSegments("platform", "contracts", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -825,7 +826,7 @@ public class PolicyClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString())
+        this.appendApiPathSegments("platform", "contracts", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1068,7 +1069,7 @@ public class PolicyClient(
   ): ArchivePlatformDiscountSharePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "archive")
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString(), "archive")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1132,7 +1133,7 @@ public class PolicyClient(
   ): RecoverPlatformDiscountSharePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "recover")
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString(), "recover")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1195,7 +1196,7 @@ public class PolicyClient(
   ): PlatformDiscountSharePolicy {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString())
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1274,7 +1275,7 @@ public class PolicyClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString())
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {

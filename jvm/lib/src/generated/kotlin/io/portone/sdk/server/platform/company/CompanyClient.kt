@@ -15,6 +15,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.errors.B2bExternalServiceError
 import io.portone.sdk.server.errors.B2bExternalServiceException
 import io.portone.sdk.server.errors.B2bNotEnabledError
@@ -160,7 +161,7 @@ public class CompanyClient(
   ): GetPlatformCompanyStatePayload {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "companies", businessRegistrationNumber.toString(), "state")
+        this.appendApiPathSegments("platform", "companies", businessRegistrationNumber.toString(), "state")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {

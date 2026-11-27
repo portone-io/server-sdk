@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.ArchivePlatformPartnerError
 import io.portone.sdk.server.errors.ArchivePlatformPartnerException
@@ -255,7 +256,7 @@ public class PartnerClient(
   ): ConnectPartnerCounterpartyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", "counterparty-connect", id.toString())
+        this.appendApiPathSegments("platform", "partners", "counterparty-connect", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -397,7 +398,7 @@ public class PartnerClient(
   ): DisconnectPartnerCounterpartyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", "counterparty-disconnect", id.toString())
+        this.appendApiPathSegments("platform", "partners", "counterparty-disconnect", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -538,7 +539,7 @@ public class PartnerClient(
   ): ArchivePlatformPartnerResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString(), "archive")
+        this.appendApiPathSegments("platform", "partners", id.toString(), "archive")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -604,7 +605,7 @@ public class PartnerClient(
   ): RecoverPlatformPartnerResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString(), "recover")
+        this.appendApiPathSegments("platform", "partners", id.toString(), "recover")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -668,7 +669,7 @@ public class PartnerClient(
   ): PlatformPartner {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString())
+        this.appendApiPathSegments("platform", "partners", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -765,7 +766,7 @@ public class PartnerClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString())
+        this.appendApiPathSegments("platform", "partners", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {

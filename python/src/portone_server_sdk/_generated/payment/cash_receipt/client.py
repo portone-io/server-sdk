@@ -26,7 +26,7 @@ from ...payment.cash_receipt.issue_cash_receipt_response import IssueCashReceipt
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from ...common.payment_amount_input import PaymentAmountInput, _deserialize_payment_amount_input, _serialize_payment_amount_input
 from ...common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
-from urllib.parse import quote
+from ...._api_path import encode_path_parameter
 class CashReceiptClient:
     _secret: str
     _base_url: str
@@ -457,7 +457,7 @@ class CashReceiptClient:
             query.append(("storeId", self._store_id))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt/cancel",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/cash-receipt/cancel",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -528,7 +528,7 @@ class CashReceiptClient:
             query.append(("storeId", self._store_id))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt/cancel",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/cash-receipt/cancel",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -599,7 +599,7 @@ class CashReceiptClient:
             query.append(("storeId", self._store_id))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/cash-receipt",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -658,7 +658,7 @@ class CashReceiptClient:
             query.append(("storeId", self._store_id))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt",
+            f"{self._base_url}/payments/{encode_path_parameter(payment_id)}/cash-receipt",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

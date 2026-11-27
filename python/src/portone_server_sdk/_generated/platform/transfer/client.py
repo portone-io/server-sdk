@@ -61,7 +61,7 @@ from ...platform.transfer.platform_transfer import PlatformTransfer, _deserializ
 from ...platform.transfer.platform_transfer_filter_input import PlatformTransferFilterInput, _deserialize_platform_transfer_filter_input, _serialize_platform_transfer_filter_input
 from ...platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
 from ...platform.transfer.transfer_parameters import TransferParameters, _deserialize_transfer_parameters, _serialize_transfer_parameters
-from urllib.parse import quote
+from ...._api_path import encode_path_parameter
 class TransferClient:
     _secret: str
     _base_url: str
@@ -1783,7 +1783,7 @@ class TransferClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/transfers/{quote(id, safe='')}",
+            f"{self._base_url}/platform/transfers/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1853,7 +1853,7 @@ class TransferClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/transfers/{quote(id, safe='')}",
+            f"{self._base_url}/platform/transfers/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1923,7 +1923,7 @@ class TransferClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
-            f"{self._base_url}/platform/transfers/{quote(id, safe='')}",
+            f"{self._base_url}/platform/transfers/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2005,7 +2005,7 @@ class TransferClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
-            f"{self._base_url}/platform/transfers/{quote(id, safe='')}",
+            f"{self._base_url}/platform/transfers/{encode_path_parameter(id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

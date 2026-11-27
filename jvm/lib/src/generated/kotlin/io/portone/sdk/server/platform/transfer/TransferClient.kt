@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.CreatePlatformManualTransferError
@@ -808,7 +809,7 @@ public class TransferClient(
   ): PlatformTransfer {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", id.toString())
+        this.appendApiPathSegments("platform", "transfers", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -871,7 +872,7 @@ public class TransferClient(
   ): DeletePlatformTransferResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", id.toString())
+        this.appendApiPathSegments("platform", "transfers", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {

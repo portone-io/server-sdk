@@ -15,6 +15,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.CashReceiptType
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.PageInput
@@ -293,7 +294,7 @@ public class CashReceiptClient(
   ): CancelCashReceiptResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "cash-receipt", "cancel")
+        this.appendApiPathSegments("payments", paymentId.toString(), "cash-receipt", "cancel")
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -351,7 +352,7 @@ public class CashReceiptClient(
   ): CashReceipt {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "cash-receipt")
+        this.appendApiPathSegments("payments", paymentId.toString(), "cash-receipt")
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {

@@ -61,7 +61,7 @@ from ..platform.update_platform_contract_body import UpdatePlatformContractBody,
 from ..platform.update_platform_discount_share_policy_body import UpdatePlatformDiscountSharePolicyBody, _deserialize_update_platform_discount_share_policy_body, _serialize_update_platform_discount_share_policy_body
 from ..platform.update_platform_partner_body import UpdatePlatformPartnerBody, _deserialize_update_platform_partner_body, _serialize_update_platform_partner_body
 from ..platform.update_platform_setting_response import UpdatePlatformSettingResponse, _deserialize_update_platform_setting_response, _serialize_update_platform_setting_response
-from urllib.parse import quote
+from ..._api_path import encode_path_parameter
 from .company.client import CompanyClient
 from .account_transfer.client import AccountTransferClient
 from .policy.client import PolicyClient
@@ -143,7 +143,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -215,7 +215,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -294,7 +294,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "PUT",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -374,7 +374,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "PUT",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -456,7 +456,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -550,7 +550,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -635,7 +635,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -707,7 +707,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -779,7 +779,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -851,7 +851,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -932,7 +932,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "PUT",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1014,7 +1014,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "PUT",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1096,7 +1096,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1190,7 +1190,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1275,7 +1275,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1347,7 +1347,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/contracts/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1419,7 +1419,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1491,7 +1491,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1572,7 +1572,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "PUT",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1654,7 +1654,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "PUT",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1736,7 +1736,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1830,7 +1830,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1915,7 +1915,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1987,7 +1987,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2551,7 +2551,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2623,7 +2623,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2704,7 +2704,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "PUT",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2798,7 +2798,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "PUT",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2892,7 +2892,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3046,7 +3046,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3191,7 +3191,7 @@ class PlatformClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3263,7 +3263,7 @@ class PlatformClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
-            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/partners/{encode_path_parameter(id)}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

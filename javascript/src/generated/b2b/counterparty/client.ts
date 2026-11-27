@@ -1,6 +1,6 @@
 import { CounterpartyError } from "./CounterpartyError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { B2bCertificate } from "../../../generated/b2b/counterparty/B2bCertificate"
 import type { B2bCertificateUnregisteredError } from "../../../generated/b2b/counterparty/B2bCertificateUnregisteredError"
 import type { B2bCounterparty } from "../../../generated/b2b/counterparty/B2bCounterparty"
@@ -60,7 +60,7 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/counterparties/${encodeURIComponent(brn)}/certificate/registration-url?${query}`, baseUrl),
+				new URL(`/b2b/counterparties/${encodePathParameter(brn)}/certificate/registration-url?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -90,7 +90,7 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/counterparties/${encodeURIComponent(brn)}/certificate/validate?${query}`, baseUrl),
+				new URL(`/b2b/counterparties/${encodePathParameter(brn)}/certificate/validate?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -120,7 +120,7 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/counterparties/${encodeURIComponent(brn)}/certificate?${query}`, baseUrl),
+				new URL(`/b2b/counterparties/${encodePathParameter(brn)}/certificate?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -150,7 +150,7 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/counterparties/${encodeURIComponent(counterpartyId)}?${query}`, baseUrl),
+				new URL(`/b2b/counterparties/${encodePathParameter(counterpartyId)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -180,7 +180,7 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/counterparties/${encodeURIComponent(counterpartyId)}?${query}`, baseUrl),
+				new URL(`/b2b/counterparties/${encodePathParameter(counterpartyId)}?${query}`, baseUrl),
 				{
 					method: "DELETE",
 					headers: {
@@ -218,7 +218,7 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/counterparties/${encodeURIComponent(counterpartyId)}?${query}`, baseUrl),
+				new URL(`/b2b/counterparties/${encodePathParameter(counterpartyId)}?${query}`, baseUrl),
 				{
 					method: "PATCH",
 					headers: {

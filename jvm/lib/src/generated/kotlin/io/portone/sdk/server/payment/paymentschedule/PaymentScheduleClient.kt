@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.AlreadyPaidOrWaitingError
 import io.portone.sdk.server.errors.AlreadyPaidOrWaitingException
@@ -106,7 +107,7 @@ public class PaymentScheduleClient(
   ): PaymentSchedule {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payment-schedules", paymentScheduleId.toString())
+        this.appendApiPathSegments("payment-schedules", paymentScheduleId.toString())
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -319,7 +320,7 @@ public class PaymentScheduleClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("payments", paymentId.toString(), "schedule")
+        this.appendApiPathSegments("payments", paymentId.toString(), "schedule")
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")

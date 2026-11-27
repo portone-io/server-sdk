@@ -19,6 +19,7 @@ import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
 import io.portone.sdk.server.annotations.PortOneUnstable
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.errors.CancelPlatformAdditionalFeePolicyScheduleError
 import io.portone.sdk.server.errors.CancelPlatformAdditionalFeePolicyScheduleException
 import io.portone.sdk.server.errors.CancelPlatformContractScheduleError
@@ -217,7 +218,7 @@ public class PlatformClient(
   ): PlatformAdditionalFeePolicy {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -288,7 +289,7 @@ public class PlatformClient(
     )
     val httpResponse = client.put(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -365,7 +366,7 @@ public class PlatformClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -434,7 +435,7 @@ public class PlatformClient(
   ): CancelPlatformAdditionalFeePolicyScheduleResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -497,7 +498,7 @@ public class PlatformClient(
   ): PlatformContract {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "contracts", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -570,7 +571,7 @@ public class PlatformClient(
     )
     val httpResponse = client.put(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "contracts", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -647,7 +648,7 @@ public class PlatformClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "contracts", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -716,7 +717,7 @@ public class PlatformClient(
   ): CancelPlatformContractScheduleResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "contracts", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -779,7 +780,7 @@ public class PlatformClient(
   ): PlatformDiscountSharePolicy {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -852,7 +853,7 @@ public class PlatformClient(
     )
     val httpResponse = client.put(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -929,7 +930,7 @@ public class PlatformClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -998,7 +999,7 @@ public class PlatformClient(
   ): CancelPlatformDiscountSharePolicyScheduleResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1271,7 +1272,7 @@ public class PlatformClient(
   ): PlatformPartner {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "partners", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1344,7 +1345,7 @@ public class PlatformClient(
     )
     val httpResponse = client.put(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "partners", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1423,7 +1424,7 @@ public class PlatformClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "partners", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -1502,7 +1503,7 @@ public class PlatformClient(
   ): CancelPlatformPartnerScheduleResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", id.toString(), "schedule")
+        this.appendApiPathSegments("platform", "partners", id.toString(), "schedule")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {

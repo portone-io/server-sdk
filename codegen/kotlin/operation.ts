@@ -223,8 +223,13 @@ export function writeOperation(
       }
     })
     .join(", ")
-  crossRef.add("io.ktor.http.appendPathSegments")
-  writer.writeLine(`this.appendPathSegments(${path})`)
+  if (operation.params.path.length > 0) {
+    crossRef.add("io.portone.sdk.server.appendApiPathSegments")
+    writer.writeLine(`this.appendApiPathSegments(${path})`)
+  } else {
+    crossRef.add("io.ktor.http.appendPathSegments")
+    writer.writeLine(`this.appendPathSegments(${path})`)
+  }
   for (const property of operation.params.query) {
     if (property.required) {
       writer.writeLine(
