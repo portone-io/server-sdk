@@ -25,15 +25,15 @@ def _serialize_platform_account_holder(obj: PlatformAccountHolder) -> Any:
 
 def _deserialize_platform_account_holder(obj: Any) -> PlatformAccountHolder:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "holderName" not in obj:
-        raise KeyError(f"'holderName' is not in {obj}")
+        raise KeyError("Missing required field 'holderName'")
     holder_name = obj["holderName"]
     if not isinstance(holder_name, str):
-        raise ValueError(f"{repr(holder_name)} is not str")
+        raise ValueError("Expected str for holder_name")
     if "accountVerificationId" not in obj:
-        raise KeyError(f"'accountVerificationId' is not in {obj}")
+        raise KeyError("Missing required field 'accountVerificationId'")
     account_verification_id = obj["accountVerificationId"]
     if not isinstance(account_verification_id, str):
-        raise ValueError(f"{repr(account_verification_id)} is not str")
+        raise ValueError("Expected str for account_verification_id")
     return PlatformAccountHolder(holder_name, account_verification_id)

@@ -54,4 +54,4 @@ def _deserialize_payment_schedule(obj: Any) -> PaymentSchedule:
         return _deserialize_succeeded_payment_schedule(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PaymentSchedule")
+    raise ValueError("Expected PaymentSchedule")

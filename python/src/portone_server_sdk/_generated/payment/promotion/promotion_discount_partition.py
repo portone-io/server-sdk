@@ -24,14 +24,14 @@ def _serialize_promotion_discount_partition(obj: PromotionDiscountPartition) -> 
 
 def _deserialize_promotion_discount_partition(obj: Any) -> PromotionDiscountPartition:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "amountFrom" not in obj:
-        raise KeyError(f"'amountFrom' is not in {obj}")
+        raise KeyError("Missing required field 'amountFrom'")
     amount_from = obj["amountFrom"]
     if not isinstance(amount_from, int):
-        raise ValueError(f"{repr(amount_from)} is not int")
+        raise ValueError("Expected int for amount_from")
     if "scheme" not in obj:
-        raise KeyError(f"'scheme' is not in {obj}")
+        raise KeyError("Missing required field 'scheme'")
     scheme = obj["scheme"]
     scheme = _deserialize_promotion_discount_scheme(scheme)
     return PromotionDiscountPartition(amount_from, scheme)

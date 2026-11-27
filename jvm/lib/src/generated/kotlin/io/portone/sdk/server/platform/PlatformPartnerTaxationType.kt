@@ -22,7 +22,7 @@ public sealed interface PlatformPartnerTaxationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Normal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Normal = decoder.decodeString().let {
       if (it != "NORMAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NORMAL")
       } else {
         return Normal
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformPartnerTaxationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SimpleTaxInvoiceIssuer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SimpleTaxInvoiceIssuer = decoder.decodeString().let {
       if (it != "SIMPLE_TAX_INVOICE_ISSUER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SIMPLE_TAX_INVOICE_ISSUER")
       } else {
         return SimpleTaxInvoiceIssuer
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformPartnerTaxationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Simple::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Simple = decoder.decodeString().let {
       if (it != "SIMPLE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SIMPLE")
       } else {
         return Simple
       }
@@ -70,7 +70,7 @@ public sealed interface PlatformPartnerTaxationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TaxFree::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TaxFree = decoder.decodeString().let {
       if (it != "TAX_FREE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TAX_FREE")
       } else {
         return TaxFree
       }

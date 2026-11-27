@@ -59,7 +59,7 @@ def _serialize_platform_payout_filter_input_criteria(obj: PlatformPayoutFilterIn
 
 def _deserialize_platform_payout_filter_input_criteria(obj: Any) -> PlatformPayoutFilterInputCriteria:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "timestampRange" in obj:
         timestamp_range = obj["timestampRange"]
         timestamp_range = _deserialize_date_time_range(timestamp_range)
@@ -83,25 +83,25 @@ def _deserialize_platform_payout_filter_input_criteria(obj: Any) -> PlatformPayo
     if "payoutId" in obj:
         payout_id = obj["payoutId"]
         if not isinstance(payout_id, str):
-            raise ValueError(f"{repr(payout_id)} is not str")
+            raise ValueError("Expected str for payout_id")
     else:
         payout_id = None
     if "bulkPayoutId" in obj:
         bulk_payout_id = obj["bulkPayoutId"]
         if not isinstance(bulk_payout_id, str):
-            raise ValueError(f"{repr(bulk_payout_id)} is not str")
+            raise ValueError("Expected str for bulk_payout_id")
     else:
         bulk_payout_id = None
     if "taxInvoiceId" in obj:
         tax_invoice_id = obj["taxInvoiceId"]
         if not isinstance(tax_invoice_id, str):
-            raise ValueError(f"{repr(tax_invoice_id)} is not str")
+            raise ValueError("Expected str for tax_invoice_id")
     else:
         tax_invoice_id = None
     if "settlementStatementId" in obj:
         settlement_statement_id = obj["settlementStatementId"]
         if not isinstance(settlement_statement_id, str):
-            raise ValueError(f"{repr(settlement_statement_id)} is not str")
+            raise ValueError("Expected str for settlement_statement_id")
     else:
         settlement_statement_id = None
     return PlatformPayoutFilterInputCriteria(timestamp_range, status_updated_timestamp_range, scheduled_timestamp_range, settlement_statement_issued_timestamp_range, payout_id, bulk_payout_id, tax_invoice_id, settlement_statement_id)

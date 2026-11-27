@@ -23,11 +23,11 @@ def _serialize_register_store_receipt_response(obj: RegisterStoreReceiptResponse
 
 def _deserialize_register_store_receipt_response(obj: Any) -> RegisterStoreReceiptResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "receiptUrl" in obj:
         receipt_url = obj["receiptUrl"]
         if not isinstance(receipt_url, str):
-            raise ValueError(f"{repr(receipt_url)} is not str")
+            raise ValueError("Expected str for receipt_url")
     else:
         receipt_url = None
     return RegisterStoreReceiptResponse(receipt_url)

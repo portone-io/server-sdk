@@ -22,7 +22,7 @@ public sealed interface B2bSearchDateType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Register::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Register = decoder.decodeString().let {
       if (it != "REGISTER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REGISTER")
       } else {
         return Register
       }
@@ -38,7 +38,7 @@ public sealed interface B2bSearchDateType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Write::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Write = decoder.decodeString().let {
       if (it != "WRITE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WRITE")
       } else {
         return Write
       }
@@ -54,7 +54,7 @@ public sealed interface B2bSearchDateType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Issue::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Issue = decoder.decodeString().let {
       if (it != "ISSUE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUE")
       } else {
         return Issue
       }

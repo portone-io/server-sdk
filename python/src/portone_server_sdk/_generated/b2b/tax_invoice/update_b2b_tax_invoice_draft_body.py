@@ -47,20 +47,20 @@ def _serialize_update_b2b_tax_invoice_draft_body(obj: UpdateB2bTaxInvoiceDraftBo
 
 def _deserialize_update_b2b_tax_invoice_draft_body(obj: Any) -> UpdateB2bTaxInvoiceDraftBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "taxInvoiceKey" not in obj:
-        raise KeyError(f"'taxInvoiceKey' is not in {obj}")
+        raise KeyError("Missing required field 'taxInvoiceKey'")
     tax_invoice_key = obj["taxInvoiceKey"]
     if not isinstance(tax_invoice_key, str):
-        raise ValueError(f"{repr(tax_invoice_key)} is not str")
+        raise ValueError("Expected str for tax_invoice_key")
     if "taxInvoice" not in obj:
-        raise KeyError(f"'taxInvoice' is not in {obj}")
+        raise KeyError("Missing required field 'taxInvoice'")
     tax_invoice = obj["taxInvoice"]
     tax_invoice = _deserialize_b2b_tax_invoice_input(tax_invoice)
     if "brn" in obj:
         brn = obj["brn"]
         if not isinstance(brn, str):
-            raise ValueError(f"{repr(brn)} is not str")
+            raise ValueError("Expected str for brn")
     else:
         brn = None
     if "taxInvoiceKeyType" in obj:
@@ -71,7 +71,7 @@ def _deserialize_update_b2b_tax_invoice_draft_body(obj: Any) -> UpdateB2bTaxInvo
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return UpdateB2bTaxInvoiceDraftBody(tax_invoice_key, tax_invoice, brn, tax_invoice_key_type, memo)

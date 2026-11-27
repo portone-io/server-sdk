@@ -58,7 +58,7 @@ def _serialize_download_platform_transfer_sheet_body(obj: DownloadPlatformTransf
 
 def _deserialize_download_platform_transfer_sheet_body(obj: Any) -> DownloadPlatformTransferSheetBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "filter" in obj:
         filter = obj["filter"]
         filter = _deserialize_platform_transfer_filter_input(filter)
@@ -67,10 +67,10 @@ def _deserialize_download_platform_transfer_sheet_body(obj: Any) -> DownloadPlat
     if "fields" in obj:
         fields = obj["fields"]
         if not isinstance(fields, list):
-            raise ValueError(f"{repr(fields)} is not list")
+            raise ValueError("Expected list for fields")
         for i, item in enumerate(fields):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         fields = None
     return DownloadPlatformTransferSheetBody(filter, fields)

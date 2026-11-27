@@ -21,7 +21,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Samsungpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Samsungpay = decoder.decodeString().let {
       if (it != "SAMSUNGPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SAMSUNGPAY")
       } else {
         return Samsungpay
       }
@@ -36,7 +36,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kakaopay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kakaopay = decoder.decodeString().let {
       if (it != "KAKAOPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KAKAOPAY")
       } else {
         return Kakaopay
       }
@@ -51,7 +51,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Naverpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Naverpay = decoder.decodeString().let {
       if (it != "NAVERPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NAVERPAY")
       } else {
         return Naverpay
       }
@@ -66,7 +66,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Payco::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Payco = decoder.decodeString().let {
       if (it != "PAYCO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYCO")
       } else {
         return Payco
       }
@@ -81,7 +81,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ssgpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ssgpay = decoder.decodeString().let {
       if (it != "SSGPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SSGPAY")
       } else {
         return Ssgpay
       }
@@ -96,7 +96,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Chai::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Chai = decoder.decodeString().let {
       if (it != "CHAI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CHAI")
       } else {
         return Chai
       }
@@ -111,7 +111,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lpay = decoder.decodeString().let {
       if (it != "LPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LPAY")
       } else {
         return Lpay
       }
@@ -126,7 +126,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kpay = decoder.decodeString().let {
       if (it != "KPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KPAY")
       } else {
         return Kpay
       }
@@ -141,7 +141,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tosspay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tosspay = decoder.decodeString().let {
       if (it != "TOSSPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOSSPAY")
       } else {
         return Tosspay
       }
@@ -156,7 +156,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lgpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lgpay = decoder.decodeString().let {
       if (it != "LGPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LGPAY")
       } else {
         return Lgpay
       }
@@ -171,7 +171,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pinpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pinpay = decoder.decodeString().let {
       if (it != "PINPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PINPAY")
       } else {
         return Pinpay
       }
@@ -186,7 +186,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Applepay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Applepay = decoder.decodeString().let {
       if (it != "APPLEPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected APPLEPAY")
       } else {
         return Applepay
       }
@@ -201,7 +201,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Skpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Skpay = decoder.decodeString().let {
       if (it != "SKPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SKPAY")
       } else {
         return Skpay
       }
@@ -216,7 +216,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TossBrandpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TossBrandpay = decoder.decodeString().let {
       if (it != "TOSS_BRANDPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOSS_BRANDPAY")
       } else {
         return TossBrandpay
       }
@@ -231,7 +231,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(KbApp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): KbApp = decoder.decodeString().let {
       if (it != "KB_APP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KB_APP")
       } else {
         return KbApp
       }
@@ -246,7 +246,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Alipay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Alipay = decoder.decodeString().let {
       if (it != "ALIPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ALIPAY")
       } else {
         return Alipay
       }
@@ -261,7 +261,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hyphen::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hyphen = decoder.decodeString().let {
       if (it != "HYPHEN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HYPHEN")
       } else {
         return Hyphen
       }
@@ -276,7 +276,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tmoney::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tmoney = decoder.decodeString().let {
       if (it != "TMONEY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TMONEY")
       } else {
         return Tmoney
       }
@@ -291,7 +291,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Paypal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Paypal = decoder.decodeString().let {
       if (it != "PAYPAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYPAL")
       } else {
         return Paypal
       }
@@ -306,7 +306,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Smilepay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Smilepay = decoder.decodeString().let {
       if (it != "SMILEPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SMILEPAY")
       } else {
         return Smilepay
       }
@@ -321,7 +321,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mir::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mir = decoder.decodeString().let {
       if (it != "MIR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MIR")
       } else {
         return Mir
       }
@@ -336,7 +336,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Wechat::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Wechat = decoder.decodeString().let {
       if (it != "WECHAT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WECHAT")
       } else {
         return Wechat
       }
@@ -351,7 +351,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Linepay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Linepay = decoder.decodeString().let {
       if (it != "LINEPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LINEPAY")
       } else {
         return Linepay
       }
@@ -366,7 +366,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Klarna::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Klarna = decoder.decodeString().let {
       if (it != "KLARNA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KLARNA")
       } else {
         return Klarna
       }
@@ -381,7 +381,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Grabpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Grabpay = decoder.decodeString().let {
       if (it != "GRABPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GRABPAY")
       } else {
         return Grabpay
       }
@@ -396,7 +396,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Shopeepay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Shopeepay = decoder.decodeString().let {
       if (it != "SHOPEEPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SHOPEEPAY")
       } else {
         return Shopeepay
       }
@@ -411,7 +411,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jkopay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Jkopay = decoder.decodeString().let {
       if (it != "JKOPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JKOPAY")
       } else {
         return Jkopay
       }
@@ -426,7 +426,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Paypay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Paypay = decoder.decodeString().let {
       if (it != "PAYPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYPAY")
       } else {
         return Paypay
       }
@@ -441,7 +441,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Amazonpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Amazonpay = decoder.decodeString().let {
       if (it != "AMAZONPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AMAZONPAY")
       } else {
         return Amazonpay
       }
@@ -456,7 +456,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Rakutenpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Rakutenpay = decoder.decodeString().let {
       if (it != "RAKUTENPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RAKUTENPAY")
       } else {
         return Rakutenpay
       }
@@ -471,7 +471,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dbarai::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dbarai = decoder.decodeString().let {
       if (it != "DBARAI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DBARAI")
       } else {
         return Dbarai
       }
@@ -486,7 +486,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Aupay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Aupay = decoder.decodeString().let {
       if (it != "AUPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AUPAY")
       } else {
         return Aupay
       }
@@ -501,7 +501,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Merpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Merpay = decoder.decodeString().let {
       if (it != "MERPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MERPAY")
       } else {
         return Merpay
       }
@@ -516,7 +516,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Moneytree::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Moneytree = decoder.decodeString().let {
       if (it != "MONEYTREE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MONEYTREE")
       } else {
         return Moneytree
       }
@@ -531,7 +531,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kplus::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kplus = decoder.decodeString().let {
       if (it != "KPLUS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KPLUS")
       } else {
         return Kplus
       }
@@ -546,7 +546,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tinaba::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tinaba = decoder.decodeString().let {
       if (it != "TINABA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TINABA")
       } else {
         return Tinaba
       }
@@ -561,7 +561,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BillEase::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): BillEase = decoder.decodeString().let {
       if (it != "BILL_EASE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BILL_EASE")
       } else {
         return BillEase
       }
@@ -576,7 +576,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kredivo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kredivo = decoder.decodeString().let {
       if (it != "KREDIVO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KREDIVO")
       } else {
         return Kredivo
       }
@@ -591,7 +591,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RabbitLinePay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RabbitLinePay = decoder.decodeString().let {
       if (it != "RABBIT_LINE_PAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RABBIT_LINE_PAY")
       } else {
         return RabbitLinePay
       }
@@ -606,7 +606,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AlipayHk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AlipayHk = decoder.decodeString().let {
       if (it != "ALIPAY_HK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ALIPAY_HK")
       } else {
         return AlipayHk
       }
@@ -621,7 +621,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AkulakuPayLater::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AkulakuPayLater = decoder.decodeString().let {
       if (it != "AKULAKU_PAY_LATER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AKULAKU_PAY_LATER")
       } else {
         return AkulakuPayLater
       }
@@ -636,7 +636,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Boost::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Boost = decoder.decodeString().let {
       if (it != "BOOST") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BOOST")
       } else {
         return Boost
       }
@@ -651,7 +651,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bpi::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bpi = decoder.decodeString().let {
       if (it != "BPI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BPI")
       } else {
         return Bpi
       }
@@ -666,7 +666,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dana::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dana = decoder.decodeString().let {
       if (it != "DANA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DANA")
       } else {
         return Dana
       }
@@ -681,7 +681,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(GCash::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): GCash = decoder.decodeString().let {
       if (it != "G_CASH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected G_CASH")
       } else {
         return GCash
       }
@@ -696,7 +696,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hipay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hipay = decoder.decodeString().let {
       if (it != "HIPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HIPAY")
       } else {
         return Hipay
       }
@@ -711,7 +711,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mpay = decoder.decodeString().let {
       if (it != "MPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MPAY")
       } else {
         return Mpay
       }
@@ -726,7 +726,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TouchNGo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TouchNGo = decoder.decodeString().let {
       if (it != "TOUCH_N_GO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOUCH_N_GO")
       } else {
         return TouchNGo
       }
@@ -741,7 +741,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TrueMoney::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TrueMoney = decoder.decodeString().let {
       if (it != "TRUE_MONEY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TRUE_MONEY")
       } else {
         return TrueMoney
       }
@@ -756,7 +756,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DokuWallet::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DokuWallet = decoder.decodeString().let {
       if (it != "DOKU_WALLET") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DOKU_WALLET")
       } else {
         return DokuWallet
       }
@@ -771,7 +771,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(JeniusPay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): JeniusPay = decoder.decodeString().let {
       if (it != "JENIUS_PAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JENIUS_PAY")
       } else {
         return JeniusPay
       }
@@ -786,7 +786,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ovo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ovo = decoder.decodeString().let {
       if (it != "OVO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected OVO")
       } else {
         return Ovo
       }
@@ -801,7 +801,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Maya::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Maya = decoder.decodeString().let {
       if (it != "MAYA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MAYA")
       } else {
         return Maya
       }
@@ -816,7 +816,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Qris::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Qris = decoder.decodeString().let {
       if (it != "QRIS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected QRIS")
       } else {
         return Qris
       }
@@ -831,7 +831,7 @@ public sealed interface EasyPayProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ThaiQr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ThaiQr = decoder.decodeString().let {
       if (it != "THAI_QR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected THAI_QR")
       } else {
         return ThaiQr
       }

@@ -52,4 +52,4 @@ def _deserialize_resend_webhook_error(obj: Any) -> ResendWebhookError:
         return _deserialize_webhook_not_found_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ResendWebhookError")
+    raise ValueError("Expected ResendWebhookError")

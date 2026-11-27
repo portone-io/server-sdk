@@ -23,11 +23,11 @@ def _serialize_cancel_b2b_tax_invoice_issuance_body(obj: CancelB2bTaxInvoiceIssu
 
 def _deserialize_cancel_b2b_tax_invoice_issuance_body(obj: Any) -> CancelB2bTaxInvoiceIssuanceBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return CancelB2bTaxInvoiceIssuanceBody(memo)

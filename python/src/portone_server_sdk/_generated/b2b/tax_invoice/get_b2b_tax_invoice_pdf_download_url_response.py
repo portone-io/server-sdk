@@ -21,10 +21,10 @@ def _serialize_get_b2b_tax_invoice_pdf_download_url_response(obj: GetB2bTaxInvoi
 
 def _deserialize_get_b2b_tax_invoice_pdf_download_url_response(obj: Any) -> GetB2bTaxInvoicePdfDownloadUrlResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "url" not in obj:
-        raise KeyError(f"'url' is not in {obj}")
+        raise KeyError("Missing required field 'url'")
     url = obj["url"]
     if not isinstance(url, str):
-        raise ValueError(f"{repr(url)} is not str")
+        raise ValueError("Expected str for url")
     return GetB2bTaxInvoicePdfDownloadUrlResponse(url)

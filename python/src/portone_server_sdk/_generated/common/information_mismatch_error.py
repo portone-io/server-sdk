@@ -22,16 +22,16 @@ def _serialize_information_mismatch_error(obj: InformationMismatchError) -> Any:
 
 def _deserialize_information_mismatch_error(obj: Any) -> InformationMismatchError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "INFORMATION_MISMATCH":
-        raise ValueError(f"{repr(type)} is not 'INFORMATION_MISMATCH'")
+        raise ValueError("Expected 'INFORMATION_MISMATCH' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return InformationMismatchError(message)

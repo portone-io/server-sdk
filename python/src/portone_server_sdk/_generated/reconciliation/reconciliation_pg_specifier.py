@@ -26,14 +26,14 @@ def _serialize_reconciliation_pg_specifier(obj: ReconciliationPgSpecifier) -> An
 
 def _deserialize_reconciliation_pg_specifier(obj: Any) -> ReconciliationPgSpecifier:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "pgMerchantId" not in obj:
-        raise KeyError(f"'pgMerchantId' is not in {obj}")
+        raise KeyError("Missing required field 'pgMerchantId'")
     pg_merchant_id = obj["pgMerchantId"]
     if not isinstance(pg_merchant_id, str):
-        raise ValueError(f"{repr(pg_merchant_id)} is not str")
+        raise ValueError("Expected str for pg_merchant_id")
     if "pgProvider" not in obj:
-        raise KeyError(f"'pgProvider' is not in {obj}")
+        raise KeyError("Missing required field 'pgProvider'")
     pg_provider = obj["pgProvider"]
     pg_provider = _deserialize_reconciliation_pg_provider(pg_provider)
     return ReconciliationPgSpecifier(pg_merchant_id, pg_provider)

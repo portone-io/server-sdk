@@ -33,17 +33,17 @@ def _serialize_confirm_escrow_body(obj: ConfirmEscrowBody) -> Any:
 
 def _deserialize_confirm_escrow_body(obj: Any) -> ConfirmEscrowBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "fromStore" in obj:
         from_store = obj["fromStore"]
         if not isinstance(from_store, bool):
-            raise ValueError(f"{repr(from_store)} is not bool")
+            raise ValueError("Expected bool for from_store")
     else:
         from_store = None
     return ConfirmEscrowBody(store_id, from_store)

@@ -25,12 +25,12 @@ def _serialize_payment_method_easy_pay_method_charge(obj: PaymentMethodEasyPayMe
 
 def _deserialize_payment_method_easy_pay_method_charge(obj: Any) -> PaymentMethodEasyPayMethodCharge:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PaymentMethodEasyPayMethodCharge":
-        raise ValueError(f"{repr(type)} is not 'PaymentMethodEasyPayMethodCharge'")
+        raise ValueError("Expected 'PaymentMethodEasyPayMethodCharge' for type")
     if "bank" in obj:
         bank = obj["bank"]
         bank = _deserialize_bank(bank)

@@ -76,53 +76,53 @@ def _serialize_b2b_counterparty_filter(obj: B2bCounterpartyFilter) -> Any:
 
 def _deserialize_b2b_counterparty_filter(obj: Any) -> B2bCounterpartyFilter:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "brn" in obj:
         brn = obj["brn"]
         if not isinstance(brn, str):
-            raise ValueError(f"{repr(brn)} is not str")
+            raise ValueError("Expected str for brn")
     else:
         brn = None
     if "companyName" in obj:
         company_name = obj["companyName"]
         if not isinstance(company_name, str):
-            raise ValueError(f"{repr(company_name)} is not str")
+            raise ValueError("Expected str for company_name")
     else:
         company_name = None
     if "representativeName" in obj:
         representative_name = obj["representativeName"]
         if not isinstance(representative_name, str):
-            raise ValueError(f"{repr(representative_name)} is not str")
+            raise ValueError("Expected str for representative_name")
     else:
         representative_name = None
     if "contactName" in obj:
         contact_name = obj["contactName"]
         if not isinstance(contact_name, str):
-            raise ValueError(f"{repr(contact_name)} is not str")
+            raise ValueError("Expected str for contact_name")
     else:
         contact_name = None
     if "contactPhone" in obj:
         contact_phone = obj["contactPhone"]
         if not isinstance(contact_phone, str):
-            raise ValueError(f"{repr(contact_phone)} is not str")
+            raise ValueError("Expected str for contact_phone")
     else:
         contact_phone = None
     if "contactEmail" in obj:
         contact_email = obj["contactEmail"]
         if not isinstance(contact_email, str):
-            raise ValueError(f"{repr(contact_email)} is not str")
+            raise ValueError("Expected str for contact_email")
     else:
         contact_email = None
     if "businessStatuses" in obj:
         business_statuses = obj["businessStatuses"]
         if not isinstance(business_statuses, list):
-            raise ValueError(f"{repr(business_statuses)} is not list")
+            raise ValueError("Expected list for business_statuses")
         for i, item in enumerate(business_statuses):
             item = _deserialize_b2b_counterparty_business_status(item)
             business_statuses[i] = item
@@ -131,7 +131,7 @@ def _deserialize_b2b_counterparty_filter(obj: Any) -> B2bCounterpartyFilter:
     if "ntsConnectionStatuses" in obj:
         nts_connection_statuses = obj["ntsConnectionStatuses"]
         if not isinstance(nts_connection_statuses, list):
-            raise ValueError(f"{repr(nts_connection_statuses)} is not list")
+            raise ValueError("Expected list for nts_connection_statuses")
         for i, item in enumerate(nts_connection_statuses):
             item = _deserialize_b2b_nts_connection_status(item)
             nts_connection_statuses[i] = item
@@ -140,10 +140,10 @@ def _deserialize_b2b_counterparty_filter(obj: Any) -> B2bCounterpartyFilter:
     if "counterpartyIds" in obj:
         counterparty_ids = obj["counterpartyIds"]
         if not isinstance(counterparty_ids, list):
-            raise ValueError(f"{repr(counterparty_ids)} is not list")
+            raise ValueError("Expected list for counterparty_ids")
         for i, item in enumerate(counterparty_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         counterparty_ids = None
     return B2bCounterpartyFilter(id, brn, company_name, representative_name, contact_name, contact_phone, contact_email, business_statuses, nts_connection_statuses, counterparty_ids)

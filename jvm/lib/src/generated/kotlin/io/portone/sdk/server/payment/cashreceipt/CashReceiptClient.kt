@@ -133,7 +133,7 @@ public class CashReceiptClient(
         json.decodeFromString<GetCashReceiptsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -146,7 +146,7 @@ public class CashReceiptClient(
       json.decodeFromString<GetCashReceiptsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -241,7 +241,7 @@ public class CashReceiptClient(
         json.decodeFromString<IssueCashReceiptError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is CashReceiptAlreadyIssuedError -> throw CashReceiptAlreadyIssuedException(httpBodyDecoded)
@@ -257,7 +257,7 @@ public class CashReceiptClient(
       json.decodeFromString<IssueCashReceiptResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -309,7 +309,7 @@ public class CashReceiptClient(
         json.decodeFromString<CancelCashReceiptError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is CashReceiptNotFoundError -> throw CashReceiptNotFoundException(httpBodyDecoded)
@@ -325,7 +325,7 @@ public class CashReceiptClient(
       json.decodeFromString<CancelCashReceiptResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -367,7 +367,7 @@ public class CashReceiptClient(
         json.decodeFromString<GetCashReceiptError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is CashReceiptNotFoundError -> throw CashReceiptNotFoundException(httpBodyDecoded)
@@ -381,7 +381,7 @@ public class CashReceiptClient(
       json.decodeFromString<CashReceipt>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

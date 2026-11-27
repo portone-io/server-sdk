@@ -21,13 +21,13 @@ def _serialize_get_b2b_business_infos_body(obj: GetB2bBusinessInfosBody) -> Any:
 
 def _deserialize_get_b2b_business_infos_body(obj: Any) -> GetB2bBusinessInfosBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "brnList" not in obj:
-        raise KeyError(f"'brnList' is not in {obj}")
+        raise KeyError("Missing required field 'brnList'")
     brn_list = obj["brnList"]
     if not isinstance(brn_list, list):
-        raise ValueError(f"{repr(brn_list)} is not list")
+        raise ValueError("Expected list for brn_list")
     for i, item in enumerate(brn_list):
         if not isinstance(item, str):
-            raise ValueError(f"{repr(item)} is not str")
+            raise ValueError("Expected str for item")
     return GetB2bBusinessInfosBody(brn_list)

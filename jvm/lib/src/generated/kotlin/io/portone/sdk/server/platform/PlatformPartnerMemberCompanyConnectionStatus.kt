@@ -22,7 +22,7 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NotConnected::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NotConnected = decoder.decodeString().let {
       if (it != "NOT_CONNECTED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NOT_CONNECTED")
       } else {
         return NotConnected
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ConnectPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ConnectPending = decoder.decodeString().let {
       if (it != "CONNECT_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CONNECT_PENDING")
       } else {
         return ConnectPending
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Connected::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Connected = decoder.decodeString().let {
       if (it != "CONNECTED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CONNECTED")
       } else {
         return Connected
       }
@@ -70,7 +70,7 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ConnectFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ConnectFailed = decoder.decodeString().let {
       if (it != "CONNECT_FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CONNECT_FAILED")
       } else {
         return ConnectFailed
       }
@@ -86,7 +86,7 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DisconnectPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DisconnectPending = decoder.decodeString().let {
       if (it != "DISCONNECT_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DISCONNECT_PENDING")
       } else {
         return DisconnectPending
       }

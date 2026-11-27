@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from ....._portone_error import PortOneError
+from ....._portone_error import ApiError
 @dataclass
-class ConnectBulkPartnerCounterpartyError(PortOneError):
+class ConnectBulkPartnerCounterpartyError(ApiError):
     pass

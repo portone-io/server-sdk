@@ -45,4 +45,4 @@ def _deserialize_cancel_platform_additional_fee_policy_schedule_error(obj: Any) 
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CancelPlatformAdditionalFeePolicyScheduleError")
+    raise ValueError("Expected CancelPlatformAdditionalFeePolicyScheduleError")

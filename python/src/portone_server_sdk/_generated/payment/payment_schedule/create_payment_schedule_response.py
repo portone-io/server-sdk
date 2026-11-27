@@ -22,9 +22,9 @@ def _serialize_create_payment_schedule_response(obj: CreatePaymentScheduleRespon
 
 def _deserialize_create_payment_schedule_response(obj: Any) -> CreatePaymentScheduleResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "schedule" not in obj:
-        raise KeyError(f"'schedule' is not in {obj}")
+        raise KeyError("Missing required field 'schedule'")
     schedule = obj["schedule"]
     schedule = _deserialize_payment_schedule_summary(schedule)
     return CreatePaymentScheduleResponse(schedule)

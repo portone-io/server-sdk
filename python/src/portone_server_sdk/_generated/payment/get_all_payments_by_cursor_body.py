@@ -56,35 +56,35 @@ def _serialize_get_all_payments_by_cursor_body(obj: GetAllPaymentsByCursorBody) 
 
 def _deserialize_get_all_payments_by_cursor_body(obj: Any) -> GetAllPaymentsByCursorBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "from" in obj:
         from_ = obj["from"]
         if not isinstance(from_, str):
-            raise ValueError(f"{repr(from_)} is not str")
+            raise ValueError("Expected str for from_")
     else:
         from_ = None
     if "until" in obj:
         until = obj["until"]
         if not isinstance(until, str):
-            raise ValueError(f"{repr(until)} is not str")
+            raise ValueError("Expected str for until")
     else:
         until = None
     if "cursor" in obj:
         cursor = obj["cursor"]
         if not isinstance(cursor, str):
-            raise ValueError(f"{repr(cursor)} is not str")
+            raise ValueError("Expected str for cursor")
     else:
         cursor = None
     if "size" in obj:
         size = obj["size"]
         if not isinstance(size, int):
-            raise ValueError(f"{repr(size)} is not int")
+            raise ValueError("Expected int for size")
     else:
         size = None
     return GetAllPaymentsByCursorBody(store_id, from_, until, cursor, size)

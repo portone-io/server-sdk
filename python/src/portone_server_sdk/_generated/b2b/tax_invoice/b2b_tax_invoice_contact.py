@@ -42,34 +42,34 @@ def _serialize_b2b_tax_invoice_contact(obj: B2bTaxInvoiceContact) -> Any:
 
 def _deserialize_b2b_tax_invoice_contact(obj: Any) -> B2bTaxInvoiceContact:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "email" not in obj:
-        raise KeyError(f"'email' is not in {obj}")
+        raise KeyError("Missing required field 'email'")
     email = obj["email"]
     if not isinstance(email, str):
-        raise ValueError(f"{repr(email)} is not str")
+        raise ValueError("Expected str for email")
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "department" in obj:
         department = obj["department"]
         if not isinstance(department, str):
-            raise ValueError(f"{repr(department)} is not str")
+            raise ValueError("Expected str for department")
     else:
         department = None
     if "phoneNumber" in obj:
         phone_number = obj["phoneNumber"]
         if not isinstance(phone_number, str):
-            raise ValueError(f"{repr(phone_number)} is not str")
+            raise ValueError("Expected str for phone_number")
     else:
         phone_number = None
     if "mobilePhoneNumber" in obj:
         mobile_phone_number = obj["mobilePhoneNumber"]
         if not isinstance(mobile_phone_number, str):
-            raise ValueError(f"{repr(mobile_phone_number)} is not str")
+            raise ValueError("Expected str for mobile_phone_number")
     else:
         mobile_phone_number = None
     return B2bTaxInvoiceContact(email, name, department, phone_number, mobile_phone_number)

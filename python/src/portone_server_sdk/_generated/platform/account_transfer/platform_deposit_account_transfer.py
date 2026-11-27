@@ -83,79 +83,79 @@ def _serialize_platform_deposit_account_transfer(obj: PlatformDepositAccountTran
 
 def _deserialize_platform_deposit_account_transfer(obj: Any) -> PlatformDepositAccountTransfer:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "DEPOSIT":
-        raise ValueError(f"{repr(type)} is not 'DEPOSIT'")
+        raise ValueError("Expected 'DEPOSIT' for type")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "bankAccountId" not in obj:
-        raise KeyError(f"'bankAccountId' is not in {obj}")
+        raise KeyError("Missing required field 'bankAccountId'")
     bank_account_id = obj["bankAccountId"]
     if not isinstance(bank_account_id, str):
-        raise ValueError(f"{repr(bank_account_id)} is not str")
+        raise ValueError("Expected str for bank_account_id")
     if "bankAccountGraphqlId" not in obj:
-        raise KeyError(f"'bankAccountGraphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'bankAccountGraphqlId'")
     bank_account_graphql_id = obj["bankAccountGraphqlId"]
     if not isinstance(bank_account_graphql_id, str):
-        raise ValueError(f"{repr(bank_account_graphql_id)} is not str")
+        raise ValueError("Expected str for bank_account_graphql_id")
     if "bankAccount" not in obj:
-        raise KeyError(f"'bankAccount' is not in {obj}")
+        raise KeyError("Missing required field 'bankAccount'")
     bank_account = obj["bankAccount"]
     bank_account = _deserialize_platform_bank_account_detail(bank_account)
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     if not isinstance(amount, int):
-        raise ValueError(f"{repr(amount)} is not int")
+        raise ValueError("Expected int for amount")
     if "createdAt" not in obj:
-        raise KeyError(f"'createdAt' is not in {obj}")
+        raise KeyError("Missing required field 'createdAt'")
     created_at = obj["createdAt"]
     if not isinstance(created_at, str):
-        raise ValueError(f"{repr(created_at)} is not str")
+        raise ValueError("Expected str for created_at")
     if "updatedAt" not in obj:
-        raise KeyError(f"'updatedAt' is not in {obj}")
+        raise KeyError("Missing required field 'updatedAt'")
     updated_at = obj["updatedAt"]
     if not isinstance(updated_at, str):
-        raise ValueError(f"{repr(updated_at)} is not str")
+        raise ValueError("Expected str for updated_at")
     if "depositorName" not in obj:
-        raise KeyError(f"'depositorName' is not in {obj}")
+        raise KeyError("Missing required field 'depositorName'")
     depositor_name = obj["depositorName"]
     if not isinstance(depositor_name, str):
-        raise ValueError(f"{repr(depositor_name)} is not str")
+        raise ValueError("Expected str for depositor_name")
     if "isForTest" not in obj:
-        raise KeyError(f"'isForTest' is not in {obj}")
+        raise KeyError("Missing required field 'isForTest'")
     is_for_test = obj["isForTest"]
     if not isinstance(is_for_test, bool):
-        raise ValueError(f"{repr(is_for_test)} is not bool")
+        raise ValueError("Expected bool for is_for_test")
     if "statusUpdatedAt" not in obj:
-        raise KeyError(f"'statusUpdatedAt' is not in {obj}")
+        raise KeyError("Missing required field 'statusUpdatedAt'")
     status_updated_at = obj["statusUpdatedAt"]
     if not isinstance(status_updated_at, str):
-        raise ValueError(f"{repr(status_updated_at)} is not str")
+        raise ValueError("Expected str for status_updated_at")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     status = _deserialize_platform_account_transfer_status(status)
     if "depositMemo" in obj:
         deposit_memo = obj["depositMemo"]
         if not isinstance(deposit_memo, str):
-            raise ValueError(f"{repr(deposit_memo)} is not str")
+            raise ValueError("Expected str for deposit_memo")
     else:
         deposit_memo = None
     if "tradedAt" in obj:
         traded_at = obj["tradedAt"]
         if not isinstance(traded_at, str):
-            raise ValueError(f"{repr(traded_at)} is not str")
+            raise ValueError("Expected str for traded_at")
     else:
         traded_at = None
     return PlatformDepositAccountTransfer(id, bank_account_id, bank_account_graphql_id, bank_account, currency, amount, created_at, updated_at, depositor_name, is_for_test, status_updated_at, status, deposit_memo, traded_at)

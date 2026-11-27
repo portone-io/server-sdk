@@ -22,15 +22,15 @@ def _serialize_promotion_percent_discount_scheme(obj: PromotionPercentDiscountSc
 
 def _deserialize_promotion_percent_discount_scheme(obj: Any) -> PromotionPercentDiscountScheme:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PERCENT":
-        raise ValueError(f"{repr(type)} is not 'PERCENT'")
+        raise ValueError("Expected 'PERCENT' for type")
     if "percent" not in obj:
-        raise KeyError(f"'percent' is not in {obj}")
+        raise KeyError("Missing required field 'percent'")
     percent = obj["percent"]
     if not isinstance(percent, int):
-        raise ValueError(f"{repr(percent)} is not int")
+        raise ValueError("Expected int for percent")
     return PromotionPercentDiscountScheme(percent)

@@ -22,9 +22,9 @@ def _serialize_archive_platform_additional_fee_policy_response(obj: ArchivePlatf
 
 def _deserialize_archive_platform_additional_fee_policy_response(obj: Any) -> ArchivePlatformAdditionalFeePolicyResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "additionalFeePolicy" not in obj:
-        raise KeyError(f"'additionalFeePolicy' is not in {obj}")
+        raise KeyError("Missing required field 'additionalFeePolicy'")
     additional_fee_policy = obj["additionalFeePolicy"]
     additional_fee_policy = _deserialize_platform_additional_fee_policy(additional_fee_policy)
     return ArchivePlatformAdditionalFeePolicyResponse(additional_fee_policy)

@@ -22,7 +22,7 @@ public sealed interface PlatformAccountTransferType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Deposit::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Deposit = decoder.decodeString().let {
       if (it != "DEPOSIT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DEPOSIT")
       } else {
         return Deposit
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformAccountTransferType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Withdrawal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Withdrawal = decoder.decodeString().let {
       if (it != "WITHDRAWAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WITHDRAWAL")
       } else {
         return Withdrawal
       }

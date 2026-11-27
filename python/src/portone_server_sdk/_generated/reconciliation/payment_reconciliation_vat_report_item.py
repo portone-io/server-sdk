@@ -40,29 +40,29 @@ def _serialize_payment_reconciliation_vat_report_item(obj: PaymentReconciliation
 
 def _deserialize_payment_reconciliation_vat_report_item(obj: Any) -> PaymentReconciliationVatReportItem:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "paymentMethod" not in obj:
-        raise KeyError(f"'paymentMethod' is not in {obj}")
+        raise KeyError("Missing required field 'paymentMethod'")
     payment_method = obj["paymentMethod"]
     payment_method = _deserialize_simplified_payment_method_type(payment_method)
     if "supplyAmount" not in obj:
-        raise KeyError(f"'supplyAmount' is not in {obj}")
+        raise KeyError("Missing required field 'supplyAmount'")
     supply_amount = obj["supplyAmount"]
     if not isinstance(supply_amount, int):
-        raise ValueError(f"{repr(supply_amount)} is not int")
+        raise ValueError("Expected int for supply_amount")
     if "vatAmount" not in obj:
-        raise KeyError(f"'vatAmount' is not in {obj}")
+        raise KeyError("Missing required field 'vatAmount'")
     vat_amount = obj["vatAmount"]
     if not isinstance(vat_amount, int):
-        raise ValueError(f"{repr(vat_amount)} is not int")
+        raise ValueError("Expected int for vat_amount")
     if "taxFreeAmount" not in obj:
-        raise KeyError(f"'taxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'taxFreeAmount'")
     tax_free_amount = obj["taxFreeAmount"]
     if not isinstance(tax_free_amount, int):
-        raise ValueError(f"{repr(tax_free_amount)} is not int")
+        raise ValueError("Expected int for tax_free_amount")
     if "totalAmount" not in obj:
-        raise KeyError(f"'totalAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalAmount'")
     total_amount = obj["totalAmount"]
     if not isinstance(total_amount, int):
-        raise ValueError(f"{repr(total_amount)} is not int")
+        raise ValueError("Expected int for total_amount")
     return PaymentReconciliationVatReportItem(payment_method, supply_amount, vat_amount, tax_free_amount, total_amount)

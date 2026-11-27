@@ -34,24 +34,24 @@ def _serialize_b2b_tax_invoice_modification(obj: B2bTaxInvoiceModification) -> A
 
 def _deserialize_b2b_tax_invoice_modification(obj: Any) -> B2bTaxInvoiceModification:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     type = _deserialize_b2b_tax_invoice_modification_type(type)
     if "originalNtsApprovalNumber" not in obj:
-        raise KeyError(f"'originalNtsApprovalNumber' is not in {obj}")
+        raise KeyError("Missing required field 'originalNtsApprovalNumber'")
     original_nts_approval_number = obj["originalNtsApprovalNumber"]
     if not isinstance(original_nts_approval_number, str):
-        raise ValueError(f"{repr(original_nts_approval_number)} is not str")
+        raise ValueError("Expected str for original_nts_approval_number")
     if "originalTaxInvoiceId" not in obj:
-        raise KeyError(f"'originalTaxInvoiceId' is not in {obj}")
+        raise KeyError("Missing required field 'originalTaxInvoiceId'")
     original_tax_invoice_id = obj["originalTaxInvoiceId"]
     if not isinstance(original_tax_invoice_id, str):
-        raise ValueError(f"{repr(original_tax_invoice_id)} is not str")
+        raise ValueError("Expected str for original_tax_invoice_id")
     if "rootTaxInvoiceId" not in obj:
-        raise KeyError(f"'rootTaxInvoiceId' is not in {obj}")
+        raise KeyError("Missing required field 'rootTaxInvoiceId'")
     root_tax_invoice_id = obj["rootTaxInvoiceId"]
     if not isinstance(root_tax_invoice_id, str):
-        raise ValueError(f"{repr(root_tax_invoice_id)} is not str")
+        raise ValueError("Expected str for root_tax_invoice_id")
     return B2bTaxInvoiceModification(type, original_nts_approval_number, original_tax_invoice_id, root_tax_invoice_id)

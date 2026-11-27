@@ -45,37 +45,37 @@ def _serialize_confirmed_payment_escrow(obj: ConfirmedPaymentEscrow) -> Any:
 
 def _deserialize_confirmed_payment_escrow(obj: Any) -> ConfirmedPaymentEscrow:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     if status != "CONFIRMED":
-        raise ValueError(f"{repr(status)} is not 'CONFIRMED'")
+        raise ValueError("Expected 'CONFIRMED' for status")
     if "company" not in obj:
-        raise KeyError(f"'company' is not in {obj}")
+        raise KeyError("Missing required field 'company'")
     company = obj["company"]
     if not isinstance(company, str):
-        raise ValueError(f"{repr(company)} is not str")
+        raise ValueError("Expected str for company")
     if "invoiceNumber" not in obj:
-        raise KeyError(f"'invoiceNumber' is not in {obj}")
+        raise KeyError("Missing required field 'invoiceNumber'")
     invoice_number = obj["invoiceNumber"]
     if not isinstance(invoice_number, str):
-        raise ValueError(f"{repr(invoice_number)} is not str")
+        raise ValueError("Expected str for invoice_number")
     if "isAutomaticallyConfirmed" not in obj:
-        raise KeyError(f"'isAutomaticallyConfirmed' is not in {obj}")
+        raise KeyError("Missing required field 'isAutomaticallyConfirmed'")
     is_automatically_confirmed = obj["isAutomaticallyConfirmed"]
     if not isinstance(is_automatically_confirmed, bool):
-        raise ValueError(f"{repr(is_automatically_confirmed)} is not bool")
+        raise ValueError("Expected bool for is_automatically_confirmed")
     if "sentAt" in obj:
         sent_at = obj["sentAt"]
         if not isinstance(sent_at, str):
-            raise ValueError(f"{repr(sent_at)} is not str")
+            raise ValueError("Expected str for sent_at")
     else:
         sent_at = None
     if "appliedAt" in obj:
         applied_at = obj["appliedAt"]
         if not isinstance(applied_at, str):
-            raise ValueError(f"{repr(applied_at)} is not str")
+            raise ValueError("Expected str for applied_at")
     else:
         applied_at = None
     return ConfirmedPaymentEscrow(company, invoice_number, is_automatically_confirmed, sent_at, applied_at)

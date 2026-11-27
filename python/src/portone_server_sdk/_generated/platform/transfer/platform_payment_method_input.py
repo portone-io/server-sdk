@@ -54,7 +54,7 @@ def _serialize_platform_payment_method_input(obj: PlatformPaymentMethodInput) ->
 
 def _deserialize_platform_payment_method_input(obj: Any) -> PlatformPaymentMethodInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "card" in obj:
         card = obj["card"]
         card = _deserialize_platform_payment_method_card_input(card)

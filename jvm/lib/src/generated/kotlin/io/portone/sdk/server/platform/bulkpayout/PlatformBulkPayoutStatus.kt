@@ -20,7 +20,7 @@ public sealed interface PlatformBulkPayoutStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Preparing::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Preparing = decoder.decodeString().let {
       if (it != "PREPARING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PREPARING")
       } else {
         return Preparing
       }
@@ -35,7 +35,7 @@ public sealed interface PlatformBulkPayoutStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Prepared::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Prepared = decoder.decodeString().let {
       if (it != "PREPARED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PREPARED")
       } else {
         return Prepared
       }
@@ -50,7 +50,7 @@ public sealed interface PlatformBulkPayoutStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ongoing::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ongoing = decoder.decodeString().let {
       if (it != "ONGOING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ONGOING")
       } else {
         return Ongoing
       }
@@ -65,7 +65,7 @@ public sealed interface PlatformBulkPayoutStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PostProcessPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PostProcessPending = decoder.decodeString().let {
       if (it != "POST_PROCESS_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected POST_PROCESS_PENDING")
       } else {
         return PostProcessPending
       }
@@ -80,7 +80,7 @@ public sealed interface PlatformBulkPayoutStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cancelled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cancelled = decoder.decodeString().let {
       if (it != "CANCELLED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CANCELLED")
       } else {
         return Cancelled
       }
@@ -95,7 +95,7 @@ public sealed interface PlatformBulkPayoutStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Completed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Completed = decoder.decodeString().let {
       if (it != "COMPLETED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected COMPLETED")
       } else {
         return Completed
       }

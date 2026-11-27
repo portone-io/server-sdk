@@ -33,16 +33,16 @@ def _serialize_decimal(obj: Decimal) -> Any:
 
 def _deserialize_decimal(obj: Any) -> Decimal:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "value" not in obj:
-        raise KeyError(f"'value' is not in {obj}")
+        raise KeyError("Missing required field 'value'")
     value = obj["value"]
     if not isinstance(value, int):
-        raise ValueError(f"{repr(value)} is not int")
+        raise ValueError("Expected int for value")
     if "scale" in obj:
         scale = obj["scale"]
         if not isinstance(scale, int):
-            raise ValueError(f"{repr(scale)} is not int")
+            raise ValueError("Expected int for scale")
     else:
         scale = None
     return Decimal(value, scale)

@@ -45,4 +45,4 @@ def _deserialize_get_platform_discount_share_policy_schedule_error(obj: Any) -> 
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPlatformDiscountSharePolicyScheduleError")
+    raise ValueError("Expected GetPlatformDiscountSharePolicyScheduleError")

@@ -73,4 +73,4 @@ def _deserialize_create_platform_partners_error(obj: Any) -> CreatePlatformPartn
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CreatePlatformPartnersError")
+    raise ValueError("Expected CreatePlatformPartnersError")

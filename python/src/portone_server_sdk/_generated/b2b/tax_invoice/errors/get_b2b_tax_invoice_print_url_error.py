@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from ....._portone_error import PortOneError
+from ....._portone_error import ApiError
 @dataclass
-class GetB2bTaxInvoicePrintUrlError(PortOneError):
+class GetB2bTaxInvoicePrintUrlError(ApiError):
     pass

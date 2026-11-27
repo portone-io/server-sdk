@@ -45,4 +45,4 @@ def _deserialize_create_platform_discount_share_policy_error(obj: Any) -> Create
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CreatePlatformDiscountSharePolicyError")
+    raise ValueError("Expected CreatePlatformDiscountSharePolicyError")

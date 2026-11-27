@@ -66,4 +66,4 @@ def _deserialize_attach_b2b_tax_invoice_file_error(obj: Any) -> AttachB2bTaxInvo
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not AttachB2bTaxInvoiceFileError")
+    raise ValueError("Expected AttachB2bTaxInvoiceFileError")

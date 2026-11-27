@@ -22,7 +22,7 @@ public sealed interface Locale {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(KoKr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): KoKr = decoder.decodeString().let {
       if (it != "KO_KR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KO_KR")
       } else {
         return KoKr
       }
@@ -38,7 +38,7 @@ public sealed interface Locale {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(EnUs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): EnUs = decoder.decodeString().let {
       if (it != "EN_US") {
-        throw SerializationException(it)
+        throw SerializationException("Expected EN_US")
       } else {
         return EnUs
       }
@@ -54,7 +54,7 @@ public sealed interface Locale {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ZhCn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ZhCn = decoder.decodeString().let {
       if (it != "ZH_CN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ZH_CN")
       } else {
         return ZhCn
       }
@@ -70,7 +70,7 @@ public sealed interface Locale {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ZhTw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ZhTw = decoder.decodeString().let {
       if (it != "ZH_TW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ZH_TW")
       } else {
         return ZhTw
       }
@@ -86,7 +86,7 @@ public sealed interface Locale {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(JaJp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): JaJp = decoder.decodeString().let {
       if (it != "JA_JP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JA_JP")
       } else {
         return JaJp
       }
@@ -102,7 +102,7 @@ public sealed interface Locale {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RuRu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RuRu = decoder.decodeString().let {
       if (it != "RU_RU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RU_RU")
       } else {
         return RuRu
       }
@@ -118,7 +118,7 @@ public sealed interface Locale {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ThTh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ThTh = decoder.decodeString().let {
       if (it != "TH_TH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TH_TH")
       } else {
         return ThTh
       }
@@ -134,7 +134,7 @@ public sealed interface Locale {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ViVn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ViVn = decoder.decodeString().let {
       if (it != "VI_VN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VI_VN")
       } else {
         return ViVn
       }

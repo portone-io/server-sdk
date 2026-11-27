@@ -129,4 +129,4 @@ def _deserialize_schedule_partner_error(obj: Any) -> SchedulePartnerError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not SchedulePartnerError")
+    raise ValueError("Expected SchedulePartnerError")

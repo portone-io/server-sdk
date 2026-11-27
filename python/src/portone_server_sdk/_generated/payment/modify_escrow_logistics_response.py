@@ -31,20 +31,20 @@ def _serialize_modify_escrow_logistics_response(obj: ModifyEscrowLogisticsRespon
 
 def _deserialize_modify_escrow_logistics_response(obj: Any) -> ModifyEscrowLogisticsResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "invoiceNumber" not in obj:
-        raise KeyError(f"'invoiceNumber' is not in {obj}")
+        raise KeyError("Missing required field 'invoiceNumber'")
     invoice_number = obj["invoiceNumber"]
     if not isinstance(invoice_number, str):
-        raise ValueError(f"{repr(invoice_number)} is not str")
+        raise ValueError("Expected str for invoice_number")
     if "sentAt" not in obj:
-        raise KeyError(f"'sentAt' is not in {obj}")
+        raise KeyError("Missing required field 'sentAt'")
     sent_at = obj["sentAt"]
     if not isinstance(sent_at, str):
-        raise ValueError(f"{repr(sent_at)} is not str")
+        raise ValueError("Expected str for sent_at")
     if "modifiedAt" not in obj:
-        raise KeyError(f"'modifiedAt' is not in {obj}")
+        raise KeyError("Missing required field 'modifiedAt'")
     modified_at = obj["modifiedAt"]
     if not isinstance(modified_at, str):
-        raise ValueError(f"{repr(modified_at)} is not str")
+        raise ValueError("Expected str for modified_at")
     return ModifyEscrowLogisticsResponse(invoice_number, sent_at, modified_at)

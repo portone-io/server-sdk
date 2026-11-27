@@ -18,9 +18,9 @@ def _serialize_create_order_transfer_response(obj: CreateOrderTransferResponse) 
 
 def _deserialize_create_order_transfer_response(obj: Any) -> CreateOrderTransferResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "transfer" not in obj:
-        raise KeyError(f"'transfer' is not in {obj}")
+        raise KeyError("Missing required field 'transfer'")
     transfer = obj["transfer"]
     transfer = _deserialize_platform_order_transfer(transfer)
     return CreateOrderTransferResponse(transfer)

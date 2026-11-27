@@ -59,4 +59,4 @@ def _deserialize_get_b2b_counterparty_certificate_registration_url_error(obj: An
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetB2bCounterpartyCertificateRegistrationUrlError")
+    raise ValueError("Expected GetB2bCounterpartyCertificateRegistrationUrlError")

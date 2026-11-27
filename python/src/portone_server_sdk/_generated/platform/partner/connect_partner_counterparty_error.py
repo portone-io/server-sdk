@@ -101,4 +101,4 @@ def _deserialize_connect_partner_counterparty_error(obj: Any) -> ConnectPartnerC
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ConnectPartnerCounterpartyError")
+    raise ValueError("Expected ConnectPartnerCounterpartyError")

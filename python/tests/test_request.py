@@ -7,7 +7,11 @@ import pytest
 
 from portone_server_sdk import PaymentClient
 from portone_server_sdk.common import PageInput
-from portone_server_sdk.errors import PaymentAlreadyCancelledError, PaymentNotFoundError
+from portone_server_sdk.errors import (
+    PaymentAlreadyCancelledError,
+    PaymentNotFoundError,
+    UnknownError,
+)
 from portone_server_sdk.payment import CancelledPayment, GetPaymentsResponse
 
 
@@ -50,6 +54,32 @@ def test_get_payments_without_params(mock_client):
     payments = make_client().get_payments()
     assert isinstance(payments, GetPaymentsResponse)
     assert_request(requests[0], "GET", b"/payments?requestBody=%7B%7D")
+
+
+@pytest.mark.parametrize(
+    ("body", "error_class"),
+    [
+        ("private-body", ValueError),
+        ({"private-body": 1}, KeyError),
+        ({"items": "private-body"}, ValueError),
+    ],
+)
+def test_invalid_response_messages_omit_body(mock_client, body, error_class):
+    make_client, _, response = mock_client
+    response["json"] = body
+    with pytest.raises(error_class) as caught:
+        make_client().get_payments()
+    assert "private-body" not in str(caught.value)
+
+
+def test_unknown_error_keeps_body_out_of_message(mock_client):
+    make_client, _, response = mock_client
+    response.update(status=502, json={"detail": "private-body"})
+    with pytest.raises(UnknownError) as caught:
+        make_client().get_payments()
+    assert str(caught.value) == caught.value.message
+    assert "private-body" not in repr(caught.value)
+    assert caught.value.error == response["json"]
 
 
 def test_get_payments_with_params(mock_client):
@@ -147,8 +177,9 @@ def test_get_payment_preserves_path_parameter(mock_client, payment_id, path):
     response.update(
         status=404, json={"type": "PAYMENT_NOT_FOUND", "message": "not found"}
     )
-    with pytest.raises(PaymentNotFoundError):
+    with pytest.raises(PaymentNotFoundError) as caught:
         make_client().get_payment(payment_id=payment_id)
+    assert str(caught.value) == "not found"
     assert_request(requests[0], "GET", path)
 
 

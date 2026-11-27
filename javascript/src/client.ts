@@ -19,6 +19,17 @@ export type PortOneClientInit = {
 
 export const USER_AGENT = "__USER_AGENT__";
 
+export async function readJsonResponse(response: Response) {
+	try {
+		return await response.json();
+	} catch (error) {
+		if (error instanceof SyntaxError) {
+			throw new SyntaxError(`Invalid JSON response (HTTP ${response.status})`);
+		}
+		throw error;
+	}
+}
+
 export function encodePathParameter(value: string): string {
 	const encoded = encodeURIComponent(value);
 	// A literal dot stays ".", while a caller-supplied "%2e" becomes "%252e".

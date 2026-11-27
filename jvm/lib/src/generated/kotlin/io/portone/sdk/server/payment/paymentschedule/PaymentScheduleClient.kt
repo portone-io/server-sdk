@@ -122,7 +122,7 @@ public class PaymentScheduleClient(
         json.decodeFromString<GetPaymentScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -136,7 +136,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<PaymentSchedule>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -194,7 +194,7 @@ public class PaymentScheduleClient(
         json.decodeFromString<GetPaymentSchedulesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -207,7 +207,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<GetPaymentSchedulesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -264,7 +264,7 @@ public class PaymentScheduleClient(
         json.decodeFromString<RevokePaymentSchedulesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is BillingKeyAlreadyDeletedError -> throw BillingKeyAlreadyDeletedException(httpBodyDecoded)
@@ -282,7 +282,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<RevokePaymentSchedulesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -336,7 +336,7 @@ public class PaymentScheduleClient(
         json.decodeFromString<CreatePaymentScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is AlreadyPaidOrWaitingError -> throw AlreadyPaidOrWaitingException(httpBodyDecoded)
@@ -354,7 +354,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<CreatePaymentScheduleResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

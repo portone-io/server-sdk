@@ -62,47 +62,47 @@ def _serialize_payment_amount(obj: PaymentAmount) -> Any:
 
 def _deserialize_payment_amount(obj: Any) -> PaymentAmount:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "total" not in obj:
-        raise KeyError(f"'total' is not in {obj}")
+        raise KeyError("Missing required field 'total'")
     total = obj["total"]
     if not isinstance(total, int):
-        raise ValueError(f"{repr(total)} is not int")
+        raise ValueError("Expected int for total")
     if "taxFree" not in obj:
-        raise KeyError(f"'taxFree' is not in {obj}")
+        raise KeyError("Missing required field 'taxFree'")
     tax_free = obj["taxFree"]
     if not isinstance(tax_free, int):
-        raise ValueError(f"{repr(tax_free)} is not int")
+        raise ValueError("Expected int for tax_free")
     if "discount" not in obj:
-        raise KeyError(f"'discount' is not in {obj}")
+        raise KeyError("Missing required field 'discount'")
     discount = obj["discount"]
     if not isinstance(discount, int):
-        raise ValueError(f"{repr(discount)} is not int")
+        raise ValueError("Expected int for discount")
     if "paid" not in obj:
-        raise KeyError(f"'paid' is not in {obj}")
+        raise KeyError("Missing required field 'paid'")
     paid = obj["paid"]
     if not isinstance(paid, int):
-        raise ValueError(f"{repr(paid)} is not int")
+        raise ValueError("Expected int for paid")
     if "cancelled" not in obj:
-        raise KeyError(f"'cancelled' is not in {obj}")
+        raise KeyError("Missing required field 'cancelled'")
     cancelled = obj["cancelled"]
     if not isinstance(cancelled, int):
-        raise ValueError(f"{repr(cancelled)} is not int")
+        raise ValueError("Expected int for cancelled")
     if "cancelledTaxFree" not in obj:
-        raise KeyError(f"'cancelledTaxFree' is not in {obj}")
+        raise KeyError("Missing required field 'cancelledTaxFree'")
     cancelled_tax_free = obj["cancelledTaxFree"]
     if not isinstance(cancelled_tax_free, int):
-        raise ValueError(f"{repr(cancelled_tax_free)} is not int")
+        raise ValueError("Expected int for cancelled_tax_free")
     if "vat" in obj:
         vat = obj["vat"]
         if not isinstance(vat, int):
-            raise ValueError(f"{repr(vat)} is not int")
+            raise ValueError("Expected int for vat")
     else:
         vat = None
     if "supply" in obj:
         supply = obj["supply"]
         if not isinstance(supply, int):
-            raise ValueError(f"{repr(supply)} is not int")
+            raise ValueError("Expected int for supply")
     else:
         supply = None
     return PaymentAmount(total, tax_free, discount, paid, cancelled, cancelled_tax_free, vat, supply)

@@ -21,7 +21,7 @@ public sealed interface PaymentWebhookStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Succeeded::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Succeeded = decoder.decodeString().let {
       if (it != "SUCCEEDED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUCCEEDED")
       } else {
         return Succeeded
       }
@@ -36,7 +36,7 @@ public sealed interface PaymentWebhookStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(FailedNotOkResponse::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): FailedNotOkResponse = decoder.decodeString().let {
       if (it != "FAILED_NOT_OK_RESPONSE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FAILED_NOT_OK_RESPONSE")
       } else {
         return FailedNotOkResponse
       }
@@ -51,7 +51,7 @@ public sealed interface PaymentWebhookStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(FailedUnexpectedError::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): FailedUnexpectedError = decoder.decodeString().let {
       if (it != "FAILED_UNEXPECTED_ERROR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FAILED_UNEXPECTED_ERROR")
       } else {
         return FailedUnexpectedError
       }

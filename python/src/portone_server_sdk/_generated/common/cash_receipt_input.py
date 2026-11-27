@@ -30,15 +30,15 @@ def _serialize_cash_receipt_input(obj: CashReceiptInput) -> Any:
 
 def _deserialize_cash_receipt_input(obj: Any) -> CashReceiptInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     type = _deserialize_cash_receipt_input_type(type)
     if "customerIdentityNumber" in obj:
         customer_identity_number = obj["customerIdentityNumber"]
         if not isinstance(customer_identity_number, str):
-            raise ValueError(f"{repr(customer_identity_number)} is not str")
+            raise ValueError("Expected str for customer_identity_number")
     else:
         customer_identity_number = None
     return CashReceiptInput(type, customer_identity_number)

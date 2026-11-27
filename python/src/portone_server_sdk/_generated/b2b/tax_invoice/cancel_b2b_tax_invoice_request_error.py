@@ -66,4 +66,4 @@ def _deserialize_cancel_b2b_tax_invoice_request_error(obj: Any) -> CancelB2bTaxI
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CancelB2bTaxInvoiceRequestError")
+    raise ValueError("Expected CancelB2bTaxInvoiceRequestError")

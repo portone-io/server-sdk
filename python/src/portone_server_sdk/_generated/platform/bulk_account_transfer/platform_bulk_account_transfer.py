@@ -57,64 +57,64 @@ def _serialize_platform_bulk_account_transfer(obj: PlatformBulkAccountTransfer) 
 
 def _deserialize_platform_bulk_account_transfer(obj: Any) -> PlatformBulkAccountTransfer:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "graphqlId" not in obj:
-        raise KeyError(f"'graphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'graphqlId'")
     graphql_id = obj["graphqlId"]
     if not isinstance(graphql_id, str):
-        raise ValueError(f"{repr(graphql_id)} is not str")
+        raise ValueError("Expected str for graphql_id")
     if "creatorId" not in obj:
-        raise KeyError(f"'creatorId' is not in {obj}")
+        raise KeyError("Missing required field 'creatorId'")
     creator_id = obj["creatorId"]
     if not isinstance(creator_id, str):
-        raise ValueError(f"{repr(creator_id)} is not str")
+        raise ValueError("Expected str for creator_id")
     if "bankAccountId" not in obj:
-        raise KeyError(f"'bankAccountId' is not in {obj}")
+        raise KeyError("Missing required field 'bankAccountId'")
     bank_account_id = obj["bankAccountId"]
     if not isinstance(bank_account_id, str):
-        raise ValueError(f"{repr(bank_account_id)} is not str")
+        raise ValueError("Expected str for bank_account_id")
     if "bankAccountGraphqlId" not in obj:
-        raise KeyError(f"'bankAccountGraphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'bankAccountGraphqlId'")
     bank_account_graphql_id = obj["bankAccountGraphqlId"]
     if not isinstance(bank_account_graphql_id, str):
-        raise ValueError(f"{repr(bank_account_graphql_id)} is not str")
+        raise ValueError("Expected str for bank_account_graphql_id")
     if "totalAmount" not in obj:
-        raise KeyError(f"'totalAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalAmount'")
     total_amount = obj["totalAmount"]
     if not isinstance(total_amount, int):
-        raise ValueError(f"{repr(total_amount)} is not int")
+        raise ValueError("Expected int for total_amount")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     status = _deserialize_platform_bulk_account_transfer_status(status)
     if "stats" not in obj:
-        raise KeyError(f"'stats' is not in {obj}")
+        raise KeyError("Missing required field 'stats'")
     stats = obj["stats"]
     stats = _deserialize_platform_bulk_account_transfer_stats(stats)
     if "statusUpdatedAt" not in obj:
-        raise KeyError(f"'statusUpdatedAt' is not in {obj}")
+        raise KeyError("Missing required field 'statusUpdatedAt'")
     status_updated_at = obj["statusUpdatedAt"]
     if not isinstance(status_updated_at, str):
-        raise ValueError(f"{repr(status_updated_at)} is not str")
+        raise ValueError("Expected str for status_updated_at")
     if "createdAt" not in obj:
-        raise KeyError(f"'createdAt' is not in {obj}")
+        raise KeyError("Missing required field 'createdAt'")
     created_at = obj["createdAt"]
     if not isinstance(created_at, str):
-        raise ValueError(f"{repr(created_at)} is not str")
+        raise ValueError("Expected str for created_at")
     if "updatedAt" not in obj:
-        raise KeyError(f"'updatedAt' is not in {obj}")
+        raise KeyError("Missing required field 'updatedAt'")
     updated_at = obj["updatedAt"]
     if not isinstance(updated_at, str):
-        raise ValueError(f"{repr(updated_at)} is not str")
+        raise ValueError("Expected str for updated_at")
     if "scheduledAt" in obj:
         scheduled_at = obj["scheduledAt"]
         if not isinstance(scheduled_at, str):
-            raise ValueError(f"{repr(scheduled_at)} is not str")
+            raise ValueError("Expected str for scheduled_at")
     else:
         scheduled_at = None
     return PlatformBulkAccountTransfer(id, graphql_id, creator_id, bank_account_id, bank_account_graphql_id, total_amount, status, stats, status_updated_at, created_at, updated_at, scheduled_at)

@@ -34,15 +34,15 @@ def _serialize_request_b2b_tax_invoice_reverse_issuance_body(obj: RequestB2bTaxI
 
 def _deserialize_request_b2b_tax_invoice_reverse_issuance_body(obj: Any) -> RequestB2bTaxInvoiceReverseIssuanceBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "taxInvoice" not in obj:
-        raise KeyError(f"'taxInvoice' is not in {obj}")
+        raise KeyError("Missing required field 'taxInvoice'")
     tax_invoice = obj["taxInvoice"]
     tax_invoice = _deserialize_b2b_tax_invoice_input(tax_invoice)
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "modification" in obj:

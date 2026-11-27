@@ -1,6 +1,6 @@
 import { TransferError } from "./TransferError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { CreateManualTransferResponse } from "../../../generated/platform/transfer/CreateManualTransferResponse"
 import type { CreateOrderCancelTransferResponse } from "../../../generated/platform/transfer/CreateOrderCancelTransferResponse"
 import type { CreateOrderTransferResponse } from "../../../generated/platform/transfer/CreateOrderTransferResponse"
@@ -95,7 +95,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				throw new DownloadPlatformTransferSheetError(await response.json())
+				throw new DownloadPlatformTransferSheetError(await readJsonResponse(response))
 			}
 			return response.text()
 		},
@@ -130,9 +130,9 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformTransferSummariesError(await response.json())
+				throw new GetPlatformTransferSummariesError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		createPlatformManualTransfer: async (
 			options: {
@@ -188,9 +188,9 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CreatePlatformManualTransferError(await response.json())
+				throw new CreatePlatformManualTransferError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		createPlatformOrderCancelTransfer: async (
 			options: {
@@ -261,9 +261,9 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CreatePlatformOrderCancelTransferError(await response.json())
+				throw new CreatePlatformOrderCancelTransferError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		createPlatformOrderTransfer: async (
 			options: {
@@ -337,9 +337,9 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CreatePlatformOrderTransferError(await response.json())
+				throw new CreatePlatformOrderTransferError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getPlatformTransfer: async (
 			options: {
@@ -367,9 +367,9 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformTransferError(await response.json())
+				throw new GetPlatformTransferError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		deletePlatformTransfer: async (
 			options: {
@@ -397,9 +397,9 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				throw new DeletePlatformTransferError(await response.json())
+				throw new DeletePlatformTransferError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

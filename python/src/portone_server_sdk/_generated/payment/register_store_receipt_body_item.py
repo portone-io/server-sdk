@@ -54,42 +54,42 @@ def _serialize_register_store_receipt_body_item(obj: RegisterStoreReceiptBodyIte
 
 def _deserialize_register_store_receipt_body_item(obj: Any) -> RegisterStoreReceiptBodyItem:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeBusinessRegistrationNumber" not in obj:
-        raise KeyError(f"'storeBusinessRegistrationNumber' is not in {obj}")
+        raise KeyError("Missing required field 'storeBusinessRegistrationNumber'")
     store_business_registration_number = obj["storeBusinessRegistrationNumber"]
     if not isinstance(store_business_registration_number, str):
-        raise ValueError(f"{repr(store_business_registration_number)} is not str")
+        raise ValueError("Expected str for store_business_registration_number")
     if "storeName" not in obj:
-        raise KeyError(f"'storeName' is not in {obj}")
+        raise KeyError("Missing required field 'storeName'")
     store_name = obj["storeName"]
     if not isinstance(store_name, str):
-        raise ValueError(f"{repr(store_name)} is not str")
+        raise ValueError("Expected str for store_name")
     if "totalAmount" not in obj:
-        raise KeyError(f"'totalAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalAmount'")
     total_amount = obj["totalAmount"]
     if not isinstance(total_amount, int):
-        raise ValueError(f"{repr(total_amount)} is not int")
+        raise ValueError("Expected int for total_amount")
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "taxFreeAmount" in obj:
         tax_free_amount = obj["taxFreeAmount"]
         if not isinstance(tax_free_amount, int):
-            raise ValueError(f"{repr(tax_free_amount)} is not int")
+            raise ValueError("Expected int for tax_free_amount")
     else:
         tax_free_amount = None
     if "vatAmount" in obj:
         vat_amount = obj["vatAmount"]
         if not isinstance(vat_amount, int):
-            raise ValueError(f"{repr(vat_amount)} is not int")
+            raise ValueError("Expected int for vat_amount")
     else:
         vat_amount = None
     if "supplyAmount" in obj:
         supply_amount = obj["supplyAmount"]
         if not isinstance(supply_amount, int):
-            raise ValueError(f"{repr(supply_amount)} is not int")
+            raise ValueError("Expected int for supply_amount")
     else:
         supply_amount = None
     return RegisterStoreReceiptBodyItem(store_business_registration_number, store_name, total_amount, currency, tax_free_amount, vat_amount, supply_amount)

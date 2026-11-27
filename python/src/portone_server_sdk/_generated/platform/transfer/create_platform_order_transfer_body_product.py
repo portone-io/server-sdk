@@ -42,32 +42,32 @@ def _serialize_create_platform_order_transfer_body_product(obj: CreatePlatformOr
 
 def _deserialize_create_platform_order_transfer_body_product(obj: Any) -> CreatePlatformOrderTransferBodyProduct:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     if not isinstance(amount, int):
-        raise ValueError(f"{repr(amount)} is not int")
+        raise ValueError("Expected int for amount")
     if "taxFreeAmount" in obj:
         tax_free_amount = obj["taxFreeAmount"]
         if not isinstance(tax_free_amount, int):
-            raise ValueError(f"{repr(tax_free_amount)} is not int")
+            raise ValueError("Expected int for tax_free_amount")
     else:
         tax_free_amount = None
     if "tag" in obj:
         tag = obj["tag"]
         if not isinstance(tag, str):
-            raise ValueError(f"{repr(tag)} is not str")
+            raise ValueError("Expected str for tag")
     else:
         tag = None
     return CreatePlatformOrderTransferBodyProduct(id, name, amount, tax_free_amount, tag)

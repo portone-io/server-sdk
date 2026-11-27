@@ -44,33 +44,33 @@ def _serialize_instant_payment_method_input_card(obj: InstantPaymentMethodInputC
 
 def _deserialize_instant_payment_method_input_card(obj: Any) -> InstantPaymentMethodInputCard:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "credential" not in obj:
-        raise KeyError(f"'credential' is not in {obj}")
+        raise KeyError("Missing required field 'credential'")
     credential = obj["credential"]
     credential = _deserialize_card_credential(credential)
     if "installmentMonth" in obj:
         installment_month = obj["installmentMonth"]
         if not isinstance(installment_month, int):
-            raise ValueError(f"{repr(installment_month)} is not int")
+            raise ValueError("Expected int for installment_month")
     else:
         installment_month = None
     if "useFreeInstallmentPlan" in obj:
         use_free_installment_plan = obj["useFreeInstallmentPlan"]
         if not isinstance(use_free_installment_plan, bool):
-            raise ValueError(f"{repr(use_free_installment_plan)} is not bool")
+            raise ValueError("Expected bool for use_free_installment_plan")
     else:
         use_free_installment_plan = None
     if "useFreeInterestFromMerchant" in obj:
         use_free_interest_from_merchant = obj["useFreeInterestFromMerchant"]
         if not isinstance(use_free_interest_from_merchant, bool):
-            raise ValueError(f"{repr(use_free_interest_from_merchant)} is not bool")
+            raise ValueError("Expected bool for use_free_interest_from_merchant")
     else:
         use_free_interest_from_merchant = None
     if "useCardPoint" in obj:
         use_card_point = obj["useCardPoint"]
         if not isinstance(use_card_point, bool):
-            raise ValueError(f"{repr(use_card_point)} is not bool")
+            raise ValueError("Expected bool for use_card_point")
     else:
         use_card_point = None
     return InstantPaymentMethodInputCard(credential, installment_month, use_free_installment_plan, use_free_interest_from_merchant, use_card_point)

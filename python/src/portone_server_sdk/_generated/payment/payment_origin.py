@@ -37,26 +37,26 @@ def _serialize_payment_origin(obj: PaymentOrigin) -> Any:
 
 def _deserialize_payment_origin(obj: Any) -> PaymentOrigin:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "platformType" not in obj:
-        raise KeyError(f"'platformType' is not in {obj}")
+        raise KeyError("Missing required field 'platformType'")
     platform_type = obj["platformType"]
     platform_type = _deserialize_payment_origin_platform_type(platform_type)
     if "ipAddress" not in obj:
-        raise KeyError(f"'ipAddress' is not in {obj}")
+        raise KeyError("Missing required field 'ipAddress'")
     ip_address = obj["ipAddress"]
     if not isinstance(ip_address, str):
-        raise ValueError(f"{repr(ip_address)} is not str")
+        raise ValueError("Expected str for ip_address")
     if "userAgent" in obj:
         user_agent = obj["userAgent"]
         if not isinstance(user_agent, str):
-            raise ValueError(f"{repr(user_agent)} is not str")
+            raise ValueError("Expected str for user_agent")
     else:
         user_agent = None
     if "url" in obj:
         url = obj["url"]
         if not isinstance(url, str):
-            raise ValueError(f"{repr(url)} is not str")
+            raise ValueError("Expected str for url")
     else:
         url = None
     return PaymentOrigin(platform_type, ip_address, user_agent, url)

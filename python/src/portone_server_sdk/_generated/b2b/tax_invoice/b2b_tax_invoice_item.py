@@ -76,23 +76,23 @@ def _serialize_b2b_tax_invoice_item(obj: B2bTaxInvoiceItem) -> Any:
 
 def _deserialize_b2b_tax_invoice_item(obj: Any) -> B2bTaxInvoiceItem:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "purchaseDate" in obj:
         purchase_date = obj["purchaseDate"]
         if not isinstance(purchase_date, str):
-            raise ValueError(f"{repr(purchase_date)} is not str")
+            raise ValueError("Expected str for purchase_date")
     else:
         purchase_date = None
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "spec" in obj:
         spec = obj["spec"]
         if not isinstance(spec, str):
-            raise ValueError(f"{repr(spec)} is not str")
+            raise ValueError("Expected str for spec")
     else:
         spec = None
     if "quantity" in obj:
@@ -108,19 +108,19 @@ def _deserialize_b2b_tax_invoice_item(obj: Any) -> B2bTaxInvoiceItem:
     if "supplyCostAmount" in obj:
         supply_cost_amount = obj["supplyCostAmount"]
         if not isinstance(supply_cost_amount, int):
-            raise ValueError(f"{repr(supply_cost_amount)} is not int")
+            raise ValueError("Expected int for supply_cost_amount")
     else:
         supply_cost_amount = None
     if "taxAmount" in obj:
         tax_amount = obj["taxAmount"]
         if not isinstance(tax_amount, int):
-            raise ValueError(f"{repr(tax_amount)} is not int")
+            raise ValueError("Expected int for tax_amount")
     else:
         tax_amount = None
     if "remark" in obj:
         remark = obj["remark"]
         if not isinstance(remark, str):
-            raise ValueError(f"{repr(remark)} is not str")
+            raise ValueError("Expected str for remark")
     else:
         remark = None
     return B2bTaxInvoiceItem(purchase_date, name, spec, quantity, unit_cost_amount, supply_cost_amount, tax_amount, remark)

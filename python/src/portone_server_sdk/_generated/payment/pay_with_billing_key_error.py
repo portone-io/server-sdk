@@ -101,4 +101,4 @@ def _deserialize_pay_with_billing_key_error(obj: Any) -> PayWithBillingKeyError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PayWithBillingKeyError")
+    raise ValueError("Expected PayWithBillingKeyError")

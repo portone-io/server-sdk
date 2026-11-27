@@ -111,94 +111,94 @@ def _serialize_platform_order_settlement_amount(obj: PlatformOrderSettlementAmou
 
 def _deserialize_platform_order_settlement_amount(obj: Any) -> PlatformOrderSettlementAmount:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "settlement" not in obj:
-        raise KeyError(f"'settlement' is not in {obj}")
+        raise KeyError("Missing required field 'settlement'")
     settlement = obj["settlement"]
     if not isinstance(settlement, int):
-        raise ValueError(f"{repr(settlement)} is not int")
+        raise ValueError("Expected int for settlement")
     if "settlementTaxFree" not in obj:
-        raise KeyError(f"'settlementTaxFree' is not in {obj}")
+        raise KeyError("Missing required field 'settlementTaxFree'")
     settlement_tax_free = obj["settlementTaxFree"]
     if not isinstance(settlement_tax_free, int):
-        raise ValueError(f"{repr(settlement_tax_free)} is not int")
+        raise ValueError("Expected int for settlement_tax_free")
     if "payment" not in obj:
-        raise KeyError(f"'payment' is not in {obj}")
+        raise KeyError("Missing required field 'payment'")
     payment = obj["payment"]
     if not isinstance(payment, int):
-        raise ValueError(f"{repr(payment)} is not int")
+        raise ValueError("Expected int for payment")
     if "paymentVat" not in obj:
-        raise KeyError(f"'paymentVat' is not in {obj}")
+        raise KeyError("Missing required field 'paymentVat'")
     payment_vat = obj["paymentVat"]
     if not isinstance(payment_vat, int):
-        raise ValueError(f"{repr(payment_vat)} is not int")
+        raise ValueError("Expected int for payment_vat")
     if "paymentVatBurden" not in obj:
-        raise KeyError(f"'paymentVatBurden' is not in {obj}")
+        raise KeyError("Missing required field 'paymentVatBurden'")
     payment_vat_burden = obj["paymentVatBurden"]
     if not isinstance(payment_vat_burden, int):
-        raise ValueError(f"{repr(payment_vat_burden)} is not int")
+        raise ValueError("Expected int for payment_vat_burden")
     if "paymentTaxFree" not in obj:
-        raise KeyError(f"'paymentTaxFree' is not in {obj}")
+        raise KeyError("Missing required field 'paymentTaxFree'")
     payment_tax_free = obj["paymentTaxFree"]
     if not isinstance(payment_tax_free, int):
-        raise ValueError(f"{repr(payment_tax_free)} is not int")
+        raise ValueError("Expected int for payment_tax_free")
     if "paymentSupply" not in obj:
-        raise KeyError(f"'paymentSupply' is not in {obj}")
+        raise KeyError("Missing required field 'paymentSupply'")
     payment_supply = obj["paymentSupply"]
     if not isinstance(payment_supply, int):
-        raise ValueError(f"{repr(payment_supply)} is not int")
+        raise ValueError("Expected int for payment_supply")
     if "order" not in obj:
-        raise KeyError(f"'order' is not in {obj}")
+        raise KeyError("Missing required field 'order'")
     order = obj["order"]
     if not isinstance(order, int):
-        raise ValueError(f"{repr(order)} is not int")
+        raise ValueError("Expected int for order")
     if "orderTaxFree" not in obj:
-        raise KeyError(f"'orderTaxFree' is not in {obj}")
+        raise KeyError("Missing required field 'orderTaxFree'")
     order_tax_free = obj["orderTaxFree"]
     if not isinstance(order_tax_free, int):
-        raise ValueError(f"{repr(order_tax_free)} is not int")
+        raise ValueError("Expected int for order_tax_free")
     if "platformFee" not in obj:
-        raise KeyError(f"'platformFee' is not in {obj}")
+        raise KeyError("Missing required field 'platformFee'")
     platform_fee = obj["platformFee"]
     if not isinstance(platform_fee, int):
-        raise ValueError(f"{repr(platform_fee)} is not int")
+        raise ValueError("Expected int for platform_fee")
     if "platformFeeVat" not in obj:
-        raise KeyError(f"'platformFeeVat' is not in {obj}")
+        raise KeyError("Missing required field 'platformFeeVat'")
     platform_fee_vat = obj["platformFeeVat"]
     if not isinstance(platform_fee_vat, int):
-        raise ValueError(f"{repr(platform_fee_vat)} is not int")
+        raise ValueError("Expected int for platform_fee_vat")
     if "additionalFee" not in obj:
-        raise KeyError(f"'additionalFee' is not in {obj}")
+        raise KeyError("Missing required field 'additionalFee'")
     additional_fee = obj["additionalFee"]
     if not isinstance(additional_fee, int):
-        raise ValueError(f"{repr(additional_fee)} is not int")
+        raise ValueError("Expected int for additional_fee")
     if "additionalFeeVat" not in obj:
-        raise KeyError(f"'additionalFeeVat' is not in {obj}")
+        raise KeyError("Missing required field 'additionalFeeVat'")
     additional_fee_vat = obj["additionalFeeVat"]
     if not isinstance(additional_fee_vat, int):
-        raise ValueError(f"{repr(additional_fee_vat)} is not int")
+        raise ValueError("Expected int for additional_fee_vat")
     if "discount" not in obj:
-        raise KeyError(f"'discount' is not in {obj}")
+        raise KeyError("Missing required field 'discount'")
     discount = obj["discount"]
     if not isinstance(discount, int):
-        raise ValueError(f"{repr(discount)} is not int")
+        raise ValueError("Expected int for discount")
     if "discountTaxFree" not in obj:
-        raise KeyError(f"'discountTaxFree' is not in {obj}")
+        raise KeyError("Missing required field 'discountTaxFree'")
     discount_tax_free = obj["discountTaxFree"]
     if not isinstance(discount_tax_free, int):
-        raise ValueError(f"{repr(discount_tax_free)} is not int")
+        raise ValueError("Expected int for discount_tax_free")
     if "discountShare" not in obj:
-        raise KeyError(f"'discountShare' is not in {obj}")
+        raise KeyError("Missing required field 'discountShare'")
     discount_share = obj["discountShare"]
     if not isinstance(discount_share, int):
-        raise ValueError(f"{repr(discount_share)} is not int")
+        raise ValueError("Expected int for discount_share")
     if "discountShareTaxFree" not in obj:
-        raise KeyError(f"'discountShareTaxFree' is not in {obj}")
+        raise KeyError("Missing required field 'discountShareTaxFree'")
     discount_share_tax_free = obj["discountShareTaxFree"]
     if not isinstance(discount_share_tax_free, int):
-        raise ValueError(f"{repr(discount_share_tax_free)} is not int")
+        raise ValueError("Expected int for discount_share_tax_free")
     if "userDefinedFormulas" not in obj:
-        raise KeyError(f"'userDefinedFormulas' is not in {obj}")
+        raise KeyError("Missing required field 'userDefinedFormulas'")
     user_defined_formulas = obj["userDefinedFormulas"]
     user_defined_formulas = _deserialize_platform_user_defined_formula_results(user_defined_formulas)
     return PlatformOrderSettlementAmount(settlement, settlement_tax_free, payment, payment_vat, payment_vat_burden, payment_tax_free, payment_supply, order, order_tax_free, platform_fee, platform_fee_vat, additional_fee, additional_fee_vat, discount, discount_tax_free, discount_share, discount_share_tax_free, user_defined_formulas)

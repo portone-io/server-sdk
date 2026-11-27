@@ -42,29 +42,29 @@ def _serialize_platform_order_transfer_discount(obj: PlatformOrderTransferDiscou
 
 def _deserialize_platform_order_transfer_discount(obj: Any) -> PlatformOrderTransferDiscount:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "sharePolicy" not in obj:
-        raise KeyError(f"'sharePolicy' is not in {obj}")
+        raise KeyError("Missing required field 'sharePolicy'")
     share_policy = obj["sharePolicy"]
     share_policy = _deserialize_platform_discount_share_policy(share_policy)
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     if not isinstance(amount, int):
-        raise ValueError(f"{repr(amount)} is not int")
+        raise ValueError("Expected int for amount")
     if "taxFreeAmount" not in obj:
-        raise KeyError(f"'taxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'taxFreeAmount'")
     tax_free_amount = obj["taxFreeAmount"]
     if not isinstance(tax_free_amount, int):
-        raise ValueError(f"{repr(tax_free_amount)} is not int")
+        raise ValueError("Expected int for tax_free_amount")
     if "shareAmount" not in obj:
-        raise KeyError(f"'shareAmount' is not in {obj}")
+        raise KeyError("Missing required field 'shareAmount'")
     share_amount = obj["shareAmount"]
     if not isinstance(share_amount, int):
-        raise ValueError(f"{repr(share_amount)} is not int")
+        raise ValueError("Expected int for share_amount")
     if "shareTaxFreeAmount" not in obj:
-        raise KeyError(f"'shareTaxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'shareTaxFreeAmount'")
     share_tax_free_amount = obj["shareTaxFreeAmount"]
     if not isinstance(share_tax_free_amount, int):
-        raise ValueError(f"{repr(share_tax_free_amount)} is not int")
+        raise ValueError("Expected int for share_tax_free_amount")
     return PlatformOrderTransferDiscount(share_policy, amount, tax_free_amount, share_amount, share_tax_free_amount)

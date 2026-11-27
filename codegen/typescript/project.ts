@@ -193,7 +193,7 @@ function generateClient(
       const hasPathParams = pack.operations.some((op) => op.params.path.length)
       const pathEncoder = hasPathParams ? "encodePathParameter, " : ""
       importWriter.writeLine(
-        `import { ${pathEncoder}USER_AGENT, type PortOneClientInit } from "${hierarchyToSrc}/client"`,
+        `import { ${pathEncoder}readJsonResponse, USER_AGENT, type PortOneClientInit } from "${hierarchyToSrc}/client"`,
       )
     } else {
       importWriter.writeLine(
@@ -389,7 +389,7 @@ function generateCategoryIndex(
       )
       errorWriter.indent()
       errorWriter.writeLine(
-        `const message = "message" in data ? data.message : undefined`,
+        `const message = data !== null && typeof data === "object" && "message" in data && typeof data.message === "string" ? data.message : undefined`,
       )
       errorWriter.writeLine("super(message)")
       errorWriter.writeLine("this.data = data")

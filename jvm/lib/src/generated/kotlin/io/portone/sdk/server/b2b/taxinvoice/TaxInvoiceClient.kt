@@ -222,7 +222,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<GetB2bBulkTaxInvoiceError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bBulkTaxInvoiceNotFoundError -> throw B2bBulkTaxInvoiceNotFoundException(httpBodyDecoded)
@@ -238,7 +238,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<B2bBulkTaxInvoice>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -291,7 +291,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<CreateB2bFileUploadUrlError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -306,7 +306,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<CreateB2bFileUploadUrlPayload>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -366,7 +366,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<DownloadB2bTaxInvoicesSheetError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
@@ -447,7 +447,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<UpdateB2bTaxInvoiceDraftError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2BCannotChangeTaxTypeError -> throw B2BCannotChangeTaxTypeException(httpBodyDecoded)
@@ -477,7 +477,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<UpdateB2bTaxInvoiceDraftResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -548,7 +548,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<DraftB2bTaxInvoiceError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2BCannotChangeTaxTypeError -> throw B2BCannotChangeTaxTypeException(httpBodyDecoded)
@@ -576,7 +576,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<DraftB2bTaxInvoiceResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -646,7 +646,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<IssueB2bTaxInvoiceImmediatelyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2BCannotChangeTaxTypeError -> throw B2BCannotChangeTaxTypeException(httpBodyDecoded)
@@ -674,7 +674,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<IssueB2bTaxInvoiceImmediatelyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -738,7 +738,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<RequestB2bTaxInvoiceReverseIssuanceError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2BCannotChangeTaxTypeError -> throw B2BCannotChangeTaxTypeException(httpBodyDecoded)
@@ -766,7 +766,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<RequestB2bTaxInvoiceReverseIssuanceResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -833,7 +833,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<AttachB2bTaxInvoiceFileError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -907,7 +907,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<DeleteB2bTaxInvoiceAttachmentError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -979,7 +979,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<GetB2bTaxInvoiceAttachmentsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -995,7 +995,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<GetB2bTaxInvoiceAttachmentsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1063,7 +1063,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<CancelB2bTaxInvoiceIssuanceError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -1080,7 +1080,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<CancelB2bTaxInvoiceIssuanceResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1149,7 +1149,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<CancelB2bTaxInvoiceRequestError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -1167,7 +1167,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<CancelB2bTaxInvoiceRequestResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1240,7 +1240,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<IssueB2bTaxInvoiceError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -1259,7 +1259,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<IssueB2bTaxInvoiceResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1321,7 +1321,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<GetB2bTaxInvoicePdfDownloadUrlError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -1337,7 +1337,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<GetB2bTaxInvoicePdfDownloadUrlResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1403,7 +1403,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<GetB2bTaxInvoicePopupUrlError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -1419,7 +1419,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<GetB2bTaxInvoicePopupUrlResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1480,7 +1480,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<GetB2bTaxInvoicePrintUrlError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -1496,7 +1496,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<GetB2bTaxInvoicePrintUrlResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1564,7 +1564,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<RefuseB2bTaxInvoiceRequestError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -1582,7 +1582,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<RefuseB2bTaxInvoiceRequestResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1643,7 +1643,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<requestB2bTaxInvoiceError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2BCannotChangeTaxTypeError -> throw B2BCannotChangeTaxTypeException(httpBodyDecoded)
@@ -1666,7 +1666,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<RequestB2bTaxInvoiceResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1726,7 +1726,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<SendToNtsB2bTaxInvoiceError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -1743,7 +1743,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<SendToNtsB2bTaxInvoiceResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1803,7 +1803,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<GetB2bTaxInvoiceError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -1819,7 +1819,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<B2bTaxInvoice>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1879,7 +1879,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<DeleteB2bTaxInvoiceError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bBulkTaxInvoiceNotFoundError -> throw B2bBulkTaxInvoiceNotFoundException(httpBodyDecoded)
@@ -1897,7 +1897,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<DeleteB2bTaxInvoiceResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -1969,7 +1969,7 @@ public class TaxInvoiceClient(
         json.decodeFromString<GetB2bTaxInvoicesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -1985,7 +1985,7 @@ public class TaxInvoiceClient(
       json.decodeFromString<GetB2bTaxInvoicesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

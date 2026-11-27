@@ -70,64 +70,64 @@ def _serialize_platform_partner_manual_settlement(obj: PlatformPartnerManualSett
 
 def _deserialize_platform_partner_manual_settlement(obj: Any) -> PlatformPartnerManualSettlement:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "MANUAL":
-        raise ValueError(f"{repr(type)} is not 'MANUAL'")
+        raise ValueError("Expected 'MANUAL' for type")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "graphqlId" not in obj:
-        raise KeyError(f"'graphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'graphqlId'")
     graphql_id = obj["graphqlId"]
     if not isinstance(graphql_id, str):
-        raise ValueError(f"{repr(graphql_id)} is not str")
+        raise ValueError("Expected str for graphql_id")
     if "partner" not in obj:
-        raise KeyError(f"'partner' is not in {obj}")
+        raise KeyError("Missing required field 'partner'")
     partner = obj["partner"]
     partner = _deserialize_platform_partner(partner)
     if "settlementDate" not in obj:
-        raise KeyError(f"'settlementDate' is not in {obj}")
+        raise KeyError("Missing required field 'settlementDate'")
     settlement_date = obj["settlementDate"]
     if not isinstance(settlement_date, str):
-        raise ValueError(f"{repr(settlement_date)} is not str")
+        raise ValueError("Expected str for settlement_date")
     if "settlementCurrency" not in obj:
-        raise KeyError(f"'settlementCurrency' is not in {obj}")
+        raise KeyError("Missing required field 'settlementCurrency'")
     settlement_currency = obj["settlementCurrency"]
     settlement_currency = _deserialize_currency(settlement_currency)
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     status = _deserialize_platform_partner_settlement_status(status)
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     if not isinstance(amount, int):
-        raise ValueError(f"{repr(amount)} is not int")
+        raise ValueError("Expected int for amount")
     if "taxFreeAmount" not in obj:
-        raise KeyError(f"'taxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'taxFreeAmount'")
     tax_free_amount = obj["taxFreeAmount"]
     if not isinstance(tax_free_amount, int):
-        raise ValueError(f"{repr(tax_free_amount)} is not int")
+        raise ValueError("Expected int for tax_free_amount")
     if "isForTest" not in obj:
-        raise KeyError(f"'isForTest' is not in {obj}")
+        raise KeyError("Missing required field 'isForTest'")
     is_for_test = obj["isForTest"]
     if not isinstance(is_for_test, bool):
-        raise ValueError(f"{repr(is_for_test)} is not bool")
+        raise ValueError("Expected bool for is_for_test")
     if "statusUpdatedAt" in obj:
         status_updated_at = obj["statusUpdatedAt"]
         if not isinstance(status_updated_at, str):
-            raise ValueError(f"{repr(status_updated_at)} is not str")
+            raise ValueError("Expected str for status_updated_at")
     else:
         status_updated_at = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return PlatformPartnerManualSettlement(id, graphql_id, partner, settlement_date, settlement_currency, status, amount, tax_free_amount, is_for_test, status_updated_at, memo)

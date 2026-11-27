@@ -79,78 +79,78 @@ def _serialize_platform_manual_transfer(obj: PlatformManualTransfer) -> Any:
 
 def _deserialize_platform_manual_transfer(obj: Any) -> PlatformManualTransfer:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "MANUAL":
-        raise ValueError(f"{repr(type)} is not 'MANUAL'")
+        raise ValueError("Expected 'MANUAL' for type")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "graphqlId" not in obj:
-        raise KeyError(f"'graphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'graphqlId'")
     graphql_id = obj["graphqlId"]
     if not isinstance(graphql_id, str):
-        raise ValueError(f"{repr(graphql_id)} is not str")
+        raise ValueError("Expected str for graphql_id")
     if "partner" not in obj:
-        raise KeyError(f"'partner' is not in {obj}")
+        raise KeyError("Missing required field 'partner'")
     partner = obj["partner"]
     partner = _deserialize_platform_partner(partner)
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     status = _deserialize_platform_transfer_status(status)
     if "settlementDate" not in obj:
-        raise KeyError(f"'settlementDate' is not in {obj}")
+        raise KeyError("Missing required field 'settlementDate'")
     settlement_date = obj["settlementDate"]
     if not isinstance(settlement_date, str):
-        raise ValueError(f"{repr(settlement_date)} is not str")
+        raise ValueError("Expected str for settlement_date")
     if "settlementCurrency" not in obj:
-        raise KeyError(f"'settlementCurrency' is not in {obj}")
+        raise KeyError("Missing required field 'settlementCurrency'")
     settlement_currency = obj["settlementCurrency"]
     settlement_currency = _deserialize_currency(settlement_currency)
     if "isForTest" not in obj:
-        raise KeyError(f"'isForTest' is not in {obj}")
+        raise KeyError("Missing required field 'isForTest'")
     is_for_test = obj["isForTest"]
     if not isinstance(is_for_test, bool):
-        raise ValueError(f"{repr(is_for_test)} is not bool")
+        raise ValueError("Expected bool for is_for_test")
     if "userDefinedProperties" not in obj:
-        raise KeyError(f"'userDefinedProperties' is not in {obj}")
+        raise KeyError("Missing required field 'userDefinedProperties'")
     user_defined_properties = obj["userDefinedProperties"]
     if not isinstance(user_defined_properties, list):
-        raise ValueError(f"{repr(user_defined_properties)} is not list")
+        raise ValueError("Expected list for user_defined_properties")
     for i, item in enumerate(user_defined_properties):
         item = _deserialize_platform_user_defined_property_key_value(item)
         user_defined_properties[i] = item
     if "settlementAmount" not in obj:
-        raise KeyError(f"'settlementAmount' is not in {obj}")
+        raise KeyError("Missing required field 'settlementAmount'")
     settlement_amount = obj["settlementAmount"]
     if not isinstance(settlement_amount, int):
-        raise ValueError(f"{repr(settlement_amount)} is not int")
+        raise ValueError("Expected int for settlement_amount")
     if "settlementTaxFreeAmount" not in obj:
-        raise KeyError(f"'settlementTaxFreeAmount' is not in {obj}")
+        raise KeyError("Missing required field 'settlementTaxFreeAmount'")
     settlement_tax_free_amount = obj["settlementTaxFreeAmount"]
     if not isinstance(settlement_tax_free_amount, int):
-        raise ValueError(f"{repr(settlement_tax_free_amount)} is not int")
+        raise ValueError("Expected int for settlement_tax_free_amount")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "payoutId" in obj:
         payout_id = obj["payoutId"]
         if not isinstance(payout_id, str):
-            raise ValueError(f"{repr(payout_id)} is not str")
+            raise ValueError("Expected str for payout_id")
     else:
         payout_id = None
     if "payoutGraphqlId" in obj:
         payout_graphql_id = obj["payoutGraphqlId"]
         if not isinstance(payout_graphql_id, str):
-            raise ValueError(f"{repr(payout_graphql_id)} is not str")
+            raise ValueError("Expected str for payout_graphql_id")
     else:
         payout_graphql_id = None
     return PlatformManualTransfer(id, graphql_id, partner, status, settlement_date, settlement_currency, is_for_test, user_defined_properties, settlement_amount, settlement_tax_free_amount, memo, payout_id, payout_graphql_id)

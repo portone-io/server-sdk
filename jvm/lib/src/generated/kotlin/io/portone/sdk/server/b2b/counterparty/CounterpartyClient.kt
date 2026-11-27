@@ -164,7 +164,7 @@ public class CounterpartyClient(
         json.decodeFromString<GetB2bCounterpartyCertificateRegistrationUrlError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCounterpartyNotFoundError -> throw B2bCounterpartyNotFoundException(httpBodyDecoded)
@@ -181,7 +181,7 @@ public class CounterpartyClient(
       json.decodeFromString<GetB2bCounterpartyCertificateRegistrationUrlResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -229,7 +229,7 @@ public class CounterpartyClient(
         json.decodeFromString<ValidateB2bCounterpartyCertificateError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCertificateUnregisteredError -> throw B2bCertificateUnregisteredException(httpBodyDecoded)
@@ -247,7 +247,7 @@ public class CounterpartyClient(
       json.decodeFromString<ValidateB2bCounterpartyCertificateResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -295,7 +295,7 @@ public class CounterpartyClient(
         json.decodeFromString<GetB2bCounterpartyCertificateError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCertificateUnregisteredError -> throw B2bCertificateUnregisteredException(httpBodyDecoded)
@@ -313,7 +313,7 @@ public class CounterpartyClient(
       json.decodeFromString<B2bCertificate>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -361,7 +361,7 @@ public class CounterpartyClient(
         json.decodeFromString<GetB2bCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCounterpartyNotFoundError -> throw B2bCounterpartyNotFoundException(httpBodyDecoded)
@@ -377,7 +377,7 @@ public class CounterpartyClient(
       json.decodeFromString<B2bCounterparty>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -425,7 +425,7 @@ public class CounterpartyClient(
         json.decodeFromString<DeleteB2bCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCounterpartyNotFoundError -> throw B2bCounterpartyNotFoundException(httpBodyDecoded)
@@ -443,7 +443,7 @@ public class CounterpartyClient(
       json.decodeFromString<DeleteB2bCounterpartyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -505,7 +505,7 @@ public class CounterpartyClient(
         json.decodeFromString<UpdateB2bCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCounterpartyBrnModificationNotAllowedError -> throw B2bCounterpartyBrnModificationNotAllowedException(httpBodyDecoded)
@@ -529,7 +529,7 @@ public class CounterpartyClient(
       json.decodeFromString<UpdateB2bCounterpartyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -587,7 +587,7 @@ public class CounterpartyClient(
         json.decodeFromString<GetB2bCounterpartiesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
@@ -602,7 +602,7 @@ public class CounterpartyClient(
       json.decodeFromString<GetB2bCounterpartiesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -666,7 +666,7 @@ public class CounterpartyClient(
         json.decodeFromString<CreateB2bCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is B2bCounterpartyBrnInvalidError -> throw B2bCounterpartyBrnInvalidException(httpBodyDecoded)
@@ -693,7 +693,7 @@ public class CounterpartyClient(
       json.decodeFromString<CreateB2bCounterpartyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

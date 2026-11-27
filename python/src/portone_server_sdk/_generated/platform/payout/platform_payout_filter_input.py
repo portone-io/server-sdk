@@ -100,15 +100,15 @@ def _serialize_platform_payout_filter_input(obj: PlatformPayoutFilterInput) -> A
 
 def _deserialize_platform_payout_filter_input(obj: Any) -> PlatformPayoutFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "criteria" not in obj:
-        raise KeyError(f"'criteria' is not in {obj}")
+        raise KeyError("Missing required field 'criteria'")
     criteria = obj["criteria"]
     criteria = _deserialize_platform_payout_filter_input_criteria(criteria)
     if "statuses" in obj:
         statuses = obj["statuses"]
         if not isinstance(statuses, list):
-            raise ValueError(f"{repr(statuses)} is not list")
+            raise ValueError("Expected list for statuses")
         for i, item in enumerate(statuses):
             item = _deserialize_platform_payout_status(item)
             statuses[i] = item
@@ -117,16 +117,16 @@ def _deserialize_platform_payout_filter_input(obj: Any) -> PlatformPayoutFilterI
     if "partnerIds" in obj:
         partner_ids = obj["partnerIds"]
         if not isinstance(partner_ids, list):
-            raise ValueError(f"{repr(partner_ids)} is not list")
+            raise ValueError("Expected list for partner_ids")
         for i, item in enumerate(partner_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         partner_ids = None
     if "payoutAccountBanks" in obj:
         payout_account_banks = obj["payoutAccountBanks"]
         if not isinstance(payout_account_banks, list):
-            raise ValueError(f"{repr(payout_account_banks)} is not list")
+            raise ValueError("Expected list for payout_account_banks")
         for i, item in enumerate(payout_account_banks):
             item = _deserialize_bank(item)
             payout_account_banks[i] = item
@@ -135,16 +135,16 @@ def _deserialize_platform_payout_filter_input(obj: Any) -> PlatformPayoutFilterI
     if "partnerTags" in obj:
         partner_tags = obj["partnerTags"]
         if not isinstance(partner_tags, list):
-            raise ValueError(f"{repr(partner_tags)} is not list")
+            raise ValueError("Expected list for partner_tags")
         for i, item in enumerate(partner_tags):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         partner_tags = None
     if "payoutCurrencies" in obj:
         payout_currencies = obj["payoutCurrencies"]
         if not isinstance(payout_currencies, list):
-            raise ValueError(f"{repr(payout_currencies)} is not list")
+            raise ValueError("Expected list for payout_currencies")
         for i, item in enumerate(payout_currencies):
             item = _deserialize_currency(item)
             payout_currencies[i] = item
@@ -153,16 +153,16 @@ def _deserialize_platform_payout_filter_input(obj: Any) -> PlatformPayoutFilterI
     if "payoutIds" in obj:
         payout_ids = obj["payoutIds"]
         if not isinstance(payout_ids, list):
-            raise ValueError(f"{repr(payout_ids)} is not list")
+            raise ValueError("Expected list for payout_ids")
         for i, item in enumerate(payout_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         payout_ids = None
     if "taxInvoiceStatuses" in obj:
         tax_invoice_statuses = obj["taxInvoiceStatuses"]
         if not isinstance(tax_invoice_statuses, list):
-            raise ValueError(f"{repr(tax_invoice_statuses)} is not list")
+            raise ValueError("Expected list for tax_invoice_statuses")
         for i, item in enumerate(tax_invoice_statuses):
             item = _deserialize_platform_payout_tax_invoice_status(item)
             tax_invoice_statuses[i] = item
@@ -171,7 +171,7 @@ def _deserialize_platform_payout_filter_input(obj: Any) -> PlatformPayoutFilterI
     if "partnerTypes" in obj:
         partner_types = obj["partnerTypes"]
         if not isinstance(partner_types, list):
-            raise ValueError(f"{repr(partner_types)} is not list")
+            raise ValueError("Expected list for partner_types")
         for i, item in enumerate(partner_types):
             item = _deserialize_platform_partner_type_name(item)
             partner_types[i] = item
@@ -180,7 +180,7 @@ def _deserialize_platform_payout_filter_input(obj: Any) -> PlatformPayoutFilterI
     if "partnerTaxationTypes" in obj:
         partner_taxation_types = obj["partnerTaxationTypes"]
         if not isinstance(partner_taxation_types, list):
-            raise ValueError(f"{repr(partner_taxation_types)} is not list")
+            raise ValueError("Expected list for partner_taxation_types")
         for i, item in enumerate(partner_taxation_types):
             item = _deserialize_platform_partner_taxation_type(item)
             partner_taxation_types[i] = item
@@ -189,7 +189,7 @@ def _deserialize_platform_payout_filter_input(obj: Any) -> PlatformPayoutFilterI
     if "settlementStatementStatuses" in obj:
         settlement_statement_statuses = obj["settlementStatementStatuses"]
         if not isinstance(settlement_statement_statuses, list):
-            raise ValueError(f"{repr(settlement_statement_statuses)} is not list")
+            raise ValueError("Expected list for settlement_statement_statuses")
         for i, item in enumerate(settlement_statement_statuses):
             item = _deserialize_platform_payout_settlement_statement_status(item)
             settlement_statement_statuses[i] = item

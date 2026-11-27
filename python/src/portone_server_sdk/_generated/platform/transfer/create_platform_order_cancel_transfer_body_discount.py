@@ -33,21 +33,21 @@ def _serialize_create_platform_order_cancel_transfer_body_discount(obj: CreatePl
 
 def _deserialize_create_platform_order_cancel_transfer_body_discount(obj: Any) -> CreatePlatformOrderCancelTransferBodyDiscount:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "sharePolicyId" not in obj:
-        raise KeyError(f"'sharePolicyId' is not in {obj}")
+        raise KeyError("Missing required field 'sharePolicyId'")
     share_policy_id = obj["sharePolicyId"]
     if not isinstance(share_policy_id, str):
-        raise ValueError(f"{repr(share_policy_id)} is not str")
+        raise ValueError("Expected str for share_policy_id")
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     if not isinstance(amount, int):
-        raise ValueError(f"{repr(amount)} is not int")
+        raise ValueError("Expected int for amount")
     if "taxFreeAmount" in obj:
         tax_free_amount = obj["taxFreeAmount"]
         if not isinstance(tax_free_amount, int):
-            raise ValueError(f"{repr(tax_free_amount)} is not int")
+            raise ValueError("Expected int for tax_free_amount")
     else:
         tax_free_amount = None
     return CreatePlatformOrderCancelTransferBodyDiscount(share_policy_id, amount, tax_free_amount)

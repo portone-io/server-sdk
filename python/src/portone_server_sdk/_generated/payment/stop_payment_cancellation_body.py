@@ -25,11 +25,11 @@ def _serialize_stop_payment_cancellation_body(obj: StopPaymentCancellationBody) 
 
 def _deserialize_stop_payment_cancellation_body(obj: Any) -> StopPaymentCancellationBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     return StopPaymentCancellationBody(store_id)

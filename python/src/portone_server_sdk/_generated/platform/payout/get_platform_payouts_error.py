@@ -38,4 +38,4 @@ def _deserialize_get_platform_payouts_error(obj: Any) -> GetPlatformPayoutsError
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPlatformPayoutsError")
+    raise ValueError("Expected GetPlatformPayoutsError")

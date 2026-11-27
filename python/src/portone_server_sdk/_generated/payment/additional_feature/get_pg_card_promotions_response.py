@@ -24,11 +24,11 @@ def _serialize_get_pg_card_promotions_response(obj: GetPgCardPromotionsResponse)
 
 def _deserialize_get_pg_card_promotions_response(obj: Any) -> GetPgCardPromotionsResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "promotions" in obj:
         promotions = obj["promotions"]
         if not isinstance(promotions, list):
-            raise ValueError(f"{repr(promotions)} is not list")
+            raise ValueError("Expected list for promotions")
         for i, item in enumerate(promotions):
             item = _deserialize_pg_card_promotion(item)
             promotions[i] = item

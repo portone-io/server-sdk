@@ -21,10 +21,10 @@ def _serialize_payment_schedule_summary(obj: PaymentScheduleSummary) -> Any:
 
 def _deserialize_payment_schedule_summary(obj: Any) -> PaymentScheduleSummary:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     return PaymentScheduleSummary(id)

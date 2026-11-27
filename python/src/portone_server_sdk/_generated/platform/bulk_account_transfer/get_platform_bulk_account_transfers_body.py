@@ -30,11 +30,11 @@ def _serialize_get_platform_bulk_account_transfers_body(obj: GetPlatformBulkAcco
 
 def _deserialize_get_platform_bulk_account_transfers_body(obj: Any) -> GetPlatformBulkAccountTransfersBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "isForTest" in obj:
         is_for_test = obj["isForTest"]
         if not isinstance(is_for_test, bool):
-            raise ValueError(f"{repr(is_for_test)} is not bool")
+            raise ValueError("Expected bool for is_for_test")
     else:
         is_for_test = None
     if "page" in obj:

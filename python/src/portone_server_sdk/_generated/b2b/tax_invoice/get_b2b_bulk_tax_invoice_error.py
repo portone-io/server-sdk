@@ -52,4 +52,4 @@ def _deserialize_get_b2b_bulk_tax_invoice_error(obj: Any) -> GetB2bBulkTaxInvoic
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetB2bBulkTaxInvoiceError")
+    raise ValueError("Expected GetB2bBulkTaxInvoiceError")

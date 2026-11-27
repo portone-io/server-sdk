@@ -38,4 +38,4 @@ def _deserialize_get_pg_card_promotions_error(obj: Any) -> GetPgCardPromotionsEr
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPgCardPromotionsError")
+    raise ValueError("Expected GetPgCardPromotionsError")

@@ -26,15 +26,15 @@ def _serialize_confirmed_payment_summary(obj: ConfirmedPaymentSummary) -> Any:
 
 def _deserialize_confirmed_payment_summary(obj: Any) -> ConfirmedPaymentSummary:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "pgTxId" not in obj:
-        raise KeyError(f"'pgTxId' is not in {obj}")
+        raise KeyError("Missing required field 'pgTxId'")
     pg_tx_id = obj["pgTxId"]
     if not isinstance(pg_tx_id, str):
-        raise ValueError(f"{repr(pg_tx_id)} is not str")
+        raise ValueError("Expected str for pg_tx_id")
     if "paidAt" not in obj:
-        raise KeyError(f"'paidAt' is not in {obj}")
+        raise KeyError("Missing required field 'paidAt'")
     paid_at = obj["paidAt"]
     if not isinstance(paid_at, str):
-        raise ValueError(f"{repr(paid_at)} is not str")
+        raise ValueError("Expected str for paid_at")
     return ConfirmedPaymentSummary(pg_tx_id, paid_at)

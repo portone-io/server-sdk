@@ -1,6 +1,6 @@
 import { ReconciliationError } from "./ReconciliationError"
 import type { Unrecognized } from "./../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../client"
+import { readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../client"
 import type { DateRange } from "../../generated/common/DateRange"
 import type { ForbiddenError } from "../../generated/common/ForbiddenError"
 import type { GetPaymentReconciliationSettlementVatReportResponse } from "../../generated/reconciliation/GetPaymentReconciliationSettlementVatReportResponse"
@@ -46,9 +46,9 @@ export function ReconciliationClient(init: PortOneClientInit): ReconciliationCli
 				},
 			)
 			if (!response.ok) {
-				throw new GetPaymentReconciliationSettlementVatReportError(await response.json())
+				throw new GetPaymentReconciliationSettlementVatReportError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getPaymentReconciliationTransactionVatReport: async (
 			options: {
@@ -80,9 +80,9 @@ export function ReconciliationClient(init: PortOneClientInit): ReconciliationCli
 				},
 			)
 			if (!response.ok) {
-				throw new GetPaymentReconciliationTransactionVatReportError(await response.json())
+				throw new GetPaymentReconciliationTransactionVatReportError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

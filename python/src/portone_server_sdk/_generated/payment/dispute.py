@@ -43,31 +43,31 @@ def _serialize_dispute(obj: Dispute) -> Any:
 
 def _deserialize_dispute(obj: Any) -> Dispute:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     status = _deserialize_dispute_status(status)
     if "reason" not in obj:
-        raise KeyError(f"'reason' is not in {obj}")
+        raise KeyError("Missing required field 'reason'")
     reason = obj["reason"]
     if not isinstance(reason, str):
-        raise ValueError(f"{repr(reason)} is not str")
+        raise ValueError("Expected str for reason")
     if "createdAt" not in obj:
-        raise KeyError(f"'createdAt' is not in {obj}")
+        raise KeyError("Missing required field 'createdAt'")
     created_at = obj["createdAt"]
     if not isinstance(created_at, str):
-        raise ValueError(f"{repr(created_at)} is not str")
+        raise ValueError("Expected str for created_at")
     if "pgDisputeId" in obj:
         pg_dispute_id = obj["pgDisputeId"]
         if not isinstance(pg_dispute_id, str):
-            raise ValueError(f"{repr(pg_dispute_id)} is not str")
+            raise ValueError("Expected str for pg_dispute_id")
     else:
         pg_dispute_id = None
     if "resolvedAt" in obj:
         resolved_at = obj["resolvedAt"]
         if not isinstance(resolved_at, str):
-            raise ValueError(f"{repr(resolved_at)} is not str")
+            raise ValueError("Expected str for resolved_at")
     else:
         resolved_at = None
     return Dispute(status, reason, created_at, pg_dispute_id, resolved_at)

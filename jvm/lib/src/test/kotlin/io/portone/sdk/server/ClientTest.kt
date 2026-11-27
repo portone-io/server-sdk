@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpServer
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.PaymentAlreadyCancelledException
 import io.portone.sdk.server.errors.PaymentNotFoundException
+import io.portone.sdk.server.errors.UnknownException
 import io.portone.sdk.server.payment.CancelledPayment
 import io.portone.sdk.server.payment.GetPaymentsResponse
 import io.portone.sdk.server.payment.PaymentClient
@@ -94,6 +95,18 @@ class ClientTest {
         assertEquals("PortOne test-secret", request.headers.getFirst("Authorization"))
         assertTrue(!request.headers.getFirst("User-Agent").isNullOrBlank())
     }
+
+    @Test
+    fun testUndecodableResponsesOmitBody() =
+        runTest {
+            response = "private-body"
+            for ((code, message) in listOf(200 to "Unknown API response", 502 to "Unknown API error")) {
+                status = code
+                val error = assertThrows<UnknownException> { client.getPayment("test-server-sdk") }
+                assertEquals("$message (HTTP $code)", error.message)
+                assertRequest("GET", "/payments/test-server-sdk")
+            }
+        }
 
     @Test
     fun testGetPaymentsWithoutParams() =

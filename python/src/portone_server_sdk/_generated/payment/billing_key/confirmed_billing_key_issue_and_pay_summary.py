@@ -25,15 +25,15 @@ def _serialize_confirmed_billing_key_issue_and_pay_summary(obj: ConfirmedBilling
 
 def _deserialize_confirmed_billing_key_issue_and_pay_summary(obj: Any) -> ConfirmedBillingKeyIssueAndPaySummary:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "billingKey" not in obj:
-        raise KeyError(f"'billingKey' is not in {obj}")
+        raise KeyError("Missing required field 'billingKey'")
     billing_key = obj["billingKey"]
     if not isinstance(billing_key, str):
-        raise ValueError(f"{repr(billing_key)} is not str")
+        raise ValueError("Expected str for billing_key")
     if "paymentId" not in obj:
-        raise KeyError(f"'paymentId' is not in {obj}")
+        raise KeyError("Missing required field 'paymentId'")
     payment_id = obj["paymentId"]
     if not isinstance(payment_id, str):
-        raise ValueError(f"{repr(payment_id)} is not str")
+        raise ValueError("Expected str for payment_id")
     return ConfirmedBillingKeyIssueAndPaySummary(billing_key, payment_id)

@@ -33,22 +33,22 @@ def _serialize_payment_webhook_request(obj: PaymentWebhookRequest) -> Any:
 
 def _deserialize_payment_webhook_request(obj: Any) -> PaymentWebhookRequest:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "body" not in obj:
-        raise KeyError(f"'body' is not in {obj}")
+        raise KeyError("Missing required field 'body'")
     body = obj["body"]
     if not isinstance(body, str):
-        raise ValueError(f"{repr(body)} is not str")
+        raise ValueError("Expected str for body")
     if "header" in obj:
         header = obj["header"]
         if not isinstance(header, str):
-            raise ValueError(f"{repr(header)} is not str")
+            raise ValueError("Expected str for header")
     else:
         header = None
     if "requestedAt" in obj:
         requested_at = obj["requestedAt"]
         if not isinstance(requested_at, str):
-            raise ValueError(f"{repr(requested_at)} is not str")
+            raise ValueError("Expected str for requested_at")
     else:
         requested_at = None
     return PaymentWebhookRequest(body, header, requested_at)

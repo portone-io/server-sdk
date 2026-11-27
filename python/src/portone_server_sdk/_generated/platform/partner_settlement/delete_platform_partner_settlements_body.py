@@ -24,19 +24,19 @@ def _serialize_delete_platform_partner_settlements_body(obj: DeletePlatformPartn
 
 def _deserialize_delete_platform_partner_settlements_body(obj: Any) -> DeletePlatformPartnerSettlementsBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "partnerSettlementIds" not in obj:
-        raise KeyError(f"'partnerSettlementIds' is not in {obj}")
+        raise KeyError("Missing required field 'partnerSettlementIds'")
     partner_settlement_ids = obj["partnerSettlementIds"]
     if not isinstance(partner_settlement_ids, list):
-        raise ValueError(f"{repr(partner_settlement_ids)} is not list")
+        raise ValueError("Expected list for partner_settlement_ids")
     for i, item in enumerate(partner_settlement_ids):
         if not isinstance(item, str):
-            raise ValueError(f"{repr(item)} is not str")
+            raise ValueError("Expected str for item")
     if "isForTest" in obj:
         is_for_test = obj["isForTest"]
         if not isinstance(is_for_test, bool):
-            raise ValueError(f"{repr(is_for_test)} is not bool")
+            raise ValueError("Expected bool for is_for_test")
     else:
         is_for_test = None
     return DeletePlatformPartnerSettlementsBody(partner_settlement_ids, is_for_test)

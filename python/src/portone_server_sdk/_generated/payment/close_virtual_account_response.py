@@ -22,10 +22,10 @@ def _serialize_close_virtual_account_response(obj: CloseVirtualAccountResponse) 
 
 def _deserialize_close_virtual_account_response(obj: Any) -> CloseVirtualAccountResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "closedAt" not in obj:
-        raise KeyError(f"'closedAt' is not in {obj}")
+        raise KeyError("Missing required field 'closedAt'")
     closed_at = obj["closedAt"]
     if not isinstance(closed_at, str):
-        raise ValueError(f"{repr(closed_at)} is not str")
+        raise ValueError("Expected str for closed_at")
     return CloseVirtualAccountResponse(closed_at)

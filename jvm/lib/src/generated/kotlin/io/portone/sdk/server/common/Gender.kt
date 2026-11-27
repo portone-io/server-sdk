@@ -22,7 +22,7 @@ public sealed interface Gender {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Male::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Male = decoder.decodeString().let {
       if (it != "MALE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MALE")
       } else {
         return Male
       }
@@ -38,7 +38,7 @@ public sealed interface Gender {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Female::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Female = decoder.decodeString().let {
       if (it != "FEMALE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FEMALE")
       } else {
         return Female
       }
@@ -54,7 +54,7 @@ public sealed interface Gender {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Other::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Other = decoder.decodeString().let {
       if (it != "OTHER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected OTHER")
       } else {
         return Other
       }

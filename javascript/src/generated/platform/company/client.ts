@@ -1,6 +1,6 @@
 import { CompanyError } from "./CompanyError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { B2bExternalServiceError } from "../../../generated/common/B2bExternalServiceError"
 import type { B2bNotEnabledError } from "../../../generated/common/B2bNotEnabledError"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
@@ -48,9 +48,9 @@ export function CompanyClient(init: PortOneClientInit): CompanyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bBusinessInfosError(await response.json())
+				throw new GetB2bBusinessInfosError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getPlatformCompanyState: async (
 			options: {
@@ -78,9 +78,9 @@ export function CompanyClient(init: PortOneClientInit): CompanyClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformCompanyStateError(await response.json())
+				throw new GetPlatformCompanyStateError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

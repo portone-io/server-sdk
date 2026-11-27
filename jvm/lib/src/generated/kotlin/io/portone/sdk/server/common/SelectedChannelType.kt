@@ -22,7 +22,7 @@ public sealed interface SelectedChannelType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Live::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Live = decoder.decodeString().let {
       if (it != "LIVE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LIVE")
       } else {
         return Live
       }
@@ -38,7 +38,7 @@ public sealed interface SelectedChannelType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Test::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Test = decoder.decodeString().let {
       if (it != "TEST") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TEST")
       } else {
         return Test
       }

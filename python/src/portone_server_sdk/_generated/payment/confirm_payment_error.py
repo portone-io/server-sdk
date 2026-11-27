@@ -66,4 +66,4 @@ def _deserialize_confirm_payment_error(obj: Any) -> ConfirmPaymentError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ConfirmPaymentError")
+    raise ValueError("Expected ConfirmPaymentError")

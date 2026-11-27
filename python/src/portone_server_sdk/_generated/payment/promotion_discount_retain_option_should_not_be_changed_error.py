@@ -22,16 +22,16 @@ def _serialize_promotion_discount_retain_option_should_not_be_changed_error(obj:
 
 def _deserialize_promotion_discount_retain_option_should_not_be_changed_error(obj: Any) -> PromotionDiscountRetainOptionShouldNotBeChangedError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PROMOTION_DISCOUNT_RETAIN_OPTION_SHOULD_NOT_BE_CHANGED":
-        raise ValueError(f"{repr(type)} is not 'PROMOTION_DISCOUNT_RETAIN_OPTION_SHOULD_NOT_BE_CHANGED'")
+        raise ValueError("Expected 'PROMOTION_DISCOUNT_RETAIN_OPTION_SHOULD_NOT_BE_CHANGED' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PromotionDiscountRetainOptionShouldNotBeChangedError(message)

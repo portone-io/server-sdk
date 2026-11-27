@@ -22,12 +22,12 @@ def _serialize_get_b2b_tax_invoice_attachments_response(obj: GetB2bTaxInvoiceAtt
 
 def _deserialize_get_b2b_tax_invoice_attachments_response(obj: Any) -> GetB2bTaxInvoiceAttachmentsResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "attachments" not in obj:
-        raise KeyError(f"'attachments' is not in {obj}")
+        raise KeyError("Missing required field 'attachments'")
     attachments = obj["attachments"]
     if not isinstance(attachments, list):
-        raise ValueError(f"{repr(attachments)} is not list")
+        raise ValueError("Expected list for attachments")
     for i, item in enumerate(attachments):
         item = _deserialize_b2b_tax_invoice_attachment(item)
         attachments[i] = item

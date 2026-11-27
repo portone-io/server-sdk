@@ -16,5 +16,5 @@ def _serialize_platform_payment_method_gift_certificate_input(obj: PlatformPayme
 
 def _deserialize_platform_payment_method_gift_certificate_input(obj: Any) -> PlatformPaymentMethodGiftCertificateInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return PlatformPaymentMethodGiftCertificateInput()

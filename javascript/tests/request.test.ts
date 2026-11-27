@@ -63,6 +63,28 @@ function expectRequest(
 afterEach(() => vi.unstubAllGlobals());
 
 describe("payment requests", () => {
+	it.each([
+		200, 502,
+	])("omits malformed JSON from HTTP %i errors", async (status) => {
+		vi.stubGlobal(
+			"fetch",
+			vi.fn().mockResolvedValue(new Response("private-body", { status })),
+		);
+		await expect(client.getPayments()).rejects.toMatchObject({
+			name: "SyntaxError",
+			message: `Invalid JSON response (HTTP ${status})`,
+		});
+	});
+	it.each([
+		"private-body",
+		{ message: ["private-body"] },
+	])("omits unexpected error data from the message", async (body) => {
+		mockFetch(body, 502);
+		await expect(client.getPayments()).rejects.toMatchObject({
+			message: "",
+			data: body,
+		});
+	});
 	it("gets payments without parameters", async () => {
 		const fetchMock = mockFetch(payments);
 		await expect(client.getPayments()).resolves.toEqual(payments);

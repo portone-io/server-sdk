@@ -20,16 +20,16 @@ def _serialize_platform_additional_fee_policy_already_exists_error(obj: Platform
 
 def _deserialize_platform_additional_fee_policy_already_exists_error(obj: Any) -> PlatformAdditionalFeePolicyAlreadyExistsError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_ADDITIONAL_FEE_POLICY_ALREADY_EXISTS":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_ADDITIONAL_FEE_POLICY_ALREADY_EXISTS'")
+        raise ValueError("Expected 'PLATFORM_ADDITIONAL_FEE_POLICY_ALREADY_EXISTS' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformAdditionalFeePolicyAlreadyExistsError(message)

@@ -35,42 +35,42 @@ def _serialize_platform_cancellable_discount_amount_exceeded_error(obj: Platform
 
 def _deserialize_platform_cancellable_discount_amount_exceeded_error(obj: Any) -> PlatformCancellableDiscountAmountExceededError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_CANCELLABLE_DISCOUNT_AMOUNT_EXCEEDED":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_CANCELLABLE_DISCOUNT_AMOUNT_EXCEEDED'")
+        raise ValueError("Expected 'PLATFORM_CANCELLABLE_DISCOUNT_AMOUNT_EXCEEDED' for type")
     if "discountSharePolicyId" not in obj:
-        raise KeyError(f"'discountSharePolicyId' is not in {obj}")
+        raise KeyError("Missing required field 'discountSharePolicyId'")
     discount_share_policy_id = obj["discountSharePolicyId"]
     if not isinstance(discount_share_policy_id, str):
-        raise ValueError(f"{repr(discount_share_policy_id)} is not str")
+        raise ValueError("Expected str for discount_share_policy_id")
     if "discountSharePolicyGraphqlId" not in obj:
-        raise KeyError(f"'discountSharePolicyGraphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'discountSharePolicyGraphqlId'")
     discount_share_policy_graphql_id = obj["discountSharePolicyGraphqlId"]
     if not isinstance(discount_share_policy_graphql_id, str):
-        raise ValueError(f"{repr(discount_share_policy_graphql_id)} is not str")
+        raise ValueError("Expected str for discount_share_policy_graphql_id")
     if "cancellableAmount" not in obj:
-        raise KeyError(f"'cancellableAmount' is not in {obj}")
+        raise KeyError("Missing required field 'cancellableAmount'")
     cancellable_amount = obj["cancellableAmount"]
     if not isinstance(cancellable_amount, int):
-        raise ValueError(f"{repr(cancellable_amount)} is not int")
+        raise ValueError("Expected int for cancellable_amount")
     if "requestAmount" not in obj:
-        raise KeyError(f"'requestAmount' is not in {obj}")
+        raise KeyError("Missing required field 'requestAmount'")
     request_amount = obj["requestAmount"]
     if not isinstance(request_amount, int):
-        raise ValueError(f"{repr(request_amount)} is not int")
+        raise ValueError("Expected int for request_amount")
     if "productId" in obj:
         product_id = obj["productId"]
         if not isinstance(product_id, str):
-            raise ValueError(f"{repr(product_id)} is not str")
+            raise ValueError("Expected str for product_id")
     else:
         product_id = None
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformCancellableDiscountAmountExceededError(discount_share_policy_id, discount_share_policy_graphql_id, cancellable_amount, request_amount, product_id, message)

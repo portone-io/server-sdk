@@ -1,6 +1,6 @@
 import { AccountTransferError } from "./AccountTransferError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformAccountTransfersResponse } from "../../../generated/platform/accountTransfer/GetPlatformAccountTransfersResponse"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
@@ -49,9 +49,9 @@ export function AccountTransferClient(init: PortOneClientInit): AccountTransferC
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformAccountTransfersError(await response.json())
+				throw new GetPlatformAccountTransfersError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

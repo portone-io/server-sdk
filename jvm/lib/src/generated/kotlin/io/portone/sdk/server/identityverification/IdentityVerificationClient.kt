@@ -133,7 +133,7 @@ public class IdentityVerificationClient(
         json.decodeFromString<ConfirmIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -150,7 +150,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<ConfirmIdentityVerificationResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -193,7 +193,7 @@ public class IdentityVerificationClient(
         json.decodeFromString<ResendIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -210,7 +210,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<ResendIdentityVerificationResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -280,7 +280,7 @@ public class IdentityVerificationClient(
         json.decodeFromString<SendIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ChannelNotFoundError -> throw ChannelNotFoundException(httpBodyDecoded)
@@ -299,7 +299,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<SendIdentityVerificationResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -347,7 +347,7 @@ public class IdentityVerificationClient(
         json.decodeFromString<GetIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -361,7 +361,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<IdentityVerification>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 
@@ -418,7 +418,7 @@ public class IdentityVerificationClient(
         json.decodeFromString<GetIdentityVerificationsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
+        throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")
       }
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
@@ -431,7 +431,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<GetIdentityVerificationsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")
     }
   }
 

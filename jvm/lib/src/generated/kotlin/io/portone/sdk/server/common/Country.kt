@@ -22,7 +22,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ad::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ad = decoder.decodeString().let {
       if (it != "AD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AD")
       } else {
         return Ad
       }
@@ -38,7 +38,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ae::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ae = decoder.decodeString().let {
       if (it != "AE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AE")
       } else {
         return Ae
       }
@@ -54,7 +54,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Af::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Af = decoder.decodeString().let {
       if (it != "AF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AF")
       } else {
         return Af
       }
@@ -70,7 +70,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ag::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ag = decoder.decodeString().let {
       if (it != "AG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AG")
       } else {
         return Ag
       }
@@ -86,7 +86,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ai::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ai = decoder.decodeString().let {
       if (it != "AI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AI")
       } else {
         return Ai
       }
@@ -102,7 +102,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Al::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Al = decoder.decodeString().let {
       if (it != "AL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AL")
       } else {
         return Al
       }
@@ -118,7 +118,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Am::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Am = decoder.decodeString().let {
       if (it != "AM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AM")
       } else {
         return Am
       }
@@ -134,7 +134,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ao::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ao = decoder.decodeString().let {
       if (it != "AO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AO")
       } else {
         return Ao
       }
@@ -150,7 +150,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Aq::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Aq = decoder.decodeString().let {
       if (it != "AQ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AQ")
       } else {
         return Aq
       }
@@ -166,7 +166,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ar::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ar = decoder.decodeString().let {
       if (it != "AR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AR")
       } else {
         return Ar
       }
@@ -182,7 +182,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(As::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): As = decoder.decodeString().let {
       if (it != "AS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AS")
       } else {
         return As
       }
@@ -198,7 +198,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(At::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): At = decoder.decodeString().let {
       if (it != "AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AT")
       } else {
         return At
       }
@@ -214,7 +214,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Au::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Au = decoder.decodeString().let {
       if (it != "AU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AU")
       } else {
         return Au
       }
@@ -230,7 +230,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Aw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Aw = decoder.decodeString().let {
       if (it != "AW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AW")
       } else {
         return Aw
       }
@@ -246,7 +246,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ax::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ax = decoder.decodeString().let {
       if (it != "AX") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AX")
       } else {
         return Ax
       }
@@ -262,7 +262,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Az::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Az = decoder.decodeString().let {
       if (it != "AZ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AZ")
       } else {
         return Az
       }
@@ -278,7 +278,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ba::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ba = decoder.decodeString().let {
       if (it != "BA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BA")
       } else {
         return Ba
       }
@@ -294,7 +294,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bb = decoder.decodeString().let {
       if (it != "BB") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BB")
       } else {
         return Bb
       }
@@ -310,7 +310,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bd = decoder.decodeString().let {
       if (it != "BD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BD")
       } else {
         return Bd
       }
@@ -326,7 +326,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Be::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Be = decoder.decodeString().let {
       if (it != "BE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BE")
       } else {
         return Be
       }
@@ -342,7 +342,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bf = decoder.decodeString().let {
       if (it != "BF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BF")
       } else {
         return Bf
       }
@@ -358,7 +358,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bg = decoder.decodeString().let {
       if (it != "BG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BG")
       } else {
         return Bg
       }
@@ -374,7 +374,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bh = decoder.decodeString().let {
       if (it != "BH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BH")
       } else {
         return Bh
       }
@@ -390,7 +390,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bi::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bi = decoder.decodeString().let {
       if (it != "BI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BI")
       } else {
         return Bi
       }
@@ -406,7 +406,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bj::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bj = decoder.decodeString().let {
       if (it != "BJ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BJ")
       } else {
         return Bj
       }
@@ -422,7 +422,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bl = decoder.decodeString().let {
       if (it != "BL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BL")
       } else {
         return Bl
       }
@@ -438,7 +438,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bm = decoder.decodeString().let {
       if (it != "BM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BM")
       } else {
         return Bm
       }
@@ -454,7 +454,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bn = decoder.decodeString().let {
       if (it != "BN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BN")
       } else {
         return Bn
       }
@@ -470,7 +470,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bo = decoder.decodeString().let {
       if (it != "BO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BO")
       } else {
         return Bo
       }
@@ -486,7 +486,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bq::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bq = decoder.decodeString().let {
       if (it != "BQ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BQ")
       } else {
         return Bq
       }
@@ -502,7 +502,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Br::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Br = decoder.decodeString().let {
       if (it != "BR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BR")
       } else {
         return Br
       }
@@ -518,7 +518,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bs = decoder.decodeString().let {
       if (it != "BS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BS")
       } else {
         return Bs
       }
@@ -534,7 +534,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bt = decoder.decodeString().let {
       if (it != "BT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BT")
       } else {
         return Bt
       }
@@ -550,7 +550,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bv = decoder.decodeString().let {
       if (it != "BV") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BV")
       } else {
         return Bv
       }
@@ -566,7 +566,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bw = decoder.decodeString().let {
       if (it != "BW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BW")
       } else {
         return Bw
       }
@@ -582,7 +582,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(By::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): By = decoder.decodeString().let {
       if (it != "BY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BY")
       } else {
         return By
       }
@@ -598,7 +598,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bz = decoder.decodeString().let {
       if (it != "BZ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BZ")
       } else {
         return Bz
       }
@@ -614,7 +614,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ca::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ca = decoder.decodeString().let {
       if (it != "CA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CA")
       } else {
         return Ca
       }
@@ -630,7 +630,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cc = decoder.decodeString().let {
       if (it != "CC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CC")
       } else {
         return Cc
       }
@@ -646,7 +646,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cd = decoder.decodeString().let {
       if (it != "CD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CD")
       } else {
         return Cd
       }
@@ -662,7 +662,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cf = decoder.decodeString().let {
       if (it != "CF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CF")
       } else {
         return Cf
       }
@@ -678,7 +678,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cg = decoder.decodeString().let {
       if (it != "CG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CG")
       } else {
         return Cg
       }
@@ -694,7 +694,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ch::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ch = decoder.decodeString().let {
       if (it != "CH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CH")
       } else {
         return Ch
       }
@@ -710,7 +710,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ci::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ci = decoder.decodeString().let {
       if (it != "CI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CI")
       } else {
         return Ci
       }
@@ -726,7 +726,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ck::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ck = decoder.decodeString().let {
       if (it != "CK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CK")
       } else {
         return Ck
       }
@@ -742,7 +742,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cl = decoder.decodeString().let {
       if (it != "CL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CL")
       } else {
         return Cl
       }
@@ -758,7 +758,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cm = decoder.decodeString().let {
       if (it != "CM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CM")
       } else {
         return Cm
       }
@@ -774,7 +774,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cn = decoder.decodeString().let {
       if (it != "CN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CN")
       } else {
         return Cn
       }
@@ -790,7 +790,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Co::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Co = decoder.decodeString().let {
       if (it != "CO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CO")
       } else {
         return Co
       }
@@ -806,7 +806,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cr = decoder.decodeString().let {
       if (it != "CR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CR")
       } else {
         return Cr
       }
@@ -822,7 +822,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cu = decoder.decodeString().let {
       if (it != "CU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CU")
       } else {
         return Cu
       }
@@ -838,7 +838,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cv = decoder.decodeString().let {
       if (it != "CV") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CV")
       } else {
         return Cv
       }
@@ -854,7 +854,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cw = decoder.decodeString().let {
       if (it != "CW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CW")
       } else {
         return Cw
       }
@@ -870,7 +870,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cx::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cx = decoder.decodeString().let {
       if (it != "CX") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CX")
       } else {
         return Cx
       }
@@ -886,7 +886,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cy::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cy = decoder.decodeString().let {
       if (it != "CY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CY")
       } else {
         return Cy
       }
@@ -902,7 +902,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cz = decoder.decodeString().let {
       if (it != "CZ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CZ")
       } else {
         return Cz
       }
@@ -918,7 +918,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(De::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): De = decoder.decodeString().let {
       if (it != "DE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DE")
       } else {
         return De
       }
@@ -934,7 +934,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dj::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dj = decoder.decodeString().let {
       if (it != "DJ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DJ")
       } else {
         return Dj
       }
@@ -950,7 +950,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dk = decoder.decodeString().let {
       if (it != "DK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DK")
       } else {
         return Dk
       }
@@ -966,7 +966,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dm = decoder.decodeString().let {
       if (it != "DM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DM")
       } else {
         return Dm
       }
@@ -982,7 +982,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Do::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Do = decoder.decodeString().let {
       if (it != "DO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DO")
       } else {
         return Do
       }
@@ -998,7 +998,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dz = decoder.decodeString().let {
       if (it != "DZ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DZ")
       } else {
         return Dz
       }
@@ -1014,7 +1014,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ec::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ec = decoder.decodeString().let {
       if (it != "EC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected EC")
       } else {
         return Ec
       }
@@ -1030,7 +1030,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ee::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ee = decoder.decodeString().let {
       if (it != "EE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected EE")
       } else {
         return Ee
       }
@@ -1046,7 +1046,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Eg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Eg = decoder.decodeString().let {
       if (it != "EG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected EG")
       } else {
         return Eg
       }
@@ -1062,7 +1062,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Eh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Eh = decoder.decodeString().let {
       if (it != "EH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected EH")
       } else {
         return Eh
       }
@@ -1078,7 +1078,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Er::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Er = decoder.decodeString().let {
       if (it != "ER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ER")
       } else {
         return Er
       }
@@ -1094,7 +1094,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Es::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Es = decoder.decodeString().let {
       if (it != "ES") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ES")
       } else {
         return Es
       }
@@ -1110,7 +1110,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Et::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Et = decoder.decodeString().let {
       if (it != "ET") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ET")
       } else {
         return Et
       }
@@ -1126,7 +1126,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fi::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fi = decoder.decodeString().let {
       if (it != "FI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FI")
       } else {
         return Fi
       }
@@ -1142,7 +1142,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fj::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fj = decoder.decodeString().let {
       if (it != "FJ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FJ")
       } else {
         return Fj
       }
@@ -1158,7 +1158,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fk = decoder.decodeString().let {
       if (it != "FK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FK")
       } else {
         return Fk
       }
@@ -1174,7 +1174,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fm = decoder.decodeString().let {
       if (it != "FM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FM")
       } else {
         return Fm
       }
@@ -1190,7 +1190,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fo = decoder.decodeString().let {
       if (it != "FO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FO")
       } else {
         return Fo
       }
@@ -1206,7 +1206,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fr = decoder.decodeString().let {
       if (it != "FR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FR")
       } else {
         return Fr
       }
@@ -1222,7 +1222,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ga::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ga = decoder.decodeString().let {
       if (it != "GA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GA")
       } else {
         return Ga
       }
@@ -1238,7 +1238,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gb = decoder.decodeString().let {
       if (it != "GB") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GB")
       } else {
         return Gb
       }
@@ -1254,7 +1254,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gd = decoder.decodeString().let {
       if (it != "GD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GD")
       } else {
         return Gd
       }
@@ -1270,7 +1270,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ge::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ge = decoder.decodeString().let {
       if (it != "GE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GE")
       } else {
         return Ge
       }
@@ -1286,7 +1286,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gf = decoder.decodeString().let {
       if (it != "GF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GF")
       } else {
         return Gf
       }
@@ -1302,7 +1302,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gg = decoder.decodeString().let {
       if (it != "GG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GG")
       } else {
         return Gg
       }
@@ -1318,7 +1318,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gh = decoder.decodeString().let {
       if (it != "GH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GH")
       } else {
         return Gh
       }
@@ -1334,7 +1334,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gi::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gi = decoder.decodeString().let {
       if (it != "GI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GI")
       } else {
         return Gi
       }
@@ -1350,7 +1350,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gl = decoder.decodeString().let {
       if (it != "GL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GL")
       } else {
         return Gl
       }
@@ -1366,7 +1366,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gm = decoder.decodeString().let {
       if (it != "GM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GM")
       } else {
         return Gm
       }
@@ -1382,7 +1382,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gn = decoder.decodeString().let {
       if (it != "GN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GN")
       } else {
         return Gn
       }
@@ -1398,7 +1398,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gp = decoder.decodeString().let {
       if (it != "GP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GP")
       } else {
         return Gp
       }
@@ -1414,7 +1414,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gq::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gq = decoder.decodeString().let {
       if (it != "GQ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GQ")
       } else {
         return Gq
       }
@@ -1430,7 +1430,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gr = decoder.decodeString().let {
       if (it != "GR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GR")
       } else {
         return Gr
       }
@@ -1446,7 +1446,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gs = decoder.decodeString().let {
       if (it != "GS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GS")
       } else {
         return Gs
       }
@@ -1462,7 +1462,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gt = decoder.decodeString().let {
       if (it != "GT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GT")
       } else {
         return Gt
       }
@@ -1478,7 +1478,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gu = decoder.decodeString().let {
       if (it != "GU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GU")
       } else {
         return Gu
       }
@@ -1494,7 +1494,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gw = decoder.decodeString().let {
       if (it != "GW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GW")
       } else {
         return Gw
       }
@@ -1510,7 +1510,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gy::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gy = decoder.decodeString().let {
       if (it != "GY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GY")
       } else {
         return Gy
       }
@@ -1526,7 +1526,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hk = decoder.decodeString().let {
       if (it != "HK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HK")
       } else {
         return Hk
       }
@@ -1542,7 +1542,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hm = decoder.decodeString().let {
       if (it != "HM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HM")
       } else {
         return Hm
       }
@@ -1558,7 +1558,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hn = decoder.decodeString().let {
       if (it != "HN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HN")
       } else {
         return Hn
       }
@@ -1574,7 +1574,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hr = decoder.decodeString().let {
       if (it != "HR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HR")
       } else {
         return Hr
       }
@@ -1590,7 +1590,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ht::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ht = decoder.decodeString().let {
       if (it != "HT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HT")
       } else {
         return Ht
       }
@@ -1606,7 +1606,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hu = decoder.decodeString().let {
       if (it != "HU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HU")
       } else {
         return Hu
       }
@@ -1622,7 +1622,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Id::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Id = decoder.decodeString().let {
       if (it != "ID") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ID")
       } else {
         return Id
       }
@@ -1638,7 +1638,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ie::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ie = decoder.decodeString().let {
       if (it != "IE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IE")
       } else {
         return Ie
       }
@@ -1654,7 +1654,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Il::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Il = decoder.decodeString().let {
       if (it != "IL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IL")
       } else {
         return Il
       }
@@ -1670,7 +1670,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Im::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Im = decoder.decodeString().let {
       if (it != "IM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IM")
       } else {
         return Im
       }
@@ -1686,7 +1686,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(In::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): In = decoder.decodeString().let {
       if (it != "IN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IN")
       } else {
         return In
       }
@@ -1702,7 +1702,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Io::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Io = decoder.decodeString().let {
       if (it != "IO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IO")
       } else {
         return Io
       }
@@ -1718,7 +1718,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Iq::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Iq = decoder.decodeString().let {
       if (it != "IQ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IQ")
       } else {
         return Iq
       }
@@ -1734,7 +1734,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ir::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ir = decoder.decodeString().let {
       if (it != "IR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IR")
       } else {
         return Ir
       }
@@ -1750,7 +1750,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Is::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Is = decoder.decodeString().let {
       if (it != "IS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IS")
       } else {
         return Is
       }
@@ -1766,7 +1766,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(It::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): It = decoder.decodeString().let {
       if (it != "IT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IT")
       } else {
         return It
       }
@@ -1782,7 +1782,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Je::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Je = decoder.decodeString().let {
       if (it != "JE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JE")
       } else {
         return Je
       }
@@ -1798,7 +1798,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Jm = decoder.decodeString().let {
       if (it != "JM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JM")
       } else {
         return Jm
       }
@@ -1814,7 +1814,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Jo = decoder.decodeString().let {
       if (it != "JO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JO")
       } else {
         return Jo
       }
@@ -1830,7 +1830,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Jp = decoder.decodeString().let {
       if (it != "JP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JP")
       } else {
         return Jp
       }
@@ -1846,7 +1846,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ke::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ke = decoder.decodeString().let {
       if (it != "KE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KE")
       } else {
         return Ke
       }
@@ -1862,7 +1862,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kg = decoder.decodeString().let {
       if (it != "KG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KG")
       } else {
         return Kg
       }
@@ -1878,7 +1878,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kh = decoder.decodeString().let {
       if (it != "KH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KH")
       } else {
         return Kh
       }
@@ -1894,7 +1894,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ki::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ki = decoder.decodeString().let {
       if (it != "KI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KI")
       } else {
         return Ki
       }
@@ -1910,7 +1910,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Km::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Km = decoder.decodeString().let {
       if (it != "KM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KM")
       } else {
         return Km
       }
@@ -1926,7 +1926,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kn = decoder.decodeString().let {
       if (it != "KN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KN")
       } else {
         return Kn
       }
@@ -1942,7 +1942,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kp = decoder.decodeString().let {
       if (it != "KP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KP")
       } else {
         return Kp
       }
@@ -1958,7 +1958,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kr = decoder.decodeString().let {
       if (it != "KR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KR")
       } else {
         return Kr
       }
@@ -1974,7 +1974,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kw = decoder.decodeString().let {
       if (it != "KW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KW")
       } else {
         return Kw
       }
@@ -1990,7 +1990,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ky::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ky = decoder.decodeString().let {
       if (it != "KY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KY")
       } else {
         return Ky
       }
@@ -2006,7 +2006,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kz = decoder.decodeString().let {
       if (it != "KZ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KZ")
       } else {
         return Kz
       }
@@ -2022,7 +2022,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(La::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): La = decoder.decodeString().let {
       if (it != "LA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LA")
       } else {
         return La
       }
@@ -2038,7 +2038,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lb = decoder.decodeString().let {
       if (it != "LB") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LB")
       } else {
         return Lb
       }
@@ -2054,7 +2054,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lc = decoder.decodeString().let {
       if (it != "LC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LC")
       } else {
         return Lc
       }
@@ -2070,7 +2070,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Li::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Li = decoder.decodeString().let {
       if (it != "LI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LI")
       } else {
         return Li
       }
@@ -2086,7 +2086,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lk = decoder.decodeString().let {
       if (it != "LK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LK")
       } else {
         return Lk
       }
@@ -2102,7 +2102,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lr = decoder.decodeString().let {
       if (it != "LR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LR")
       } else {
         return Lr
       }
@@ -2118,7 +2118,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ls::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ls = decoder.decodeString().let {
       if (it != "LS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LS")
       } else {
         return Ls
       }
@@ -2134,7 +2134,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lt = decoder.decodeString().let {
       if (it != "LT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LT")
       } else {
         return Lt
       }
@@ -2150,7 +2150,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lu = decoder.decodeString().let {
       if (it != "LU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LU")
       } else {
         return Lu
       }
@@ -2166,7 +2166,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lv = decoder.decodeString().let {
       if (it != "LV") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LV")
       } else {
         return Lv
       }
@@ -2182,7 +2182,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ly::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ly = decoder.decodeString().let {
       if (it != "LY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LY")
       } else {
         return Ly
       }
@@ -2198,7 +2198,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ma::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ma = decoder.decodeString().let {
       if (it != "MA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MA")
       } else {
         return Ma
       }
@@ -2214,7 +2214,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mc = decoder.decodeString().let {
       if (it != "MC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MC")
       } else {
         return Mc
       }
@@ -2230,7 +2230,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Md::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Md = decoder.decodeString().let {
       if (it != "MD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MD")
       } else {
         return Md
       }
@@ -2246,7 +2246,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Me::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Me = decoder.decodeString().let {
       if (it != "ME") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ME")
       } else {
         return Me
       }
@@ -2262,7 +2262,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mf = decoder.decodeString().let {
       if (it != "MF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MF")
       } else {
         return Mf
       }
@@ -2278,7 +2278,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mg = decoder.decodeString().let {
       if (it != "MG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MG")
       } else {
         return Mg
       }
@@ -2294,7 +2294,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mh = decoder.decodeString().let {
       if (it != "MH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MH")
       } else {
         return Mh
       }
@@ -2310,7 +2310,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mk = decoder.decodeString().let {
       if (it != "MK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MK")
       } else {
         return Mk
       }
@@ -2326,7 +2326,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ml::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ml = decoder.decodeString().let {
       if (it != "ML") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ML")
       } else {
         return Ml
       }
@@ -2342,7 +2342,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mm = decoder.decodeString().let {
       if (it != "MM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MM")
       } else {
         return Mm
       }
@@ -2358,7 +2358,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mn = decoder.decodeString().let {
       if (it != "MN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MN")
       } else {
         return Mn
       }
@@ -2374,7 +2374,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mo = decoder.decodeString().let {
       if (it != "MO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MO")
       } else {
         return Mo
       }
@@ -2390,7 +2390,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mp = decoder.decodeString().let {
       if (it != "MP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MP")
       } else {
         return Mp
       }
@@ -2406,7 +2406,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mq::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mq = decoder.decodeString().let {
       if (it != "MQ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MQ")
       } else {
         return Mq
       }
@@ -2422,7 +2422,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mr = decoder.decodeString().let {
       if (it != "MR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MR")
       } else {
         return Mr
       }
@@ -2438,7 +2438,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ms::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ms = decoder.decodeString().let {
       if (it != "MS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MS")
       } else {
         return Ms
       }
@@ -2454,7 +2454,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mt = decoder.decodeString().let {
       if (it != "MT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MT")
       } else {
         return Mt
       }
@@ -2470,7 +2470,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mu = decoder.decodeString().let {
       if (it != "MU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MU")
       } else {
         return Mu
       }
@@ -2486,7 +2486,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mv = decoder.decodeString().let {
       if (it != "MV") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MV")
       } else {
         return Mv
       }
@@ -2502,7 +2502,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mw = decoder.decodeString().let {
       if (it != "MW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MW")
       } else {
         return Mw
       }
@@ -2518,7 +2518,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mx::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mx = decoder.decodeString().let {
       if (it != "MX") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MX")
       } else {
         return Mx
       }
@@ -2534,7 +2534,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(My::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): My = decoder.decodeString().let {
       if (it != "MY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MY")
       } else {
         return My
       }
@@ -2550,7 +2550,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mz = decoder.decodeString().let {
       if (it != "MZ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MZ")
       } else {
         return Mz
       }
@@ -2566,7 +2566,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Na::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Na = decoder.decodeString().let {
       if (it != "NA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NA")
       } else {
         return Na
       }
@@ -2582,7 +2582,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nc = decoder.decodeString().let {
       if (it != "NC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NC")
       } else {
         return Nc
       }
@@ -2598,7 +2598,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ne::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ne = decoder.decodeString().let {
       if (it != "NE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NE")
       } else {
         return Ne
       }
@@ -2614,7 +2614,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nf = decoder.decodeString().let {
       if (it != "NF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NF")
       } else {
         return Nf
       }
@@ -2630,7 +2630,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ng::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ng = decoder.decodeString().let {
       if (it != "NG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NG")
       } else {
         return Ng
       }
@@ -2646,7 +2646,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ni::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ni = decoder.decodeString().let {
       if (it != "NI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NI")
       } else {
         return Ni
       }
@@ -2662,7 +2662,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nl = decoder.decodeString().let {
       if (it != "NL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NL")
       } else {
         return Nl
       }
@@ -2678,7 +2678,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(No::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): No = decoder.decodeString().let {
       if (it != "NO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NO")
       } else {
         return No
       }
@@ -2694,7 +2694,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Np::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Np = decoder.decodeString().let {
       if (it != "NP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NP")
       } else {
         return Np
       }
@@ -2710,7 +2710,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nr = decoder.decodeString().let {
       if (it != "NR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NR")
       } else {
         return Nr
       }
@@ -2726,7 +2726,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nu = decoder.decodeString().let {
       if (it != "NU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NU")
       } else {
         return Nu
       }
@@ -2742,7 +2742,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nz = decoder.decodeString().let {
       if (it != "NZ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NZ")
       } else {
         return Nz
       }
@@ -2758,7 +2758,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Om::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Om = decoder.decodeString().let {
       if (it != "OM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected OM")
       } else {
         return Om
       }
@@ -2774,7 +2774,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pa::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pa = decoder.decodeString().let {
       if (it != "PA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PA")
       } else {
         return Pa
       }
@@ -2790,7 +2790,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pe::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pe = decoder.decodeString().let {
       if (it != "PE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PE")
       } else {
         return Pe
       }
@@ -2806,7 +2806,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pf = decoder.decodeString().let {
       if (it != "PF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PF")
       } else {
         return Pf
       }
@@ -2822,7 +2822,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pg = decoder.decodeString().let {
       if (it != "PG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PG")
       } else {
         return Pg
       }
@@ -2838,7 +2838,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ph::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ph = decoder.decodeString().let {
       if (it != "PH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PH")
       } else {
         return Ph
       }
@@ -2854,7 +2854,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pk = decoder.decodeString().let {
       if (it != "PK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PK")
       } else {
         return Pk
       }
@@ -2870,7 +2870,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pl = decoder.decodeString().let {
       if (it != "PL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PL")
       } else {
         return Pl
       }
@@ -2886,7 +2886,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pm = decoder.decodeString().let {
       if (it != "PM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PM")
       } else {
         return Pm
       }
@@ -2902,7 +2902,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pn = decoder.decodeString().let {
       if (it != "PN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PN")
       } else {
         return Pn
       }
@@ -2918,7 +2918,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pr = decoder.decodeString().let {
       if (it != "PR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PR")
       } else {
         return Pr
       }
@@ -2934,7 +2934,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ps::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ps = decoder.decodeString().let {
       if (it != "PS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PS")
       } else {
         return Ps
       }
@@ -2950,7 +2950,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pt = decoder.decodeString().let {
       if (it != "PT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PT")
       } else {
         return Pt
       }
@@ -2966,7 +2966,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pw = decoder.decodeString().let {
       if (it != "PW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PW")
       } else {
         return Pw
       }
@@ -2982,7 +2982,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Py::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Py = decoder.decodeString().let {
       if (it != "PY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PY")
       } else {
         return Py
       }
@@ -2998,7 +2998,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Qa::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Qa = decoder.decodeString().let {
       if (it != "QA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected QA")
       } else {
         return Qa
       }
@@ -3014,7 +3014,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Re::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Re = decoder.decodeString().let {
       if (it != "RE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RE")
       } else {
         return Re
       }
@@ -3030,7 +3030,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ro::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ro = decoder.decodeString().let {
       if (it != "RO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RO")
       } else {
         return Ro
       }
@@ -3046,7 +3046,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Rs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Rs = decoder.decodeString().let {
       if (it != "RS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RS")
       } else {
         return Rs
       }
@@ -3062,7 +3062,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ru::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ru = decoder.decodeString().let {
       if (it != "RU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RU")
       } else {
         return Ru
       }
@@ -3078,7 +3078,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Rw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Rw = decoder.decodeString().let {
       if (it != "RW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RW")
       } else {
         return Rw
       }
@@ -3094,7 +3094,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sa::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sa = decoder.decodeString().let {
       if (it != "SA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SA")
       } else {
         return Sa
       }
@@ -3110,7 +3110,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sb = decoder.decodeString().let {
       if (it != "SB") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SB")
       } else {
         return Sb
       }
@@ -3126,7 +3126,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sc = decoder.decodeString().let {
       if (it != "SC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SC")
       } else {
         return Sc
       }
@@ -3142,7 +3142,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sd = decoder.decodeString().let {
       if (it != "SD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SD")
       } else {
         return Sd
       }
@@ -3158,7 +3158,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Se::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Se = decoder.decodeString().let {
       if (it != "SE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SE")
       } else {
         return Se
       }
@@ -3174,7 +3174,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sg = decoder.decodeString().let {
       if (it != "SG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SG")
       } else {
         return Sg
       }
@@ -3190,7 +3190,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sh = decoder.decodeString().let {
       if (it != "SH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SH")
       } else {
         return Sh
       }
@@ -3206,7 +3206,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Si::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Si = decoder.decodeString().let {
       if (it != "SI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SI")
       } else {
         return Si
       }
@@ -3222,7 +3222,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sj::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sj = decoder.decodeString().let {
       if (it != "SJ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SJ")
       } else {
         return Sj
       }
@@ -3238,7 +3238,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sk = decoder.decodeString().let {
       if (it != "SK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SK")
       } else {
         return Sk
       }
@@ -3254,7 +3254,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sl = decoder.decodeString().let {
       if (it != "SL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SL")
       } else {
         return Sl
       }
@@ -3270,7 +3270,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sm = decoder.decodeString().let {
       if (it != "SM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SM")
       } else {
         return Sm
       }
@@ -3286,7 +3286,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sn = decoder.decodeString().let {
       if (it != "SN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SN")
       } else {
         return Sn
       }
@@ -3302,7 +3302,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(So::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): So = decoder.decodeString().let {
       if (it != "SO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SO")
       } else {
         return So
       }
@@ -3318,7 +3318,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sr = decoder.decodeString().let {
       if (it != "SR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SR")
       } else {
         return Sr
       }
@@ -3334,7 +3334,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ss::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ss = decoder.decodeString().let {
       if (it != "SS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SS")
       } else {
         return Ss
       }
@@ -3350,7 +3350,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(St::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): St = decoder.decodeString().let {
       if (it != "ST") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ST")
       } else {
         return St
       }
@@ -3366,7 +3366,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sv = decoder.decodeString().let {
       if (it != "SV") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SV")
       } else {
         return Sv
       }
@@ -3382,7 +3382,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sx::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sx = decoder.decodeString().let {
       if (it != "SX") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SX")
       } else {
         return Sx
       }
@@ -3398,7 +3398,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sy::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sy = decoder.decodeString().let {
       if (it != "SY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SY")
       } else {
         return Sy
       }
@@ -3414,7 +3414,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sz = decoder.decodeString().let {
       if (it != "SZ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SZ")
       } else {
         return Sz
       }
@@ -3430,7 +3430,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tc = decoder.decodeString().let {
       if (it != "TC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TC")
       } else {
         return Tc
       }
@@ -3446,7 +3446,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Td::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Td = decoder.decodeString().let {
       if (it != "TD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TD")
       } else {
         return Td
       }
@@ -3462,7 +3462,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tf = decoder.decodeString().let {
       if (it != "TF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TF")
       } else {
         return Tf
       }
@@ -3478,7 +3478,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tg = decoder.decodeString().let {
       if (it != "TG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TG")
       } else {
         return Tg
       }
@@ -3494,7 +3494,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Th::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Th = decoder.decodeString().let {
       if (it != "TH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TH")
       } else {
         return Th
       }
@@ -3510,7 +3510,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tj::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tj = decoder.decodeString().let {
       if (it != "TJ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TJ")
       } else {
         return Tj
       }
@@ -3526,7 +3526,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tk = decoder.decodeString().let {
       if (it != "TK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TK")
       } else {
         return Tk
       }
@@ -3542,7 +3542,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tl = decoder.decodeString().let {
       if (it != "TL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TL")
       } else {
         return Tl
       }
@@ -3558,7 +3558,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tm = decoder.decodeString().let {
       if (it != "TM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TM")
       } else {
         return Tm
       }
@@ -3574,7 +3574,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tn = decoder.decodeString().let {
       if (it != "TN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TN")
       } else {
         return Tn
       }
@@ -3590,7 +3590,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(To::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): To = decoder.decodeString().let {
       if (it != "TO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TO")
       } else {
         return To
       }
@@ -3606,7 +3606,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tr = decoder.decodeString().let {
       if (it != "TR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TR")
       } else {
         return Tr
       }
@@ -3622,7 +3622,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tt = decoder.decodeString().let {
       if (it != "TT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TT")
       } else {
         return Tt
       }
@@ -3638,7 +3638,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tv = decoder.decodeString().let {
       if (it != "TV") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TV")
       } else {
         return Tv
       }
@@ -3654,7 +3654,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tw = decoder.decodeString().let {
       if (it != "TW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TW")
       } else {
         return Tw
       }
@@ -3670,7 +3670,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tz = decoder.decodeString().let {
       if (it != "TZ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TZ")
       } else {
         return Tz
       }
@@ -3686,7 +3686,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ua::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ua = decoder.decodeString().let {
       if (it != "UA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UA")
       } else {
         return Ua
       }
@@ -3702,7 +3702,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ug::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ug = decoder.decodeString().let {
       if (it != "UG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UG")
       } else {
         return Ug
       }
@@ -3718,7 +3718,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Um::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Um = decoder.decodeString().let {
       if (it != "UM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UM")
       } else {
         return Um
       }
@@ -3734,7 +3734,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Us::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Us = decoder.decodeString().let {
       if (it != "US") {
-        throw SerializationException(it)
+        throw SerializationException("Expected US")
       } else {
         return Us
       }
@@ -3750,7 +3750,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Uy::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Uy = decoder.decodeString().let {
       if (it != "UY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UY")
       } else {
         return Uy
       }
@@ -3766,7 +3766,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Uz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Uz = decoder.decodeString().let {
       if (it != "UZ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UZ")
       } else {
         return Uz
       }
@@ -3782,7 +3782,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Va::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Va = decoder.decodeString().let {
       if (it != "VA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VA")
       } else {
         return Va
       }
@@ -3798,7 +3798,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vc = decoder.decodeString().let {
       if (it != "VC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VC")
       } else {
         return Vc
       }
@@ -3814,7 +3814,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ve::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ve = decoder.decodeString().let {
       if (it != "VE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VE")
       } else {
         return Ve
       }
@@ -3830,7 +3830,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vg = decoder.decodeString().let {
       if (it != "VG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VG")
       } else {
         return Vg
       }
@@ -3846,7 +3846,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vi::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vi = decoder.decodeString().let {
       if (it != "VI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VI")
       } else {
         return Vi
       }
@@ -3862,7 +3862,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vn = decoder.decodeString().let {
       if (it != "VN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VN")
       } else {
         return Vn
       }
@@ -3878,7 +3878,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vu = decoder.decodeString().let {
       if (it != "VU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VU")
       } else {
         return Vu
       }
@@ -3894,7 +3894,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Wf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Wf = decoder.decodeString().let {
       if (it != "WF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WF")
       } else {
         return Wf
       }
@@ -3910,7 +3910,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ws::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ws = decoder.decodeString().let {
       if (it != "WS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WS")
       } else {
         return Ws
       }
@@ -3926,7 +3926,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ye::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ye = decoder.decodeString().let {
       if (it != "YE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected YE")
       } else {
         return Ye
       }
@@ -3942,7 +3942,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Yt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Yt = decoder.decodeString().let {
       if (it != "YT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected YT")
       } else {
         return Yt
       }
@@ -3958,7 +3958,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Za::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Za = decoder.decodeString().let {
       if (it != "ZA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ZA")
       } else {
         return Za
       }
@@ -3974,7 +3974,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Zm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Zm = decoder.decodeString().let {
       if (it != "ZM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ZM")
       } else {
         return Zm
       }
@@ -3990,7 +3990,7 @@ public sealed interface Country {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Zw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Zw = decoder.decodeString().let {
       if (it != "ZW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ZW")
       } else {
         return Zw
       }

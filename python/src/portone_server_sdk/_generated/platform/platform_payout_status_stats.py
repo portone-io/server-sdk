@@ -47,45 +47,45 @@ def _serialize_platform_payout_status_stats(obj: PlatformPayoutStatusStats) -> A
 
 def _deserialize_platform_payout_status_stats(obj: Any) -> PlatformPayoutStatusStats:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "confirmed" not in obj:
-        raise KeyError(f"'confirmed' is not in {obj}")
+        raise KeyError("Missing required field 'confirmed'")
     confirmed = obj["confirmed"]
     if not isinstance(confirmed, int):
-        raise ValueError(f"{repr(confirmed)} is not int")
+        raise ValueError("Expected int for confirmed")
     if "prepared" not in obj:
-        raise KeyError(f"'prepared' is not in {obj}")
+        raise KeyError("Missing required field 'prepared'")
     prepared = obj["prepared"]
     if not isinstance(prepared, int):
-        raise ValueError(f"{repr(prepared)} is not int")
+        raise ValueError("Expected int for prepared")
     if "cancelled" not in obj:
-        raise KeyError(f"'cancelled' is not in {obj}")
+        raise KeyError("Missing required field 'cancelled'")
     cancelled = obj["cancelled"]
     if not isinstance(cancelled, int):
-        raise ValueError(f"{repr(cancelled)} is not int")
+        raise ValueError("Expected int for cancelled")
     if "stopped" not in obj:
-        raise KeyError(f"'stopped' is not in {obj}")
+        raise KeyError("Missing required field 'stopped'")
     stopped = obj["stopped"]
     if not isinstance(stopped, int):
-        raise ValueError(f"{repr(stopped)} is not int")
+        raise ValueError("Expected int for stopped")
     if "processing" not in obj:
-        raise KeyError(f"'processing' is not in {obj}")
+        raise KeyError("Missing required field 'processing'")
     processing = obj["processing"]
     if not isinstance(processing, int):
-        raise ValueError(f"{repr(processing)} is not int")
+        raise ValueError("Expected int for processing")
     if "succeeded" not in obj:
-        raise KeyError(f"'succeeded' is not in {obj}")
+        raise KeyError("Missing required field 'succeeded'")
     succeeded = obj["succeeded"]
     if not isinstance(succeeded, int):
-        raise ValueError(f"{repr(succeeded)} is not int")
+        raise ValueError("Expected int for succeeded")
     if "failed" not in obj:
-        raise KeyError(f"'failed' is not in {obj}")
+        raise KeyError("Missing required field 'failed'")
     failed = obj["failed"]
     if not isinstance(failed, int):
-        raise ValueError(f"{repr(failed)} is not int")
+        raise ValueError("Expected int for failed")
     if "scheduled" not in obj:
-        raise KeyError(f"'scheduled' is not in {obj}")
+        raise KeyError("Missing required field 'scheduled'")
     scheduled = obj["scheduled"]
     if not isinstance(scheduled, int):
-        raise ValueError(f"{repr(scheduled)} is not int")
+        raise ValueError("Expected int for scheduled")
     return PlatformPayoutStatusStats(confirmed, prepared, cancelled, stopped, processing, succeeded, failed, scheduled)

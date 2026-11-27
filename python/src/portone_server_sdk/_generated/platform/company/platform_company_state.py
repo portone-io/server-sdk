@@ -34,25 +34,25 @@ def _serialize_platform_company_state(obj: PlatformCompanyState) -> Any:
 
 def _deserialize_platform_company_state(obj: Any) -> PlatformCompanyState:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "taxationType" not in obj:
-        raise KeyError(f"'taxationType' is not in {obj}")
+        raise KeyError("Missing required field 'taxationType'")
     taxation_type = obj["taxationType"]
     taxation_type = _deserialize_platform_taxation_type(taxation_type)
     if "businessStatus" not in obj:
-        raise KeyError(f"'businessStatus' is not in {obj}")
+        raise KeyError("Missing required field 'businessStatus'")
     business_status = obj["businessStatus"]
     business_status = _deserialize_platform_business_status(business_status)
     if "taxationTypeDate" in obj:
         taxation_type_date = obj["taxationTypeDate"]
         if not isinstance(taxation_type_date, str):
-            raise ValueError(f"{repr(taxation_type_date)} is not str")
+            raise ValueError("Expected str for taxation_type_date")
     else:
         taxation_type_date = None
     if "closedSuspendedDate" in obj:
         closed_suspended_date = obj["closedSuspendedDate"]
         if not isinstance(closed_suspended_date, str):
-            raise ValueError(f"{repr(closed_suspended_date)} is not str")
+            raise ValueError("Expected str for closed_suspended_date")
     else:
         closed_suspended_date = None
     return PlatformCompanyState(taxation_type, business_status, taxation_type_date, closed_suspended_date)

@@ -20,7 +20,7 @@ public sealed interface PlatformPayoutMethod {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Direct::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Direct = decoder.decodeString().let {
       if (it != "DIRECT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DIRECT")
       } else {
         return Direct
       }
@@ -35,7 +35,7 @@ public sealed interface PlatformPayoutMethod {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Agency::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Agency = decoder.decodeString().let {
       if (it != "AGENCY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AGENCY")
       } else {
         return Agency
       }

@@ -34,7 +34,7 @@ def _serialize_identity_verification_sort_input(obj: IdentityVerificationSortInp
 
 def _deserialize_identity_verification_sort_input(obj: Any) -> IdentityVerificationSortInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "by" in obj:
         by = obj["by"]
         by = _deserialize_identity_verification_sort_by(by)

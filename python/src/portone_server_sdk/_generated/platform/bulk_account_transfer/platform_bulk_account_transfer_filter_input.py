@@ -24,11 +24,11 @@ def _serialize_platform_bulk_account_transfer_filter_input(obj: PlatformBulkAcco
 
 def _deserialize_platform_bulk_account_transfer_filter_input(obj: Any) -> PlatformBulkAccountTransferFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "statuses" in obj:
         statuses = obj["statuses"]
         if not isinstance(statuses, list):
-            raise ValueError(f"{repr(statuses)} is not list")
+            raise ValueError("Expected list for statuses")
         for i, item in enumerate(statuses):
             item = _deserialize_platform_bulk_account_transfer_status(item)
             statuses[i] = item

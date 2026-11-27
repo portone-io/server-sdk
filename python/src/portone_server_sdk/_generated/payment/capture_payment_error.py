@@ -52,4 +52,4 @@ def _deserialize_capture_payment_error(obj: Any) -> CapturePaymentError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CapturePaymentError")
+    raise ValueError("Expected CapturePaymentError")

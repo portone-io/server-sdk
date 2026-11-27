@@ -35,36 +35,36 @@ def _serialize_complete_platform_payout_by_partner_settlement_ids_body(obj: Comp
 
 def _deserialize_complete_platform_payout_by_partner_settlement_ids_body(obj: Any) -> CompletePlatformPayoutByPartnerSettlementIdsBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "bulkPayoutId" not in obj:
-        raise KeyError(f"'bulkPayoutId' is not in {obj}")
+        raise KeyError("Missing required field 'bulkPayoutId'")
     bulk_payout_id = obj["bulkPayoutId"]
     if not isinstance(bulk_payout_id, str):
-        raise ValueError(f"{repr(bulk_payout_id)} is not str")
+        raise ValueError("Expected str for bulk_payout_id")
     if "partnerSettlementIds" not in obj:
-        raise KeyError(f"'partnerSettlementIds' is not in {obj}")
+        raise KeyError("Missing required field 'partnerSettlementIds'")
     partner_settlement_ids = obj["partnerSettlementIds"]
     if not isinstance(partner_settlement_ids, list):
-        raise ValueError(f"{repr(partner_settlement_ids)} is not list")
+        raise ValueError("Expected list for partner_settlement_ids")
     for i, item in enumerate(partner_settlement_ids):
         if not isinstance(item, str):
-            raise ValueError(f"{repr(item)} is not str")
+            raise ValueError("Expected str for item")
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "completedAt" in obj:
         completed_at = obj["completedAt"]
         if not isinstance(completed_at, str):
-            raise ValueError(f"{repr(completed_at)} is not str")
+            raise ValueError("Expected str for completed_at")
     else:
         completed_at = None
     if "isForTest" in obj:
         is_for_test = obj["isForTest"]
         if not isinstance(is_for_test, bool):
-            raise ValueError(f"{repr(is_for_test)} is not bool")
+            raise ValueError("Expected bool for is_for_test")
     else:
         is_for_test = None
     return CompletePlatformPayoutByPartnerSettlementIdsBody(bulk_payout_id, partner_settlement_ids, name, completed_at, is_for_test)

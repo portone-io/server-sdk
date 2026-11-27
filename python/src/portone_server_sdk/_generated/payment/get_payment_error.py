@@ -38,4 +38,4 @@ def _deserialize_get_payment_error(obj: Any) -> GetPaymentError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPaymentError")
+    raise ValueError("Expected GetPaymentError")

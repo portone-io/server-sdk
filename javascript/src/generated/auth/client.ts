@@ -1,6 +1,6 @@
 import { AuthError } from "./AuthError"
 import type { Unrecognized } from "./../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../client"
+import { readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../client"
 import type { InvalidRequestError } from "../../generated/common/InvalidRequestError"
 import type { LoginViaApiSecretResponse } from "../../generated/auth/LoginViaApiSecretResponse"
 import type { RefreshTokenResponse } from "../../generated/auth/RefreshTokenResponse"
@@ -35,9 +35,9 @@ export function AuthClient(init: PortOneClientInit): AuthClient {
 				},
 			)
 			if (!response.ok) {
-				throw new LoginViaApiSecretError(await response.json())
+				throw new LoginViaApiSecretError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		refreshToken: async (
 			options: {
@@ -62,9 +62,9 @@ export function AuthClient(init: PortOneClientInit): AuthClient {
 				},
 			)
 			if (!response.ok) {
-				throw new RefreshTokenError(await response.json())
+				throw new RefreshTokenError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

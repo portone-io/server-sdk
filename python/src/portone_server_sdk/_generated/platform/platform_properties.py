@@ -21,7 +21,7 @@ def _serialize_platform_properties(obj: PlatformProperties) -> Any:
 
 def _deserialize_platform_properties(obj: Any) -> PlatformProperties:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     additional_properties = {}
     for key, value in obj.items():
         if key in []:

@@ -1,6 +1,6 @@
 import { PgSpecificError } from "./PgSpecificError"
 import type { Unrecognized } from "./../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../client"
+import { readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../client"
 import type { ConfirmPaymentwallDeliveryResponse } from "../../generated/pgSpecific/ConfirmPaymentwallDeliveryResponse"
 import type { Country } from "../../generated/common/Country"
 import type { GetKakaopayPaymentOrderResponse } from "../../generated/pgSpecific/GetKakaopayPaymentOrderResponse"
@@ -43,9 +43,9 @@ export function PgSpecificClient(init: PortOneClientInit): PgSpecificClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetKakaopayPaymentOrderError(await response.json())
+				throw new GetKakaopayPaymentOrderError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		confirmPaymentwallDelivery: async (
 			options: {
@@ -127,9 +127,9 @@ export function PgSpecificClient(init: PortOneClientInit): PgSpecificClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ConfirmPaymentwallDeliveryError(await response.json())
+				throw new ConfirmPaymentwallDeliveryError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

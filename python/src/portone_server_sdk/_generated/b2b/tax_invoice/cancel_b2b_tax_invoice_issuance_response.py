@@ -20,9 +20,9 @@ def _serialize_cancel_b2b_tax_invoice_issuance_response(obj: CancelB2bTaxInvoice
 
 def _deserialize_cancel_b2b_tax_invoice_issuance_response(obj: Any) -> CancelB2bTaxInvoiceIssuanceResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "taxInvoice" not in obj:
-        raise KeyError(f"'taxInvoice' is not in {obj}")
+        raise KeyError("Missing required field 'taxInvoice'")
     tax_invoice = obj["taxInvoice"]
     tax_invoice = _deserialize_b2b_tax_invoice(tax_invoice)
     return CancelB2bTaxInvoiceIssuanceResponse(tax_invoice)

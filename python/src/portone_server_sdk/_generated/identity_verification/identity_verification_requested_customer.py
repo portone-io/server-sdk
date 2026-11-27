@@ -50,41 +50,41 @@ def _serialize_identity_verification_requested_customer(obj: IdentityVerificatio
 
 def _deserialize_identity_verification_requested_customer(obj: Any) -> IdentityVerificationRequestedCustomer:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "phoneNumber" in obj:
         phone_number = obj["phoneNumber"]
         if not isinstance(phone_number, str):
-            raise ValueError(f"{repr(phone_number)} is not str")
+            raise ValueError("Expected str for phone_number")
     else:
         phone_number = None
     if "birthYear" in obj:
         birth_year = obj["birthYear"]
         if not isinstance(birth_year, str):
-            raise ValueError(f"{repr(birth_year)} is not str")
+            raise ValueError("Expected str for birth_year")
     else:
         birth_year = None
     if "birthMonth" in obj:
         birth_month = obj["birthMonth"]
         if not isinstance(birth_month, str):
-            raise ValueError(f"{repr(birth_month)} is not str")
+            raise ValueError("Expected str for birth_month")
     else:
         birth_month = None
     if "birthDay" in obj:
         birth_day = obj["birthDay"]
         if not isinstance(birth_day, str):
-            raise ValueError(f"{repr(birth_day)} is not str")
+            raise ValueError("Expected str for birth_day")
     else:
         birth_day = None
     return IdentityVerificationRequestedCustomer(id, name, phone_number, birth_year, birth_month, birth_day)

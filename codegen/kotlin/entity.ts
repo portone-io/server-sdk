@@ -606,7 +606,7 @@ export function generateEntity(
         writer.indent()
         writer.writeLine(`if (it != "${value}") {`)
         writer.indent()
-        writer.writeLine(`throw SerializationException(it)`)
+        writer.writeLine(`throw SerializationException("Expected ${value}")`)
         crossRef.add("kotlinx.serialization.SerializationException")
         writer.outdent()
         writer.writeLine("} else {")

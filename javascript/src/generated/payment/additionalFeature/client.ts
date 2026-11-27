@@ -1,6 +1,6 @@
 import { AdditionalFeatureError } from "./AdditionalFeatureError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ChannelNotFoundError } from "../../../generated/common/ChannelNotFoundError"
 import type { GetPgCardPromotionsResponse } from "../../../generated/payment/additionalFeature/GetPgCardPromotionsResponse"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
@@ -44,9 +44,9 @@ export function AdditionalFeatureClient(init: PortOneClientInit): AdditionalFeat
 				},
 			)
 			if (!response.ok) {
-				throw new GetPgCardPromotionsError(await response.json())
+				throw new GetPgCardPromotionsError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

@@ -26,14 +26,14 @@ def _serialize_get_platform_company_state_payload(obj: GetPlatformCompanyStatePa
 
 def _deserialize_get_platform_company_state_payload(obj: Any) -> GetPlatformCompanyStatePayload:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "companyState" not in obj:
-        raise KeyError(f"'companyState' is not in {obj}")
+        raise KeyError("Missing required field 'companyState'")
     company_state = obj["companyState"]
     company_state = _deserialize_platform_company_state(company_state)
     if "companyVerificationId" not in obj:
-        raise KeyError(f"'companyVerificationId' is not in {obj}")
+        raise KeyError("Missing required field 'companyVerificationId'")
     company_verification_id = obj["companyVerificationId"]
     if not isinstance(company_verification_id, str):
-        raise ValueError(f"{repr(company_verification_id)} is not str")
+        raise ValueError("Expected str for company_verification_id")
     return GetPlatformCompanyStatePayload(company_state, company_verification_id)

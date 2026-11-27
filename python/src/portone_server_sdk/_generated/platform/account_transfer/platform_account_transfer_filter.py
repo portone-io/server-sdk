@@ -94,7 +94,7 @@ def _serialize_platform_account_transfer_filter(obj: PlatformAccountTransferFilt
 
 def _deserialize_platform_account_transfer_filter(obj: Any) -> PlatformAccountTransferFilter:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "tradeTimestampRange" in obj:
         trade_timestamp_range = obj["tradeTimestampRange"]
         trade_timestamp_range = _deserialize_date_time_range(trade_timestamp_range)
@@ -118,40 +118,40 @@ def _deserialize_platform_account_transfer_filter(obj: Any) -> PlatformAccountTr
     if "accountTransferId" in obj:
         account_transfer_id = obj["accountTransferId"]
         if not isinstance(account_transfer_id, str):
-            raise ValueError(f"{repr(account_transfer_id)} is not str")
+            raise ValueError("Expected str for account_transfer_id")
     else:
         account_transfer_id = None
     if "bankAccountId" in obj:
         bank_account_id = obj["bankAccountId"]
         if not isinstance(bank_account_id, str):
-            raise ValueError(f"{repr(bank_account_id)} is not str")
+            raise ValueError("Expected str for bank_account_id")
     else:
         bank_account_id = None
     if "bulkAccountTransferId" in obj:
         bulk_account_transfer_id = obj["bulkAccountTransferId"]
         if not isinstance(bulk_account_transfer_id, str):
-            raise ValueError(f"{repr(bulk_account_transfer_id)} is not str")
+            raise ValueError("Expected str for bulk_account_transfer_id")
     else:
         bulk_account_transfer_id = None
     if "payoutId" in obj:
         payout_id = obj["payoutId"]
         if not isinstance(payout_id, str):
-            raise ValueError(f"{repr(payout_id)} is not str")
+            raise ValueError("Expected str for payout_id")
     else:
         payout_id = None
     if "accountTransferIds" in obj:
         account_transfer_ids = obj["accountTransferIds"]
         if not isinstance(account_transfer_ids, list):
-            raise ValueError(f"{repr(account_transfer_ids)} is not list")
+            raise ValueError("Expected list for account_transfer_ids")
         for i, item in enumerate(account_transfer_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         account_transfer_ids = None
     if "types" in obj:
         types = obj["types"]
         if not isinstance(types, list):
-            raise ValueError(f"{repr(types)} is not list")
+            raise ValueError("Expected list for types")
         for i, item in enumerate(types):
             item = _deserialize_platform_account_transfer_type(item)
             types[i] = item
@@ -160,7 +160,7 @@ def _deserialize_platform_account_transfer_filter(obj: Any) -> PlatformAccountTr
     if "statuses" in obj:
         statuses = obj["statuses"]
         if not isinstance(statuses, list):
-            raise ValueError(f"{repr(statuses)} is not list")
+            raise ValueError("Expected list for statuses")
         for i, item in enumerate(statuses):
             item = _deserialize_platform_account_transfer_status(item)
             statuses[i] = item
@@ -169,25 +169,25 @@ def _deserialize_platform_account_transfer_filter(obj: Any) -> PlatformAccountTr
     if "depositorName" in obj:
         depositor_name = obj["depositorName"]
         if not isinstance(depositor_name, str):
-            raise ValueError(f"{repr(depositor_name)} is not str")
+            raise ValueError("Expected str for depositor_name")
     else:
         depositor_name = None
     if "depositAccountHolder" in obj:
         deposit_account_holder = obj["depositAccountHolder"]
         if not isinstance(deposit_account_holder, str):
-            raise ValueError(f"{repr(deposit_account_holder)} is not str")
+            raise ValueError("Expected str for deposit_account_holder")
     else:
         deposit_account_holder = None
     if "depositMemo" in obj:
         deposit_memo = obj["depositMemo"]
         if not isinstance(deposit_memo, str):
-            raise ValueError(f"{repr(deposit_memo)} is not str")
+            raise ValueError("Expected str for deposit_memo")
     else:
         deposit_memo = None
     if "withdrawalMemo" in obj:
         withdrawal_memo = obj["withdrawalMemo"]
         if not isinstance(withdrawal_memo, str):
-            raise ValueError(f"{repr(withdrawal_memo)} is not str")
+            raise ValueError("Expected str for withdrawal_memo")
     else:
         withdrawal_memo = None
     return PlatformAccountTransferFilter(trade_timestamp_range, created_timestamp_range, status_updated_timestamp_range, scheduled_timestamp_range, account_transfer_id, bank_account_id, bulk_account_transfer_id, payout_id, account_transfer_ids, types, statuses, depositor_name, deposit_account_holder, deposit_memo, withdrawal_memo)

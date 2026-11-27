@@ -38,23 +38,23 @@ def _serialize_update_platform_discount_share_policy_body(obj: UpdatePlatformDis
 
 def _deserialize_update_platform_discount_share_policy_body(obj: Any) -> UpdatePlatformDiscountSharePolicyBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "partnerShareRate" in obj:
         partner_share_rate = obj["partnerShareRate"]
         if not isinstance(partner_share_rate, int):
-            raise ValueError(f"{repr(partner_share_rate)} is not int")
+            raise ValueError("Expected int for partner_share_rate")
     else:
         partner_share_rate = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return UpdatePlatformDiscountSharePolicyBody(name, partner_share_rate, memo)

@@ -26,14 +26,14 @@ def _serialize_platform_user_defined_property_key_value(obj: PlatformUserDefined
 
 def _deserialize_platform_user_defined_property_key_value(obj: Any) -> PlatformUserDefinedPropertyKeyValue:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "key" not in obj:
-        raise KeyError(f"'key' is not in {obj}")
+        raise KeyError("Missing required field 'key'")
     key = obj["key"]
     if not isinstance(key, str):
-        raise ValueError(f"{repr(key)} is not str")
+        raise ValueError("Expected str for key")
     if "value" not in obj:
-        raise KeyError(f"'value' is not in {obj}")
+        raise KeyError("Missing required field 'value'")
     value = obj["value"]
     value = _deserialize_platform_user_defined_property_value(value)
     return PlatformUserDefinedPropertyKeyValue(key, value)

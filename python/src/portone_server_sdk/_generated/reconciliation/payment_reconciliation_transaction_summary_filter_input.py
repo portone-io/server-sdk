@@ -35,11 +35,11 @@ def _serialize_payment_reconciliation_transaction_summary_filter_input(obj: Paym
 
 def _deserialize_payment_reconciliation_transaction_summary_filter_input(obj: Any) -> PaymentReconciliationTransactionSummaryFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "reconciliationStatuses" in obj:
         reconciliation_statuses = obj["reconciliationStatuses"]
         if not isinstance(reconciliation_statuses, list):
-            raise ValueError(f"{repr(reconciliation_statuses)} is not list")
+            raise ValueError("Expected list for reconciliation_statuses")
         for i, item in enumerate(reconciliation_statuses):
             item = _deserialize_payment_reconciliation_status(item)
             reconciliation_statuses[i] = item
@@ -48,7 +48,7 @@ def _deserialize_payment_reconciliation_transaction_summary_filter_input(obj: An
     if "pgSpecifiers" in obj:
         pg_specifiers = obj["pgSpecifiers"]
         if not isinstance(pg_specifiers, list):
-            raise ValueError(f"{repr(pg_specifiers)} is not list")
+            raise ValueError("Expected list for pg_specifiers")
         for i, item in enumerate(pg_specifiers):
             item = _deserialize_reconciliation_pg_specifier(item)
             pg_specifiers[i] = item
@@ -57,10 +57,10 @@ def _deserialize_payment_reconciliation_transaction_summary_filter_input(obj: An
     if "storeIds" in obj:
         store_ids = obj["storeIds"]
         if not isinstance(store_ids, list):
-            raise ValueError(f"{repr(store_ids)} is not list")
+            raise ValueError("Expected list for store_ids")
         for i, item in enumerate(store_ids):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         store_ids = None
     return PaymentReconciliationTransactionSummaryFilterInput(reconciliation_statuses, pg_specifiers, store_ids)

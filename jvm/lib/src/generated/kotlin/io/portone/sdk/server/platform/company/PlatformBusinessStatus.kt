@@ -22,7 +22,7 @@ public sealed interface PlatformBusinessStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(InBusiness::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): InBusiness = decoder.decodeString().let {
       if (it != "IN_BUSINESS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IN_BUSINESS")
       } else {
         return InBusiness
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformBusinessStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Closed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Closed = decoder.decodeString().let {
       if (it != "CLOSED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CLOSED")
       } else {
         return Closed
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformBusinessStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Suspended::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Suspended = decoder.decodeString().let {
       if (it != "SUSPENDED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUSPENDED")
       } else {
         return Suspended
       }

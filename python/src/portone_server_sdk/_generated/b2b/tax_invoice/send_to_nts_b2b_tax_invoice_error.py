@@ -59,4 +59,4 @@ def _deserialize_send_to_nts_b2b_tax_invoice_error(obj: Any) -> SendToNtsB2bTaxI
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not SendToNtsB2bTaxInvoiceError")
+    raise ValueError("Expected SendToNtsB2bTaxInvoiceError")

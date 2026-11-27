@@ -22,10 +22,10 @@ def _serialize_confirm_escrow_response(obj: ConfirmEscrowResponse) -> Any:
 
 def _deserialize_confirm_escrow_response(obj: Any) -> ConfirmEscrowResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "completedAt" not in obj:
-        raise KeyError(f"'completedAt' is not in {obj}")
+        raise KeyError("Missing required field 'completedAt'")
     completed_at = obj["completedAt"]
     if not isinstance(completed_at, str):
-        raise ValueError(f"{repr(completed_at)} is not str")
+        raise ValueError("Expected str for completed_at")
     return ConfirmEscrowResponse(completed_at)

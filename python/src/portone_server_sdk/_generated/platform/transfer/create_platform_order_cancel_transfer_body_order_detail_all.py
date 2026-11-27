@@ -18,5 +18,5 @@ def _serialize_create_platform_order_cancel_transfer_body_order_detail_all(obj: 
 
 def _deserialize_create_platform_order_cancel_transfer_body_order_detail_all(obj: Any) -> CreatePlatformOrderCancelTransferBodyOrderDetailAll:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return CreatePlatformOrderCancelTransferBodyOrderDetailAll()

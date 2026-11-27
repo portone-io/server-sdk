@@ -32,7 +32,7 @@ def _serialize_instant_payment_method_input(obj: InstantPaymentMethodInput) -> A
 
 def _deserialize_instant_payment_method_input(obj: Any) -> InstantPaymentMethodInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "card" in obj:
         card = obj["card"]
         card = _deserialize_instant_payment_method_input_card(card)

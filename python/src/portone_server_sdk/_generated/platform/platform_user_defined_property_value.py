@@ -17,10 +17,10 @@ def _serialize_platform_user_defined_property_value(obj: PlatformUserDefinedProp
 
 def _deserialize_platform_user_defined_property_value(obj: Any) -> PlatformUserDefinedPropertyValue:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "string" not in obj:
-        raise KeyError(f"'string' is not in {obj}")
+        raise KeyError("Missing required field 'string'")
     string = obj["string"]
     if not isinstance(string, str):
-        raise ValueError(f"{repr(string)} is not str")
+        raise ValueError("Expected str for string")
     return PlatformUserDefinedPropertyValue(string)

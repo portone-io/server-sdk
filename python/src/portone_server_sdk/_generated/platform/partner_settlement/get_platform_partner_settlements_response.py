@@ -32,21 +32,21 @@ def _serialize_get_platform_partner_settlements_response(obj: GetPlatformPartner
 
 def _deserialize_get_platform_partner_settlements_response(obj: Any) -> GetPlatformPartnerSettlementsResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "items" not in obj:
-        raise KeyError(f"'items' is not in {obj}")
+        raise KeyError("Missing required field 'items'")
     items = obj["items"]
     if not isinstance(items, list):
-        raise ValueError(f"{repr(items)} is not list")
+        raise ValueError("Expected list for items")
     for i, item in enumerate(items):
         item = _deserialize_platform_partner_settlement(item)
         items[i] = item
     if "page" not in obj:
-        raise KeyError(f"'page' is not in {obj}")
+        raise KeyError("Missing required field 'page'")
     page = obj["page"]
     page = _deserialize_page_info(page)
     if "counts" not in obj:
-        raise KeyError(f"'counts' is not in {obj}")
+        raise KeyError("Missing required field 'counts'")
     counts = obj["counts"]
     counts = _deserialize_platform_partner_settlement_status_stats(counts)
     return GetPlatformPartnerSettlementsResponse(items, page, counts)

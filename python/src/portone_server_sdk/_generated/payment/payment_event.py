@@ -33,4 +33,4 @@ def _deserialize_payment_event(obj: Any) -> PaymentEvent:
         return _deserialize_partial_cancelled_payment_event(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PaymentEvent")
+    raise ValueError("Expected PaymentEvent")

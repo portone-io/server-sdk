@@ -25,7 +25,7 @@ public sealed interface PaymentWebhookTrigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Manual::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Manual = decoder.decodeString().let {
       if (it != "MANUAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MANUAL")
       } else {
         return Manual
       }
@@ -40,7 +40,7 @@ public sealed interface PaymentWebhookTrigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VirtualAccountDeposit::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VirtualAccountDeposit = decoder.decodeString().let {
       if (it != "VIRTUAL_ACCOUNT_DEPOSIT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VIRTUAL_ACCOUNT_DEPOSIT")
       } else {
         return VirtualAccountDeposit
       }
@@ -55,7 +55,7 @@ public sealed interface PaymentWebhookTrigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncCancelApproved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AsyncCancelApproved = decoder.decodeString().let {
       if (it != "ASYNC_CANCEL_APPROVED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ASYNC_CANCEL_APPROVED")
       } else {
         return AsyncCancelApproved
       }
@@ -70,7 +70,7 @@ public sealed interface PaymentWebhookTrigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncCancelFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AsyncCancelFailed = decoder.decodeString().let {
       if (it != "ASYNC_CANCEL_FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ASYNC_CANCEL_FAILED")
       } else {
         return AsyncCancelFailed
       }
@@ -85,7 +85,7 @@ public sealed interface PaymentWebhookTrigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncPayApproved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AsyncPayApproved = decoder.decodeString().let {
       if (it != "ASYNC_PAY_APPROVED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ASYNC_PAY_APPROVED")
       } else {
         return AsyncPayApproved
       }
@@ -100,7 +100,7 @@ public sealed interface PaymentWebhookTrigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncPayFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AsyncPayFailed = decoder.decodeString().let {
       if (it != "ASYNC_PAY_FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ASYNC_PAY_FAILED")
       } else {
         return AsyncPayFailed
       }
@@ -115,7 +115,7 @@ public sealed interface PaymentWebhookTrigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncPayPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AsyncPayPending = decoder.decodeString().let {
       if (it != "ASYNC_PAY_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ASYNC_PAY_PENDING")
       } else {
         return AsyncPayPending
       }
@@ -130,7 +130,7 @@ public sealed interface PaymentWebhookTrigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DisputeCreated::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DisputeCreated = decoder.decodeString().let {
       if (it != "DISPUTE_CREATED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DISPUTE_CREATED")
       } else {
         return DisputeCreated
       }
@@ -145,7 +145,7 @@ public sealed interface PaymentWebhookTrigger {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DisputeResolved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DisputeResolved = decoder.decodeString().let {
       if (it != "DISPUTE_RESOLVED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DISPUTE_RESOLVED")
       } else {
         return DisputeResolved
       }

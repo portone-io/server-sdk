@@ -160,37 +160,37 @@ def _serialize_b2b_tax_invoice_input(obj: B2bTaxInvoiceInput) -> Any:
 
 def _deserialize_b2b_tax_invoice_input(obj: Any) -> B2bTaxInvoiceInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "taxationType" not in obj:
-        raise KeyError(f"'taxationType' is not in {obj}")
+        raise KeyError("Missing required field 'taxationType'")
     taxation_type = obj["taxationType"]
     taxation_type = _deserialize_b2b_tax_invoice_taxation_type(taxation_type)
     if "writeDate" not in obj:
-        raise KeyError(f"'writeDate' is not in {obj}")
+        raise KeyError("Missing required field 'writeDate'")
     write_date = obj["writeDate"]
     if not isinstance(write_date, str):
-        raise ValueError(f"{repr(write_date)} is not str")
+        raise ValueError("Expected str for write_date")
     if "purposeType" not in obj:
-        raise KeyError(f"'purposeType' is not in {obj}")
+        raise KeyError("Missing required field 'purposeType'")
     purpose_type = obj["purposeType"]
     purpose_type = _deserialize_b2b_tax_invoice_purpose_type(purpose_type)
     if "totalSupplyAmount" not in obj:
-        raise KeyError(f"'totalSupplyAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalSupplyAmount'")
     total_supply_amount = obj["totalSupplyAmount"]
     if not isinstance(total_supply_amount, int):
-        raise ValueError(f"{repr(total_supply_amount)} is not int")
+        raise ValueError("Expected int for total_supply_amount")
     if "totalTaxAmount" not in obj:
-        raise KeyError(f"'totalTaxAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalTaxAmount'")
     total_tax_amount = obj["totalTaxAmount"]
     if not isinstance(total_tax_amount, int):
-        raise ValueError(f"{repr(total_tax_amount)} is not int")
+        raise ValueError("Expected int for total_tax_amount")
     if "totalAmount" not in obj:
-        raise KeyError(f"'totalAmount' is not in {obj}")
+        raise KeyError("Missing required field 'totalAmount'")
     total_amount = obj["totalAmount"]
     if not isinstance(total_amount, int):
-        raise ValueError(f"{repr(total_amount)} is not int")
+        raise ValueError("Expected int for total_amount")
     if "recipient" not in obj:
-        raise KeyError(f"'recipient' is not in {obj}")
+        raise KeyError("Missing required field 'recipient'")
     recipient = obj["recipient"]
     recipient = _deserialize_b2b_tax_invoice_company(recipient)
     if "issuanceType" in obj:
@@ -201,58 +201,58 @@ def _deserialize_b2b_tax_invoice_input(obj: Any) -> B2bTaxInvoiceInput:
     if "serialNumber" in obj:
         serial_number = obj["serialNumber"]
         if not isinstance(serial_number, str):
-            raise ValueError(f"{repr(serial_number)} is not str")
+            raise ValueError("Expected str for serial_number")
     else:
         serial_number = None
     if "bookVolume" in obj:
         book_volume = obj["bookVolume"]
         if not isinstance(book_volume, int):
-            raise ValueError(f"{repr(book_volume)} is not int")
+            raise ValueError("Expected int for book_volume")
     else:
         book_volume = None
     if "bookIssue" in obj:
         book_issue = obj["bookIssue"]
         if not isinstance(book_issue, int):
-            raise ValueError(f"{repr(book_issue)} is not int")
+            raise ValueError("Expected int for book_issue")
     else:
         book_issue = None
     if "cashAmount" in obj:
         cash_amount = obj["cashAmount"]
         if not isinstance(cash_amount, int):
-            raise ValueError(f"{repr(cash_amount)} is not int")
+            raise ValueError("Expected int for cash_amount")
     else:
         cash_amount = None
     if "checkAmount" in obj:
         check_amount = obj["checkAmount"]
         if not isinstance(check_amount, int):
-            raise ValueError(f"{repr(check_amount)} is not int")
+            raise ValueError("Expected int for check_amount")
     else:
         check_amount = None
     if "creditAmount" in obj:
         credit_amount = obj["creditAmount"]
         if not isinstance(credit_amount, int):
-            raise ValueError(f"{repr(credit_amount)} is not int")
+            raise ValueError("Expected int for credit_amount")
     else:
         credit_amount = None
     if "noteAmount" in obj:
         note_amount = obj["noteAmount"]
         if not isinstance(note_amount, int):
-            raise ValueError(f"{repr(note_amount)} is not int")
+            raise ValueError("Expected int for note_amount")
     else:
         note_amount = None
     if "remarks" in obj:
         remarks = obj["remarks"]
         if not isinstance(remarks, list):
-            raise ValueError(f"{repr(remarks)} is not list")
+            raise ValueError("Expected list for remarks")
         for i, item in enumerate(remarks):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         remarks = None
     if "supplierDocumentKey" in obj:
         supplier_document_key = obj["supplierDocumentKey"]
         if not isinstance(supplier_document_key, str):
-            raise ValueError(f"{repr(supplier_document_key)} is not str")
+            raise ValueError("Expected str for supplier_document_key")
     else:
         supplier_document_key = None
     if "supplier" in obj:
@@ -263,19 +263,19 @@ def _deserialize_b2b_tax_invoice_input(obj: Any) -> B2bTaxInvoiceInput:
     if "recipientDocumentKey" in obj:
         recipient_document_key = obj["recipientDocumentKey"]
         if not isinstance(recipient_document_key, str):
-            raise ValueError(f"{repr(recipient_document_key)} is not str")
+            raise ValueError("Expected str for recipient_document_key")
     else:
         recipient_document_key = None
     if "sendSms" in obj:
         send_sms = obj["sendSms"]
         if not isinstance(send_sms, bool):
-            raise ValueError(f"{repr(send_sms)} is not bool")
+            raise ValueError("Expected bool for send_sms")
     else:
         send_sms = None
     if "items" in obj:
         items = obj["items"]
         if not isinstance(items, list):
-            raise ValueError(f"{repr(items)} is not list")
+            raise ValueError("Expected list for items")
         for i, item in enumerate(items):
             item = _deserialize_b2b_tax_invoice_item(item)
             items[i] = item
@@ -284,7 +284,7 @@ def _deserialize_b2b_tax_invoice_input(obj: Any) -> B2bTaxInvoiceInput:
     if "additionalContacts" in obj:
         additional_contacts = obj["additionalContacts"]
         if not isinstance(additional_contacts, list):
-            raise ValueError(f"{repr(additional_contacts)} is not list")
+            raise ValueError("Expected list for additional_contacts")
         for i, item in enumerate(additional_contacts):
             item = _deserialize_b2b_tax_invoice_additional_contact(item)
             additional_contacts[i] = item
@@ -293,7 +293,7 @@ def _deserialize_b2b_tax_invoice_input(obj: Any) -> B2bTaxInvoiceInput:
     if "useCounterpartyAdditionalContacts" in obj:
         use_counterparty_additional_contacts = obj["useCounterpartyAdditionalContacts"]
         if not isinstance(use_counterparty_additional_contacts, bool):
-            raise ValueError(f"{repr(use_counterparty_additional_contacts)} is not bool")
+            raise ValueError("Expected bool for use_counterparty_additional_contacts")
     else:
         use_counterparty_additional_contacts = None
     return B2bTaxInvoiceInput(taxation_type, write_date, purpose_type, total_supply_amount, total_tax_amount, total_amount, recipient, issuance_type, serial_number, book_volume, book_issue, cash_amount, check_amount, credit_amount, note_amount, remarks, supplier_document_key, supplier, recipient_document_key, send_sms, items, additional_contacts, use_counterparty_additional_contacts)

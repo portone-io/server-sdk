@@ -67,40 +67,40 @@ def _serialize_b2b_counterparty_input(obj: B2bCounterpartyInput) -> Any:
 
 def _deserialize_b2b_counterparty_input(obj: Any) -> B2bCounterpartyInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "brn" not in obj:
-        raise KeyError(f"'brn' is not in {obj}")
+        raise KeyError("Missing required field 'brn'")
     brn = obj["brn"]
     if not isinstance(brn, str):
-        raise ValueError(f"{repr(brn)} is not str")
+        raise ValueError("Expected str for brn")
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "representativeName" in obj:
         representative_name = obj["representativeName"]
         if not isinstance(representative_name, str):
-            raise ValueError(f"{repr(representative_name)} is not str")
+            raise ValueError("Expected str for representative_name")
     else:
         representative_name = None
     if "address" in obj:
         address = obj["address"]
         if not isinstance(address, str):
-            raise ValueError(f"{repr(address)} is not str")
+            raise ValueError("Expected str for address")
     else:
         address = None
     if "businessType" in obj:
         business_type = obj["businessType"]
         if not isinstance(business_type, str):
-            raise ValueError(f"{repr(business_type)} is not str")
+            raise ValueError("Expected str for business_type")
     else:
         business_type = None
     if "businessClass" in obj:
         business_class = obj["businessClass"]
         if not isinstance(business_class, str):
-            raise ValueError(f"{repr(business_class)} is not str")
+            raise ValueError("Expected str for business_class")
     else:
         business_class = None
     if "contact" in obj:
@@ -111,7 +111,7 @@ def _deserialize_b2b_counterparty_input(obj: Any) -> B2bCounterpartyInput:
     if "additionalContacts" in obj:
         additional_contacts = obj["additionalContacts"]
         if not isinstance(additional_contacts, list):
-            raise ValueError(f"{repr(additional_contacts)} is not list")
+            raise ValueError("Expected list for additional_contacts")
         for i, item in enumerate(additional_contacts):
             item = _deserialize_b2b_counterparty_contact_input(item)
             additional_contacts[i] = item
@@ -120,7 +120,7 @@ def _deserialize_b2b_counterparty_input(obj: Any) -> B2bCounterpartyInput:
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return B2bCounterpartyInput(brn, name, representative_name, address, business_type, business_class, contact, additional_contacts, memo)

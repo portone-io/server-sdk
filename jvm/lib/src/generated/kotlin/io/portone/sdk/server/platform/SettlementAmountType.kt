@@ -21,7 +21,7 @@ public sealed interface SettlementAmountType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Net::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Net = decoder.decodeString().let {
       if (it != "NET") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NET")
       } else {
         return Net
       }
@@ -37,7 +37,7 @@ public sealed interface SettlementAmountType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gross::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gross = decoder.decodeString().let {
       if (it != "GROSS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GROSS")
       } else {
         return Gross
       }

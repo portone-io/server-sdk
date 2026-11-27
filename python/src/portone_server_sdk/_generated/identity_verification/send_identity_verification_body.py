@@ -54,40 +54,40 @@ def _serialize_send_identity_verification_body(obj: SendIdentityVerificationBody
 
 def _deserialize_send_identity_verification_body(obj: Any) -> SendIdentityVerificationBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "channelKey" not in obj:
-        raise KeyError(f"'channelKey' is not in {obj}")
+        raise KeyError("Missing required field 'channelKey'")
     channel_key = obj["channelKey"]
     if not isinstance(channel_key, str):
-        raise ValueError(f"{repr(channel_key)} is not str")
+        raise ValueError("Expected str for channel_key")
     if "customer" not in obj:
-        raise KeyError(f"'customer' is not in {obj}")
+        raise KeyError("Missing required field 'customer'")
     customer = obj["customer"]
     customer = _deserialize_send_identity_verification_body_customer(customer)
     if "operator" not in obj:
-        raise KeyError(f"'operator' is not in {obj}")
+        raise KeyError("Missing required field 'operator'")
     operator = obj["operator"]
     operator = _deserialize_identity_verification_operator(operator)
     if "method" not in obj:
-        raise KeyError(f"'method' is not in {obj}")
+        raise KeyError("Missing required field 'method'")
     method = obj["method"]
     method = _deserialize_identity_verification_method(method)
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "customData" in obj:
         custom_data = obj["customData"]
         if not isinstance(custom_data, str):
-            raise ValueError(f"{repr(custom_data)} is not str")
+            raise ValueError("Expected str for custom_data")
     else:
         custom_data = None
     if "bypass" in obj:
         bypass = obj["bypass"]
         if not isinstance(bypass, dict):
-            raise ValueError(f"{repr(bypass)} is not dict")
+            raise ValueError("Expected dict for bypass")
     else:
         bypass = None
     return SendIdentityVerificationBody(channel_key, customer, operator, method, store_id, custom_data, bypass)

@@ -1,6 +1,6 @@
 import { BulkAccountTransferError } from "./BulkAccountTransferError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformBulkAccountTransfersResponse } from "../../../generated/platform/bulkAccountTransfer/GetPlatformBulkAccountTransfersResponse"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
@@ -49,9 +49,9 @@ export function BulkAccountTransferClient(init: PortOneClientInit): BulkAccountT
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformBulkAccountTransfersError(await response.json())
+				throw new GetPlatformBulkAccountTransfersError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

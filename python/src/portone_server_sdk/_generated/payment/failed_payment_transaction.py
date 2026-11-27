@@ -167,75 +167,75 @@ def _serialize_failed_payment_transaction(obj: FailedPaymentTransaction) -> Any:
 
 def _deserialize_failed_payment_transaction(obj: Any) -> FailedPaymentTransaction:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     if status != "FAILED":
-        raise ValueError(f"{repr(status)} is not 'FAILED'")
+        raise ValueError("Expected 'FAILED' for status")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "paymentId" not in obj:
-        raise KeyError(f"'paymentId' is not in {obj}")
+        raise KeyError("Missing required field 'paymentId'")
     payment_id = obj["paymentId"]
     if not isinstance(payment_id, str):
-        raise ValueError(f"{repr(payment_id)} is not str")
+        raise ValueError("Expected str for payment_id")
     if "merchantId" not in obj:
-        raise KeyError(f"'merchantId' is not in {obj}")
+        raise KeyError("Missing required field 'merchantId'")
     merchant_id = obj["merchantId"]
     if not isinstance(merchant_id, str):
-        raise ValueError(f"{repr(merchant_id)} is not str")
+        raise ValueError("Expected str for merchant_id")
     if "storeId" not in obj:
-        raise KeyError(f"'storeId' is not in {obj}")
+        raise KeyError("Missing required field 'storeId'")
     store_id = obj["storeId"]
     if not isinstance(store_id, str):
-        raise ValueError(f"{repr(store_id)} is not str")
+        raise ValueError("Expected str for store_id")
     if "version" not in obj:
-        raise KeyError(f"'version' is not in {obj}")
+        raise KeyError("Missing required field 'version'")
     version = obj["version"]
     version = _deserialize_port_one_version(version)
     if "requestedAt" not in obj:
-        raise KeyError(f"'requestedAt' is not in {obj}")
+        raise KeyError("Missing required field 'requestedAt'")
     requested_at = obj["requestedAt"]
     if not isinstance(requested_at, str):
-        raise ValueError(f"{repr(requested_at)} is not str")
+        raise ValueError("Expected str for requested_at")
     if "updatedAt" not in obj:
-        raise KeyError(f"'updatedAt' is not in {obj}")
+        raise KeyError("Missing required field 'updatedAt'")
     updated_at = obj["updatedAt"]
     if not isinstance(updated_at, str):
-        raise ValueError(f"{repr(updated_at)} is not str")
+        raise ValueError("Expected str for updated_at")
     if "statusChangedAt" not in obj:
-        raise KeyError(f"'statusChangedAt' is not in {obj}")
+        raise KeyError("Missing required field 'statusChangedAt'")
     status_changed_at = obj["statusChangedAt"]
     if not isinstance(status_changed_at, str):
-        raise ValueError(f"{repr(status_changed_at)} is not str")
+        raise ValueError("Expected str for status_changed_at")
     if "orderName" not in obj:
-        raise KeyError(f"'orderName' is not in {obj}")
+        raise KeyError("Missing required field 'orderName'")
     order_name = obj["orderName"]
     if not isinstance(order_name, str):
-        raise ValueError(f"{repr(order_name)} is not str")
+        raise ValueError("Expected str for order_name")
     if "amount" not in obj:
-        raise KeyError(f"'amount' is not in {obj}")
+        raise KeyError("Missing required field 'amount'")
     amount = obj["amount"]
     amount = _deserialize_payment_amount(amount)
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "customer" not in obj:
-        raise KeyError(f"'customer' is not in {obj}")
+        raise KeyError("Missing required field 'customer'")
     customer = obj["customer"]
     customer = _deserialize_customer(customer)
     if "failedAt" not in obj:
-        raise KeyError(f"'failedAt' is not in {obj}")
+        raise KeyError("Missing required field 'failedAt'")
     failed_at = obj["failedAt"]
     if not isinstance(failed_at, str):
-        raise ValueError(f"{repr(failed_at)} is not str")
+        raise ValueError("Expected str for failed_at")
     if "failure" not in obj:
-        raise KeyError(f"'failure' is not in {obj}")
+        raise KeyError("Missing required field 'failure'")
     failure = obj["failure"]
     failure = _deserialize_payment_failure(failure)
     if "method" in obj:
@@ -256,19 +256,19 @@ def _deserialize_failed_payment_transaction(obj: Any) -> FailedPaymentTransactio
     if "scheduleId" in obj:
         schedule_id = obj["scheduleId"]
         if not isinstance(schedule_id, str):
-            raise ValueError(f"{repr(schedule_id)} is not str")
+            raise ValueError("Expected str for schedule_id")
     else:
         schedule_id = None
     if "billingKey" in obj:
         billing_key = obj["billingKey"]
         if not isinstance(billing_key, str):
-            raise ValueError(f"{repr(billing_key)} is not str")
+            raise ValueError("Expected str for billing_key")
     else:
         billing_key = None
     if "webhooks" in obj:
         webhooks = obj["webhooks"]
         if not isinstance(webhooks, list):
-            raise ValueError(f"{repr(webhooks)} is not list")
+            raise ValueError("Expected list for webhooks")
         for i, item in enumerate(webhooks):
             item = _deserialize_payment_webhook(item)
             webhooks[i] = item
@@ -277,13 +277,13 @@ def _deserialize_failed_payment_transaction(obj: Any) -> FailedPaymentTransactio
     if "promotionId" in obj:
         promotion_id = obj["promotionId"]
         if not isinstance(promotion_id, str):
-            raise ValueError(f"{repr(promotion_id)} is not str")
+            raise ValueError("Expected str for promotion_id")
     else:
         promotion_id = None
     if "isCulturalExpense" in obj:
         is_cultural_expense = obj["isCulturalExpense"]
         if not isinstance(is_cultural_expense, bool):
-            raise ValueError(f"{repr(is_cultural_expense)} is not bool")
+            raise ValueError("Expected bool for is_cultural_expense")
     else:
         is_cultural_expense = None
     if "escrow" in obj:
@@ -294,7 +294,7 @@ def _deserialize_failed_payment_transaction(obj: Any) -> FailedPaymentTransactio
     if "products" in obj:
         products = obj["products"]
         if not isinstance(products, list):
-            raise ValueError(f"{repr(products)} is not list")
+            raise ValueError("Expected list for products")
         for i, item in enumerate(products):
             item = _deserialize_payment_product(item)
             products[i] = item
@@ -303,13 +303,13 @@ def _deserialize_failed_payment_transaction(obj: Any) -> FailedPaymentTransactio
     if "productCount" in obj:
         product_count = obj["productCount"]
         if not isinstance(product_count, int):
-            raise ValueError(f"{repr(product_count)} is not int")
+            raise ValueError("Expected int for product_count")
     else:
         product_count = None
     if "customData" in obj:
         custom_data = obj["customData"]
         if not isinstance(custom_data, str):
-            raise ValueError(f"{repr(custom_data)} is not str")
+            raise ValueError("Expected str for custom_data")
     else:
         custom_data = None
     if "country" in obj:

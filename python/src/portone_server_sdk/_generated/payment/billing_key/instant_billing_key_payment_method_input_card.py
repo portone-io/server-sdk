@@ -20,9 +20,9 @@ def _serialize_instant_billing_key_payment_method_input_card(obj: InstantBilling
 
 def _deserialize_instant_billing_key_payment_method_input_card(obj: Any) -> InstantBillingKeyPaymentMethodInputCard:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "credential" not in obj:
-        raise KeyError(f"'credential' is not in {obj}")
+        raise KeyError("Missing required field 'credential'")
     credential = obj["credential"]
     credential = _deserialize_card_credential(credential)
     return InstantBillingKeyPaymentMethodInputCard(credential)

@@ -22,16 +22,16 @@ def _serialize_platform_duplicated_partner_settlement_ids_error(obj: PlatformDup
 
 def _deserialize_platform_duplicated_partner_settlement_ids_error(obj: Any) -> PlatformDuplicatedPartnerSettlementIdsError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_DUPLICATED_PARTNER_SETTLEMENT_IDS":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_DUPLICATED_PARTNER_SETTLEMENT_IDS'")
+        raise ValueError("Expected 'PLATFORM_DUPLICATED_PARTNER_SETTLEMENT_IDS' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformDuplicatedPartnerSettlementIdsError(message)

@@ -22,9 +22,9 @@ def _serialize_cancel_payment_response(obj: CancelPaymentResponse) -> Any:
 
 def _deserialize_cancel_payment_response(obj: Any) -> CancelPaymentResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "cancellation" not in obj:
-        raise KeyError(f"'cancellation' is not in {obj}")
+        raise KeyError("Missing required field 'cancellation'")
     cancellation = obj["cancellation"]
     cancellation = _deserialize_payment_cancellation(cancellation)
     return CancelPaymentResponse(cancellation)

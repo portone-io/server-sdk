@@ -45,25 +45,25 @@ def _serialize_platform_external_payment(obj: PlatformExternalPayment) -> Any:
 
 def _deserialize_platform_external_payment(obj: Any) -> PlatformExternalPayment:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "EXTERNAL":
-        raise ValueError(f"{repr(type)} is not 'EXTERNAL'")
+        raise ValueError("Expected 'EXTERNAL' for type")
     if "id" not in obj:
-        raise KeyError(f"'id' is not in {obj}")
+        raise KeyError("Missing required field 'id'")
     id = obj["id"]
     if not isinstance(id, str):
-        raise ValueError(f"{repr(id)} is not str")
+        raise ValueError("Expected str for id")
     if "currency" not in obj:
-        raise KeyError(f"'currency' is not in {obj}")
+        raise KeyError("Missing required field 'currency'")
     currency = obj["currency"]
     currency = _deserialize_currency(currency)
     if "orderName" in obj:
         order_name = obj["orderName"]
         if not isinstance(order_name, str):
-            raise ValueError(f"{repr(order_name)} is not str")
+            raise ValueError("Expected str for order_name")
     else:
         order_name = None
     if "method" in obj:
@@ -74,7 +74,7 @@ def _deserialize_platform_external_payment(obj: Any) -> PlatformExternalPayment:
     if "paidAt" in obj:
         paid_at = obj["paidAt"]
         if not isinstance(paid_at, str):
-            raise ValueError(f"{repr(paid_at)} is not str")
+            raise ValueError("Expected str for paid_at")
     else:
         paid_at = None
     return PlatformExternalPayment(id, currency, order_name, method, paid_at)

@@ -42,7 +42,7 @@ def _serialize_update_platform_additional_fee_policy_body(obj: UpdatePlatformAdd
 
 def _deserialize_update_platform_additional_fee_policy_body(obj: Any) -> UpdatePlatformAdditionalFeePolicyBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "fee" in obj:
         fee = obj["fee"]
         fee = _deserialize_platform_fee_input(fee)
@@ -51,13 +51,13 @@ def _deserialize_update_platform_additional_fee_policy_body(obj: Any) -> UpdateP
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "vatPayer" in obj:

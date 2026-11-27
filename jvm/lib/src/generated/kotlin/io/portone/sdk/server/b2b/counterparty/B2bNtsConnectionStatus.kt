@@ -22,7 +22,7 @@ public sealed interface B2bNtsConnectionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NotConnected::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NotConnected = decoder.decodeString().let {
       if (it != "NOT_CONNECTED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NOT_CONNECTED")
       } else {
         return NotConnected
       }
@@ -38,7 +38,7 @@ public sealed interface B2bNtsConnectionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PendingConnect::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PendingConnect = decoder.decodeString().let {
       if (it != "PENDING_CONNECT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PENDING_CONNECT")
       } else {
         return PendingConnect
       }
@@ -54,7 +54,7 @@ public sealed interface B2bNtsConnectionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Connected::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Connected = decoder.decodeString().let {
       if (it != "CONNECTED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CONNECTED")
       } else {
         return Connected
       }
@@ -70,7 +70,7 @@ public sealed interface B2bNtsConnectionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PendingDisconnect::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PendingDisconnect = decoder.decodeString().let {
       if (it != "PENDING_DISCONNECT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PENDING_DISCONNECT")
       } else {
         return PendingDisconnect
       }
@@ -86,7 +86,7 @@ public sealed interface B2bNtsConnectionStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Error::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Error = decoder.decodeString().let {
       if (it != "ERROR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ERROR")
       } else {
         return Error
       }

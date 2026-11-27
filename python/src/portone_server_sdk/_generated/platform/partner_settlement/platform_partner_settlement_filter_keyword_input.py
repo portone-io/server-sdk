@@ -25,23 +25,23 @@ def _serialize_platform_partner_settlement_filter_keyword_input(obj: PlatformPar
 
 def _deserialize_platform_partner_settlement_filter_keyword_input(obj: Any) -> PlatformPartnerSettlementFilterKeywordInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "partnerSettlementId" in obj:
         partner_settlement_id = obj["partnerSettlementId"]
         if not isinstance(partner_settlement_id, str):
-            raise ValueError(f"{repr(partner_settlement_id)} is not str")
+            raise ValueError("Expected str for partner_settlement_id")
     else:
         partner_settlement_id = None
     if "payoutId" in obj:
         payout_id = obj["payoutId"]
         if not isinstance(payout_id, str):
-            raise ValueError(f"{repr(payout_id)} is not str")
+            raise ValueError("Expected str for payout_id")
     else:
         payout_id = None
     if "bulkPayoutId" in obj:
         bulk_payout_id = obj["bulkPayoutId"]
         if not isinstance(bulk_payout_id, str):
-            raise ValueError(f"{repr(bulk_payout_id)} is not str")
+            raise ValueError("Expected str for bulk_payout_id")
     else:
         bulk_payout_id = None
     return PlatformPartnerSettlementFilterKeywordInput(partner_settlement_id, payout_id, bulk_payout_id)

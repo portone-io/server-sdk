@@ -1,6 +1,6 @@
 import { IdentityVerificationError } from "./IdentityVerificationError"
 import type { Unrecognized } from "./../../utils/unrecognized"
-import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../client"
+import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../client"
 import type { ChannelNotFoundError } from "../../generated/common/ChannelNotFoundError"
 import type { ConfirmIdentityVerificationResponse } from "../../generated/identityVerification/ConfirmIdentityVerificationResponse"
 import type { ForbiddenError } from "../../generated/common/ForbiddenError"
@@ -57,9 +57,9 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				},
 			)
 			if (!response.ok) {
-				throw new ConfirmIdentityVerificationError(await response.json())
+				throw new ConfirmIdentityVerificationError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		resendIdentityVerification: async (
 			options: {
@@ -87,9 +87,9 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				},
 			)
 			if (!response.ok) {
-				throw new ResendIdentityVerificationError(await response.json())
+				throw new ResendIdentityVerificationError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		sendIdentityVerification: async (
 			options: {
@@ -134,9 +134,9 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				},
 			)
 			if (!response.ok) {
-				throw new SendIdentityVerificationError(await response.json())
+				throw new SendIdentityVerificationError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getIdentityVerification: async (
 			options: {
@@ -164,9 +164,9 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				},
 			)
 			if (!response.ok) {
-				throw new GetIdentityVerificationError(await response.json())
+				throw new GetIdentityVerificationError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getIdentityVerifications: async (
 			options?: {
@@ -199,9 +199,9 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				},
 			)
 			if (!response.ok) {
-				throw new GetIdentityVerificationsError(await response.json())
+				throw new GetIdentityVerificationsError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

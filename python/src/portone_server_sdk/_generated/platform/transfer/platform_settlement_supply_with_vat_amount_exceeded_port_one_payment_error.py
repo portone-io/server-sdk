@@ -34,31 +34,31 @@ def _serialize_platform_settlement_supply_with_vat_amount_exceeded_port_one_paym
 
 def _deserialize_platform_settlement_supply_with_vat_amount_exceeded_port_one_payment_error(obj: Any) -> PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_SETTLEMENT_SUPPLY_WITH_VAT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_SETTLEMENT_SUPPLY_WITH_VAT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT'")
+        raise ValueError("Expected 'PLATFORM_SETTLEMENT_SUPPLY_WITH_VAT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT' for type")
     if "registeredSettlementSupplyWithVatAmount" not in obj:
-        raise KeyError(f"'registeredSettlementSupplyWithVatAmount' is not in {obj}")
+        raise KeyError("Missing required field 'registeredSettlementSupplyWithVatAmount'")
     registered_settlement_supply_with_vat_amount = obj["registeredSettlementSupplyWithVatAmount"]
     if not isinstance(registered_settlement_supply_with_vat_amount, int):
-        raise ValueError(f"{repr(registered_settlement_supply_with_vat_amount)} is not int")
+        raise ValueError("Expected int for registered_settlement_supply_with_vat_amount")
     if "requestSettlementSupplyWithVatAmount" not in obj:
-        raise KeyError(f"'requestSettlementSupplyWithVatAmount' is not in {obj}")
+        raise KeyError("Missing required field 'requestSettlementSupplyWithVatAmount'")
     request_settlement_supply_with_vat_amount = obj["requestSettlementSupplyWithVatAmount"]
     if not isinstance(request_settlement_supply_with_vat_amount, int):
-        raise ValueError(f"{repr(request_settlement_supply_with_vat_amount)} is not int")
+        raise ValueError("Expected int for request_settlement_supply_with_vat_amount")
     if "portOneSupplyWithVatAmount" not in obj:
-        raise KeyError(f"'portOneSupplyWithVatAmount' is not in {obj}")
+        raise KeyError("Missing required field 'portOneSupplyWithVatAmount'")
     port_one_supply_with_vat_amount = obj["portOneSupplyWithVatAmount"]
     if not isinstance(port_one_supply_with_vat_amount, int):
-        raise ValueError(f"{repr(port_one_supply_with_vat_amount)} is not int")
+        raise ValueError("Expected int for port_one_supply_with_vat_amount")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(registered_settlement_supply_with_vat_amount, request_settlement_supply_with_vat_amount, port_one_supply_with_vat_amount, message)

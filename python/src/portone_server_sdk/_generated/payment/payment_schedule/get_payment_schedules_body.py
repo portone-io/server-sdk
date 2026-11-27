@@ -42,7 +42,7 @@ def _serialize_get_payment_schedules_body(obj: GetPaymentSchedulesBody) -> Any:
 
 def _deserialize_get_payment_schedules_body(obj: Any) -> GetPaymentSchedulesBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "page" in obj:
         page = obj["page"]
         page = _deserialize_page_input(page)

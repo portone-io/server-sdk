@@ -52,4 +52,4 @@ def _deserialize_get_b2b_tax_invoice_print_url_error(obj: Any) -> GetB2bTaxInvoi
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetB2bTaxInvoicePrintUrlError")
+    raise ValueError("Expected GetB2bTaxInvoicePrintUrlError")

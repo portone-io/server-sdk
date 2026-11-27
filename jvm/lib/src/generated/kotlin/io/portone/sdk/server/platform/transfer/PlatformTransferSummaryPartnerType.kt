@@ -22,7 +22,7 @@ public sealed interface PlatformTransferSummaryPartnerType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Business::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Business = decoder.decodeString().let {
       if (it != "BUSINESS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BUSINESS")
       } else {
         return Business
       }
@@ -38,7 +38,7 @@ public sealed interface PlatformTransferSummaryPartnerType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(WhtPayer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): WhtPayer = decoder.decodeString().let {
       if (it != "WHT_PAYER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WHT_PAYER")
       } else {
         return WhtPayer
       }
@@ -54,7 +54,7 @@ public sealed interface PlatformTransferSummaryPartnerType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NonWhtPayer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NonWhtPayer = decoder.decodeString().let {
       if (it != "NON_WHT_PAYER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NON_WHT_PAYER")
       } else {
         return NonWhtPayer
       }

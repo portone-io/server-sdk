@@ -37,9 +37,9 @@ def _serialize_get_platform_partner_settlements_body(obj: GetPlatformPartnerSett
 
 def _deserialize_get_platform_partner_settlements_body(obj: Any) -> GetPlatformPartnerSettlementsBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "filter" not in obj:
-        raise KeyError(f"'filter' is not in {obj}")
+        raise KeyError("Missing required field 'filter'")
     filter = obj["filter"]
     filter = _deserialize_platform_partner_settlement_filter_input(filter)
     if "page" in obj:
@@ -50,7 +50,7 @@ def _deserialize_get_platform_partner_settlements_body(obj: Any) -> GetPlatformP
     if "isForTest" in obj:
         is_for_test = obj["isForTest"]
         if not isinstance(is_for_test, bool):
-            raise ValueError(f"{repr(is_for_test)} is not bool")
+            raise ValueError("Expected bool for is_for_test")
     else:
         is_for_test = None
     return GetPlatformPartnerSettlementsBody(filter, page, is_for_test)

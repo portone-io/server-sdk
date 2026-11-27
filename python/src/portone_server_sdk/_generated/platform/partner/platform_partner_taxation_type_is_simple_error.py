@@ -22,16 +22,16 @@ def _serialize_platform_partner_taxation_type_is_simple_error(obj: PlatformPartn
 
 def _deserialize_platform_partner_taxation_type_is_simple_error(obj: Any) -> PlatformPartnerTaxationTypeIsSimpleError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_PARTNER_TAXATION_TYPE_IS_SIMPLE":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_PARTNER_TAXATION_TYPE_IS_SIMPLE'")
+        raise ValueError("Expected 'PLATFORM_PARTNER_TAXATION_TYPE_IS_SIMPLE' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformPartnerTaxationTypeIsSimpleError(message)

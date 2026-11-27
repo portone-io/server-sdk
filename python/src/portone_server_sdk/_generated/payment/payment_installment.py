@@ -34,21 +34,21 @@ def _serialize_payment_installment(obj: PaymentInstallment) -> Any:
 
 def _deserialize_payment_installment(obj: Any) -> PaymentInstallment:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "month" not in obj:
-        raise KeyError(f"'month' is not in {obj}")
+        raise KeyError("Missing required field 'month'")
     month = obj["month"]
     if not isinstance(month, int):
-        raise ValueError(f"{repr(month)} is not int")
+        raise ValueError("Expected int for month")
     if "isInterestFree" not in obj:
-        raise KeyError(f"'isInterestFree' is not in {obj}")
+        raise KeyError("Missing required field 'isInterestFree'")
     is_interest_free = obj["isInterestFree"]
     if not isinstance(is_interest_free, bool):
-        raise ValueError(f"{repr(is_interest_free)} is not bool")
+        raise ValueError("Expected bool for is_interest_free")
     if "isInterestFreeFromMerchant" in obj:
         is_interest_free_from_merchant = obj["isInterestFreeFromMerchant"]
         if not isinstance(is_interest_free_from_merchant, bool):
-            raise ValueError(f"{repr(is_interest_free_from_merchant)} is not bool")
+            raise ValueError("Expected bool for is_interest_free_from_merchant")
     else:
         is_interest_free_from_merchant = None
     return PaymentInstallment(month, is_interest_free, is_interest_free_from_merchant)

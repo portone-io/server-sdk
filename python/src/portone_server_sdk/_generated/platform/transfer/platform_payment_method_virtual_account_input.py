@@ -16,5 +16,5 @@ def _serialize_platform_payment_method_virtual_account_input(obj: PlatformPaymen
 
 def _deserialize_platform_payment_method_virtual_account_input(obj: Any) -> PlatformPaymentMethodVirtualAccountInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     return PlatformPaymentMethodVirtualAccountInput()

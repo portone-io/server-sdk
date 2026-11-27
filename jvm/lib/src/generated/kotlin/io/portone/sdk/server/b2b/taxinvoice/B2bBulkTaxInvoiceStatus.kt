@@ -21,7 +21,7 @@ public sealed interface B2bBulkTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DraftPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DraftPending = decoder.decodeString().let {
       if (it != "DRAFT_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DRAFT_PENDING")
       } else {
         return DraftPending
       }
@@ -36,7 +36,7 @@ public sealed interface B2bBulkTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Drafted::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Drafted = decoder.decodeString().let {
       if (it != "DRAFTED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DRAFTED")
       } else {
         return Drafted
       }
@@ -51,7 +51,7 @@ public sealed interface B2bBulkTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestPending = decoder.decodeString().let {
       if (it != "REQUEST_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REQUEST_PENDING")
       } else {
         return RequestPending
       }
@@ -66,7 +66,7 @@ public sealed interface B2bBulkTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuePending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuePending = decoder.decodeString().let {
       if (it != "ISSUE_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISSUE_PENDING")
       } else {
         return IssuePending
       }
@@ -81,7 +81,7 @@ public sealed interface B2bBulkTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(InProgress::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): InProgress = decoder.decodeString().let {
       if (it != "IN_PROGRESS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IN_PROGRESS")
       } else {
         return InProgress
       }
@@ -96,7 +96,7 @@ public sealed interface B2bBulkTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Completed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Completed = decoder.decodeString().let {
       if (it != "COMPLETED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected COMPLETED")
       } else {
         return Completed
       }
@@ -111,7 +111,7 @@ public sealed interface B2bBulkTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Failed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Failed = decoder.decodeString().let {
       if (it != "FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FAILED")
       } else {
         return Failed
       }
@@ -126,7 +126,7 @@ public sealed interface B2bBulkTaxInvoiceStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cancelled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cancelled = decoder.decodeString().let {
       if (it != "CANCELLED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CANCELLED")
       } else {
         return Cancelled
       }

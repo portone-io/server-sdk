@@ -25,9 +25,9 @@ def _serialize_get_payment_reconciliation_settlement_vat_report_body(obj: GetPay
 
 def _deserialize_get_payment_reconciliation_settlement_vat_report_body(obj: Any) -> GetPaymentReconciliationSettlementVatReportBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "dateRange" not in obj:
-        raise KeyError(f"'dateRange' is not in {obj}")
+        raise KeyError("Missing required field 'dateRange'")
     date_range = obj["dateRange"]
     date_range = _deserialize_date_range(date_range)
     if "filter" in obj:

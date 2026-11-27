@@ -30,17 +30,17 @@ def _serialize_page_input(obj: PageInput) -> Any:
 
 def _deserialize_page_input(obj: Any) -> PageInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "number" in obj:
         number = obj["number"]
         if not isinstance(number, int):
-            raise ValueError(f"{repr(number)} is not int")
+            raise ValueError("Expected int for number")
     else:
         number = None
     if "size" in obj:
         size = obj["size"]
         if not isinstance(size, int):
-            raise ValueError(f"{repr(size)} is not int")
+            raise ValueError("Expected int for size")
     else:
         size = None
     return PageInput(number, size)

@@ -41,12 +41,12 @@ def _serialize_payment_method_convenience_store(obj: PaymentMethodConvenienceSto
 
 def _deserialize_payment_method_convenience_store(obj: Any) -> PaymentMethodConvenienceStore:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PaymentMethodConvenienceStore":
-        raise ValueError(f"{repr(type)} is not 'PaymentMethodConvenienceStore'")
+        raise ValueError("Expected 'PaymentMethodConvenienceStore' for type")
     if "convenienceStoreBrand" in obj:
         convenience_store_brand = obj["convenienceStoreBrand"]
         convenience_store_brand = _deserialize_convenience_store_brand(convenience_store_brand)
@@ -55,19 +55,19 @@ def _deserialize_payment_method_convenience_store(obj: Any) -> PaymentMethodConv
     if "confirmationNumber" in obj:
         confirmation_number = obj["confirmationNumber"]
         if not isinstance(confirmation_number, str):
-            raise ValueError(f"{repr(confirmation_number)} is not str")
+            raise ValueError("Expected str for confirmation_number")
     else:
         confirmation_number = None
     if "receiptNumber" in obj:
         receipt_number = obj["receiptNumber"]
         if not isinstance(receipt_number, str):
-            raise ValueError(f"{repr(receipt_number)} is not str")
+            raise ValueError("Expected str for receipt_number")
     else:
         receipt_number = None
     if "paymentDeadline" in obj:
         payment_deadline = obj["paymentDeadline"]
         if not isinstance(payment_deadline, str):
-            raise ValueError(f"{repr(payment_deadline)} is not str")
+            raise ValueError("Expected str for payment_deadline")
     else:
         payment_deadline = None
     return PaymentMethodConvenienceStore(convenience_store_brand, confirmation_number, receipt_number, payment_deadline)

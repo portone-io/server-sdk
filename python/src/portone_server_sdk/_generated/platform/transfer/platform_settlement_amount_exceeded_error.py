@@ -39,32 +39,32 @@ def _serialize_platform_settlement_amount_exceeded_error(obj: PlatformSettlement
 
 def _deserialize_platform_settlement_amount_exceeded_error(obj: Any) -> PlatformSettlementAmountExceededError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED'")
+        raise ValueError("Expected 'PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED' for type")
     if "requestedAmount" not in obj:
-        raise KeyError(f"'requestedAmount' is not in {obj}")
+        raise KeyError("Missing required field 'requestedAmount'")
     requested_amount = obj["requestedAmount"]
     if not isinstance(requested_amount, int):
-        raise ValueError(f"{repr(requested_amount)} is not int")
+        raise ValueError("Expected int for requested_amount")
     if "allowedAmount" not in obj:
-        raise KeyError(f"'allowedAmount' is not in {obj}")
+        raise KeyError("Missing required field 'allowedAmount'")
     allowed_amount = obj["allowedAmount"]
     if not isinstance(allowed_amount, int):
-        raise ValueError(f"{repr(allowed_amount)} is not int")
+        raise ValueError("Expected int for allowed_amount")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     if "productId" in obj:
         product_id = obj["productId"]
         if not isinstance(product_id, str):
-            raise ValueError(f"{repr(product_id)} is not str")
+            raise ValueError("Expected str for product_id")
     else:
         product_id = None
     return PlatformSettlementAmountExceededError(requested_amount, allowed_amount, message, product_id)

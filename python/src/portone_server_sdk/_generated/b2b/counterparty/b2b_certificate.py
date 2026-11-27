@@ -50,44 +50,44 @@ def _serialize_b2b_certificate(obj: B2bCertificate) -> Any:
 
 def _deserialize_b2b_certificate(obj: Any) -> B2bCertificate:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "registeredAt" not in obj:
-        raise KeyError(f"'registeredAt' is not in {obj}")
+        raise KeyError("Missing required field 'registeredAt'")
     registered_at = obj["registeredAt"]
     if not isinstance(registered_at, str):
-        raise ValueError(f"{repr(registered_at)} is not str")
+        raise ValueError("Expected str for registered_at")
     if "expiredAt" not in obj:
-        raise KeyError(f"'expiredAt' is not in {obj}")
+        raise KeyError("Missing required field 'expiredAt'")
     expired_at = obj["expiredAt"]
     if not isinstance(expired_at, str):
-        raise ValueError(f"{repr(expired_at)} is not str")
+        raise ValueError("Expected str for expired_at")
     if "issuerName" not in obj:
-        raise KeyError(f"'issuerName' is not in {obj}")
+        raise KeyError("Missing required field 'issuerName'")
     issuer_name = obj["issuerName"]
     if not isinstance(issuer_name, str):
-        raise ValueError(f"{repr(issuer_name)} is not str")
+        raise ValueError("Expected str for issuer_name")
     if "subjectName" not in obj:
-        raise KeyError(f"'subjectName' is not in {obj}")
+        raise KeyError("Missing required field 'subjectName'")
     subject_name = obj["subjectName"]
     if not isinstance(subject_name, str):
-        raise ValueError(f"{repr(subject_name)} is not str")
+        raise ValueError("Expected str for subject_name")
     if "certificateType" not in obj:
-        raise KeyError(f"'certificateType' is not in {obj}")
+        raise KeyError("Missing required field 'certificateType'")
     certificate_type = obj["certificateType"]
     certificate_type = _deserialize_b2b_certificate_type(certificate_type)
     if "oid" not in obj:
-        raise KeyError(f"'oid' is not in {obj}")
+        raise KeyError("Missing required field 'oid'")
     oid = obj["oid"]
     if not isinstance(oid, str):
-        raise ValueError(f"{repr(oid)} is not str")
+        raise ValueError("Expected str for oid")
     if "registrantContactName" not in obj:
-        raise KeyError(f"'registrantContactName' is not in {obj}")
+        raise KeyError("Missing required field 'registrantContactName'")
     registrant_contact_name = obj["registrantContactName"]
     if not isinstance(registrant_contact_name, str):
-        raise ValueError(f"{repr(registrant_contact_name)} is not str")
+        raise ValueError("Expected str for registrant_contact_name")
     if "registrantContactId" not in obj:
-        raise KeyError(f"'registrantContactId' is not in {obj}")
+        raise KeyError("Missing required field 'registrantContactId'")
     registrant_contact_id = obj["registrantContactId"]
     if not isinstance(registrant_contact_id, str):
-        raise ValueError(f"{repr(registrant_contact_id)} is not str")
+        raise ValueError("Expected str for registrant_contact_id")
     return B2bCertificate(registered_at, expired_at, issuer_name, subject_name, certificate_type, oid, registrant_contact_name, registrant_contact_id)

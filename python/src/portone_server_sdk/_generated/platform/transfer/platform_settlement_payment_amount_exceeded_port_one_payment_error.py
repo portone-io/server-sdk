@@ -34,31 +34,31 @@ def _serialize_platform_settlement_payment_amount_exceeded_port_one_payment_erro
 
 def _deserialize_platform_settlement_payment_amount_exceeded_port_one_payment_error(obj: Any) -> PlatformSettlementPaymentAmountExceededPortOnePaymentError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_SETTLEMENT_PAYMENT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_SETTLEMENT_PAYMENT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT'")
+        raise ValueError("Expected 'PLATFORM_SETTLEMENT_PAYMENT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT' for type")
     if "registeredSettlementPaymentAmount" not in obj:
-        raise KeyError(f"'registeredSettlementPaymentAmount' is not in {obj}")
+        raise KeyError("Missing required field 'registeredSettlementPaymentAmount'")
     registered_settlement_payment_amount = obj["registeredSettlementPaymentAmount"]
     if not isinstance(registered_settlement_payment_amount, int):
-        raise ValueError(f"{repr(registered_settlement_payment_amount)} is not int")
+        raise ValueError("Expected int for registered_settlement_payment_amount")
     if "requestSettlementPaymentAmount" not in obj:
-        raise KeyError(f"'requestSettlementPaymentAmount' is not in {obj}")
+        raise KeyError("Missing required field 'requestSettlementPaymentAmount'")
     request_settlement_payment_amount = obj["requestSettlementPaymentAmount"]
     if not isinstance(request_settlement_payment_amount, int):
-        raise ValueError(f"{repr(request_settlement_payment_amount)} is not int")
+        raise ValueError("Expected int for request_settlement_payment_amount")
     if "portOnePaymentAmount" not in obj:
-        raise KeyError(f"'portOnePaymentAmount' is not in {obj}")
+        raise KeyError("Missing required field 'portOnePaymentAmount'")
     port_one_payment_amount = obj["portOnePaymentAmount"]
     if not isinstance(port_one_payment_amount, int):
-        raise ValueError(f"{repr(port_one_payment_amount)} is not int")
+        raise ValueError("Expected int for port_one_payment_amount")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformSettlementPaymentAmountExceededPortOnePaymentError(registered_settlement_payment_amount, request_settlement_payment_amount, port_one_payment_amount, message)

@@ -45,4 +45,4 @@ def _deserialize_get_b2b_business_infos_error(obj: Any) -> GetB2bBusinessInfosEr
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetB2bBusinessInfosError")
+    raise ValueError("Expected GetB2bBusinessInfosError")

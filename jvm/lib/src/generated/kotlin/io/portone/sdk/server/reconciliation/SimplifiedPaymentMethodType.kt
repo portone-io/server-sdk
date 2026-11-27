@@ -22,7 +22,7 @@ public sealed interface SimplifiedPaymentMethodType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Card::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Card = decoder.decodeString().let {
       if (it != "CARD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CARD")
       } else {
         return Card
       }
@@ -38,7 +38,7 @@ public sealed interface SimplifiedPaymentMethodType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VirtualAccount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VirtualAccount = decoder.decodeString().let {
       if (it != "VIRTUAL_ACCOUNT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VIRTUAL_ACCOUNT")
       } else {
         return VirtualAccount
       }
@@ -54,7 +54,7 @@ public sealed interface SimplifiedPaymentMethodType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Transfer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Transfer = decoder.decodeString().let {
       if (it != "TRANSFER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TRANSFER")
       } else {
         return Transfer
       }
@@ -70,7 +70,7 @@ public sealed interface SimplifiedPaymentMethodType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Charge::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Charge = decoder.decodeString().let {
       if (it != "CHARGE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CHARGE")
       } else {
         return Charge
       }
@@ -86,7 +86,7 @@ public sealed interface SimplifiedPaymentMethodType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mobile::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mobile = decoder.decodeString().let {
       if (it != "MOBILE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MOBILE")
       } else {
         return Mobile
       }
@@ -102,7 +102,7 @@ public sealed interface SimplifiedPaymentMethodType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Point::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Point = decoder.decodeString().let {
       if (it != "POINT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected POINT")
       } else {
         return Point
       }
@@ -118,7 +118,7 @@ public sealed interface SimplifiedPaymentMethodType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Etc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Etc = decoder.decodeString().let {
       if (it != "ETC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ETC")
       } else {
         return Etc
       }

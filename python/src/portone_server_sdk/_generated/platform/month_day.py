@@ -25,15 +25,15 @@ def _serialize_month_day(obj: MonthDay) -> Any:
 
 def _deserialize_month_day(obj: Any) -> MonthDay:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "month" not in obj:
-        raise KeyError(f"'month' is not in {obj}")
+        raise KeyError("Missing required field 'month'")
     month = obj["month"]
     if not isinstance(month, int):
-        raise ValueError(f"{repr(month)} is not int")
+        raise ValueError("Expected int for month")
     if "day" not in obj:
-        raise KeyError(f"'day' is not in {obj}")
+        raise KeyError("Missing required field 'day'")
     day = obj["day"]
     if not isinstance(day, int):
-        raise ValueError(f"{repr(day)} is not int")
+        raise ValueError("Expected int for day")
     return MonthDay(month, day)

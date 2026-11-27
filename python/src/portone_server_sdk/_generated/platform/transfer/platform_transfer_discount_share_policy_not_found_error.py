@@ -27,32 +27,32 @@ def _serialize_platform_transfer_discount_share_policy_not_found_error(obj: Plat
 
 def _deserialize_platform_transfer_discount_share_policy_not_found_error(obj: Any) -> PlatformTransferDiscountSharePolicyNotFoundError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND'")
+        raise ValueError("Expected 'PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND' for type")
     if "discountSharePolicyId" not in obj:
-        raise KeyError(f"'discountSharePolicyId' is not in {obj}")
+        raise KeyError("Missing required field 'discountSharePolicyId'")
     discount_share_policy_id = obj["discountSharePolicyId"]
     if not isinstance(discount_share_policy_id, str):
-        raise ValueError(f"{repr(discount_share_policy_id)} is not str")
+        raise ValueError("Expected str for discount_share_policy_id")
     if "discountSharePolicyGraphqlId" not in obj:
-        raise KeyError(f"'discountSharePolicyGraphqlId' is not in {obj}")
+        raise KeyError("Missing required field 'discountSharePolicyGraphqlId'")
     discount_share_policy_graphql_id = obj["discountSharePolicyGraphqlId"]
     if not isinstance(discount_share_policy_graphql_id, str):
-        raise ValueError(f"{repr(discount_share_policy_graphql_id)} is not str")
+        raise ValueError("Expected str for discount_share_policy_graphql_id")
     if "productId" in obj:
         product_id = obj["productId"]
         if not isinstance(product_id, str):
-            raise ValueError(f"{repr(product_id)} is not str")
+            raise ValueError("Expected str for product_id")
     else:
         product_id = None
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformTransferDiscountSharePolicyNotFoundError(discount_share_policy_id, discount_share_policy_graphql_id, product_id, message)

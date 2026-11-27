@@ -22,7 +22,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Krw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Krw = decoder.decodeString().let {
       if (it != "KRW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KRW")
       } else {
         return Krw
       }
@@ -38,7 +38,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Usd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Usd = decoder.decodeString().let {
       if (it != "USD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected USD")
       } else {
         return Usd
       }
@@ -54,7 +54,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jpy::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Jpy = decoder.decodeString().let {
       if (it != "JPY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JPY")
       } else {
         return Jpy
       }
@@ -70,7 +70,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Aed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Aed = decoder.decodeString().let {
       if (it != "AED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AED")
       } else {
         return Aed
       }
@@ -86,7 +86,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Afn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Afn = decoder.decodeString().let {
       if (it != "AFN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AFN")
       } else {
         return Afn
       }
@@ -102,7 +102,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(All::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): All = decoder.decodeString().let {
       if (it != "ALL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ALL")
       } else {
         return All
       }
@@ -118,7 +118,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Amd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Amd = decoder.decodeString().let {
       if (it != "AMD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AMD")
       } else {
         return Amd
       }
@@ -134,7 +134,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ang::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ang = decoder.decodeString().let {
       if (it != "ANG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ANG")
       } else {
         return Ang
       }
@@ -150,7 +150,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Aoa::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Aoa = decoder.decodeString().let {
       if (it != "AOA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AOA")
       } else {
         return Aoa
       }
@@ -166,7 +166,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ars::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ars = decoder.decodeString().let {
       if (it != "ARS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ARS")
       } else {
         return Ars
       }
@@ -182,7 +182,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Aud::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Aud = decoder.decodeString().let {
       if (it != "AUD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AUD")
       } else {
         return Aud
       }
@@ -198,7 +198,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Awg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Awg = decoder.decodeString().let {
       if (it != "AWG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AWG")
       } else {
         return Awg
       }
@@ -214,7 +214,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Azn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Azn = decoder.decodeString().let {
       if (it != "AZN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected AZN")
       } else {
         return Azn
       }
@@ -230,7 +230,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bam::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bam = decoder.decodeString().let {
       if (it != "BAM") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BAM")
       } else {
         return Bam
       }
@@ -246,7 +246,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bbd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bbd = decoder.decodeString().let {
       if (it != "BBD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BBD")
       } else {
         return Bbd
       }
@@ -262,7 +262,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bdt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bdt = decoder.decodeString().let {
       if (it != "BDT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BDT")
       } else {
         return Bdt
       }
@@ -278,7 +278,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bgn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bgn = decoder.decodeString().let {
       if (it != "BGN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BGN")
       } else {
         return Bgn
       }
@@ -294,7 +294,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bhd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bhd = decoder.decodeString().let {
       if (it != "BHD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BHD")
       } else {
         return Bhd
       }
@@ -310,7 +310,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bif::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bif = decoder.decodeString().let {
       if (it != "BIF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BIF")
       } else {
         return Bif
       }
@@ -326,7 +326,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bmd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bmd = decoder.decodeString().let {
       if (it != "BMD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BMD")
       } else {
         return Bmd
       }
@@ -342,7 +342,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bnd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bnd = decoder.decodeString().let {
       if (it != "BND") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BND")
       } else {
         return Bnd
       }
@@ -358,7 +358,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bob::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bob = decoder.decodeString().let {
       if (it != "BOB") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BOB")
       } else {
         return Bob
       }
@@ -374,7 +374,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bov::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bov = decoder.decodeString().let {
       if (it != "BOV") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BOV")
       } else {
         return Bov
       }
@@ -390,7 +390,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Brl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Brl = decoder.decodeString().let {
       if (it != "BRL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BRL")
       } else {
         return Brl
       }
@@ -406,7 +406,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bsd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bsd = decoder.decodeString().let {
       if (it != "BSD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BSD")
       } else {
         return Bsd
       }
@@ -422,7 +422,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Btn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Btn = decoder.decodeString().let {
       if (it != "BTN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BTN")
       } else {
         return Btn
       }
@@ -438,7 +438,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bwp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bwp = decoder.decodeString().let {
       if (it != "BWP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BWP")
       } else {
         return Bwp
       }
@@ -454,7 +454,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Byn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Byn = decoder.decodeString().let {
       if (it != "BYN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BYN")
       } else {
         return Byn
       }
@@ -470,7 +470,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bzd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bzd = decoder.decodeString().let {
       if (it != "BZD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected BZD")
       } else {
         return Bzd
       }
@@ -486,7 +486,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cad::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cad = decoder.decodeString().let {
       if (it != "CAD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CAD")
       } else {
         return Cad
       }
@@ -502,7 +502,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cdf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cdf = decoder.decodeString().let {
       if (it != "CDF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CDF")
       } else {
         return Cdf
       }
@@ -518,7 +518,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Che::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Che = decoder.decodeString().let {
       if (it != "CHE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CHE")
       } else {
         return Che
       }
@@ -534,7 +534,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Chf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Chf = decoder.decodeString().let {
       if (it != "CHF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CHF")
       } else {
         return Chf
       }
@@ -550,7 +550,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Chw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Chw = decoder.decodeString().let {
       if (it != "CHW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CHW")
       } else {
         return Chw
       }
@@ -566,7 +566,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Clf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Clf = decoder.decodeString().let {
       if (it != "CLF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CLF")
       } else {
         return Clf
       }
@@ -582,7 +582,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Clp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Clp = decoder.decodeString().let {
       if (it != "CLP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CLP")
       } else {
         return Clp
       }
@@ -598,7 +598,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cny::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cny = decoder.decodeString().let {
       if (it != "CNY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CNY")
       } else {
         return Cny
       }
@@ -614,7 +614,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cop::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cop = decoder.decodeString().let {
       if (it != "COP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected COP")
       } else {
         return Cop
       }
@@ -630,7 +630,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cou::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cou = decoder.decodeString().let {
       if (it != "COU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected COU")
       } else {
         return Cou
       }
@@ -646,7 +646,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Crc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Crc = decoder.decodeString().let {
       if (it != "CRC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CRC")
       } else {
         return Crc
       }
@@ -662,7 +662,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cuc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cuc = decoder.decodeString().let {
       if (it != "CUC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CUC")
       } else {
         return Cuc
       }
@@ -678,7 +678,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cup::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cup = decoder.decodeString().let {
       if (it != "CUP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CUP")
       } else {
         return Cup
       }
@@ -694,7 +694,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cve::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cve = decoder.decodeString().let {
       if (it != "CVE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CVE")
       } else {
         return Cve
       }
@@ -710,7 +710,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Czk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Czk = decoder.decodeString().let {
       if (it != "CZK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CZK")
       } else {
         return Czk
       }
@@ -726,7 +726,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Djf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Djf = decoder.decodeString().let {
       if (it != "DJF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DJF")
       } else {
         return Djf
       }
@@ -742,7 +742,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dkk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dkk = decoder.decodeString().let {
       if (it != "DKK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DKK")
       } else {
         return Dkk
       }
@@ -758,7 +758,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dop::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dop = decoder.decodeString().let {
       if (it != "DOP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DOP")
       } else {
         return Dop
       }
@@ -774,7 +774,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dzd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dzd = decoder.decodeString().let {
       if (it != "DZD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DZD")
       } else {
         return Dzd
       }
@@ -790,7 +790,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Egp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Egp = decoder.decodeString().let {
       if (it != "EGP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected EGP")
       } else {
         return Egp
       }
@@ -806,7 +806,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ern::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ern = decoder.decodeString().let {
       if (it != "ERN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ERN")
       } else {
         return Ern
       }
@@ -822,7 +822,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Etb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Etb = decoder.decodeString().let {
       if (it != "ETB") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ETB")
       } else {
         return Etb
       }
@@ -838,7 +838,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Eur::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Eur = decoder.decodeString().let {
       if (it != "EUR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected EUR")
       } else {
         return Eur
       }
@@ -854,7 +854,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fjd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fjd = decoder.decodeString().let {
       if (it != "FJD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FJD")
       } else {
         return Fjd
       }
@@ -870,7 +870,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fkp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fkp = decoder.decodeString().let {
       if (it != "FKP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FKP")
       } else {
         return Fkp
       }
@@ -886,7 +886,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gbp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gbp = decoder.decodeString().let {
       if (it != "GBP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GBP")
       } else {
         return Gbp
       }
@@ -902,7 +902,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gel::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gel = decoder.decodeString().let {
       if (it != "GEL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GEL")
       } else {
         return Gel
       }
@@ -918,7 +918,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ghs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ghs = decoder.decodeString().let {
       if (it != "GHS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GHS")
       } else {
         return Ghs
       }
@@ -934,7 +934,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gip::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gip = decoder.decodeString().let {
       if (it != "GIP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GIP")
       } else {
         return Gip
       }
@@ -950,7 +950,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gmd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gmd = decoder.decodeString().let {
       if (it != "GMD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GMD")
       } else {
         return Gmd
       }
@@ -966,7 +966,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gnf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gnf = decoder.decodeString().let {
       if (it != "GNF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GNF")
       } else {
         return Gnf
       }
@@ -982,7 +982,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gtq::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gtq = decoder.decodeString().let {
       if (it != "GTQ") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GTQ")
       } else {
         return Gtq
       }
@@ -998,7 +998,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gyd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gyd = decoder.decodeString().let {
       if (it != "GYD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected GYD")
       } else {
         return Gyd
       }
@@ -1014,7 +1014,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hkd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hkd = decoder.decodeString().let {
       if (it != "HKD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HKD")
       } else {
         return Hkd
       }
@@ -1030,7 +1030,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hnl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hnl = decoder.decodeString().let {
       if (it != "HNL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HNL")
       } else {
         return Hnl
       }
@@ -1046,7 +1046,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hrk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hrk = decoder.decodeString().let {
       if (it != "HRK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HRK")
       } else {
         return Hrk
       }
@@ -1062,7 +1062,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Htg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Htg = decoder.decodeString().let {
       if (it != "HTG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HTG")
       } else {
         return Htg
       }
@@ -1078,7 +1078,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Huf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Huf = decoder.decodeString().let {
       if (it != "HUF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HUF")
       } else {
         return Huf
       }
@@ -1094,7 +1094,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Idr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Idr = decoder.decodeString().let {
       if (it != "IDR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IDR")
       } else {
         return Idr
       }
@@ -1110,7 +1110,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ils::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ils = decoder.decodeString().let {
       if (it != "ILS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ILS")
       } else {
         return Ils
       }
@@ -1126,7 +1126,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Inr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Inr = decoder.decodeString().let {
       if (it != "INR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected INR")
       } else {
         return Inr
       }
@@ -1142,7 +1142,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Iqd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Iqd = decoder.decodeString().let {
       if (it != "IQD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IQD")
       } else {
         return Iqd
       }
@@ -1158,7 +1158,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Irr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Irr = decoder.decodeString().let {
       if (it != "IRR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected IRR")
       } else {
         return Irr
       }
@@ -1174,7 +1174,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Isk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Isk = decoder.decodeString().let {
       if (it != "ISK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ISK")
       } else {
         return Isk
       }
@@ -1190,7 +1190,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jmd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Jmd = decoder.decodeString().let {
       if (it != "JMD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JMD")
       } else {
         return Jmd
       }
@@ -1206,7 +1206,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jod::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Jod = decoder.decodeString().let {
       if (it != "JOD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected JOD")
       } else {
         return Jod
       }
@@ -1222,7 +1222,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kes::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kes = decoder.decodeString().let {
       if (it != "KES") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KES")
       } else {
         return Kes
       }
@@ -1238,7 +1238,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kgs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kgs = decoder.decodeString().let {
       if (it != "KGS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KGS")
       } else {
         return Kgs
       }
@@ -1254,7 +1254,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Khr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Khr = decoder.decodeString().let {
       if (it != "KHR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KHR")
       } else {
         return Khr
       }
@@ -1270,7 +1270,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kmf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kmf = decoder.decodeString().let {
       if (it != "KMF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KMF")
       } else {
         return Kmf
       }
@@ -1286,7 +1286,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kpw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kpw = decoder.decodeString().let {
       if (it != "KPW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KPW")
       } else {
         return Kpw
       }
@@ -1302,7 +1302,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kwd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kwd = decoder.decodeString().let {
       if (it != "KWD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KWD")
       } else {
         return Kwd
       }
@@ -1318,7 +1318,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kyd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kyd = decoder.decodeString().let {
       if (it != "KYD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KYD")
       } else {
         return Kyd
       }
@@ -1334,7 +1334,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kzt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kzt = decoder.decodeString().let {
       if (it != "KZT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KZT")
       } else {
         return Kzt
       }
@@ -1350,7 +1350,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lak::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lak = decoder.decodeString().let {
       if (it != "LAK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LAK")
       } else {
         return Lak
       }
@@ -1366,7 +1366,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lbp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lbp = decoder.decodeString().let {
       if (it != "LBP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LBP")
       } else {
         return Lbp
       }
@@ -1382,7 +1382,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lkr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lkr = decoder.decodeString().let {
       if (it != "LKR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LKR")
       } else {
         return Lkr
       }
@@ -1398,7 +1398,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lrd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lrd = decoder.decodeString().let {
       if (it != "LRD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LRD")
       } else {
         return Lrd
       }
@@ -1414,7 +1414,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lsl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lsl = decoder.decodeString().let {
       if (it != "LSL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LSL")
       } else {
         return Lsl
       }
@@ -1430,7 +1430,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lyd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lyd = decoder.decodeString().let {
       if (it != "LYD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected LYD")
       } else {
         return Lyd
       }
@@ -1446,7 +1446,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mad::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mad = decoder.decodeString().let {
       if (it != "MAD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MAD")
       } else {
         return Mad
       }
@@ -1462,7 +1462,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mdl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mdl = decoder.decodeString().let {
       if (it != "MDL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MDL")
       } else {
         return Mdl
       }
@@ -1478,7 +1478,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mga::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mga = decoder.decodeString().let {
       if (it != "MGA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MGA")
       } else {
         return Mga
       }
@@ -1494,7 +1494,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mkd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mkd = decoder.decodeString().let {
       if (it != "MKD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MKD")
       } else {
         return Mkd
       }
@@ -1510,7 +1510,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mmk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mmk = decoder.decodeString().let {
       if (it != "MMK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MMK")
       } else {
         return Mmk
       }
@@ -1526,7 +1526,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mnt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mnt = decoder.decodeString().let {
       if (it != "MNT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MNT")
       } else {
         return Mnt
       }
@@ -1542,7 +1542,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mop::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mop = decoder.decodeString().let {
       if (it != "MOP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MOP")
       } else {
         return Mop
       }
@@ -1558,7 +1558,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mru::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mru = decoder.decodeString().let {
       if (it != "MRU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MRU")
       } else {
         return Mru
       }
@@ -1574,7 +1574,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mur::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mur = decoder.decodeString().let {
       if (it != "MUR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MUR")
       } else {
         return Mur
       }
@@ -1590,7 +1590,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mvr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mvr = decoder.decodeString().let {
       if (it != "MVR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MVR")
       } else {
         return Mvr
       }
@@ -1606,7 +1606,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mwk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mwk = decoder.decodeString().let {
       if (it != "MWK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MWK")
       } else {
         return Mwk
       }
@@ -1622,7 +1622,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mxn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mxn = decoder.decodeString().let {
       if (it != "MXN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MXN")
       } else {
         return Mxn
       }
@@ -1638,7 +1638,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mxv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mxv = decoder.decodeString().let {
       if (it != "MXV") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MXV")
       } else {
         return Mxv
       }
@@ -1654,7 +1654,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Myr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Myr = decoder.decodeString().let {
       if (it != "MYR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MYR")
       } else {
         return Myr
       }
@@ -1670,7 +1670,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mzn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mzn = decoder.decodeString().let {
       if (it != "MZN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MZN")
       } else {
         return Mzn
       }
@@ -1686,7 +1686,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nad::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nad = decoder.decodeString().let {
       if (it != "NAD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NAD")
       } else {
         return Nad
       }
@@ -1702,7 +1702,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ngn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ngn = decoder.decodeString().let {
       if (it != "NGN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NGN")
       } else {
         return Ngn
       }
@@ -1718,7 +1718,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nio::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nio = decoder.decodeString().let {
       if (it != "NIO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NIO")
       } else {
         return Nio
       }
@@ -1734,7 +1734,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nok::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nok = decoder.decodeString().let {
       if (it != "NOK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NOK")
       } else {
         return Nok
       }
@@ -1750,7 +1750,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Npr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Npr = decoder.decodeString().let {
       if (it != "NPR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NPR")
       } else {
         return Npr
       }
@@ -1766,7 +1766,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nzd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nzd = decoder.decodeString().let {
       if (it != "NZD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NZD")
       } else {
         return Nzd
       }
@@ -1782,7 +1782,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Omr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Omr = decoder.decodeString().let {
       if (it != "OMR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected OMR")
       } else {
         return Omr
       }
@@ -1798,7 +1798,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pab::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pab = decoder.decodeString().let {
       if (it != "PAB") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAB")
       } else {
         return Pab
       }
@@ -1814,7 +1814,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pen::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pen = decoder.decodeString().let {
       if (it != "PEN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PEN")
       } else {
         return Pen
       }
@@ -1830,7 +1830,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pgk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pgk = decoder.decodeString().let {
       if (it != "PGK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PGK")
       } else {
         return Pgk
       }
@@ -1846,7 +1846,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Php::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Php = decoder.decodeString().let {
       if (it != "PHP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PHP")
       } else {
         return Php
       }
@@ -1862,7 +1862,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pkr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pkr = decoder.decodeString().let {
       if (it != "PKR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PKR")
       } else {
         return Pkr
       }
@@ -1878,7 +1878,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pln::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pln = decoder.decodeString().let {
       if (it != "PLN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PLN")
       } else {
         return Pln
       }
@@ -1894,7 +1894,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pyg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pyg = decoder.decodeString().let {
       if (it != "PYG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PYG")
       } else {
         return Pyg
       }
@@ -1910,7 +1910,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Qar::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Qar = decoder.decodeString().let {
       if (it != "QAR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected QAR")
       } else {
         return Qar
       }
@@ -1926,7 +1926,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ron::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ron = decoder.decodeString().let {
       if (it != "RON") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RON")
       } else {
         return Ron
       }
@@ -1942,7 +1942,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Rsd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Rsd = decoder.decodeString().let {
       if (it != "RSD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RSD")
       } else {
         return Rsd
       }
@@ -1958,7 +1958,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Rub::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Rub = decoder.decodeString().let {
       if (it != "RUB") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RUB")
       } else {
         return Rub
       }
@@ -1974,7 +1974,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Rwf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Rwf = decoder.decodeString().let {
       if (it != "RWF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RWF")
       } else {
         return Rwf
       }
@@ -1990,7 +1990,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sar::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sar = decoder.decodeString().let {
       if (it != "SAR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SAR")
       } else {
         return Sar
       }
@@ -2006,7 +2006,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sbd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sbd = decoder.decodeString().let {
       if (it != "SBD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SBD")
       } else {
         return Sbd
       }
@@ -2022,7 +2022,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Scr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Scr = decoder.decodeString().let {
       if (it != "SCR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SCR")
       } else {
         return Scr
       }
@@ -2038,7 +2038,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sdg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sdg = decoder.decodeString().let {
       if (it != "SDG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SDG")
       } else {
         return Sdg
       }
@@ -2054,7 +2054,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sek::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sek = decoder.decodeString().let {
       if (it != "SEK") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SEK")
       } else {
         return Sek
       }
@@ -2070,7 +2070,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sgd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sgd = decoder.decodeString().let {
       if (it != "SGD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SGD")
       } else {
         return Sgd
       }
@@ -2086,7 +2086,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Shp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Shp = decoder.decodeString().let {
       if (it != "SHP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SHP")
       } else {
         return Shp
       }
@@ -2102,7 +2102,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sle::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sle = decoder.decodeString().let {
       if (it != "SLE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SLE")
       } else {
         return Sle
       }
@@ -2118,7 +2118,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sll::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sll = decoder.decodeString().let {
       if (it != "SLL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SLL")
       } else {
         return Sll
       }
@@ -2134,7 +2134,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sos::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sos = decoder.decodeString().let {
       if (it != "SOS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SOS")
       } else {
         return Sos
       }
@@ -2150,7 +2150,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Srd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Srd = decoder.decodeString().let {
       if (it != "SRD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SRD")
       } else {
         return Srd
       }
@@ -2166,7 +2166,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ssp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ssp = decoder.decodeString().let {
       if (it != "SSP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SSP")
       } else {
         return Ssp
       }
@@ -2182,7 +2182,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Stn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Stn = decoder.decodeString().let {
       if (it != "STN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected STN")
       } else {
         return Stn
       }
@@ -2198,7 +2198,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Svc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Svc = decoder.decodeString().let {
       if (it != "SVC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SVC")
       } else {
         return Svc
       }
@@ -2214,7 +2214,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Syp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Syp = decoder.decodeString().let {
       if (it != "SYP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SYP")
       } else {
         return Syp
       }
@@ -2230,7 +2230,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Szl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Szl = decoder.decodeString().let {
       if (it != "SZL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SZL")
       } else {
         return Szl
       }
@@ -2246,7 +2246,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Thb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Thb = decoder.decodeString().let {
       if (it != "THB") {
-        throw SerializationException(it)
+        throw SerializationException("Expected THB")
       } else {
         return Thb
       }
@@ -2262,7 +2262,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tjs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tjs = decoder.decodeString().let {
       if (it != "TJS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TJS")
       } else {
         return Tjs
       }
@@ -2278,7 +2278,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tmt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tmt = decoder.decodeString().let {
       if (it != "TMT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TMT")
       } else {
         return Tmt
       }
@@ -2294,7 +2294,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tnd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tnd = decoder.decodeString().let {
       if (it != "TND") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TND")
       } else {
         return Tnd
       }
@@ -2310,7 +2310,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Top::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Top = decoder.decodeString().let {
       if (it != "TOP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOP")
       } else {
         return Top
       }
@@ -2326,7 +2326,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Try::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Try = decoder.decodeString().let {
       if (it != "TRY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TRY")
       } else {
         return Try
       }
@@ -2342,7 +2342,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ttd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ttd = decoder.decodeString().let {
       if (it != "TTD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TTD")
       } else {
         return Ttd
       }
@@ -2358,7 +2358,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Twd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Twd = decoder.decodeString().let {
       if (it != "TWD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TWD")
       } else {
         return Twd
       }
@@ -2374,7 +2374,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tzs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tzs = decoder.decodeString().let {
       if (it != "TZS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TZS")
       } else {
         return Tzs
       }
@@ -2390,7 +2390,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Uah::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Uah = decoder.decodeString().let {
       if (it != "UAH") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UAH")
       } else {
         return Uah
       }
@@ -2406,7 +2406,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ugx::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ugx = decoder.decodeString().let {
       if (it != "UGX") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UGX")
       } else {
         return Ugx
       }
@@ -2422,7 +2422,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Usn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Usn = decoder.decodeString().let {
       if (it != "USN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected USN")
       } else {
         return Usn
       }
@@ -2438,7 +2438,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Uyi::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Uyi = decoder.decodeString().let {
       if (it != "UYI") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UYI")
       } else {
         return Uyi
       }
@@ -2454,7 +2454,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Uyu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Uyu = decoder.decodeString().let {
       if (it != "UYU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UYU")
       } else {
         return Uyu
       }
@@ -2470,7 +2470,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Uyw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Uyw = decoder.decodeString().let {
       if (it != "UYW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UYW")
       } else {
         return Uyw
       }
@@ -2486,7 +2486,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Uzs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Uzs = decoder.decodeString().let {
       if (it != "UZS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UZS")
       } else {
         return Uzs
       }
@@ -2502,7 +2502,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ved = decoder.decodeString().let {
       if (it != "VED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VED")
       } else {
         return Ved
       }
@@ -2518,7 +2518,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ves::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ves = decoder.decodeString().let {
       if (it != "VES") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VES")
       } else {
         return Ves
       }
@@ -2534,7 +2534,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vnd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vnd = decoder.decodeString().let {
       if (it != "VND") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VND")
       } else {
         return Vnd
       }
@@ -2550,7 +2550,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vuv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vuv = decoder.decodeString().let {
       if (it != "VUV") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VUV")
       } else {
         return Vuv
       }
@@ -2566,7 +2566,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Wst::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Wst = decoder.decodeString().let {
       if (it != "WST") {
-        throw SerializationException(it)
+        throw SerializationException("Expected WST")
       } else {
         return Wst
       }
@@ -2582,7 +2582,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xaf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xaf = decoder.decodeString().let {
       if (it != "XAF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XAF")
       } else {
         return Xaf
       }
@@ -2598,7 +2598,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xag::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xag = decoder.decodeString().let {
       if (it != "XAG") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XAG")
       } else {
         return Xag
       }
@@ -2614,7 +2614,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xau::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xau = decoder.decodeString().let {
       if (it != "XAU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XAU")
       } else {
         return Xau
       }
@@ -2630,7 +2630,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xba::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xba = decoder.decodeString().let {
       if (it != "XBA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XBA")
       } else {
         return Xba
       }
@@ -2646,7 +2646,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xbb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xbb = decoder.decodeString().let {
       if (it != "XBB") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XBB")
       } else {
         return Xbb
       }
@@ -2662,7 +2662,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xbc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xbc = decoder.decodeString().let {
       if (it != "XBC") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XBC")
       } else {
         return Xbc
       }
@@ -2678,7 +2678,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xbd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xbd = decoder.decodeString().let {
       if (it != "XBD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XBD")
       } else {
         return Xbd
       }
@@ -2694,7 +2694,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xcd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xcd = decoder.decodeString().let {
       if (it != "XCD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XCD")
       } else {
         return Xcd
       }
@@ -2710,7 +2710,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xdr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xdr = decoder.decodeString().let {
       if (it != "XDR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XDR")
       } else {
         return Xdr
       }
@@ -2726,7 +2726,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xof::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xof = decoder.decodeString().let {
       if (it != "XOF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XOF")
       } else {
         return Xof
       }
@@ -2742,7 +2742,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xpd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xpd = decoder.decodeString().let {
       if (it != "XPD") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XPD")
       } else {
         return Xpd
       }
@@ -2758,7 +2758,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xpf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xpf = decoder.decodeString().let {
       if (it != "XPF") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XPF")
       } else {
         return Xpf
       }
@@ -2774,7 +2774,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xpt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xpt = decoder.decodeString().let {
       if (it != "XPT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XPT")
       } else {
         return Xpt
       }
@@ -2790,7 +2790,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xsu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xsu = decoder.decodeString().let {
       if (it != "XSU") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XSU")
       } else {
         return Xsu
       }
@@ -2806,7 +2806,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xts::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xts = decoder.decodeString().let {
       if (it != "XTS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XTS")
       } else {
         return Xts
       }
@@ -2822,7 +2822,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xua::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xua = decoder.decodeString().let {
       if (it != "XUA") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XUA")
       } else {
         return Xua
       }
@@ -2838,7 +2838,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Xxx::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Xxx = decoder.decodeString().let {
       if (it != "XXX") {
-        throw SerializationException(it)
+        throw SerializationException("Expected XXX")
       } else {
         return Xxx
       }
@@ -2854,7 +2854,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Yer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Yer = decoder.decodeString().let {
       if (it != "YER") {
-        throw SerializationException(it)
+        throw SerializationException("Expected YER")
       } else {
         return Yer
       }
@@ -2870,7 +2870,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Zar::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Zar = decoder.decodeString().let {
       if (it != "ZAR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ZAR")
       } else {
         return Zar
       }
@@ -2886,7 +2886,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Zmw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Zmw = decoder.decodeString().let {
       if (it != "ZMW") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ZMW")
       } else {
         return Zmw
       }
@@ -2902,7 +2902,7 @@ public sealed interface Currency {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Zwl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Zwl = decoder.decodeString().let {
       if (it != "ZWL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected ZWL")
       } else {
         return Zwl
       }

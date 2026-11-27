@@ -315,7 +315,9 @@ export function writeOperation(
   writer.writeLine("}")
   writer.writeLine("catch (_: Exception) {")
   writer.indent()
-  writer.writeLine(`throw UnknownException("Unknown API error: $httpBody")`)
+  writer.writeLine(
+    'throw UnknownException("Unknown API error (HTTP ${httpResponse.status.value})")',
+  )
   writer.outdent()
   writer.writeLine("}")
   writer.writeLine("when (httpBodyDecoded) {")
@@ -342,7 +344,7 @@ export function writeOperation(
       writer.writeLine("catch (_: Exception) {")
       writer.indent()
       writer.writeLine(
-        `throw UnknownException("Unknown API response: $httpBody")`,
+        'throw UnknownException("Unknown API response (HTTP ${httpResponse.status.value})")',
       )
       writer.outdent()
       writer.writeLine("}")

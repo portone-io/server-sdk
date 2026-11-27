@@ -141,61 +141,61 @@ def _serialize_confirm_paymentwall_delivery_body(obj: ConfirmPaymentwallDelivery
 
 def _deserialize_confirm_paymentwall_delivery_body(obj: Any) -> ConfirmPaymentwallDeliveryBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "transactionId" not in obj:
-        raise KeyError(f"'transactionId' is not in {obj}")
+        raise KeyError("Missing required field 'transactionId'")
     transaction_id = obj["transactionId"]
     if not isinstance(transaction_id, str):
-        raise ValueError(f"{repr(transaction_id)} is not str")
+        raise ValueError("Expected str for transaction_id")
     if "deliveryType" not in obj:
-        raise KeyError(f"'deliveryType' is not in {obj}")
+        raise KeyError("Missing required field 'deliveryType'")
     delivery_type = obj["deliveryType"]
     delivery_type = _deserialize_paymentwall_delivery_type(delivery_type)
     if "deliveryStatus" not in obj:
-        raise KeyError(f"'deliveryStatus' is not in {obj}")
+        raise KeyError("Missing required field 'deliveryStatus'")
     delivery_status = obj["deliveryStatus"]
     delivery_status = _deserialize_paymentwall_delivery_status(delivery_status)
     if "estimatedDeliveryDatetime" not in obj:
-        raise KeyError(f"'estimatedDeliveryDatetime' is not in {obj}")
+        raise KeyError("Missing required field 'estimatedDeliveryDatetime'")
     estimated_delivery_datetime = obj["estimatedDeliveryDatetime"]
     if not isinstance(estimated_delivery_datetime, str):
-        raise ValueError(f"{repr(estimated_delivery_datetime)} is not str")
+        raise ValueError("Expected str for estimated_delivery_datetime")
     if "estimatedUpdateDatetime" not in obj:
-        raise KeyError(f"'estimatedUpdateDatetime' is not in {obj}")
+        raise KeyError("Missing required field 'estimatedUpdateDatetime'")
     estimated_update_datetime = obj["estimatedUpdateDatetime"]
     if not isinstance(estimated_update_datetime, str):
-        raise ValueError(f"{repr(estimated_update_datetime)} is not str")
+        raise ValueError("Expected str for estimated_update_datetime")
     if "refundable" not in obj:
-        raise KeyError(f"'refundable' is not in {obj}")
+        raise KeyError("Missing required field 'refundable'")
     refundable = obj["refundable"]
     if not isinstance(refundable, bool):
-        raise ValueError(f"{repr(refundable)} is not bool")
+        raise ValueError("Expected bool for refundable")
     if "details" not in obj:
-        raise KeyError(f"'details' is not in {obj}")
+        raise KeyError("Missing required field 'details'")
     details = obj["details"]
     if not isinstance(details, str):
-        raise ValueError(f"{repr(details)} is not str")
+        raise ValueError("Expected str for details")
     if "shippingAddressEmail" not in obj:
-        raise KeyError(f"'shippingAddressEmail' is not in {obj}")
+        raise KeyError("Missing required field 'shippingAddressEmail'")
     shipping_address_email = obj["shippingAddressEmail"]
     if not isinstance(shipping_address_email, str):
-        raise ValueError(f"{repr(shipping_address_email)} is not str")
+        raise ValueError("Expected str for shipping_address_email")
     if "reason" in obj:
         reason = obj["reason"]
         if not isinstance(reason, str):
-            raise ValueError(f"{repr(reason)} is not str")
+            raise ValueError("Expected str for reason")
     else:
         reason = None
     if "carrierTrackingId" in obj:
         carrier_tracking_id = obj["carrierTrackingId"]
         if not isinstance(carrier_tracking_id, str):
-            raise ValueError(f"{repr(carrier_tracking_id)} is not str")
+            raise ValueError("Expected str for carrier_tracking_id")
     else:
         carrier_tracking_id = None
     if "carrierType" in obj:
         carrier_type = obj["carrierType"]
         if not isinstance(carrier_type, str):
-            raise ValueError(f"{repr(carrier_type)} is not str")
+            raise ValueError("Expected str for carrier_type")
     else:
         carrier_type = None
     if "shippingAddressCountry" in obj:
@@ -206,52 +206,52 @@ def _deserialize_confirm_paymentwall_delivery_body(obj: Any) -> ConfirmPaymentwa
     if "shippingAddressCity" in obj:
         shipping_address_city = obj["shippingAddressCity"]
         if not isinstance(shipping_address_city, str):
-            raise ValueError(f"{repr(shipping_address_city)} is not str")
+            raise ValueError("Expected str for shipping_address_city")
     else:
         shipping_address_city = None
     if "shippingAddressZip" in obj:
         shipping_address_zip = obj["shippingAddressZip"]
         if not isinstance(shipping_address_zip, str):
-            raise ValueError(f"{repr(shipping_address_zip)} is not str")
+            raise ValueError("Expected str for shipping_address_zip")
     else:
         shipping_address_zip = None
     if "shippingAddressState" in obj:
         shipping_address_state = obj["shippingAddressState"]
         if not isinstance(shipping_address_state, str):
-            raise ValueError(f"{repr(shipping_address_state)} is not str")
+            raise ValueError("Expected str for shipping_address_state")
     else:
         shipping_address_state = None
     if "shippingAddressStreet" in obj:
         shipping_address_street = obj["shippingAddressStreet"]
         if not isinstance(shipping_address_street, str):
-            raise ValueError(f"{repr(shipping_address_street)} is not str")
+            raise ValueError("Expected str for shipping_address_street")
     else:
         shipping_address_street = None
     if "shippingAddressPhone" in obj:
         shipping_address_phone = obj["shippingAddressPhone"]
         if not isinstance(shipping_address_phone, str):
-            raise ValueError(f"{repr(shipping_address_phone)} is not str")
+            raise ValueError("Expected str for shipping_address_phone")
     else:
         shipping_address_phone = None
     if "shippingAddressFirstname" in obj:
         shipping_address_firstname = obj["shippingAddressFirstname"]
         if not isinstance(shipping_address_firstname, str):
-            raise ValueError(f"{repr(shipping_address_firstname)} is not str")
+            raise ValueError("Expected str for shipping_address_firstname")
     else:
         shipping_address_firstname = None
     if "shippingAddressLastname" in obj:
         shipping_address_lastname = obj["shippingAddressLastname"]
         if not isinstance(shipping_address_lastname, str):
-            raise ValueError(f"{repr(shipping_address_lastname)} is not str")
+            raise ValueError("Expected str for shipping_address_lastname")
     else:
         shipping_address_lastname = None
     if "attachments" in obj:
         attachments = obj["attachments"]
         if not isinstance(attachments, list):
-            raise ValueError(f"{repr(attachments)} is not list")
+            raise ValueError("Expected list for attachments")
         for i, item in enumerate(attachments):
             if not isinstance(item, str):
-                raise ValueError(f"{repr(item)} is not str")
+                raise ValueError("Expected str for item")
     else:
         attachments = None
     return ConfirmPaymentwallDeliveryBody(transaction_id, delivery_type, delivery_status, estimated_delivery_datetime, estimated_update_datetime, refundable, details, shipping_address_email, reason, carrier_tracking_id, carrier_type, shipping_address_country, shipping_address_city, shipping_address_zip, shipping_address_state, shipping_address_street, shipping_address_phone, shipping_address_firstname, shipping_address_lastname, attachments)

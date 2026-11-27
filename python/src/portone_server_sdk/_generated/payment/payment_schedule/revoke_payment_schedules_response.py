@@ -28,19 +28,19 @@ def _serialize_revoke_payment_schedules_response(obj: RevokePaymentSchedulesResp
 
 def _deserialize_revoke_payment_schedules_response(obj: Any) -> RevokePaymentSchedulesResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "revokedScheduleIds" not in obj:
-        raise KeyError(f"'revokedScheduleIds' is not in {obj}")
+        raise KeyError("Missing required field 'revokedScheduleIds'")
     revoked_schedule_ids = obj["revokedScheduleIds"]
     if not isinstance(revoked_schedule_ids, list):
-        raise ValueError(f"{repr(revoked_schedule_ids)} is not list")
+        raise ValueError("Expected list for revoked_schedule_ids")
     for i, item in enumerate(revoked_schedule_ids):
         if not isinstance(item, str):
-            raise ValueError(f"{repr(item)} is not str")
+            raise ValueError("Expected str for item")
     if "revokedAt" in obj:
         revoked_at = obj["revokedAt"]
         if not isinstance(revoked_at, str):
-            raise ValueError(f"{repr(revoked_at)} is not str")
+            raise ValueError("Expected str for revoked_at")
     else:
         revoked_at = None
     return RevokePaymentSchedulesResponse(revoked_schedule_ids, revoked_at)

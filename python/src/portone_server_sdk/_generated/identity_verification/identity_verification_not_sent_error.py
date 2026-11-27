@@ -22,16 +22,16 @@ def _serialize_identity_verification_not_sent_error(obj: IdentityVerificationNot
 
 def _deserialize_identity_verification_not_sent_error(obj: Any) -> IdentityVerificationNotSentError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "IDENTITY_VERIFICATION_NOT_SENT":
-        raise ValueError(f"{repr(type)} is not 'IDENTITY_VERIFICATION_NOT_SENT'")
+        raise ValueError("Expected 'IDENTITY_VERIFICATION_NOT_SENT' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return IdentityVerificationNotSentError(message)

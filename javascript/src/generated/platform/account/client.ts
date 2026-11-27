@@ -1,6 +1,6 @@
 import { AccountError } from "./AccountError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { Bank } from "../../../generated/common/Bank"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
@@ -51,9 +51,9 @@ export function AccountClient(init: PortOneClientInit): AccountClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformAccountHolderError(await response.json())
+				throw new GetPlatformAccountHolderError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

@@ -44,25 +44,25 @@ def _serialize_payment_logistics(obj: PaymentLogistics) -> Any:
 
 def _deserialize_payment_logistics(obj: Any) -> PaymentLogistics:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "company" not in obj:
-        raise KeyError(f"'company' is not in {obj}")
+        raise KeyError("Missing required field 'company'")
     company = obj["company"]
     company = _deserialize_payment_logistics_company(company)
     if "invoiceNumber" not in obj:
-        raise KeyError(f"'invoiceNumber' is not in {obj}")
+        raise KeyError("Missing required field 'invoiceNumber'")
     invoice_number = obj["invoiceNumber"]
     if not isinstance(invoice_number, str):
-        raise ValueError(f"{repr(invoice_number)} is not str")
+        raise ValueError("Expected str for invoice_number")
     if "sentAt" not in obj:
-        raise KeyError(f"'sentAt' is not in {obj}")
+        raise KeyError("Missing required field 'sentAt'")
     sent_at = obj["sentAt"]
     if not isinstance(sent_at, str):
-        raise ValueError(f"{repr(sent_at)} is not str")
+        raise ValueError("Expected str for sent_at")
     if "receivedAt" in obj:
         received_at = obj["receivedAt"]
         if not isinstance(received_at, str):
-            raise ValueError(f"{repr(received_at)} is not str")
+            raise ValueError("Expected str for received_at")
     else:
         received_at = None
     if "address" in obj:

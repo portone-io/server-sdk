@@ -22,7 +22,7 @@ public sealed interface PaymentSortBy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestedAt = decoder.decodeString().let {
       if (it != "REQUESTED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected REQUESTED_AT")
       } else {
         return RequestedAt
       }
@@ -38,7 +38,7 @@ public sealed interface PaymentSortBy {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusChangedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): StatusChangedAt = decoder.decodeString().let {
       if (it != "STATUS_CHANGED_AT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected STATUS_CHANGED_AT")
       } else {
         return StatusChangedAt
       }

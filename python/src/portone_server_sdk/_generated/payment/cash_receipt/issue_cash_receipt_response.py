@@ -20,9 +20,9 @@ def _serialize_issue_cash_receipt_response(obj: IssueCashReceiptResponse) -> Any
 
 def _deserialize_issue_cash_receipt_response(obj: Any) -> IssueCashReceiptResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "cashReceipt" not in obj:
-        raise KeyError(f"'cashReceipt' is not in {obj}")
+        raise KeyError("Missing required field 'cashReceipt'")
     cash_receipt = obj["cashReceipt"]
     cash_receipt = _deserialize_cash_receipt_summary(cash_receipt)
     return IssueCashReceiptResponse(cash_receipt)

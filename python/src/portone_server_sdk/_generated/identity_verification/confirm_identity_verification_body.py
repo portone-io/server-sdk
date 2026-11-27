@@ -32,17 +32,17 @@ def _serialize_confirm_identity_verification_body(obj: ConfirmIdentityVerificati
 
 def _deserialize_confirm_identity_verification_body(obj: Any) -> ConfirmIdentityVerificationBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "otp" in obj:
         otp = obj["otp"]
         if not isinstance(otp, str):
-            raise ValueError(f"{repr(otp)} is not str")
+            raise ValueError("Expected str for otp")
     else:
         otp = None
     return ConfirmIdentityVerificationBody(store_id, otp)

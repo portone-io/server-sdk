@@ -170,12 +170,14 @@ export function writeOperation(
   implWriter.writeLine(")")
   implWriter.writeLine("if (!response.ok) {")
   implWriter.indent()
-  implWriter.writeLine(`throw new ${operation.errors}(await response.json())`)
+  implWriter.writeLine(
+    `throw new ${operation.errors}(await readJsonResponse(response))`,
+  )
   implWriter.outdent()
   implWriter.writeLine("}")
   switch (operation.response?.type) {
     case "application/json":
-      implWriter.writeLine("return response.json()")
+      implWriter.writeLine("return readJsonResponse(response)")
       break
     case "text/csv":
       implWriter.writeLine("return response.text()")

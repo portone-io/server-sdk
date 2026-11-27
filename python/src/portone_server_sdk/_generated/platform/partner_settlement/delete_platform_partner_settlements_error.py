@@ -59,4 +59,4 @@ def _deserialize_delete_platform_partner_settlements_error(obj: Any) -> DeletePl
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not DeletePlatformPartnerSettlementsError")
+    raise ValueError("Expected DeletePlatformPartnerSettlementsError")

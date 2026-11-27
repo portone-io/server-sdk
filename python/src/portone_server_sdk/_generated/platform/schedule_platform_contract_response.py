@@ -22,9 +22,9 @@ def _serialize_schedule_platform_contract_response(obj: SchedulePlatformContract
 
 def _deserialize_schedule_platform_contract_response(obj: Any) -> SchedulePlatformContractResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "scheduledContract" not in obj:
-        raise KeyError(f"'scheduledContract' is not in {obj}")
+        raise KeyError("Missing required field 'scheduledContract'")
     scheduled_contract = obj["scheduledContract"]
     scheduled_contract = _deserialize_platform_contract(scheduled_contract)
     return SchedulePlatformContractResponse(scheduled_contract)

@@ -22,16 +22,16 @@ def _serialize_cancellable_amount_consistency_broken_error(obj: CancellableAmoun
 
 def _deserialize_cancellable_amount_consistency_broken_error(obj: Any) -> CancellableAmountConsistencyBrokenError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN":
-        raise ValueError(f"{repr(type)} is not 'CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN'")
+        raise ValueError("Expected 'CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return CancellableAmountConsistencyBrokenError(message)

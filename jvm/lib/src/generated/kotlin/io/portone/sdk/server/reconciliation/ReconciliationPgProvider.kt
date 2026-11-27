@@ -20,7 +20,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kakaopay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kakaopay = decoder.decodeString().let {
       if (it != "KAKAOPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KAKAOPAY")
       } else {
         return Kakaopay
       }
@@ -35,7 +35,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nicepay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nicepay = decoder.decodeString().let {
       if (it != "NICEPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NICEPAY")
       } else {
         return Nicepay
       }
@@ -50,7 +50,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Naverpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Naverpay = decoder.decodeString().let {
       if (it != "NAVERPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected NAVERPAY")
       } else {
         return Naverpay
       }
@@ -65,7 +65,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Uplus::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Uplus = decoder.decodeString().let {
       if (it != "UPLUS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected UPLUS")
       } else {
         return Uplus
       }
@@ -80,7 +80,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tosspayments::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tosspayments = decoder.decodeString().let {
       if (it != "TOSSPAYMENTS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOSSPAYMENTS")
       } else {
         return Tosspayments
       }
@@ -95,7 +95,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tosspay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tosspay = decoder.decodeString().let {
       if (it != "TOSSPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TOSSPAY")
       } else {
         return Tosspay
       }
@@ -110,7 +110,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Payco::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Payco = decoder.decodeString().let {
       if (it != "PAYCO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYCO")
       } else {
         return Payco
       }
@@ -125,7 +125,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kcp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kcp = decoder.decodeString().let {
       if (it != "KCP") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KCP")
       } else {
         return Kcp
       }
@@ -140,7 +140,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Danal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Danal = decoder.decodeString().let {
       if (it != "DANAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DANAL")
       } else {
         return Danal
       }
@@ -155,7 +155,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Eximbay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Eximbay = decoder.decodeString().let {
       if (it != "EXIMBAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected EXIMBAY")
       } else {
         return Eximbay
       }
@@ -170,7 +170,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Inicis::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Inicis = decoder.decodeString().let {
       if (it != "INICIS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected INICIS")
       } else {
         return Inicis
       }
@@ -185,7 +185,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hecto::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hecto = decoder.decodeString().let {
       if (it != "HECTO") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HECTO")
       } else {
         return Hecto
       }
@@ -200,7 +200,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ksnet::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ksnet = decoder.decodeString().let {
       if (it != "KSNET") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KSNET")
       } else {
         return Ksnet
       }
@@ -215,7 +215,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kpn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kpn = decoder.decodeString().let {
       if (it != "KPN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KPN")
       } else {
         return Kpn
       }
@@ -230,7 +230,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hyphen::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hyphen = decoder.decodeString().let {
       if (it != "HYPHEN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HYPHEN")
       } else {
         return Hyphen
       }
@@ -245,7 +245,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Paypal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Paypal = decoder.decodeString().let {
       if (it != "PAYPAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYPAL")
       } else {
         return Paypal
       }
@@ -260,7 +260,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HectoEasy::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HectoEasy = decoder.decodeString().let {
       if (it != "HECTO_EASY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected HECTO_EASY")
       } else {
         return HectoEasy
       }
@@ -275,7 +275,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mobilians::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mobilians = decoder.decodeString().let {
       if (it != "MOBILIANS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected MOBILIANS")
       } else {
         return Mobilians
       }
@@ -290,7 +290,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayletterGlobal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PayletterGlobal = decoder.decodeString().let {
       if (it != "PAYLETTER_GLOBAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYLETTER_GLOBAL")
       } else {
         return PayletterGlobal
       }
@@ -305,7 +305,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kiwoompay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kiwoompay = decoder.decodeString().let {
       if (it != "KIWOOMPAY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected KIWOOMPAY")
       } else {
         return Kiwoompay
       }
@@ -320,7 +320,7 @@ public sealed interface ReconciliationPgProvider {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Paymentwall::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Paymentwall = decoder.decodeString().let {
       if (it != "PAYMENTWALL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAYMENTWALL")
       } else {
         return Paymentwall
       }

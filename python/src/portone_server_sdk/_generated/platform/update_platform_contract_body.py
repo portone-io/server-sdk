@@ -53,17 +53,17 @@ def _serialize_update_platform_contract_body(obj: UpdatePlatformContractBody) ->
 
 def _deserialize_update_platform_contract_body(obj: Any) -> UpdatePlatformContractBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
-            raise ValueError(f"{repr(name)} is not str")
+            raise ValueError("Expected str for name")
     else:
         name = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     if "platformFee" in obj:
@@ -84,7 +84,7 @@ def _deserialize_update_platform_contract_body(obj: Any) -> UpdatePlatformContra
     if "subtractPaymentVatAmount" in obj:
         subtract_payment_vat_amount = obj["subtractPaymentVatAmount"]
         if not isinstance(subtract_payment_vat_amount, bool):
-            raise ValueError(f"{repr(subtract_payment_vat_amount)} is not bool")
+            raise ValueError("Expected bool for subtract_payment_vat_amount")
     else:
         subtract_payment_vat_amount = None
     return UpdatePlatformContractBody(name, memo, platform_fee, settlement_cycle, platform_fee_vat_payer, subtract_payment_vat_amount)

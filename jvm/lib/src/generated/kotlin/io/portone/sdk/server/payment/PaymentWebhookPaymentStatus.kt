@@ -21,7 +21,7 @@ public sealed interface PaymentWebhookPaymentStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ready::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ready = decoder.decodeString().let {
       if (it != "READY") {
-        throw SerializationException(it)
+        throw SerializationException("Expected READY")
       } else {
         return Ready
       }
@@ -36,7 +36,7 @@ public sealed interface PaymentWebhookPaymentStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VirtualAccountIssued::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VirtualAccountIssued = decoder.decodeString().let {
       if (it != "VIRTUAL_ACCOUNT_ISSUED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected VIRTUAL_ACCOUNT_ISSUED")
       } else {
         return VirtualAccountIssued
       }
@@ -51,7 +51,7 @@ public sealed interface PaymentWebhookPaymentStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Paid::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Paid = decoder.decodeString().let {
       if (it != "PAID") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAID")
       } else {
         return Paid
       }
@@ -66,7 +66,7 @@ public sealed interface PaymentWebhookPaymentStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Failed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Failed = decoder.decodeString().let {
       if (it != "FAILED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected FAILED")
       } else {
         return Failed
       }
@@ -81,7 +81,7 @@ public sealed interface PaymentWebhookPaymentStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PartialCancelled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PartialCancelled = decoder.decodeString().let {
       if (it != "PARTIAL_CANCELLED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PARTIAL_CANCELLED")
       } else {
         return PartialCancelled
       }
@@ -96,7 +96,7 @@ public sealed interface PaymentWebhookPaymentStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cancelled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cancelled = decoder.decodeString().let {
       if (it != "CANCELLED") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CANCELLED")
       } else {
         return Cancelled
       }
@@ -111,7 +111,7 @@ public sealed interface PaymentWebhookPaymentStatus {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PayPending = decoder.decodeString().let {
       if (it != "PAY_PENDING") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PAY_PENDING")
       } else {
         return PayPending
       }

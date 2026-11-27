@@ -20,16 +20,16 @@ def _serialize_platform_order_transfer_already_cancelled_error(obj: PlatformOrde
 
 def _deserialize_platform_order_transfer_already_cancelled_error(obj: Any) -> PlatformOrderTransferAlreadyCancelledError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "PLATFORM_ORDER_TRANSFER_ALREADY_CANCELLED":
-        raise ValueError(f"{repr(type)} is not 'PLATFORM_ORDER_TRANSFER_ALREADY_CANCELLED'")
+        raise ValueError("Expected 'PLATFORM_ORDER_TRANSFER_ALREADY_CANCELLED' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return PlatformOrderTransferAlreadyCancelledError(message)

@@ -29,16 +29,16 @@ def _serialize_platform_partner_type_wht_payer(obj: PlatformPartnerTypeWhtPayer)
 
 def _deserialize_platform_partner_type_wht_payer(obj: Any) -> PlatformPartnerTypeWhtPayer:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "WHT_PAYER":
-        raise ValueError(f"{repr(type)} is not 'WHT_PAYER'")
+        raise ValueError("Expected 'WHT_PAYER' for type")
     if "birthdate" in obj:
         birthdate = obj["birthdate"]
         if not isinstance(birthdate, str):
-            raise ValueError(f"{repr(birthdate)} is not str")
+            raise ValueError("Expected str for birthdate")
     else:
         birthdate = None
     return PlatformPartnerTypeWhtPayer(birthdate)

@@ -1,6 +1,6 @@
 import { CounterpartyError } from "./CounterpartyError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { B2bCertificate } from "../../../generated/b2b/counterparty/B2bCertificate"
 import type { B2bCertificateUnregisteredError } from "../../../generated/b2b/counterparty/B2bCertificateUnregisteredError"
 import type { B2bCounterparty } from "../../../generated/b2b/counterparty/B2bCounterparty"
@@ -70,9 +70,9 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bCounterpartyCertificateRegistrationUrlError(await response.json())
+				throw new GetB2bCounterpartyCertificateRegistrationUrlError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		validateB2bCounterpartyCertificate: async (
 			options: {
@@ -100,9 +100,9 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				},
 			)
 			if (!response.ok) {
-				throw new ValidateB2bCounterpartyCertificateError(await response.json())
+				throw new ValidateB2bCounterpartyCertificateError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getB2bCounterpartyCertificate: async (
 			options: {
@@ -130,9 +130,9 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bCounterpartyCertificateError(await response.json())
+				throw new GetB2bCounterpartyCertificateError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getB2bCounterparty: async (
 			options: {
@@ -160,9 +160,9 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bCounterpartyError(await response.json())
+				throw new GetB2bCounterpartyError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		deleteB2bCounterparty: async (
 			options: {
@@ -190,9 +190,9 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				},
 			)
 			if (!response.ok) {
-				throw new DeleteB2bCounterpartyError(await response.json())
+				throw new DeleteB2bCounterpartyError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		updateB2bCounterparty: async (
 			options_: {
@@ -229,9 +229,9 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				},
 			)
 			if (!response.ok) {
-				throw new UpdateB2bCounterpartyError(await response.json())
+				throw new UpdateB2bCounterpartyError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getB2bCounterparties: async (
 			options?: {
@@ -264,9 +264,9 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bCounterpartiesError(await response.json())
+				throw new GetB2bCounterpartiesError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		createB2bCounterparty: async (
 			options_: {
@@ -304,9 +304,9 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				},
 			)
 			if (!response.ok) {
-				throw new CreateB2bCounterpartyError(await response.json())
+				throw new CreateB2bCounterpartyError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

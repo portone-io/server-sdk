@@ -31,4 +31,4 @@ def _deserialize_get_all_payment_events_error(obj: Any) -> GetAllPaymentEventsEr
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetAllPaymentEventsError")
+    raise ValueError("Expected GetAllPaymentEventsError")

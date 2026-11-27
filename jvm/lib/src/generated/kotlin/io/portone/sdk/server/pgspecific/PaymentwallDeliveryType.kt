@@ -22,7 +22,7 @@ public sealed interface PaymentwallDeliveryType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Digital::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Digital = decoder.decodeString().let {
       if (it != "DIGITAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DIGITAL")
       } else {
         return Digital
       }
@@ -38,7 +38,7 @@ public sealed interface PaymentwallDeliveryType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Physical::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Physical = decoder.decodeString().let {
       if (it != "PHYSICAL") {
-        throw SerializationException(it)
+        throw SerializationException("Expected PHYSICAL")
       } else {
         return Physical
       }

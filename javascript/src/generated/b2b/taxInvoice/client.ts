@@ -1,6 +1,6 @@
 import { TaxInvoiceError } from "./TaxInvoiceError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { B2BCannotChangeTaxTypeError } from "../../../generated/b2b/taxInvoice/B2BCannotChangeTaxTypeError"
 import type { B2BTaxInvoiceStatusNotSendingCompletedError } from "../../../generated/b2b/taxInvoice/B2BTaxInvoiceStatusNotSendingCompletedError"
 import type { B2bBulkTaxInvoice } from "../../../generated/b2b/taxInvoice/B2bBulkTaxInvoice"
@@ -87,9 +87,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bBulkTaxInvoiceError(await response.json())
+				throw new GetB2bBulkTaxInvoiceError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		createB2bFileUploadUrl: async (
 			options: {
@@ -121,9 +121,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CreateB2bFileUploadUrlError(await response.json())
+				throw new CreateB2bFileUploadUrlError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		downloadB2bTaxInvoicesSheet: async (
 			options?: {
@@ -159,7 +159,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new DownloadB2bTaxInvoicesSheetError(await response.json())
+				throw new DownloadB2bTaxInvoicesSheetError(await readJsonResponse(response))
 			}
 			return response.text()
 		},
@@ -205,9 +205,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new UpdateB2bTaxInvoiceDraftError(await response.json())
+				throw new UpdateB2bTaxInvoiceDraftError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		draftB2bTaxInvoice: async (
 			options: {
@@ -248,9 +248,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new DraftB2bTaxInvoiceError(await response.json())
+				throw new DraftB2bTaxInvoiceError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		issueB2bTaxInvoiceImmediately: async (
 			options: {
@@ -291,9 +291,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new IssueB2bTaxInvoiceImmediatelyError(await response.json())
+				throw new IssueB2bTaxInvoiceImmediatelyError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		requestB2bTaxInvoiceReverseIssuance: async (
 			options: {
@@ -331,9 +331,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new RequestB2bTaxInvoiceReverseIssuanceError(await response.json())
+				throw new RequestB2bTaxInvoiceReverseIssuanceError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		attachB2bTaxInvoiceFile: async (
 			options: {
@@ -373,7 +373,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new AttachB2bTaxInvoiceFileError(await response.json())
+				throw new AttachB2bTaxInvoiceFileError(await readJsonResponse(response))
 			}
 		},
 		deleteB2bTaxInvoiceAttachment: async (
@@ -410,7 +410,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new DeleteB2bTaxInvoiceAttachmentError(await response.json())
+				throw new DeleteB2bTaxInvoiceAttachmentError(await readJsonResponse(response))
 			}
 		},
 		getB2bTaxInvoiceAttachments: async (
@@ -445,9 +445,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bTaxInvoiceAttachmentsError(await response.json())
+				throw new GetB2bTaxInvoiceAttachmentsError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		cancelB2bTaxInvoiceIssuance: async (
 			options: {
@@ -487,9 +487,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CancelB2bTaxInvoiceIssuanceError(await response.json())
+				throw new CancelB2bTaxInvoiceIssuanceError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		cancelB2bTaxInvoiceRequest: async (
 			options: {
@@ -529,9 +529,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CancelB2bTaxInvoiceRequestError(await response.json())
+				throw new CancelB2bTaxInvoiceRequestError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		issueB2bTaxInvoice: async (
 			options: {
@@ -574,9 +574,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new IssueB2bTaxInvoiceError(await response.json())
+				throw new IssueB2bTaxInvoiceError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getB2bTaxInvoicePdfDownloadUrl: async (
 			options: {
@@ -610,9 +610,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bTaxInvoicePdfDownloadUrlError(await response.json())
+				throw new GetB2bTaxInvoicePdfDownloadUrlError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getB2bTaxInvoicePopupUrl: async (
 			options: {
@@ -649,9 +649,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bTaxInvoicePopupUrlError(await response.json())
+				throw new GetB2bTaxInvoicePopupUrlError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getB2bTaxInvoicePrintUrl: async (
 			options: {
@@ -685,9 +685,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bTaxInvoicePrintUrlError(await response.json())
+				throw new GetB2bTaxInvoicePrintUrlError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		refuseB2bTaxInvoiceRequest: async (
 			options: {
@@ -727,9 +727,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new RefuseB2bTaxInvoiceRequestError(await response.json())
+				throw new RefuseB2bTaxInvoiceRequestError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		requestB2bTaxInvoice: async (
 			options: {
@@ -763,9 +763,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new requestB2bTaxInvoiceError(await response.json())
+				throw new requestB2bTaxInvoiceError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		sendToNtsB2bTaxInvoice: async (
 			options: {
@@ -799,9 +799,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new SendToNtsB2bTaxInvoiceError(await response.json())
+				throw new SendToNtsB2bTaxInvoiceError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getB2bTaxInvoice: async (
 			options: {
@@ -835,9 +835,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bTaxInvoiceError(await response.json())
+				throw new GetB2bTaxInvoiceError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		deleteB2bTaxInvoice: async (
 			options: {
@@ -871,9 +871,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new DeleteB2bTaxInvoiceError(await response.json())
+				throw new DeleteB2bTaxInvoiceError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getB2bTaxInvoices: async (
 			options?: {
@@ -912,9 +912,9 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetB2bTaxInvoicesError(await response.json())
+				throw new GetB2bTaxInvoicesError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

@@ -1,6 +1,6 @@
 import { PayoutError } from "./PayoutError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { CompletePlatformPayoutByPartnerSettlementIdsResponse } from "../../../generated/platform/payout/CompletePlatformPayoutByPartnerSettlementIdsResponse"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformPayoutsResponse } from "../../../generated/platform/payout/GetPlatformPayoutsResponse"
@@ -64,9 +64,9 @@ export function PayoutClient(init: PortOneClientInit): PayoutClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CompletePlatformPayoutByPartnerSettlementIdsError(await response.json())
+				throw new CompletePlatformPayoutByPartnerSettlementIdsError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getPlatformPayouts: async (
 			options?: {
@@ -102,9 +102,9 @@ export function PayoutClient(init: PortOneClientInit): PayoutClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetPlatformPayoutsError(await response.json())
+				throw new GetPlatformPayoutsError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

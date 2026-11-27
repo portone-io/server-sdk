@@ -26,7 +26,7 @@ public sealed interface PlatformCancellableAmountType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplyWithVat::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SupplyWithVat = decoder.decodeString().let {
       if (it != "SUPPLY_WITH_VAT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected SUPPLY_WITH_VAT")
       } else {
         return SupplyWithVat
       }
@@ -42,7 +42,7 @@ public sealed interface PlatformCancellableAmountType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TaxFree::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TaxFree = decoder.decodeString().let {
       if (it != "TAX_FREE") {
-        throw SerializationException(it)
+        throw SerializationException("Expected TAX_FREE")
       } else {
         return TaxFree
       }

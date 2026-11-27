@@ -22,9 +22,9 @@ def _serialize_pay_with_billing_key_response(obj: PayWithBillingKeyResponse) -> 
 
 def _deserialize_pay_with_billing_key_response(obj: Any) -> PayWithBillingKeyResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "payment" not in obj:
-        raise KeyError(f"'payment' is not in {obj}")
+        raise KeyError("Missing required field 'payment'")
     payment = obj["payment"]
     payment = _deserialize_billing_key_payment_summary(payment)
     return PayWithBillingKeyResponse(payment)

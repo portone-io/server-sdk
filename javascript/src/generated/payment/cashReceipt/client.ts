@@ -1,6 +1,6 @@
 import { CashReceiptError } from "./CashReceiptError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, readJsonResponse, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { CancelCashReceiptResponse } from "../../../generated/payment/cashReceipt/CancelCashReceiptResponse"
 import type { CashReceipt } from "../../../generated/payment/cashReceipt/CashReceipt"
 import type { CashReceiptAlreadyIssuedError } from "../../../generated/payment/cashReceipt/CashReceiptAlreadyIssuedError"
@@ -60,9 +60,9 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetCashReceiptsError(await response.json())
+				throw new GetCashReceiptsError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		issueCashReceipt: async (
 			options: {
@@ -120,9 +120,9 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				},
 			)
 			if (!response.ok) {
-				throw new IssueCashReceiptError(await response.json())
+				throw new IssueCashReceiptError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		cancelCashReceiptByPaymentId: async (
 			options: {
@@ -150,9 +150,9 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				},
 			)
 			if (!response.ok) {
-				throw new CancelCashReceiptError(await response.json())
+				throw new CancelCashReceiptError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 		getCashReceiptByPaymentId: async (
 			options: {
@@ -180,9 +180,9 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				},
 			)
 			if (!response.ok) {
-				throw new GetCashReceiptError(await response.json())
+				throw new GetCashReceiptError(await readJsonResponse(response))
 			}
-			return response.json()
+			return readJsonResponse(response)
 		},
 	}
 }

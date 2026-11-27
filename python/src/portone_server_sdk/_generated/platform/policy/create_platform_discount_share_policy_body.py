@@ -39,27 +39,27 @@ def _serialize_create_platform_discount_share_policy_body(obj: CreatePlatformDis
 
 def _deserialize_create_platform_discount_share_policy_body(obj: Any) -> CreatePlatformDiscountSharePolicyBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "name" not in obj:
-        raise KeyError(f"'name' is not in {obj}")
+        raise KeyError("Missing required field 'name'")
     name = obj["name"]
     if not isinstance(name, str):
-        raise ValueError(f"{repr(name)} is not str")
+        raise ValueError("Expected str for name")
     if "partnerShareRate" not in obj:
-        raise KeyError(f"'partnerShareRate' is not in {obj}")
+        raise KeyError("Missing required field 'partnerShareRate'")
     partner_share_rate = obj["partnerShareRate"]
     if not isinstance(partner_share_rate, int):
-        raise ValueError(f"{repr(partner_share_rate)} is not int")
+        raise ValueError("Expected int for partner_share_rate")
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
-            raise ValueError(f"{repr(id)} is not str")
+            raise ValueError("Expected str for id")
     else:
         id = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
-            raise ValueError(f"{repr(memo)} is not str")
+            raise ValueError("Expected str for memo")
     else:
         memo = None
     return CreatePlatformDiscountSharePolicyBody(name, partner_share_rate, id, memo)

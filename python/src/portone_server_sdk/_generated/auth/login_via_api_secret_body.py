@@ -21,10 +21,10 @@ def _serialize_login_via_api_secret_body(obj: LoginViaApiSecretBody) -> Any:
 
 def _deserialize_login_via_api_secret_body(obj: Any) -> LoginViaApiSecretBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "apiSecret" not in obj:
-        raise KeyError(f"'apiSecret' is not in {obj}")
+        raise KeyError("Missing required field 'apiSecret'")
     api_secret = obj["apiSecret"]
     if not isinstance(api_secret, str):
-        raise ValueError(f"{repr(api_secret)} is not str")
+        raise ValueError("Expected str for api_secret")
     return LoginViaApiSecretBody(api_secret)

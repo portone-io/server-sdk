@@ -30,7 +30,7 @@ def _serialize_get_platform_discount_share_policies_body(obj: GetPlatformDiscoun
 
 def _deserialize_get_platform_discount_share_policies_body(obj: Any) -> GetPlatformDiscountSharePoliciesBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "page" in obj:
         page = obj["page"]
         page = _deserialize_page_input(page)

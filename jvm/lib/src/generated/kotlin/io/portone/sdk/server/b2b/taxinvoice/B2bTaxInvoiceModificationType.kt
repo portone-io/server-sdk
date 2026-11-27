@@ -22,7 +22,7 @@ public sealed interface B2bTaxInvoiceModificationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CorrectionOfEntryErrors::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CorrectionOfEntryErrors = decoder.decodeString().let {
       if (it != "CORRECTION_OF_ENTRY_ERRORS") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CORRECTION_OF_ENTRY_ERRORS")
       } else {
         return CorrectionOfEntryErrors
       }
@@ -38,7 +38,7 @@ public sealed interface B2bTaxInvoiceModificationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ChangeInSupplyCost::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ChangeInSupplyCost = decoder.decodeString().let {
       if (it != "CHANGE_IN_SUPPLY_COST") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CHANGE_IN_SUPPLY_COST")
       } else {
         return ChangeInSupplyCost
       }
@@ -54,7 +54,7 @@ public sealed interface B2bTaxInvoiceModificationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Return::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Return = decoder.decodeString().let {
       if (it != "RETURN") {
-        throw SerializationException(it)
+        throw SerializationException("Expected RETURN")
       } else {
         return Return
       }
@@ -70,7 +70,7 @@ public sealed interface B2bTaxInvoiceModificationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CancellationOfContract::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CancellationOfContract = decoder.decodeString().let {
       if (it != "CANCELLATION_OF_CONTRACT") {
-        throw SerializationException(it)
+        throw SerializationException("Expected CANCELLATION_OF_CONTRACT")
       } else {
         return CancellationOfContract
       }
@@ -86,7 +86,7 @@ public sealed interface B2bTaxInvoiceModificationType {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DuplicateIssuanceDueToError::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DuplicateIssuanceDueToError = decoder.decodeString().let {
       if (it != "DUPLICATE_ISSUANCE_DUE_TO_ERROR") {
-        throw SerializationException(it)
+        throw SerializationException("Expected DUPLICATE_ISSUANCE_DUE_TO_ERROR")
       } else {
         return DuplicateIssuanceDueToError
       }

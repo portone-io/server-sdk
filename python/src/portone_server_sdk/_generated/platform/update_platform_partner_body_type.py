@@ -39,7 +39,7 @@ def _serialize_update_platform_partner_body_type(obj: UpdatePlatformPartnerBodyT
 
 def _deserialize_update_platform_partner_body_type(obj: Any) -> UpdatePlatformPartnerBodyType:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "business" in obj:
         business = obj["business"]
         business = _deserialize_update_platform_partner_body_type_business(business)

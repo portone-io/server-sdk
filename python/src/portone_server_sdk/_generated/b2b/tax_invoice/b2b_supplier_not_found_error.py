@@ -28,28 +28,28 @@ def _serialize_b2b_supplier_not_found_error(obj: B2bSupplierNotFoundError) -> An
 
 def _deserialize_b2b_supplier_not_found_error(obj: Any) -> B2bSupplierNotFoundError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "B2B_SUPPLIER_NOT_FOUND":
-        raise ValueError(f"{repr(type)} is not 'B2B_SUPPLIER_NOT_FOUND'")
+        raise ValueError("Expected 'B2B_SUPPLIER_NOT_FOUND' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     if "brn" in obj:
         brn = obj["brn"]
         if not isinstance(brn, str):
-            raise ValueError(f"{repr(brn)} is not str")
+            raise ValueError("Expected str for brn")
     else:
         brn = None
     if "counterpartyId" in obj:
         counterparty_id = obj["counterpartyId"]
         if not isinstance(counterparty_id, str):
-            raise ValueError(f"{repr(counterparty_id)} is not str")
+            raise ValueError("Expected str for counterparty_id")
     else:
         counterparty_id = None
     return B2bSupplierNotFoundError(message, brn, counterparty_id)

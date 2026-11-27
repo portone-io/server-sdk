@@ -27,20 +27,20 @@ def _serialize_channel_specific_failure_invalid_request(obj: ChannelSpecificFail
 
 def _deserialize_channel_specific_failure_invalid_request(obj: Any) -> ChannelSpecificFailureInvalidRequest:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "INVALID_REQUEST":
-        raise ValueError(f"{repr(type)} is not 'INVALID_REQUEST'")
+        raise ValueError("Expected 'INVALID_REQUEST' for type")
     if "channel" not in obj:
-        raise KeyError(f"'channel' is not in {obj}")
+        raise KeyError("Missing required field 'channel'")
     channel = obj["channel"]
     channel = _deserialize_selected_channel(channel)
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return ChannelSpecificFailureInvalidRequest(channel, message)

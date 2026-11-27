@@ -22,9 +22,9 @@ def _serialize_reschedule_platform_partner_response(obj: ReschedulePlatformPartn
 
 def _deserialize_reschedule_platform_partner_response(obj: Any) -> ReschedulePlatformPartnerResponse:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "scheduledPartner" not in obj:
-        raise KeyError(f"'scheduledPartner' is not in {obj}")
+        raise KeyError("Missing required field 'scheduledPartner'")
     scheduled_partner = obj["scheduledPartner"]
     scheduled_partner = _deserialize_platform_partner(scheduled_partner)
     return ReschedulePlatformPartnerResponse(scheduled_partner)

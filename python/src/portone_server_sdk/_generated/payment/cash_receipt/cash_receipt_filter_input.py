@@ -117,11 +117,11 @@ def _serialize_cash_receipt_filter_input(obj: CashReceiptFilterInput) -> Any:
 
 def _deserialize_cash_receipt_filter_input(obj: Any) -> CashReceiptFilterInput:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     if "timeRangeField" in obj:
@@ -132,37 +132,37 @@ def _deserialize_cash_receipt_filter_input(obj: Any) -> CashReceiptFilterInput:
     if "from" in obj:
         from_ = obj["from"]
         if not isinstance(from_, str):
-            raise ValueError(f"{repr(from_)} is not str")
+            raise ValueError("Expected str for from_")
     else:
         from_ = None
     if "until" in obj:
         until = obj["until"]
         if not isinstance(until, str):
-            raise ValueError(f"{repr(until)} is not str")
+            raise ValueError("Expected str for until")
     else:
         until = None
     if "paymentId" in obj:
         payment_id = obj["paymentId"]
         if not isinstance(payment_id, str):
-            raise ValueError(f"{repr(payment_id)} is not str")
+            raise ValueError("Expected str for payment_id")
     else:
         payment_id = None
     if "isTest" in obj:
         is_test = obj["isTest"]
         if not isinstance(is_test, bool):
-            raise ValueError(f"{repr(is_test)} is not bool")
+            raise ValueError("Expected bool for is_test")
     else:
         is_test = None
     if "orderName" in obj:
         order_name = obj["orderName"]
         if not isinstance(order_name, str):
-            raise ValueError(f"{repr(order_name)} is not str")
+            raise ValueError("Expected str for order_name")
     else:
         order_name = None
     if "statuses" in obj:
         statuses = obj["statuses"]
         if not isinstance(statuses, list):
-            raise ValueError(f"{repr(statuses)} is not list")
+            raise ValueError("Expected list for statuses")
         for i, item in enumerate(statuses):
             item = _deserialize_cash_receipt_status(item)
             statuses[i] = item
@@ -171,25 +171,25 @@ def _deserialize_cash_receipt_filter_input(obj: Any) -> CashReceiptFilterInput:
     if "isManual" in obj:
         is_manual = obj["isManual"]
         if not isinstance(is_manual, bool):
-            raise ValueError(f"{repr(is_manual)} is not bool")
+            raise ValueError("Expected bool for is_manual")
     else:
         is_manual = None
     if "pgReceiptId" in obj:
         pg_receipt_id = obj["pgReceiptId"]
         if not isinstance(pg_receipt_id, str):
-            raise ValueError(f"{repr(pg_receipt_id)} is not str")
+            raise ValueError("Expected str for pg_receipt_id")
     else:
         pg_receipt_id = None
     if "pgMerchantId" in obj:
         pg_merchant_id = obj["pgMerchantId"]
         if not isinstance(pg_merchant_id, str):
-            raise ValueError(f"{repr(pg_merchant_id)} is not str")
+            raise ValueError("Expected str for pg_merchant_id")
     else:
         pg_merchant_id = None
     if "pgProviders" in obj:
         pg_providers = obj["pgProviders"]
         if not isinstance(pg_providers, list):
-            raise ValueError(f"{repr(pg_providers)} is not list")
+            raise ValueError("Expected list for pg_providers")
         for i, item in enumerate(pg_providers):
             item = _deserialize_pg_provider(item)
             pg_providers[i] = item
@@ -198,7 +198,7 @@ def _deserialize_cash_receipt_filter_input(obj: Any) -> CashReceiptFilterInput:
     if "pgCompanies" in obj:
         pg_companies = obj["pgCompanies"]
         if not isinstance(pg_companies, list):
-            raise ValueError(f"{repr(pg_companies)} is not list")
+            raise ValueError("Expected list for pg_companies")
         for i, item in enumerate(pg_companies):
             item = _deserialize_pg_company(item)
             pg_companies[i] = item
@@ -212,7 +212,7 @@ def _deserialize_cash_receipt_filter_input(obj: Any) -> CashReceiptFilterInput:
     if "types" in obj:
         types = obj["types"]
         if not isinstance(types, list):
-            raise ValueError(f"{repr(types)} is not list")
+            raise ValueError("Expected list for types")
         for i, item in enumerate(types):
             item = _deserialize_cash_receipt_type(item)
             types[i] = item

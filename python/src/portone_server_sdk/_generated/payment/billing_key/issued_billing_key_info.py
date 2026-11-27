@@ -93,48 +93,48 @@ def _serialize_issued_billing_key_info(obj: IssuedBillingKeyInfo) -> Any:
 
 def _deserialize_issued_billing_key_info(obj: Any) -> IssuedBillingKeyInfo:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "status" not in obj:
-        raise KeyError(f"'status' is not in {obj}")
+        raise KeyError("Missing required field 'status'")
     status = obj["status"]
     if status != "ISSUED":
-        raise ValueError(f"{repr(status)} is not 'ISSUED'")
+        raise ValueError("Expected 'ISSUED' for status")
     if "billingKey" not in obj:
-        raise KeyError(f"'billingKey' is not in {obj}")
+        raise KeyError("Missing required field 'billingKey'")
     billing_key = obj["billingKey"]
     if not isinstance(billing_key, str):
-        raise ValueError(f"{repr(billing_key)} is not str")
+        raise ValueError("Expected str for billing_key")
     if "merchantId" not in obj:
-        raise KeyError(f"'merchantId' is not in {obj}")
+        raise KeyError("Missing required field 'merchantId'")
     merchant_id = obj["merchantId"]
     if not isinstance(merchant_id, str):
-        raise ValueError(f"{repr(merchant_id)} is not str")
+        raise ValueError("Expected str for merchant_id")
     if "storeId" not in obj:
-        raise KeyError(f"'storeId' is not in {obj}")
+        raise KeyError("Missing required field 'storeId'")
     store_id = obj["storeId"]
     if not isinstance(store_id, str):
-        raise ValueError(f"{repr(store_id)} is not str")
+        raise ValueError("Expected str for store_id")
     if "channels" not in obj:
-        raise KeyError(f"'channels' is not in {obj}")
+        raise KeyError("Missing required field 'channels'")
     channels = obj["channels"]
     if not isinstance(channels, list):
-        raise ValueError(f"{repr(channels)} is not list")
+        raise ValueError("Expected list for channels")
     for i, item in enumerate(channels):
         item = _deserialize_selected_channel(item)
         channels[i] = item
     if "customer" not in obj:
-        raise KeyError(f"'customer' is not in {obj}")
+        raise KeyError("Missing required field 'customer'")
     customer = obj["customer"]
     customer = _deserialize_customer(customer)
     if "issuedAt" not in obj:
-        raise KeyError(f"'issuedAt' is not in {obj}")
+        raise KeyError("Missing required field 'issuedAt'")
     issued_at = obj["issuedAt"]
     if not isinstance(issued_at, str):
-        raise ValueError(f"{repr(issued_at)} is not str")
+        raise ValueError("Expected str for issued_at")
     if "methods" in obj:
         methods = obj["methods"]
         if not isinstance(methods, list):
-            raise ValueError(f"{repr(methods)} is not list")
+            raise ValueError("Expected list for methods")
         for i, item in enumerate(methods):
             item = _deserialize_billing_key_payment_method(item)
             methods[i] = item
@@ -143,25 +143,25 @@ def _deserialize_issued_billing_key_info(obj: Any) -> IssuedBillingKeyInfo:
     if "customData" in obj:
         custom_data = obj["customData"]
         if not isinstance(custom_data, str):
-            raise ValueError(f"{repr(custom_data)} is not str")
+            raise ValueError("Expected str for custom_data")
     else:
         custom_data = None
     if "issueId" in obj:
         issue_id = obj["issueId"]
         if not isinstance(issue_id, str):
-            raise ValueError(f"{repr(issue_id)} is not str")
+            raise ValueError("Expected str for issue_id")
     else:
         issue_id = None
     if "issueName" in obj:
         issue_name = obj["issueName"]
         if not isinstance(issue_name, str):
-            raise ValueError(f"{repr(issue_name)} is not str")
+            raise ValueError("Expected str for issue_name")
     else:
         issue_name = None
     if "requestedAt" in obj:
         requested_at = obj["requestedAt"]
         if not isinstance(requested_at, str):
-            raise ValueError(f"{repr(requested_at)} is not str")
+            raise ValueError("Expected str for requested_at")
     else:
         requested_at = None
     if "channelGroup" in obj:
@@ -172,7 +172,7 @@ def _deserialize_issued_billing_key_info(obj: Any) -> IssuedBillingKeyInfo:
     if "pgBillingKeyIssueResponses" in obj:
         pg_billing_key_issue_responses = obj["pgBillingKeyIssueResponses"]
         if not isinstance(pg_billing_key_issue_responses, list):
-            raise ValueError(f"{repr(pg_billing_key_issue_responses)} is not list")
+            raise ValueError("Expected list for pg_billing_key_issue_responses")
         for i, item in enumerate(pg_billing_key_issue_responses):
             item = _deserialize_pg_billing_key_issue_response(item)
             pg_billing_key_issue_responses[i] = item

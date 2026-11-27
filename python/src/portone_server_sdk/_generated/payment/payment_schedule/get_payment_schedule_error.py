@@ -38,4 +38,4 @@ def _deserialize_get_payment_schedule_error(obj: Any) -> GetPaymentScheduleError
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPaymentScheduleError")
+    raise ValueError("Expected GetPaymentScheduleError")

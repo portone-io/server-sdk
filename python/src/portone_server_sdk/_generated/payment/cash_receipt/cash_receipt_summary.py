@@ -29,20 +29,20 @@ def _serialize_cash_receipt_summary(obj: CashReceiptSummary) -> Any:
 
 def _deserialize_cash_receipt_summary(obj: Any) -> CashReceiptSummary:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "issueNumber" not in obj:
-        raise KeyError(f"'issueNumber' is not in {obj}")
+        raise KeyError("Missing required field 'issueNumber'")
     issue_number = obj["issueNumber"]
     if not isinstance(issue_number, str):
-        raise ValueError(f"{repr(issue_number)} is not str")
+        raise ValueError("Expected str for issue_number")
     if "url" not in obj:
-        raise KeyError(f"'url' is not in {obj}")
+        raise KeyError("Missing required field 'url'")
     url = obj["url"]
     if not isinstance(url, str):
-        raise ValueError(f"{repr(url)} is not str")
+        raise ValueError("Expected str for url")
     if "pgReceiptId" not in obj:
-        raise KeyError(f"'pgReceiptId' is not in {obj}")
+        raise KeyError("Missing required field 'pgReceiptId'")
     pg_receipt_id = obj["pgReceiptId"]
     if not isinstance(pg_receipt_id, str):
-        raise ValueError(f"{repr(pg_receipt_id)} is not str")
+        raise ValueError("Expected str for pg_receipt_id")
     return CashReceiptSummary(issue_number, url, pg_receipt_id)

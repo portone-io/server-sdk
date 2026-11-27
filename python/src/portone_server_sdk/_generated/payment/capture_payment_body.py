@@ -25,11 +25,11 @@ def _serialize_capture_payment_body(obj: CapturePaymentBody) -> Any:
 
 def _deserialize_capture_payment_body(obj: Any) -> CapturePaymentBody:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "storeId" in obj:
         store_id = obj["storeId"]
         if not isinstance(store_id, str):
-            raise ValueError(f"{repr(store_id)} is not str")
+            raise ValueError("Expected str for store_id")
     else:
         store_id = None
     return CapturePaymentBody(store_id)

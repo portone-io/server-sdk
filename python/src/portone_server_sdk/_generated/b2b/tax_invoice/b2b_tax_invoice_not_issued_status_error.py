@@ -22,16 +22,16 @@ def _serialize_b2b_tax_invoice_not_issued_status_error(obj: B2bTaxInvoiceNotIssu
 
 def _deserialize_b2b_tax_invoice_not_issued_status_error(obj: Any) -> B2bTaxInvoiceNotIssuedStatusError:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "type" not in obj:
-        raise KeyError(f"'type' is not in {obj}")
+        raise KeyError("Missing required field 'type'")
     type = obj["type"]
     if type != "B2B_TAX_INVOICE_NOT_ISSUED_STATUS":
-        raise ValueError(f"{repr(type)} is not 'B2B_TAX_INVOICE_NOT_ISSUED_STATUS'")
+        raise ValueError("Expected 'B2B_TAX_INVOICE_NOT_ISSUED_STATUS' for type")
     if "message" in obj:
         message = obj["message"]
         if not isinstance(message, str):
-            raise ValueError(f"{repr(message)} is not str")
+            raise ValueError("Expected str for message")
     else:
         message = None
     return B2bTaxInvoiceNotIssuedStatusError(message)

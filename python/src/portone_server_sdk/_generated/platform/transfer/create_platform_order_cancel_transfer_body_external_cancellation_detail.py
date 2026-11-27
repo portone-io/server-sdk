@@ -24,11 +24,11 @@ def _serialize_create_platform_order_cancel_transfer_body_external_cancellation_
 
 def _deserialize_create_platform_order_cancel_transfer_body_external_cancellation_detail(obj: Any) -> CreatePlatformOrderCancelTransferBodyExternalCancellationDetail:
     if not isinstance(obj, dict):
-        raise ValueError(f"{repr(obj)} is not dict")
+        raise ValueError("Expected dict for obj")
     if "cancelledAt" in obj:
         cancelled_at = obj["cancelledAt"]
         if not isinstance(cancelled_at, str):
-            raise ValueError(f"{repr(cancelled_at)} is not str")
+            raise ValueError("Expected str for cancelled_at")
     else:
         cancelled_at = None
     return CreatePlatformOrderCancelTransferBodyExternalCancellationDetail(cancelled_at)
