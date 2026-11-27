@@ -137,6 +137,8 @@ def test_get_payment_rejects_dot_segments_before_sending(mock_client, monkeypatc
     [
         (" ", b"/payments/%20"),
         ("order.v2/part", b"/payments/order.v2%2Fpart"),
+        (b"order/\xff", b"/payments/order%2F%FF"),
+        (bytearray(b"order/part"), b"/payments/order%2Fpart"),
         ("...", b"/payments/..."),
     ],
 )

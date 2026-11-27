@@ -93,10 +93,18 @@ describe("payment requests", () => {
 			for (const second of ["", ...dots]) {
 				await expect(
 					client.getPayment({ paymentId: first + second }),
-				).rejects.toThrow(TypeError);
+				).rejects.toThrow(RangeError);
 			}
 		}
 		expect(fetchMock).not.toHaveBeenCalled();
+	});
+	it("preserves native coercion for JavaScript callers", async () => {
+		const fetchMock = mockFetch(cancelledPayment);
+		const stringifyId = vi.fn(() => "order/part");
+		// @ts-expect-error Exercise an untyped JavaScript call.
+		await client.getPayment({ paymentId: { toString: stringifyId } });
+		expect(stringifyId).toHaveBeenCalledOnce();
+		expectRequest(fetchMock, "GET", "/payments/order%2Fpart");
 	});
 	it.each([
 		[" ", "/payments/%20"],

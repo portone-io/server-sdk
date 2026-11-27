@@ -20,9 +20,10 @@ export type PortOneClientInit = {
 export const USER_AGENT = "__USER_AGENT__";
 
 export function encodePathParameter(value: string): string {
-	const segment = String(value);
-	if (/^(?:\.|%2[eE]){1,2}$/.test(segment)) {
-		throw new TypeError("Path parameters cannot be dot segments.");
+	const encoded = encodeURIComponent(value);
+	// A literal dot stays ".", while a caller-supplied "%2e" becomes "%252e".
+	if (/^(?:\.|%252[eE]){1,2}$/.test(encoded)) {
+		throw new RangeError("Path parameters cannot be dot segments.");
 	}
-	return encodeURIComponent(segment);
+	return encoded;
 }
