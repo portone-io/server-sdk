@@ -214,8 +214,5 @@
   ],
   "sideEffects": false,
   "license": "(Apache-2.0 OR MIT)",
-  "packageManager": "pnpm@12.21.0",
-  "engines": {
-    "node": ">=22.23.4 <23 || >=24.22.1 <25 || >=26.12.1"
-  }
+  "packageManager": "pnpm@12.21.0"
 }
