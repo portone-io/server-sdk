@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.20.3
+
+### Patch Changes
+
+- 7a9baec: API 경로 매개변수가 빈 문자열이면 요청을 보내기 전에 `RangeError`를 발생시킵니다.
+
 ## 0.20.2
 
 ### Patch Changes
