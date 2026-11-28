@@ -105,9 +105,9 @@ describe("payment requests", () => {
 		).resolves.toEqual(cancelledPayment);
 		expectRequest(fetchMock, "GET", "/payments/test-server-sdk");
 	});
-	it("rejects dot segments before fetching", async () => {
+	it("rejects empty and dot segments before fetching", async () => {
 		const fetchMock = mockFetch(cancelledPayment);
-		for (const paymentId of [".", ".."]) {
+		for (const paymentId of ["", ".", ".."]) {
 			await expect(client.getPayment({ paymentId })).rejects.toThrow(
 				RangeError,
 			);

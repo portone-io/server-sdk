@@ -145,15 +145,17 @@ def test_get_payment_with_params(mock_client):
     assert payment.cancellations[0].reason == "test"
 
 
-def test_get_payment_rejects_dot_segments_before_sending(mock_client, monkeypatch):
+def test_get_payment_rejects_empty_and_dot_segments_before_sending(
+    mock_client, monkeypatch
+):
     make_client, requests, _ = mock_client
     client = make_client()
     async_request = AsyncMock()
     monkeypatch.setattr(client._async_client, "request", async_request)
-    for payment_id in (".", ".."):
-        with pytest.raises(ValueError, match="dot segments"):
+    for payment_id in ("", ".", ".."):
+        with pytest.raises(ValueError, match="Path parameters"):
             client.get_payment(payment_id=payment_id)
-        with pytest.raises(ValueError, match="dot segments"):
+        with pytest.raises(ValueError, match="Path parameters"):
             asyncio.run(client.get_payment_async(payment_id=payment_id))
     assert requests == []
     async_request.assert_not_called()

@@ -156,9 +156,9 @@ class ClientTest {
         }
 
     @Test
-    fun testGetPaymentRejectsDotSegmentsBeforeSending() =
+    fun testGetPaymentRejectsEmptyAndDotSegmentsBeforeSending() =
         runTest {
-            for (id in listOf(".", "..")) {
+            for (id in listOf("", ".", "..")) {
                 assertThrows<IllegalArgumentException> { client.getPayment(id) }
             }
             assertTrue(requests.isEmpty())
