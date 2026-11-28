@@ -207,7 +207,7 @@
     "typedoc": "^0.28.16",
     "typescript": "^5.9.3",
     "unbuild": "^3.6.1",
-    "vitest": "^3.1.4"
+    "vitest": "^4.1.11"
   },
   "files": [
     "dist"
